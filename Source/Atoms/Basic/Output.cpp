@@ -1,0 +1,92 @@
+/* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
+// EDITOR SOURCE: [[1.000000:1.000000:0.000000:0.000000:0.000000:sOutput:sBasic:]]
+#include "Output.h"
+#include "Technical/SaveState.h"
+
+namespace AtomSynth
+{
+
+/* BEGIN MISC. USER-DEFINED CODE */
+
+/* END MISC. USER-DEFINED CODE */
+
+OutputController::OutputController()
+	: AtomController(AtomParameters(1, 1, false, 0))
+{
+	init();
+
+
+	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
+
+	/* END USER-DEFINED CONSTRUCTION CODE */
+
+	m_gui.setAtomController(this);
+}
+
+Atom * OutputController::createAtom(int index)
+{
+	return new OutputAtom(* this, index);
+}
+
+SaveState OutputController::saveSaveState()
+{
+	SaveState & toReturn = * new SaveState();
+	toReturn.addState(AtomController::saveSaveState());
+
+	SaveState & extraData = * new SaveState();
+	extraData.addValue(0); //Store the revision this was saved with, to preserve backwards compatibility.
+	/* BEGIN USER-DEFINED SAVE CODE */
+
+	/* END USER-DEFINED SAVE CODE */
+	toReturn.addState(extraData);
+	return toReturn;
+}
+
+void OutputController::loadSaveState(SaveState state)
+{
+	AtomController::loadSaveState(state.getNextState());
+	SaveState & extraData = state.getNextState();
+	int version = extraData.getNextValue();
+	/* BEGIN LOAD CODE */
+	/* END LOAD CODE */
+}
+
+OutputAtom::OutputAtom(OutputController & parent, int index)
+	: Atom(parent, index),
+	  m_parent(parent)
+{
+	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
+
+	/* END USER-DEFINED CONSTRUCTION CODE */
+}
+
+void OutputAtom::execute()
+{
+	Atom::execute();
+	AutomationSet & automation = m_parent.m_automation;
+	automation.resetPosition();
+
+	/* BEGIN USER-DEFINED EXECUTION CODE */
+	for(int c = 0; c < AudioBuffer::getDefaultChannels(); c++)
+	{
+		for(int s = 0; s < AudioBuffer::getDefaultSamples(); s++)
+		{
+			//PUT YOUR EXECUTION CODE HERE
+			
+			automation.incrementPosition();
+		}
+		automation.incrementChannel();
+	}
+	/* END USER-DEFINED EXECUTION CODE */
+}
+
+void OutputAtom::reset()
+{
+	Atom::reset();
+	/* BEGIN USER-DEFINED RESET CODE */
+
+	/* END USER-DEFINED RESET CODE */
+}
+
+} /* namespace AtomSynth */
+

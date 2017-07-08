@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="Qc22JZ" name="JUCE Project" projectType="audioplug" version="1.0.0"
+              bundleIdentifier="org.codecube.AtomSynth" includeBinaryInAppConfig="1"
+              buildVST="1" buildVST3="1" buildAU="1" buildAUv3="0" buildRTAS="0"
+              buildAAX="0" pluginName="Atom Synth" pluginDesc="Advanced modular synthesizer."
+              pluginManufacturer="Code Cube" pluginManufacturerCode="Cube"
+              pluginCode="Ccas" pluginChannelConfigs="{2, 2}" pluginIsSynth="1"
+              pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
+              pluginEditorRequiresKeys="1" pluginAUExportPrefix="AtomSynthAU"
+              pluginRTASCategory="" aaxIdentifier="com.yourcompany.AtomSynth"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1"
+              displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
+              buildStandalone="1" enableIAA="0">
+  <MAINGROUP id="q4OkZd" name="JUCE Project">
+    <GROUP id="{0ECEF37E-F575-93BA-FF7A-8D9C232FE228}" name="Resources">
+      <FILE id="OCDVi5" name="add.png" compile="0" resource="1" file="Resources/add.png"/>
+      <FILE id="acCx5t" name="addFolder.png" compile="0" resource="1" file="Resources/addFolder.png"/>
+      <FILE id="BEB7Ea" name="VeraMono.ttf" compile="0" resource="1" file="Resources/VeraMono.ttf"/>
+      <FILE id="aDvKtO" name="closedFolder.png" compile="0" resource="1"
+            file="Resources/closedFolder.png"/>
+      <FILE id="NGgh4E" name="comb.png" compile="0" resource="1" file="Resources/comb.png"/>
+      <FILE id="vBwrUS" name="delete.png" compile="0" resource="1" file="Resources/delete.png"/>
+      <FILE id="cRa87w" name="edit.png" compile="0" resource="1" file="Resources/edit.png"/>
+      <FILE id="ymyPhg" name="network.png" compile="0" resource="1" file="Resources/network.png"/>
+      <FILE id="eMkpVN" name="open.png" compile="0" resource="1" file="Resources/open.png"/>
+      <FILE id="DJoEtr" name="openFolder.png" compile="0" resource="1" file="Resources/openFolder.png"/>
+      <FILE id="wn3vYo" name="play.png" compile="0" resource="1" file="Resources/play.png"/>
+      <FILE id="sCOTJd" name="preset.png" compile="0" resource="1" file="Resources/preset.png"/>
+      <FILE id="Y7EiAT" name="properties.png" compile="0" resource="1" file="Resources/properties.png"/>
+      <FILE id="xxmtVh" name="save.png" compile="0" resource="1" file="Resources/save.png"/>
+    </GROUP>
+    <GROUP id="{7B7A367B-E750-FFA3-8877-3F14B868AD43}" name="Source">
+      <GROUP id="{33BCC5A9-95B1-B73B-B09D-3A734F1AE451}" name="Atoms">
+        <GROUP id="{FC596703-87EA-9883-2391-08789ED340A2}" name="Basic">
+          <FILE id="IIIgje" name="Input.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Input.cpp"/>
+          <FILE id="pwAe4H" name="Input.h" compile="0" resource="0" file="Source/Atoms/Basic/Input.h"/>
+          <FILE id="jldlDU" name="Output.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Output.cpp"/>
+          <FILE id="xcWhFo" name="Output.h" compile="0" resource="0" file="Source/Atoms/Basic/Output.h"/>
+        </GROUP>
+        <GROUP id="{CD17A6E4-8D6A-E4E0-0345-CB6A0A09484A}" name="Generation">
+          <FILE id="ZiHQ2D" name="BasicOsc.cpp" compile="1" resource="0" file="Source/Atoms/Generation/BasicOsc.cpp"/>
+          <FILE id="J7DbFs" name="BasicOsc.h" compile="0" resource="0" file="Source/Atoms/Generation/BasicOsc.h"/>
+          <FILE id="iOP4V7" name="Envelope.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Envelope.cpp"/>
+          <FILE id="vbjVe5" name="Envelope.h" compile="0" resource="0" file="Source/Atoms/Generation/Envelope.h"/>
+          <FILE id="rhnAqJ" name="Noise.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Noise.cpp"/>
+          <FILE id="B1wjjQ" name="Noise.h" compile="0" resource="0" file="Source/Atoms/Generation/Noise.h"/>
+        </GROUP>
+        <FILE id="ykdhp7" name="_Template.cpp" compile="1" resource="0" file="Source/Atoms/_Template.cpp"/>
+        <FILE id="GYCPCs" name="_Template.h" compile="0" resource="0" file="Source/Atoms/_Template.h"/>
+        <FILE id="E6MIem" name="Atom.cpp" compile="1" resource="0" file="Source/Atoms/Atom.cpp"/>
+        <FILE id="catnrz" name="Atom.h" compile="0" resource="0" file="Source/Atoms/Atom.h"/>
+        <FILE id="PJ5nta" name="AtomList.h" compile="0" resource="0" file="Source/Atoms/AtomList.h"/>
+      </GROUP>
+      <GROUP id="{634C00AC-4CD6-BD05-6018-640301D71E23}" name="Gui">
+        <FILE id="mX8RPj" name="AnimatedWidgets.cpp" compile="1" resource="0"
+              file="Source/Gui/AnimatedWidgets.cpp"/>
+        <FILE id="yz2ZTq" name="AnimatedWidgets.h" compile="0" resource="0"
+              file="Source/Gui/AnimatedWidgets.h"/>
+        <FILE id="Vz540k" name="AtomGui.cpp" compile="1" resource="0" file="Source/Gui/AtomGui.cpp"/>
+        <FILE id="sSoIM9" name="AtomGui.h" compile="0" resource="0" file="Source/Gui/AtomGui.h"/>
+        <FILE id="ezS3DA" name="Colours.cpp" compile="1" resource="0" file="Source/Gui/Colours.cpp"/>
+        <FILE id="CEL5lD" name="Colours.h" compile="0" resource="0" file="Source/Gui/Colours.h"/>
+        <FILE id="dn0Gcv" name="Global.cpp" compile="1" resource="0" file="Source/Gui/Global.cpp"/>
+        <FILE id="wn56Rs" name="Global.h" compile="0" resource="0" file="Source/Gui/Global.h"/>
+        <FILE id="aecxra" name="HighLevelGui.cpp" compile="1" resource="0"
+              file="Source/Gui/HighLevelGui.cpp"/>
+        <FILE id="axqyh7" name="HighLevelGui.h" compile="0" resource="0" file="Source/Gui/HighLevelGui.h"/>
+        <FILE id="Gv2ZYR" name="SimpleWidgets.cpp" compile="1" resource="0"
+              file="Source/Gui/SimpleWidgets.cpp"/>
+        <FILE id="m5pKVY" name="SimpleWidgets.h" compile="0" resource="0" file="Source/Gui/SimpleWidgets.h"/>
+      </GROUP>
+      <GROUP id="{93A924D0-FF4C-D5EE-9ADE-CA113D074A65}" name="Technical">
+        <FILE id="Mw4Y3H" name="AudioBuffer.cpp" compile="1" resource="0" file="Source/Technical/AudioBuffer.cpp"/>
+        <FILE id="t5Jzxh" name="Automation.cpp" compile="1" resource="0" file="Source/Technical/Automation.cpp"/>
+        <FILE id="t0hjOQ" name="Automation.h" compile="0" resource="0" file="Source/Technical/Automation.h"/>
+        <FILE id="PQ7UHg" name="AudioBuffer.h" compile="0" resource="0" file="Source/Technical/AudioBuffer.h"/>
+        <FILE id="z9sxfj" name="Log.cpp" compile="1" resource="0" file="Source/Technical/Log.cpp"/>
+        <FILE id="BVQwmH" name="Log.h" compile="0" resource="0" file="Source/Technical/Log.h"/>
+        <FILE id="Rr7o05" name="BuiltinWaveform.cpp" compile="1" resource="0"
+              file="Source/Technical/BuiltinWaveform.cpp"/>
+        <FILE id="QYDRfo" name="BuiltinWaveform.h" compile="0" resource="0"
+              file="Source/Technical/BuiltinWaveform.h"/>
+        <FILE id="rnWLLJ" name="GlobalNoteStates.cpp" compile="1" resource="0"
+              file="Source/Technical/GlobalNoteStates.cpp"/>
+        <FILE id="UECulb" name="GlobalNoteStates.h" compile="0" resource="0"
+              file="Source/Technical/GlobalNoteStates.h"/>
+        <FILE id="ZqbrDI" name="SaveState.cpp" compile="1" resource="0" file="Source/Technical/SaveState.cpp"/>
+        <FILE id="YsbQZ4" name="SaveState.h" compile="0" resource="0" file="Source/Technical/SaveState.h"/>
+        <FILE id="LJD706" name="Synth.cpp" compile="1" resource="0" file="Source/Technical/Synth.cpp"/>
+        <FILE id="yzeoYi" name="Synth.h" compile="0" resource="0" file="Source/Technical/Synth.h"/>
+      </GROUP>
+      <GROUP id="{D0FE9A6F-246D-9435-33D9-E61B75889008}" name="Vst">
+        <FILE id="wM4ZTN" name="PluginEditor.cpp" compile="1" resource="0"
+              file="Source/Vst/PluginEditor.cpp"/>
+        <FILE id="vlt37y" name="PluginEditor.h" compile="0" resource="0" file="Source/Vst/PluginEditor.h"/>
+        <FILE id="cf5kRQ" name="PluginProcessor.cpp" compile="1" resource="0"
+              file="Source/Vst/PluginProcessor.cpp"/>
+        <FILE id="RPxuRS" name="PluginProcessor.h" compile="0" resource="0"
+              file="Source/Vst/PluginProcessor.h"/>
+      </GROUP>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstFolder="" cppLanguageStandard="-std=c++11"
+                extraCompilerFlags="" extraDefs="INCLUDE_ATOMS">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+                       targetName="AtomSynth" headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"/>
+        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+                       targetName="AtomSynth" headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="../../Programs/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Programs/JUCE/modules"/>
+      </MODULEPATHS>
+    </LINUX_MAKE>
+    <VS2015 targetFolder="Builds/VisualStudio2015" vstFolder="" vst3Folder="">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="AtomSynth"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="3" targetName="AtomSynth" useRuntimeLibDLL=""/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_video" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_opengl" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_gui_extra" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_gui_basics" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_graphics" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_events" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_data_structures" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_cryptography" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_core" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_audio_processors" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_audio_plugin_client" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_audio_formats" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_audio_devices" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_audio_basics" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>
+        <MODULEPATH id="juce_audio_utils" path="../../Programs/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2015>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_plugin_client" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="1"/>
+  </MODULES>
+  <JUCEOPTIONS JUCE_QUICKTIME="disabled" JUCE_USE_OGGVORBIS="enabled" JUCE_USE_MP3AUDIOFORMAT="disabled"
+               JUCE_USE_LAME_AUDIO_FORMAT="enabled" JUCE_PLUGINHOST_VST="enabled"
+               JUCE_PLUGINHOST_AU="disabled" JUCE_CHECK_MEMORY_LEAKS="enabled"
+               JUCE_USE_CURL="disabled" JUCE_USE_XSHM="enabled" JUCE_USE_XRENDER="disabled"
+               JUCE_USE_XCURSOR="enabled" JUCE_WEB_BROWSER="disabled" JUCE_DIRECTSHOW="disabled"
+               JUCE_MEDIAFOUNDATION="disabled" JUCE_USE_CAMERA="disabled" JUCE_PLUGINHOST_VST3="disabled"/>
+  <LIVE_SETTINGS>
+    <LINUX systemHeaderPath=""/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>
