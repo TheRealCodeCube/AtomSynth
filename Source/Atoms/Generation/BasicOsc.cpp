@@ -35,8 +35,8 @@ void BasicOscController::updatePlot() {
 		phase = double(i) / double(m_plot.getWidth());
 		phase = phase * 2.0 - 1.0;
 
-		if(phase < center) {
-			phase = (phase + 1.0) / (center + 1.0) - 1.0;
+		if(phase <= center) {
+			phase = (phase + 1.0) / (center + 1.0 + 1.0e-64) - 1.0; //1.0e-64 is there to prevent divide by zero errors when center == -1.0
 		} else {
 			phase = (phase - center) / (1.0 - center);
 		}
@@ -452,8 +452,8 @@ void BasicOscAtom::execute()
 					phase += 2.0;
 				}
 
-				if(phase < * centerIter) {
-					phase = (phase + 1.0) / (* centerIter + 1.0) - 1.0;
+				if(phase <= * centerIter) {
+					phase = (phase + 1.0) / (* centerIter + 1.0 + 1.0e-64) - 1.0; //1.0e-64 is there to prevent divide by zero errors when * centerIter == -1.0
 				} else {
 					phase = (phase - * centerIter) / (1.0 - * centerIter);
 				}

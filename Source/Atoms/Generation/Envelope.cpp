@@ -1,7 +1,14 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[12.000000:1.000000:1.000000:4.000000:1.000000:sEnvelope:sGeneration:[[[4.000000:9.000000:6.500000:2.000000:2.000000:sBpmMultiple:sreleaseTime:sRelease:]][1.000000:2.000000:]][[[4.000000:7.000000:6.500000:2.000000:2.000000:sBpmMultiple:ssustainTime:sSustain:]][0.000000:2.000000:]][[[4.000000:5.000000:6.500000:2.000000:2.000000:sBpmMultiple:sholdTime:sHold:]][1.000000:2.000000:]][[[4.000000:3.000000:6.500000:2.000000:2.000000:sBpmMultiple:sattackTime:sAttack:]][0.000000:2.000000:]][[[4.000000:1.000000:6.500000:2.000000:2.000000:sBpmMultiple:sdelayTime:sDelay:]][0.000000:2.000000:]][[[4.000000:9.000000:9.000000:2.000000:2.000000:sAtomKnob:sreleaseMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:14.000000:2.000000:2.000000:sAtomKnob:ssustainLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:9.000000:11.500000:2.000000:2.000000:sAtomKnob:sreleaseShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:14.000000:2.000000:2.000000:sAtomKnob:sattackLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:11.500000:2.000000:2.000000:sAtomKnob:sattackShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:11.500000:2.000000:2.000000:sAtomKnob:ssustainShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:14.000000:2.000000:2.000000:sAtomKnob:sholdLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:1.000000:9.000000:2.000000:2.000000:sAtomKnob:sdelayMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:9.000000:2.000000:2.000000:sAtomKnob:sattackMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:9.000000:2.000000:2.000000:sAtomKnob:sholdMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:9.000000:2.000000:2.000000:sAtomKnob:ssustainMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
+// EDITOR SOURCE: [[12.000000:1.000000:1.000000:5.000000:1.000000:sEnvelope:sGeneration:[[[4.000000:9.000000:6.500000:2.000000:2.000000:sBpmMultiple:sreleaseTime:sRelease:]][1.000000:2.000000:]][[[4.000000:7.000000:6.500000:2.000000:2.000000:sBpmMultiple:ssustainTime:sSustain:]][0.000000:2.000000:]][[[4.000000:5.000000:6.500000:2.000000:2.000000:sBpmMultiple:sholdTime:sHold:]][1.000000:2.000000:]][[[4.000000:3.000000:6.500000:2.000000:2.000000:sBpmMultiple:sattackTime:sAttack:]][0.000000:2.000000:]][[[4.000000:1.000000:6.500000:2.000000:2.000000:sBpmMultiple:sdelayTime:sDelay:]][0.000000:2.000000:]][[[4.000000:9.000000:9.000000:2.000000:2.000000:sAtomKnob:sreleaseMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:14.000000:2.000000:2.000000:sAtomKnob:ssustainLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:9.000000:11.500000:2.000000:2.000000:sAtomKnob:sreleaseShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:14.000000:2.000000:2.000000:sAtomKnob:sattackLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:11.500000:2.000000:2.000000:sAtomKnob:sattackShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:11.500000:2.000000:2.000000:sAtomKnob:ssustainShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:14.000000:2.000000:2.000000:sAtomKnob:sholdLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:1.000000:9.000000:2.000000:2.000000:sAtomKnob:sdelayMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:9.000000:2.000000:2.000000:sAtomKnob:sholdMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:9.000000:2.000000:2.000000:sAtomKnob:ssustainMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:9.000000:2.000000:2.000000:sAtomKnob:sattackMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
+
+/* BEGIN AUTO-GENERATED INCLUDES */
 #include "Envelope.h"
 #include "Technical/SaveState.h"
+/* END AUTO-GENERATED INCLUDES */
+
+/* BEGIN USER-DEFINED INCLUDES */
+
+/* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth
 {
@@ -355,15 +362,6 @@ EnvelopeController::EnvelopeController()
 	addAutomatedControl(m_delayMult, m_delayMultIter);
 	m_gui.addComponent(m_delayMult.createLabel("Multiplier", true));
 
-	m_gui.addComponent(& m_attackMult);
-	m_attackMult.setBounds(CB(3.000000, 9.000000, 2.000000, 2.000000));
-	m_attackMult.addListener(this);
-	m_attackMult.setRange(0.000000, 1.000000);
-	m_attackMult.setValue(1.000000);
-	m_attackMult.setBounded(true);
-	addAutomatedControl(m_attackMult, m_attackMultIter);
-	m_gui.addComponent(m_attackMult.createLabel("Multiplier", true));
-
 	m_gui.addComponent(& m_holdMult);
 	m_holdMult.setBounds(CB(5.000000, 9.000000, 2.000000, 2.000000));
 	m_holdMult.addListener(this);
@@ -381,6 +379,15 @@ EnvelopeController::EnvelopeController()
 	m_sustainMult.setBounded(true);
 	addAutomatedControl(m_sustainMult, m_sustainMultIter);
 	m_gui.addComponent(m_sustainMult.createLabel("Multiplier", true));
+
+	m_gui.addComponent(& m_attackMult);
+	m_attackMult.setBounds(CB(3.000000, 9.000000, 2.000000, 2.000000));
+	m_attackMult.addListener(this);
+	m_attackMult.setRange(0.000000, 1.000000);
+	m_attackMult.setValue(1.000000);
+	m_attackMult.setBounded(true);
+	addAutomatedControl(m_attackMult, m_attackMultIter);
+	m_gui.addComponent(m_attackMult.createLabel("Multiplier", true));
 
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 	m_gui.addComponent(& m_plot); //This needs to be initialized last.
@@ -402,7 +409,7 @@ SaveState EnvelopeController::saveSaveState()
 	toReturn.addState(AtomController::saveSaveState());
 
 	SaveState & extraData = * new SaveState();
-	extraData.addValue(4); //Store the revision this was saved with, to preserve backwards compatibility.
+	extraData.addValue(5); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_releaseTime.saveSaveState());
 	extraData.addState(m_sustainTime.saveSaveState());
 	extraData.addState(m_holdTime.saveSaveState());
@@ -416,9 +423,9 @@ SaveState EnvelopeController::saveSaveState()
 	extraData.addState(m_sustainShape.saveSaveState());
 	extraData.addState(m_holdLevel.saveSaveState());
 	extraData.addState(m_delayMult.saveSaveState());
-	extraData.addState(m_attackMult.saveSaveState());
 	extraData.addState(m_holdMult.saveSaveState());
 	extraData.addState(m_sustainMult.saveSaveState());
+	extraData.addState(m_attackMult.saveSaveState());
 	/* BEGIN USER-DEFINED SAVE CODE */
 
 	/* END USER-DEFINED SAVE CODE */
@@ -432,7 +439,29 @@ void EnvelopeController::loadSaveState(SaveState state)
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
 	/* BEGIN LOAD CODE */
-	if(version == 4)
+	if(version == 5)
+	{
+		m_releaseTime.loadSaveState(extraData.getNextState());
+		m_sustainTime.loadSaveState(extraData.getNextState());
+		m_holdTime.loadSaveState(extraData.getNextState());
+		m_attackTime.loadSaveState(extraData.getNextState());
+		m_delayTime.loadSaveState(extraData.getNextState());
+		m_releaseMult.loadSaveState(extraData.getNextState());
+		m_sustainLevel.loadSaveState(extraData.getNextState());
+		m_releaseShape.loadSaveState(extraData.getNextState());
+		m_attackLevel.loadSaveState(extraData.getNextState());
+		m_attackShape.loadSaveState(extraData.getNextState());
+		m_sustainShape.loadSaveState(extraData.getNextState());
+		m_holdLevel.loadSaveState(extraData.getNextState());
+		m_delayMult.loadSaveState(extraData.getNextState());
+		m_holdMult.loadSaveState(extraData.getNextState());
+		m_sustainMult.loadSaveState(extraData.getNextState());
+		m_attackMult.loadSaveState(extraData.getNextState());
+		/* BEGIN USER-DEFINED LOAD CODE */
+
+		/* END USER-DEFINED LOAD CODE */
+	}
+	else if(version == 4)
 	{
 		m_releaseMult.loadSaveState(extraData.getNextState());
 		m_sustainLevel.loadSaveState(extraData.getNextState());
@@ -490,9 +519,9 @@ void EnvelopeAtom::execute()
 	std::vector<double>::iterator & sustainShapeIter = m_parent.m_sustainShapeIter;
 	std::vector<double>::iterator & holdLevelIter = m_parent.m_holdLevelIter;
 	std::vector<double>::iterator & delayMultIter = m_parent.m_delayMultIter;
-	std::vector<double>::iterator & attackMultIter = m_parent.m_attackMultIter;
 	std::vector<double>::iterator & holdMultIter = m_parent.m_holdMultIter;
 	std::vector<double>::iterator & sustainMultIter = m_parent.m_sustainMultIter;
+	std::vector<double>::iterator & attackMultIter = m_parent.m_attackMultIter;
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	if(m_primaryInputs[0] != nullptr)

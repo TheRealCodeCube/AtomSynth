@@ -1,9 +1,13 @@
 #ifndef ATOM_Envelope_HEADER
 #define ATOM_Envelope_HEADER
 
-/* BEGIN AUTO-GENERATED HEADER */
+/* BEGIN AUTO-GENERATED INCLUDES */
 #include "Atoms/Atom.h"
-/* END AUTO-GENERATED HEADER */
+/* END AUTO-GENERATED INCLUDES */
+
+/* BEGIN USER-DEFINED INCLUDES */
+
+/* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth
 {
@@ -58,12 +62,12 @@ private:
 	std::vector<double>::iterator m_holdLevelIter;
 	AtomKnob m_delayMult;
 	std::vector<double>::iterator m_delayMultIter;
-	AtomKnob m_attackMult;
-	std::vector<double>::iterator m_attackMultIter;
 	AtomKnob m_holdMult;
 	std::vector<double>::iterator m_holdMultIter;
 	AtomKnob m_sustainMult;
 	std::vector<double>::iterator m_sustainMultIter;
+	AtomKnob m_attackMult;
+	std::vector<double>::iterator m_attackMultIter;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
