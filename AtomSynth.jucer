@@ -31,6 +31,12 @@
       <FILE id="xxmtVh" name="save.png" compile="0" resource="1" file="Resources/save.png"/>
     </GROUP>
     <GROUP id="{7B7A367B-E750-FFA3-8877-3F14B868AD43}" name="Source">
+      <GROUP id="{CAF72947-40F8-D3EE-F22E-DED889B0C84E}" name="Adsp">
+        <FILE id="fSDdRC" name="remap.cpp" compile="1" resource="0" file="Source/Adsp/remap.cpp"/>
+        <FILE id="U7WHRf" name="remap.h" compile="0" resource="0" file="Source/Adsp/remap.h"/>
+        <FILE id="D6x2FR" name="waveform.cpp" compile="1" resource="0" file="Source/Adsp/waveform.cpp"/>
+        <FILE id="Ki9JGW" name="waveform.h" compile="0" resource="0" file="Source/Adsp/waveform.h"/>
+      </GROUP>
       <GROUP id="{33BCC5A9-95B1-B73B-B09D-3A734F1AE451}" name="Atoms">
         <GROUP id="{FC596703-87EA-9883-2391-08789ED340A2}" name="Basic">
           <FILE id="IIIgje" name="Input.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Input.cpp"/>

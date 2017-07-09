@@ -129,9 +129,8 @@ private:
     AtomNetworkWidget m_network;
     MultiButton m_synthSaveLoadButton;
     TextEntry m_synthNameEntry;
-    ImageButton m_noSidepane, m_propertySidepane, m_addSidepane;
+    ImageButton m_noSidepane, m_propertySidepane, m_save, m_addSidepane;
     AtomSynth::ImageButton m_saveLoadButton, m_addDeleteButton;
-    PresetBrowser m_presetBrowser;
     void switchView(std::string name);
     void createNewAtom(std::string name);
     void presetLoaded();

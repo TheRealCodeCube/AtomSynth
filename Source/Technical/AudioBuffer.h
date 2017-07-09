@@ -38,7 +38,7 @@ public:
 	void setValue(int channel, int sample, double value) { m_data[channel * m_size + sample] = value; }
 
 	void setConstant(bool constant) { m_constant = constant; }
-	bool getConstant() { return m_constant; }
+	bool isConstant() { return m_constant; }
 
 	//These functions have no guarantee of preserving the data that used to be in the buffer.
 	void setSize(int size);

@@ -1,9 +1,13 @@
 #ifndef ATOM_BasicOsc_HEADER
 #define ATOM_BasicOsc_HEADER
 
-/* BEGIN AUTO-GENERATED HEADER */
+/* BEGIN AUTO-GENERATED INCLUDES */
 #include "Atoms/Atom.h"
-/* END AUTO-GENERATED HEADER */
+/* END AUTO-GENERATED INCLUDES */
+
+/* BEGIN USER-DEFINED INCLUDES */
+
+/* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth
 {
@@ -72,7 +76,7 @@ public:
 	/* END AUTO-GENERATED LISTENERS */
 
 	/* BEGIN USER-DEFINED METHODS */
-
+	void updatePlot();
 	/* END USER-DEFINED METHODS */
 
 	friend class BasicOscAtom;
@@ -86,7 +90,7 @@ private:
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
-
+	std::vector<std::vector<double>> m_phases;
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
@@ -97,7 +101,7 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN USER-DEFINED METHODS */
-
+	static double getUnisonFactor(int voice, int totalVoices);
 	/* END USER-DEFINED METHODS */
 
 	friend class BasicOscController;

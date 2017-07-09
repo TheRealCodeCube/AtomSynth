@@ -598,7 +598,7 @@ void WaveformPlot::paint(Graphics& g)
 		double xo = w / m_values.size();
 		g.setColour(FORE_LAYER);
 		for(int index = 1; index < m_values.size(); index++)
-			g.drawLine((index - 1) * xo, (-m_values[index - 1] + 1.0f) / 2.0f * h, index * xo, (-m_values[index] + 1.0f) / 2.0f * h, 2.0f);
+			g.drawLine((index - 1) * xo, (-m_values[index - 1] + 1.0) / 2.0 * h, index * xo, (-m_values[index] + 1.0) / 2.0 * h, 2.0);
 	}
 	paintFg(g);
 }

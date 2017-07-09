@@ -428,11 +428,11 @@ void PresetBrowser::updateList()
 {
 	int size = 0;
 	const char * data;
-	data = BinaryData::getNamedResource("openFolder_png", size);
+	data = BinaryData::getNamedResource("openFolder", size);
 	s_openFolder = ImageCache::getFromMemory(data, size);
-	data = BinaryData::getNamedResource("closedFolder_png", size);
+	data = BinaryData::getNamedResource("closedFolder", size);
 	s_closedFolder = ImageCache::getFromMemory(data, size);
-	data = BinaryData::getNamedResource("preset_png", size);
+	data = BinaryData::getNamedResource("preset", size);
 	s_preset = ImageCache::getFromMemory(data, size);
 	m_root.m_contains.clear();
 	update(m_root);
@@ -847,10 +847,6 @@ AtomSynthEditor::AtomSynthEditor ()
 #else
 	seperator = "/";
 #endif
-
-	File root = File(File::getSpecialLocation(File::SpecialLocationType::userDocumentsDirectory).getFullPathName() + seperator + "AtomSynthPatches");
-	m_presetBrowser.setRoot(root);
-
 	addAndMakeVisible(m_buttons, 1000);
 	m_buttons.setBounds(C::SPACING + C::HEADER_WIDTH, 0, CD(4), CD(1));
 
@@ -864,6 +860,11 @@ AtomSynthEditor::AtomSynthEditor ()
 	m_propertySidepane.setBounds(CB(1, 0, 1, 1));
 	m_propertySidepane.setIcon("edit");
 	m_propertySidepane.addListener(this);
+
+	m_buttons.addAndMakeVisible(m_save);
+	m_save.setBounds(CB(2, 0, 1, 1));
+	m_save.setIcon("save");
+	m_save.addListener(this);
 
 	m_buttons.addAndMakeVisible(m_addSidepane);
 	m_addSidepane.setBounds(CB(3, 0, 1, 1));
@@ -947,24 +948,21 @@ void AtomSynthEditor::imageButtonPressed(AtomSynth::ImageButton * button)
 	}
 	else if(button->getIconName() == "delete")
 	{
-		m_presetBrowser.remove();
+		//m_presetBrowser.remove();
 	}
 	else if(button->getIconName() == "addFolder")
 	{
-		m_presetBrowser.addFolder();
+		//m_presetBrowser.addFolder();
 	}
 	else if(button->getIconName() == "save")
 	{
-		m_presetBrowser.saveFile();
-		if(!m_presetBrowser.getSavePath().isDirectory())
-		{
-			m_presetBrowser.getSavePath().replaceWithText(Synth::s_instance->saveSaveState().getString());
-		}
+		info(Synth::s_instance->saveSaveState().getString());
 	}
 }
 
 void AtomSynthEditor::multiButtonPressed(MultiButton * button)
 {
+	/*
 	std::string name;
 	switch(button->getSelectedLabel())
 	{
@@ -999,12 +997,12 @@ void AtomSynthEditor::multiButtonPressed(MultiButton * button)
 			m_synthNameEntry.setText(m_presetBrowser.getSelectedFile().getFileNameWithoutExtension().toStdString(), false);
 		}
 		break;
-	}
+	}*/
 }
 
 void AtomSynthEditor::textEntryChanged(TextEntry * entry)
 {
-	if(m_synthSaveLoadButton.getSelectedLabel() == 1)
+	/*if(m_synthSaveLoadButton.getSelectedLabel() == 1)
 	{
 		m_presetBrowser.setSaveName(entry->getText());
 	}
@@ -1018,7 +1016,7 @@ void AtomSynthEditor::textEntryChanged(TextEntry * entry)
 		{
 			m_presetBrowser.rename(entry->getText() + ".aspf");
 		}
-	}
+	}*/
 }
 
 const int
