@@ -108,7 +108,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstFolder="" cppLanguageStandard="-std=c++11"
+    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstFolder="" cppLanguageStandard="-std=c++14"
                 extraCompilerFlags="" extraDefs="INCLUDE_ATOMS">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"

@@ -1,9 +1,13 @@
 #ifndef ATOM_Noise_HEADER
 #define ATOM_Noise_HEADER
 
-/* BEGIN AUTO-GENERATED HEADER */
+/* BEGIN AUTO-GENERATED INCLUDES */
 #include "Atoms/Atom.h"
-/* END AUTO-GENERATED HEADER */
+/* END AUTO-GENERATED INCLUDES */
+
+/* BEGIN USER-DEFINED INCLUDES */
+
+/* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth
 {
@@ -49,7 +53,7 @@ public:
 	/* END AUTO-GENERATED LISTENERS */
 
 	/* BEGIN USER-DEFINED METHODS */
-
+	void updatePlot();
 	/* END USER-DEFINED METHODS */
 
 	friend class NoiseAtom;
