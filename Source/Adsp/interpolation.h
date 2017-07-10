@@ -37,28 +37,34 @@ const double ENVELOPE_NEGATIVE_SHAPE[101] = {0, 0.141067, 0.198997, 0.243105, 0.
 //Faster than envelopeInterp(-1.0, 1.0, blend, shape).
 //blend should be between 0 and 1.
 //shape can be between -1 and 1. A shape of 0 will work like linear interpolation.
+//Output is between 0 and 1.
 constexpr double fastEnvelopeInterp(double blend, double shape) {
 	if(shape == 0.0) {
 		return blend;
 	} else {
-		shape *= 100.0;
-		int index = int(shape);
-		double lookupBlend = index - shape; //This value goes between 0 and 1.
+		double blendp = blend * 100.0;
+		int index = int(blendp);
+		double lookupBlend = blendp - double(index); //This value goes between 0 and 1.
 		if(shape > 0.0) {
-			return linearInterp(ENVELOPE_POSITIVE_SHAPE[index], ENVELOPE_POSITIVE_SHAPE[index + 1], lookupBlend); //Do linear interpolation so that the envelope does not have sharp edges.
+			return linearInterp(blend,
+					linearInterp(ENVELOPE_POSITIVE_SHAPE[index], ENVELOPE_POSITIVE_SHAPE[index + 1], lookupBlend), //Do linear interpolation on the sample data so that the envelope does not have sharp edges.
+					shape); //Blend between a simple line and the calculated shape.
 		} else {
-			return linearInterp(ENVELOPE_NEGATIVE_SHAPE[index], ENVELOPE_NEGATIVE_SHAPE[index + 1], lookupBlend); //Do linear interpolation so that the envelope does not have sharp edges.
+			return linearInterp(blend,
+					linearInterp(ENVELOPE_NEGATIVE_SHAPE[index], ENVELOPE_NEGATIVE_SHAPE[index + 1], lookupBlend), //Do linear interpolation so that the envelope does not have sharp edges.
+					-shape); //Blend between a simple line and the calculated shape.
 		}
 	}
 }
 
 //Performs envelope interpolation between two values.
 //Used to create shaped envelope parts (e.g. sharp attacks + stuff like that).
-//val1 and val2 can be any real number.
+//val1 and val2 can be any real number. If they are 0 and 1, respectively, use fastEnvelopeInterp instead.
 //blend should be between 0 and 1.
 //shape can be between -1 and 1. A shape of 0 will work like linear interpolation.
+//Output is between 0 and 1.
 constexpr double envelopeInterp(double val1, double val2, double blend, double shape) {
-
+	return fastEnvelopeInterp(blend, shape) * (val2 - val1) + val1;
 }
 
 } /* namespace Adsp */

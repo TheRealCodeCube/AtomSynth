@@ -9,8 +9,7 @@
 
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 class SaveState;
 
@@ -19,26 +18,28 @@ class SaveState;
 
 class EnvelopeController;
 
-class EnvelopePlot: public PlotBase
-{
+class EnvelopePlot: public PlotBase {
 private:
 	double m_cursorPos, m_cursorHeight;
 	EnvelopeController * m_parent;
-	enum class HANDLE {NONE, ATK_START, ATK_SHAPE, HOLD_START, HOLD_END, SUST_SHAPE, REL_START, REL_SHAPE, END};
+	enum class HANDLE {
+		NONE, ATK_START, ATK_SHAPE, HOLD_START, HOLD_END, SUST_SHAPE, REL_START, REL_SHAPE, END
+	};
 	HANDLE m_selectedHandle;
 	int m_px, m_py;
 public:
 	EnvelopePlot();
 	virtual ~EnvelopePlot();
-	void setParent(EnvelopeController * parent) { m_parent = parent; }
+	void setParent(EnvelopeController * parent) {
+		m_parent = parent;
+	}
 	virtual void paint(Graphics & g);
 	virtual void mouseDown(const MouseEvent & e);
 	virtual void mouseDrag(const MouseEvent & e);
 };
 /* END MISC. USER-DEFINED CODE */
 
-class EnvelopeController : public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener
-{
+class EnvelopeController: public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	BpmMultiple m_releaseTime;
@@ -76,12 +77,19 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	EnvelopeController();
-	virtual AtomController * createNewInstance() { return new EnvelopeController(); }
-	virtual ~EnvelopeController() { }
+	virtual AtomController * createNewInstance() {
+		return new EnvelopeController();
+	}
+	virtual ~EnvelopeController() {
+	}
 
 	virtual Atom * createAtom(int index);
-	virtual std::string getCategory() { return "Generation"; }
-	virtual std::string getName() { return "Envelope"; }
+	virtual std::string getCategory() {
+		return "Generation";
+	}
+	virtual std::string getName() {
+		return "Envelope";
+	}
 	virtual void loadSaveState(SaveState state);
 	virtual SaveState saveSaveState();
 	/* END AUTO-GENERATED METHODS */
@@ -98,8 +106,7 @@ public:
 	friend class EnvelopeAtom;
 };
 
-class EnvelopeAtom : public Atom
-{
+class EnvelopeAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	EnvelopeController & m_parent;
@@ -113,14 +120,14 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	EnvelopeAtom(EnvelopeController & parent, int index);
-	virtual ~EnvelopeAtom() { }
+	virtual ~EnvelopeAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN USER-DEFINED METHODS */
-	static const double POSITIVE_SHAPE[101], NEGATIVE_SHAPE[101];
-	static double calculate(double pos, double shape);
+
 	/* END USER-DEFINED METHODS */
 
 	friend class EnvelopeController;
