@@ -24,7 +24,8 @@ EnvelopePlot::~EnvelopePlot() {
 
 void EnvelopePlot::paint(Graphics & g) {
 	paintBg(g);
-	double delayPercent = m_parent->m_delayTime.getFraction() * m_parent->m_delayMult.getDisplayValue(), attackPercent = m_parent->m_attackTime.getFraction() * m_parent->m_attackMult.getDisplayValue(), holdPercent = m_parent->m_holdTime.getFraction() * m_parent->m_holdMult.getDisplayValue(), sustainPercent = m_parent->m_sustainTime.getFraction() * m_parent->m_sustainMult.getDisplayValue(), releasePercent = m_parent->m_releaseTime.getFraction() * m_parent->m_releaseMult.getDisplayValue(), total = delayPercent + attackPercent + holdPercent + sustainPercent + releasePercent, o = (C::LINE_SIZE + C::HANDLE_SIZE) / 2.0, w = getWidth() - o * 2.0, h = getHeight() - o * 2.0;
+	double delayPercent = m_parent->m_delayTime.getFraction() * m_parent->m_delayMult.getDisplayValue(),
+			attackPercent = m_parent->m_attackTime.getFraction() * m_parent->m_attackMult.getDisplayValue(), holdPercent = m_parent->m_holdTime.getFraction() * m_parent->m_holdMult.getDisplayValue(), sustainPercent = m_parent->m_sustainTime.getFraction() * m_parent->m_sustainMult.getDisplayValue(), releasePercent = m_parent->m_releaseTime.getFraction() * m_parent->m_releaseMult.getDisplayValue(), total = delayPercent + attackPercent + holdPercent + sustainPercent + releasePercent, o = (C::LINE_SIZE + C::HANDLE_SIZE) / 2.0, w = getWidth() - o * 2.0, h = getHeight() - o * 2.0;
 	delayPercent /= total / w;
 	attackPercent /= total / w;
 	holdPercent /= total / w;
@@ -110,11 +111,14 @@ void EnvelopePlot::mouseDown(const MouseEvent& e) {
 		m_selectedHandle = HANDLE::REL_START;
 	else if ((fabs(m_px - o - w) <= C::HANDLE_SIZE) && (fabs(m_py - o - h) <= C::HANDLE_SIZE))
 		m_selectedHandle = HANDLE::END;
-	else if (((fabs(m_px - attackStart - attackPercent / 2)) <= C::HANDLE_SIZE) && (fabs(m_py - (h - (Adsp::fastEnvelopeInterp(0.5, m_parent->m_attackShape.getDisplayValue()) * (h - holdLevel + o)))) <= C::HANDLE_SIZE))
+	else if (((fabs(m_px - attackStart - attackPercent / 2)) <= C::HANDLE_SIZE) &&
+			(fabs(m_py - (h - (Adsp::fastEnvelopeInterp(0.5, m_parent->m_attackShape.getDisplayValue()) * (h - holdLevel + o)))) <= C::HANDLE_SIZE))
 		m_selectedHandle = HANDLE::ATK_SHAPE;
-	else if (((fabs(m_px - sustainStart - sustainPercent / 2)) <= C::HANDLE_SIZE) && (fabs(m_py - (Adsp::fastEnvelopeInterp(0.5, -m_parent->m_sustainShape.getDisplayValue()) * (sustainLevel - holdLevel) + holdLevel - o)) <= C::HANDLE_SIZE))
+	else if (((fabs(m_px - sustainStart - sustainPercent / 2)) <= C::HANDLE_SIZE) &&
+			(fabs(m_py - (Adsp::fastEnvelopeInterp(0.5, -m_parent->m_sustainShape.getDisplayValue()) * (sustainLevel - holdLevel) + holdLevel - o)) <= C::HANDLE_SIZE))
 		m_selectedHandle = HANDLE::SUST_SHAPE;
-	else if (((fabs(m_px - releaseStart - releasePercent / 2)) <= C::HANDLE_SIZE) && (fabs(m_py - ((Adsp::fastEnvelopeInterp(0.5, -m_parent->m_releaseShape.getDisplayValue()) * (h - sustainLevel + o) + sustainLevel - o))) <= C::HANDLE_SIZE))
+	else if (((fabs(m_px - releaseStart - releasePercent / 2)) <= C::HANDLE_SIZE) &&
+			(fabs(m_py - ((Adsp::fastEnvelopeInterp(0.5, -m_parent->m_releaseShape.getDisplayValue()) * (h - sustainLevel + o) + sustainLevel - o))) <= C::HANDLE_SIZE))
 		m_selectedHandle = HANDLE::REL_SHAPE;
 }
 

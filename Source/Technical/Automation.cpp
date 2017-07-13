@@ -188,7 +188,7 @@ void AutomatedControl::calculateAutomation(std::vector<AutomatedControl *> & con
 	for(int i = 0; i < controls.size(); i++)
 	{
 		shouldCalculate[i] = false;
-		baseValues[i] = controls[i]->m_value;
+		baseValues[i] = controls[i]->getValue();
 		infIndex = 0;
 		divisor = 0.0;
 		for(AutomationInfluence inf : controls[i]->m_influences)
@@ -213,8 +213,8 @@ void AutomatedControl::calculateAutomation(std::vector<AutomatedControl *> & con
 		}
 		else
 		{
-			kmax = controls[i]->m_value;
-			kmin = -controls[i]->m_value;
+			kmax = controls[i]->getValue();
+			kmin = -controls[i]->getValue();
 		}
 
 		for(AutomationInfluence inf : controls[i]->m_influences)
@@ -288,7 +288,7 @@ void AutomatedControl::calculateAutomation(std::vector<AutomatedControl *> & con
 					//Highly simplified version of converting from -1.0 - 1.0 to 0.0 - 1.0 to min - max to control top - control bottom
 					//Original equation is ((((sample + 1) / 2) * (max - min) + min) * (hi - low) + low ) * percent
 					//Algebra is really handy
-					value = (isInt) ? round((* input) * mValue + aValue) : (* input) * mValue + aValue;
+					value = (* input) * mValue + aValue;
 					switch(controls[n]->m_mixMode)
 					{
 					case MixMode::AVERAGE:
@@ -330,7 +330,7 @@ void AutomationSet::resetPosition()
 	for(int i = 0; i < m_controls.size(); i++)
 	{
 		(* m_iterators[i]) = m_controls[i]->getResult().getData().begin();
-		if(m_controls[i]->getResult().getConstant())
+		if(m_controls[i]->getResult().isConstant())
 		{
 			m_constantIndices.push_back(i);
 		}

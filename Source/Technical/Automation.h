@@ -73,7 +73,7 @@ public:
 	MixMode getMixMode() { return m_mixMode; }
 	void setValue(double value);
 	void offsetValue(double value);
-	double getValue() { return m_value; }
+	double getValue() { return (m_int) ? int(m_value) : m_value; }
 	void setDisplayValue(double value);
 	void clearDisplayValue();
 	double getDisplayValue();
