@@ -621,12 +621,11 @@ void WaveformPlot::setDataFromAudioBuffer(AudioBuffer& source, bool clip)
 		values = source.getSize();
 	}
 
-	m_values.resize(values);
 	for(int i = 0; i < values; i++)
 	{
 		m_values.push_back(source.getValue(0, i));
 	}
-	repaint();
+	repaintAsync();
 }
 
 void WaveformPlot::clear()

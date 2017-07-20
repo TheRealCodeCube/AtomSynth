@@ -7,6 +7,8 @@
 /* END AUTO-GENERATED INCLUDES */
 
 /* BEGIN USER-DEFINED INCLUDES */
+#include <cmath>
+
 #include "Adsp/basic.h"
 #include "Adsp/remap.h"
 #include "Adsp/waveform.h"
@@ -32,7 +34,8 @@ void BasicOscController::updatePlot() {
 	int type = m_waveSelect.getSelectedLabel();
 	double phase, value;
 	for(int i = 0; i <= m_plot.getWidth(); i++) {
-		phase = double(i) / double(m_plot.getWidth());
+		phase = double(i) / double(m_plot.getWidth()) + phaseOffset;
+		phase = fmod(phase, 1.0);
 		phase = phase * 2.0 - 1.0;
 
 		if(phase <= center) {
@@ -328,11 +331,6 @@ void BasicOscAtom::execute()
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	int voices = m_parent.m_uVoices.getValue();
 
-	if(m_shouldUpdateParent)
-	{
-		m_parent.updatePlot();
-	}
-
 	double baseDetune = 1.0;
 	bool animateCoarseDetune = !m_parent.m_octaves.getResult().isConstant();
 	if(!animateCoarseDetune)
@@ -442,12 +440,12 @@ void BasicOscAtom::execute()
 				m_phases[voice][c] += freq / m_sampleRate;
 				if(m_phases[voice][c] >= 1.0)
 					m_phases[voice][c] -= 2.0;
-				phase = m_phases[voice][c] + (* phaseIter) + ((* uPhaseIter) * uFac);
-				if(phase >= 1.0)
+				phase = m_phases[voice][c] + (* phaseIter) * 2.0 + ((* uPhaseIter) * uFac);
+				while(phase >= 1.0)
 				{
 					phase -= 2.0;
 				}
-				else if(phase <= -1.0)
+				while(phase <= -1.0)
 				{
 					phase += 2.0;
 				}
@@ -496,10 +494,16 @@ void BasicOscAtom::execute()
 				}
 
 				m_outputs[0].getData()[s + (AudioBuffer::getDefaultSize() * c)] += value;
+				//if(animateCoarseDetune) m_outputs[0].getData()[s + (AudioBuffer::getDefaultSize() * c)] = freq / 800.0; //Debug
 				automation.incrementPosition();
 			}
 			automation.incrementChannel();
 		}
+	}
+
+	if(m_shouldUpdateParent)
+	{
+		m_parent.m_plot.setDataFromAudioBuffer(m_outputs[0]);
 	}
 	/* END USER-DEFINED EXECUTION CODE */
 }
