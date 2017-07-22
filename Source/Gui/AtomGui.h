@@ -12,20 +12,22 @@
 #include "SimpleWidgets.h"
 #include "Colours.h"
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
-class AtomGui : public Component
-{
+class AtomGui: public Component {
 private:
 	AtomController * m_atomController;
 public:
 	AtomGui();
 	virtual ~AtomGui();
 	void paint(Graphics & g);
-	void addComponent(Component * toAdd) { addAndMakeVisible(toAdd); }
+	void addComponent(Component * toAdd) {
+		addAndMakeVisible(toAdd);
+	}
 	void setParent(Component * parent);
-	void setAtomController(AtomController * atomController) { m_atomController = atomController; }
+	void setAtomController(AtomController * atomController) {
+		m_atomController = atomController;
+	}
 };
 
 } /* namespace AtomSynth */

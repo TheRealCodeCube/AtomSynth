@@ -12,15 +12,15 @@
 #include <vector>
 #include "Technical/AudioBuffer.h"
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
-struct NoteState
-{
+struct NoteState {
 	//Active = key being pressed
 	//Releasing = key released, waiting for synthesizer to quiet down
 	//Silent = synthesizer is quiet, no need to calculate it any more
-	enum Status { ACTIVE, RELEASING, STOPPED, SILENT };
+	enum Status {
+		ACTIVE, RELEASING, STOPPED, SILENT
+	};
 	double frequency = 440.0f;
 	double velocity = 1.0f;
 	double panning = 0.0f;
@@ -28,8 +28,7 @@ struct NoteState
 	Status status = SILENT;
 };
 
-class GlobalNoteStates
-{
+class GlobalNoteStates {
 private:
 	static std::vector<NoteState> s_notes;
 public:
@@ -51,8 +50,12 @@ public:
 	static NoteState getNoteState(int index);
 	static bool getIsStopped(int index);
 	static bool getIsActive(int index);
-	static void setPolyphony(int polyphony) { s_polyphony = polyphony; }
-	static int getPolyphony() { return s_polyphony; }
+	static void setPolyphony(int polyphony) {
+		s_polyphony = polyphony;
+	}
+	static int getPolyphony() {
+		return s_polyphony;
+	}
 };
 
 } /* namespace AtomSynth */

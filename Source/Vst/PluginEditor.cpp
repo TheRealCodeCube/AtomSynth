@@ -1,12 +1,12 @@
 /*
-  ==============================================================================
+ ==============================================================================
 
-    This file was auto-generated!
+ This file was auto-generated!
 
-    It contains the basic framework code for a JUCE plugin editor.
+ It contains the basic framework code for a JUCE plugin editor.
 
-  ==============================================================================
-*/
+ ==============================================================================
+ */
 
 #include "Vst/PluginEditor.h"
 
@@ -21,34 +21,29 @@
 #include "Vst/PluginProcessor.h"
 
 //==============================================================================
-AtomSynthAudioProcessorEditor::AtomSynthAudioProcessorEditor (AtomSynthAudioProcessor& p)
-    : AudioProcessorEditor (&p)
-{
-    // Make sure that before the constructor has finished, you've set the
-    // editor's size to whatever you need it to be.
-    setSize (C::VST_WIDTH, C::VST_HEIGHT);
-    addAndMakeVisible(m_editor);
-    AtomSynth::Synth::s_instance->setRootComponent(& m_editor);
+AtomSynthAudioProcessorEditor::AtomSynthAudioProcessorEditor(AtomSynthAudioProcessor& p) :
+		AudioProcessorEditor(&p) {
+	// Make sure that before the constructor has finished, you've set the
+	// editor's size to whatever you need it to be.
+	setSize(C::VST_WIDTH, C::VST_HEIGHT);
+	addAndMakeVisible(m_editor);
+	AtomSynth::Synth::s_instance->setRootComponent(&m_editor);
 }
 
-AtomSynthAudioProcessorEditor::~AtomSynthAudioProcessorEditor()
-{
+AtomSynthAudioProcessorEditor::~AtomSynthAudioProcessorEditor() {
 	AtomSynth::Synth::s_instance->closeRightClickMenu();
 }
 
-bool AtomSynthAudioProcessorEditor::keyPressed(const KeyPress& key, Component* originatingComponent)
-{
+bool AtomSynthAudioProcessorEditor::keyPressed(const KeyPress& key, Component* originatingComponent) {
 	return false;
 }
 
 //==============================================================================
-void AtomSynthAudioProcessorEditor::paint (Graphics& g)
-{
+void AtomSynthAudioProcessorEditor::paint(Graphics& g) {
 	g.fillAll(BACK_LAYER);
 }
 
-void AtomSynthAudioProcessorEditor::resized()
-{
-    // This is generally where you'll want to lay out the positions of any
-    // subcomponents in your editor..
+void AtomSynthAudioProcessorEditor::resized() {
+	// This is generally where you'll want to lay out the positions of any
+	// subcomponents in your editor..
 }

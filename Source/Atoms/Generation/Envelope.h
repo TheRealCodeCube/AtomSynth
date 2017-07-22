@@ -9,8 +9,7 @@
 
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 class SaveState;
 
@@ -40,8 +39,7 @@ public:
 };
 /* END MISC. USER-DEFINED CODE */
 
-class EnvelopeController : public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener
-{
+class EnvelopeController: public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	BpmMultiple m_releaseTime;
@@ -79,12 +77,19 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	EnvelopeController();
-	virtual AtomController * createNewInstance() { return new EnvelopeController(); }
-	virtual ~EnvelopeController() { }
+	virtual AtomController * createNewInstance() {
+		return new EnvelopeController();
+	}
+	virtual ~EnvelopeController() {
+	}
 
 	virtual Atom * createAtom(int index);
-	virtual std::string getCategory() { return "Generation"; }
-	virtual std::string getName() { return "Envelope"; }
+	virtual std::string getCategory() {
+		return "Generation";
+	}
+	virtual std::string getName() {
+		return "Envelope";
+	}
 	virtual void loadSaveState(SaveState state);
 	virtual SaveState saveSaveState();
 	/* END AUTO-GENERATED METHODS */
@@ -101,8 +106,7 @@ public:
 	friend class EnvelopeAtom;
 };
 
-class EnvelopeAtom : public Atom
-{
+class EnvelopeAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	EnvelopeController & m_parent;
@@ -116,7 +120,8 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	EnvelopeAtom(EnvelopeController & parent, int index);
-	virtual ~EnvelopeAtom() { }
+	virtual ~EnvelopeAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

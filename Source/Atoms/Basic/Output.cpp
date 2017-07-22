@@ -1,6 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
 // EDITOR SOURCE: [[1.000000:1.000000:0.000000:sOutput:sBasic:saudio:s:]]
-
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Output.h"
 #include "Technical/SaveState.h"
@@ -10,18 +9,15 @@
 
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 /* BEGIN MISC. USER-DEFINED CODE */
 
 /* END MISC. USER-DEFINED CODE */
 
-OutputController::OutputController()
-	: AtomController(AtomParameters(1, 1, false, 0))
-{
+OutputController::OutputController() :
+		AtomController(AtomParameters(1, 1, false, 0)) {
 	init();
-
 
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 
@@ -30,17 +26,15 @@ OutputController::OutputController()
 	m_gui.setAtomController(this);
 }
 
-Atom * OutputController::createAtom(int index)
-{
-	return new OutputAtom(* this, index);
+Atom * OutputController::createAtom(int index) {
+	return new OutputAtom(*this, index);
 }
 
-SaveState OutputController::saveSaveState()
-{
-	SaveState & toReturn = * new SaveState();
+SaveState OutputController::saveSaveState() {
+	SaveState & toReturn = *new SaveState();
 	toReturn.addState(AtomController::saveSaveState());
 
-	SaveState & extraData = * new SaveState();
+	SaveState & extraData = *new SaveState();
 	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
 	/* BEGIN USER-DEFINED SAVE CODE */
 
@@ -49,8 +43,7 @@ SaveState OutputController::saveSaveState()
 	return toReturn;
 }
 
-void OutputController::loadSaveState(SaveState state)
-{
+void OutputController::loadSaveState(SaveState state) {
 	AtomController::loadSaveState(state.getNextState());
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
@@ -58,29 +51,26 @@ void OutputController::loadSaveState(SaveState state)
 	/* END LOAD CODE */
 }
 
-OutputAtom::OutputAtom(OutputController & parent, int index)
-	: Atom(parent, index),
-	  m_parent(parent)
-{
+OutputAtom::OutputAtom(OutputController & parent, int index) :
+		Atom(parent, index),
+		m_parent(parent) {
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 
 	/* END USER-DEFINED CONSTRUCTION CODE */
 }
 
-void OutputAtom::execute()
-{
+void OutputAtom::execute() {
 	Atom::execute();
 
 	IOSet io = IOSet();
 	DVecIter * audioInput = io.addInput(m_primaryInputs[0]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
-	
+
 	/* END USER-DEFINED EXECUTION CODE */
 }
 
-void OutputAtom::reset()
-{
+void OutputAtom::reset() {
 	Atom::reset();
 	/* BEGIN USER-DEFINED RESET CODE */
 

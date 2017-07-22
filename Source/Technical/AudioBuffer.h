@@ -10,11 +10,9 @@
 
 #include <vector>
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
-class AudioBuffer
-{
+class AudioBuffer {
 private:
 	std::vector<double> m_data;
 	bool m_constant;
@@ -33,24 +31,48 @@ public:
 	void offsetData(int offset);
 	void fill(double value);
 
-	std::vector<double> & getData() { return m_data; }
-	double getValue(int channel, int sample) { return m_data[channel * m_size + sample]; }
-	void setValue(int channel, int sample, double value) { m_data[channel * m_size + sample] = value; }
+	std::vector<double> & getData() {
+		return m_data;
+	}
+	double getValue(int channel, int sample) {
+		return m_data[channel * m_size + sample];
+	}
+	void setValue(int channel, int sample, double value) {
+		m_data[channel * m_size + sample] = value;
+	}
 
-	void setConstant(bool constant) { m_constant = constant; }
-	bool isConstant() { return m_constant; }
+	void setConstant(bool constant) {
+		m_constant = constant;
+	}
+	bool isConstant() {
+		return m_constant;
+	}
 
 	//These functions have no guarantee of preserving the data that used to be in the buffer.
 	void setSize(int size);
 	void setChannels(int channels);
-	int getSize() { return m_size; }
-	int getChannels() { return m_channels; }
+	int getSize() {
+		return m_size;
+	}
+	int getChannels() {
+		return m_channels;
+	}
 
-	static void setDefaultSize(int size) { s_size = size; }
-	static void setDefaultChannels(int channels) { s_channels = channels; }
-	static int getDefaultSize() { return s_size; }
-	static int getDefaultSamples() { return s_size; }
-	static int getDefaultChannels() { return s_channels; }
+	static void setDefaultSize(int size) {
+		s_size = size;
+	}
+	static void setDefaultChannels(int channels) {
+		s_channels = channels;
+	}
+	static int getDefaultSize() {
+		return s_size;
+	}
+	static int getDefaultSamples() {
+		return s_size;
+	}
+	static int getDefaultChannels() {
+		return s_channels;
+	}
 };
 
 } /* namespace AtomSynth */

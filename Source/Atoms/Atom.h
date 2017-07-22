@@ -30,8 +30,7 @@
 #define ADD_KNOB(NAME) addAutomatedControl(m_##NAME##Knob, m_##NAME##Iter)
 #define ADD_SLIDER(NAME) addAutomatedControl(m_##NAME##Slider, m_##NAME##Iter)
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 #define AUTOMATION_INPUTS 10
 
@@ -43,8 +42,7 @@ class SaveState;
 typedef std::vector<double>::iterator DVecIter;
 
 //Basic parameters that are shared by atoms and atom controllers.
-struct AtomParameters
-{
+struct AtomParameters {
 	int m_numPrimaryInputs, m_numOutputs, m_id;
 	bool m_automationEnabled;
 
@@ -52,11 +50,10 @@ struct AtomParameters
 	AtomParameters withId(int newId);
 };
 
-struct AtomControllerPreview
-{
+struct AtomControllerPreview {
 	std::function<AtomController * ()> m_createFunction;
 	std::string m_name;
-	AtomParameters m_parameters {0, 0, false, 0};
+	AtomParameters m_parameters { 0, 0, false, 0 };
 };
 
 //Atom controller class
@@ -64,8 +61,7 @@ struct AtomControllerPreview
 //E.G. a single envelope is an atom controller.
 //An atom controller contains several child 'atoms', each responsible for a different polyphony.
 //The controller does no synthesizing. It only contains the GUI and manages child atoms.
-class AtomController
-{
+class AtomController {
 private:
 	std::vector<std::pair<AtomController *, int>> m_primaryInputs;
 	std::vector<std::pair<AtomController *, int>> m_automationInputs;
@@ -77,12 +73,18 @@ protected:
 	AtomGui m_gui;
 	AutomationSet m_automation;
 	void init();
-	std::vector<Atom *> & getAtoms() { return m_atoms; }
-	void addAutomatedControl(AutomatedControl & knob, DVecIter & iterator) { m_automation.add(knob, iterator); }
+	std::vector<Atom *> & getAtoms() {
+		return m_atoms;
+	}
+	void addAutomatedControl(AutomatedControl & knob, DVecIter & iterator) {
+		m_automation.add(knob, iterator);
+	}
 public:
 	//Construct an atom from basic parameters.
 	AtomController(AtomParameters parameters);
-	virtual AtomController * createNewInstance() { return nullptr; }
+	virtual AtomController * createNewInstance() {
+		return nullptr;
+	}
 	virtual ~AtomController();
 
 	virtual Atom * createAtom(int index);
@@ -91,8 +93,12 @@ public:
 	virtual void loadSaveState(SaveState state);
 	virtual SaveState saveSaveState();
 
-	virtual std::string getCategory() { return "ungrouped"; }
-	virtual std::string getName() { return ""; }
+	virtual std::string getCategory() {
+		return "ungrouped";
+	}
+	virtual std::string getName() {
+		return "";
+	}
 
 	void linkPrimaryInput(int index, AtomController * controller, int outputIndex);
 	void linkAutomationInput(int index, AtomController * controller, int outputIndex);
@@ -103,32 +109,50 @@ public:
 
 	//Returns the number of primary inputs to this atom
 	//(E.G. two for a sidechain compressor)
-	int getNumPrimaryInputs() { return m_parameters.m_numPrimaryInputs; }
+	int getNumPrimaryInputs() {
+		return m_parameters.m_numPrimaryInputs;
+	}
 	//Returns the number of inputs used for automation
 	//(If automation is disabled, this returns 0)
-	int getNumAutomationInputs() { return (getAutomationEnabled()) ? AUTOMATION_INPUTS : 0; }
+	int getNumAutomationInputs() {
+		return (getAutomationEnabled()) ? AUTOMATION_INPUTS : 0;
+	}
 	//Returns the total number of inputs
 	//(primary inputs + automation inputs)
-	int getNumInputs() { return getNumPrimaryInputs() + getNumAutomationInputs(); }
+	int getNumInputs() {
+		return getNumPrimaryInputs() + getNumAutomationInputs();
+	}
 	//Gets the number of primary outputs of this atom
 	//(E.G. oscillator has 1)
-	int getNumOutputs() { return m_parameters.m_numOutputs; }
+	int getNumOutputs() {
+		return m_parameters.m_numOutputs;
+	}
 	//Gets the ID for this type of atom
 	//(E.G. envelope atoms might have an id of 4)
-	int getId() { return m_parameters.m_id; }
+	int getId() {
+		return m_parameters.m_id;
+	}
 	//Gets whether or not automation is enabled.
 	//(If the atom has knobs which can be animated, this should return true)
-	bool getAutomationEnabled() { return m_parameters.m_automationEnabled; }
+	bool getAutomationEnabled() {
+		return m_parameters.m_automationEnabled;
+	}
 	//Returns the complete set of parameters for this atom controller
-	AtomParameters getParameters() { return m_parameters; }
+	AtomParameters getParameters() {
+		return m_parameters;
+	}
 	//Gets where a particular primary input is pointing.
 	//Returns a pair. The first element is the atom controller the input links to.
 	//The second element is the index of the output it is connected to.
-	std::pair<AtomController *, int> getPrimaryInput(int index) { return m_primaryInputs[index]; }
+	std::pair<AtomController *, int> getPrimaryInput(int index) {
+		return m_primaryInputs[index];
+	}
 	//Gets where a particular automation input is pointing.
 	//Returns a pair. The first element is the atom controller the input links to.
 	//The second element is the index of the output it is connected to.
-	std::pair<AtomController *, int> getAutomationInput(int index) { return m_automationInputs[index]; }
+	std::pair<AtomController *, int> getAutomationInput(int index) {
+		return m_automationInputs[index];
+	}
 	//Gets where a particular input is pointing.
 	//Returns a pair. The first element is the atom controller the input links to.
 	//The second element is the index of the output it is connected to.
@@ -141,13 +165,26 @@ public:
 	virtual void execute();
 	virtual void stopControlAnimation();
 
-	void setPosition(int x, int y) { m_x = x; m_y = y; }
-	AtomGui & getGui() { return m_gui; }
-	int getX() { return m_x; }
-	int getY() { return m_y; }
+	void setPosition(int x, int y) {
+		m_x = x;
+		m_y = y;
+	}
+	AtomGui & getGui() {
+		return m_gui;
+	}
+	int getX() {
+		return m_x;
+	}
+	int getY() {
+		return m_y;
+	}
 
-	void markForDeletion() { m_shouldBeDeleted = true; }
-	bool getIsMarkedForDeletion() { return m_shouldBeDeleted; }
+	void markForDeletion() {
+		m_shouldBeDeleted = true;
+	}
+	bool getIsMarkedForDeletion() {
+		return m_shouldBeDeleted;
+	}
 	void cleanupInputsFromAtom(AtomController * source);
 
 	friend class Atom;
@@ -155,15 +192,16 @@ public:
 
 //Contains iterators for inputs and outputs of an atom, used in execute().
 //Usage is similar to AutomationSet.
-class IOSet
-{
+class IOSet {
 private:
 	std::vector<AudioBuffer*> m_constInputSources, m_incInputSources, m_outputSources;
 	std::vector<DVecIter*> m_constInputs, m_incInputs, m_outputs;
 	//typedef std::vector<double>::iterator DVecIter;
 public:
-	IOSet() { }
-	virtual ~IOSet() { }
+	IOSet() {
+	}
+	virtual ~IOSet() {
+	}
 
 	void clear();
 	DVecIter* addInput(AudioBuffer * input);
@@ -178,8 +216,7 @@ public:
 //Represents a particular polyphony of an atom controller.
 //E.G. with 8x polyphony, there will be 8 envelope atoms for 1 envelope controller
 //This has no gui, only audio processing.
-class Atom
-{
+class Atom {
 private:
 	AtomController & m_p;
 	int m_updateTimer;
@@ -193,21 +230,38 @@ protected:
 	std::vector<AudioBuffer> m_outputs;
 
 	void linkInput(int index, AudioBuffer * buffer);
-	void linkPrimaryInput(int index, AudioBuffer * buffer) { m_primaryInputs[index] = buffer; }
-	void linkAutomationInput(int index, AudioBuffer * buffer) { m_automationInputs[index] = buffer; }
+	void linkPrimaryInput(int index, AudioBuffer * buffer) {
+		m_primaryInputs[index] = buffer;
+	}
+	void linkAutomationInput(int index, AudioBuffer * buffer) {
+		m_automationInputs[index] = buffer;
+	}
 	void unlinkInput(int index);
-	void unlinkPrimaryInput(int index) { m_primaryInputs[index] = nullptr; }
-	void unlinkAutomationInput(int index) { m_automationInputs[index] = nullptr; }
+	void unlinkPrimaryInput(int index) {
+		m_primaryInputs[index] = nullptr;
+	}
+	void unlinkAutomationInput(int index) {
+		m_automationInputs[index] = nullptr;
+	}
 public:
 	Atom(AtomController & parent, int index);
 	virtual ~Atom();
 
-	AudioBuffer * getOutput(int index) { return & m_outputs[index]; }
-	int getIndex() { return m_parameters.m_id; }
-	int getId() { return m_parameters.m_id; }
+	AudioBuffer * getOutput(int index) {
+		return &m_outputs[index];
+	}
+	int getIndex() {
+		return m_parameters.m_id;
+	}
+	int getId() {
+		return m_parameters.m_id;
+	}
 
 	virtual void execute();
-	virtual void reset() { m_shouldUpdateParent = getId() == 0; };
+	virtual void reset() {
+		m_shouldUpdateParent = getId() == 0;
+	}
+	;
 
 	friend class AutomatedControl;
 	friend class AtomController;

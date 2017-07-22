@@ -10,18 +10,13 @@
 #define _USE_MATH_DEFINES
 #include <cmath>
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
-namespace Waveform
-{
+namespace Waveform {
 
-
-double calculate(WaveShape shape, double phase,	double parm)
-{
+double calculate(WaveShape shape, double phase, double parm) {
 	double value = 0.0f;
-	switch(shape)
-	{
+	switch (shape) {
 	case SINE:
 		return (-sin(phase * M_PI) / 2.0f + 0.5f) * 2.0 - 1.0;
 	case SQUARE:

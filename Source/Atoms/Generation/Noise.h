@@ -9,8 +9,7 @@
 
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 class SaveState;
 
@@ -18,8 +17,7 @@ class SaveState;
 
 /* END MISC. USER-DEFINED CODE */
 
-class NoiseController : public AtomController, public AutomatedControl::Listener, public MultiButton::Listener
-{
+class NoiseController: public AtomController, public AutomatedControl::Listener, public MultiButton::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	WaveformPlot m_plot;
@@ -37,12 +35,19 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	NoiseController();
-	virtual AtomController * createNewInstance() { return new NoiseController(); }
-	virtual ~NoiseController() { }
+	virtual AtomController * createNewInstance() {
+		return new NoiseController();
+	}
+	virtual ~NoiseController() {
+	}
 
 	virtual Atom * createAtom(int index);
-	virtual std::string getCategory() { return "Generation"; }
-	virtual std::string getName() { return "Noise"; }
+	virtual std::string getCategory() {
+		return "Generation";
+	}
+	virtual std::string getName() {
+		return "Noise";
+	}
 	virtual void loadSaveState(SaveState state);
 	virtual SaveState saveSaveState();
 	/* END AUTO-GENERATED METHODS */
@@ -59,8 +64,7 @@ public:
 	friend class NoiseAtom;
 };
 
-class NoiseAtom : public Atom
-{
+class NoiseAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	NoiseController & m_parent;
@@ -73,7 +77,8 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	NoiseAtom(NoiseController & parent, int index);
-	virtual ~NoiseAtom() { }
+	virtual ~NoiseAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

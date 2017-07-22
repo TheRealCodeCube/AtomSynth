@@ -18,18 +18,16 @@
 #include "Generation/Noise.h"
 #include "Generation/Envelope.h"
 /*
-#include "Filters/Amplifier.h"
-#include "Filters/Comb.h"
-#include "Filters/Mixer.h"
-#include "Transforms/LfoTuner.h"*/
+ #include "Filters/Amplifier.h"
+ #include "Filters/Comb.h"
+ #include "Filters/Mixer.h"
+ #include "Transforms/LfoTuner.h"*/
 //#include "Filters/Reverb.h"
 #endif
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
-std::vector<AtomController *> getAllAtoms()
-{
+std::vector<AtomController *> getAllAtoms() {
 	std::vector<AtomController *> toReturn;
 #ifdef INCLUDE_ATOMS
 	toReturn.push_back(new InputController());
@@ -38,14 +36,14 @@ std::vector<AtomController *> getAllAtoms()
 	toReturn.push_back(new NoiseController());
 	toReturn.push_back(new EnvelopeController());
 	/*
-	toReturn.push_back(new EnvelopeController());
-	toReturn.push_back(new LfoTunerController());
-	toReturn.push_back(new BasicOscController());
-	toReturn.push_back(new NoiseController());
-	toReturn.push_back(new ReverbController());
-	toReturn.push_back(new CombController());
-	toReturn.push_back(new MixerController());
-	toReturn.push_back(new AmplifierController());*/
+	 toReturn.push_back(new EnvelopeController());
+	 toReturn.push_back(new LfoTunerController());
+	 toReturn.push_back(new BasicOscController());
+	 toReturn.push_back(new NoiseController());
+	 toReturn.push_back(new ReverbController());
+	 toReturn.push_back(new CombController());
+	 toReturn.push_back(new MixerController());
+	 toReturn.push_back(new AmplifierController());*/
 #endif
 	return toReturn;
 }

@@ -37,7 +37,7 @@ double expWave(double phase, double var) {
 //Var is remapped from -1.0 - 1.0 to 0.3 - 4.3. Therefore, for a triangle wave, do -0.65.
 double expSymmWave(double phase, double var) {
 	var = (var + 1.15) * 2.0; //Minimum value is 0.3, max value is 4.3.
-	if(phase < 0.0) {
+	if (phase < 0.0) {
 		return pow(-phase, var) * 2.0 - 1.0;
 	} else {
 		return pow(phase, var) * 2.0 - 1.0;
@@ -49,7 +49,7 @@ double expSymmWave(double phase, double var) {
 //Crest is at phase 0.0
 double expCrestWave(double phase, double var) {
 	var = (var + 1.15) * 2.0; //Minimum value is 0.3, max value is 4.3.
-	if(phase < 0.0) {
+	if (phase < 0.0) {
 		return pow(phase + 1.0, var) * 2.0 - 1.0; //Normal exp wave before peak.
 	} else {
 		return 1.0 - 2.0 * pow(phase, var); //Flipped exp wave after peak.

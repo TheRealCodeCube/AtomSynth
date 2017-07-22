@@ -9,8 +9,7 @@
 
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 class SaveState;
 
@@ -18,8 +17,7 @@ class SaveState;
 
 /* END MISC. USER-DEFINED CODE */
 
-class InputController : public AtomController
-{
+class InputController: public AtomController {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	/* END AUTO-GENERATED MEMBERS */
@@ -30,12 +28,19 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	InputController();
-	virtual AtomController * createNewInstance() { return new InputController(); }
-	virtual ~InputController() { }
+	virtual AtomController * createNewInstance() {
+		return new InputController();
+	}
+	virtual ~InputController() {
+	}
 
 	virtual Atom * createAtom(int index);
-	virtual std::string getCategory() { return "Basic"; }
-	virtual std::string getName() { return "Input"; }
+	virtual std::string getCategory() {
+		return "Basic";
+	}
+	virtual std::string getName() {
+		return "Input";
+	}
 	virtual void loadSaveState(SaveState state);
 	virtual SaveState saveSaveState();
 	/* END AUTO-GENERATED METHODS */
@@ -50,8 +55,7 @@ public:
 	friend class InputAtom;
 };
 
-class InputAtom : public Atom
-{
+class InputAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	InputController & m_parent;
@@ -63,7 +67,8 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	InputAtom(InputController & parent, int index);
-	virtual ~InputAtom() { }
+	virtual ~InputAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

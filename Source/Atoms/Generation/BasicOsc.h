@@ -9,8 +9,7 @@
 
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 class SaveState;
 
@@ -18,8 +17,7 @@ class SaveState;
 
 /* END MISC. USER-DEFINED CODE */
 
-class BasicOscController : public AtomController, public AutomatedControl::Listener, public MultiButton::Listener, public SimpleKnob::Listener
-{
+class BasicOscController: public AtomController, public AutomatedControl::Listener, public MultiButton::Listener, public SimpleKnob::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	WaveformPlot m_plot;
@@ -59,12 +57,19 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	BasicOscController();
-	virtual AtomController * createNewInstance() { return new BasicOscController(); }
-	virtual ~BasicOscController() { }
+	virtual AtomController * createNewInstance() {
+		return new BasicOscController();
+	}
+	virtual ~BasicOscController() {
+	}
 
 	virtual Atom * createAtom(int index);
-	virtual std::string getCategory() { return "Generation"; }
-	virtual std::string getName() { return "Basic Osc"; }
+	virtual std::string getCategory() {
+		return "Generation";
+	}
+	virtual std::string getName() {
+		return "Basic Osc";
+	}
 	virtual void loadSaveState(SaveState state);
 	virtual SaveState saveSaveState();
 	/* END AUTO-GENERATED METHODS */
@@ -82,8 +87,7 @@ public:
 	friend class BasicOscAtom;
 };
 
-class BasicOscAtom : public Atom
-{
+class BasicOscAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	BasicOscController & m_parent;
@@ -95,7 +99,8 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	BasicOscAtom(BasicOscController & parent, int index);
-	virtual ~BasicOscAtom() { }
+	virtual ~BasicOscAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

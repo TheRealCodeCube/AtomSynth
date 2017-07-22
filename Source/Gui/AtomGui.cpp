@@ -10,31 +10,27 @@
 #include "Atoms/Atom.h"
 #include "Global.h"
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
-AtomGui::AtomGui()
-	: m_atomController(nullptr)
-{
+AtomGui::AtomGui() :
+		m_atomController(nullptr) {
 	setBounds(0, C::SPACING + C::HEADER_HEIGHT, C::GUI_WIDTH, C::GUI_HEIGHT);
 	setVisible(false);
 }
 
-AtomGui::~AtomGui()
-{
+AtomGui::~AtomGui() {
 	// TODO Auto-generated destructor stub
 }
 
-void AtomGui::paint(Graphics& g)
-{
+void AtomGui::paint(Graphics& g) {
 	g.fillAll(MID_LAYER);
 }
 
-void AtomGui::setParent(Component* parent)
-{
+void AtomGui::setParent(Component* parent) {
 	bool wasShown = isVisible();
 	parent->addAndMakeVisible(this);
-	if(!wasShown) setVisible(false); //There is no 'add and don't make visible'
+	if (!wasShown)
+		setVisible(false); //There is no 'add and don't make visible'
 }
 
 } /* namespace AtomSynth */

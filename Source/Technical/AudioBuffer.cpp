@@ -11,104 +11,81 @@
 #include <cmath>
 #include <iostream>
 
-namespace AtomSynth
-{
+namespace AtomSynth {
 
 int AudioBuffer::s_size = 256, AudioBuffer::s_channels = 2;
 
-AudioBuffer::AudioBuffer()
-	: m_constant(false),
-	  m_size(s_size),
-	  m_channels(s_channels)
-{
+AudioBuffer::AudioBuffer() :
+		m_constant(false),
+		m_size(s_size),
+		m_channels(s_channels) {
 	m_data.resize(m_channels * m_size);
 }
 
-AudioBuffer::AudioBuffer(int samples)
-	: m_constant(false),
-	  m_size(samples),
-	  m_channels(s_channels)
-{
+AudioBuffer::AudioBuffer(int samples) :
+		m_constant(false),
+		m_size(samples),
+		m_channels(s_channels) {
 	m_data.resize(m_channels * m_size);
 }
 
-AudioBuffer::AudioBuffer(int channels, int samples)
-	: m_constant(false),
-	  m_size(samples),
-	  m_channels(channels)
-{
+AudioBuffer::AudioBuffer(int channels, int samples) :
+		m_constant(false),
+		m_size(samples),
+		m_channels(channels) {
 	m_data.resize(m_channels * m_size);
 }
 
-AudioBuffer::~AudioBuffer()
-{
+AudioBuffer::~AudioBuffer() {
 	// TODO Auto-generated destructor stub
 }
 
-void AudioBuffer::dumpToConsole()
-{
+void AudioBuffer::dumpToConsole() {
 	std::cout << std::endl;
-	for(int c = 0; c < m_channels; c++)
-	{
+	for (int c = 0; c < m_channels; c++) {
 		std::cout << "C" << c << "\t";
 	}
 	std::cout << std::endl;
-	for(int s = 0; s < m_size; s++)
-	{
-		for(int c = 0; c < m_channels; c++)
-		{
+	for (int s = 0; s < m_size; s++) {
+		for (int c = 0; c < m_channels; c++) {
 			std::cout << getValue(c, s) << "\t";
 		}
 		std::cout << std::endl;
 	}
 }
 
-void AtomSynth::AudioBuffer::copyData(AudioBuffer & copyFrom)
-{
+void AtomSynth::AudioBuffer::copyData(AudioBuffer & copyFrom) {
 	int channels = std::min(copyFrom.getChannels(), m_channels);
 	int samples = std::min(copyFrom.getSize(), m_size);
-	for(int c = 0; c < channels; c++)
-	{
-		for(int s = 0; s < samples; s++)
-		{
+	for (int c = 0; c < channels; c++) {
+		for (int s = 0; s < samples; s++) {
 			m_data[c * m_size + s] = copyFrom.getValue(c, s);
 		}
 	}
 }
 
-void AudioBuffer::copyData(AudioBuffer & copyFrom, int sampleOffset, int channelOffset)
-{
+void AudioBuffer::copyData(AudioBuffer & copyFrom, int sampleOffset, int channelOffset) {
 	int channels = std::min(copyFrom.getChannels(), m_channels - channelOffset);
 	int samples = std::min(copyFrom.getSize(), m_size - sampleOffset);
-	for(int c = channelOffset; c < channels + channelOffset; c++)
-	{
-		for(int s = sampleOffset; s < samples + sampleOffset; s++)
-		{
+	for (int c = channelOffset; c < channels + channelOffset; c++) {
+		for (int s = sampleOffset; s < samples + sampleOffset; s++) {
 			m_data[c * m_size + s] = copyFrom.getValue(c, s);
 		}
 	}
 }
 
-void AudioBuffer::offsetData(int offset)
-{
-	if(offset < 0)
-	{
+void AudioBuffer::offsetData(int offset) {
+	if (offset < 0) {
 		offset *= -1;
-		for(int c = 0; c < m_channels; c++)
-		{
-			for(int s = 0; s < m_size - offset; s++)
-			{
+		for (int c = 0; c < m_channels; c++) {
+			for (int s = 0; s < m_size - offset; s++) {
 				m_data[c * m_size + s] = m_data[c * m_size + s + offset];
 			}
 			std::fill(m_data.begin() + m_size - offset + c * m_size, m_data.begin() + (c + 1) * m_size, 0.0);
 		}
-	}
-	else if(offset > 0)
-	{
-		for(int c = 0; c < m_channels; c++)
-		{
-			for(int s = m_size - 1; s >= offset; s--)
-			{
+	} else if (offset > 0) {
+		for (int c = 0; c < m_channels; c++) {
+			for (int s = m_size - 1; s >= offset; s--) {
 				m_data[c * m_size + s] = m_data[c * m_size + s - offset];
 			}
 			std::fill(m_data.begin() + c * m_size, m_data.begin() + offset - 1 + c * m_size, 0.0);
@@ -116,29 +93,22 @@ void AudioBuffer::offsetData(int offset)
 	}
 }
 
-void AudioBuffer::fill(double value)
-{
-	if(m_constant)
-	{
-		for(int c = 0; c < s_channels; c++)
-		{
+void AudioBuffer::fill(double value) {
+	if (m_constant) {
+		for (int c = 0; c < s_channels; c++) {
 			m_data[s_size * c] = value;
 		}
-	}
-	else
-	{
+	} else {
 		std::fill(m_data.begin(), m_data.end(), value);
 	}
 }
 
-void AudioBuffer::setSize(int size)
-{
+void AudioBuffer::setSize(int size) {
 	m_size = size;
 	m_data.resize(m_size * m_channels, 0.0);
 }
 
-void AudioBuffer::setChannels(int channels)
-{
+void AudioBuffer::setChannels(int channels) {
 	m_channels = channels;
 	m_data.resize(m_size * m_channels, 0.0);
 }
