@@ -453,16 +453,16 @@ const bool allowed[128] =
 		false, false, false, false, false, false, false, false, false, false,	//^@ - ^I
 		false, false, false, false, false, false, false, false, false, false,	//^J - ^S
 		false, false, false, false, false, false, false, false, false, false,	//^T - ^]
-		false, false, true , false, true , false, false, false, false, true ,	//^^ - ' //and a space and a double quote in there somewhere
-		true , true , true , true , false, true , true , false, true , true ,	// ( ) * + , - . / 0 1
-		true , true , true , true , true , true , true , true , false, false,	//2 - 9 : ;
-		false, false, false, false, false, true , true , true , true , true ,	//< - @ A B C D E
+		false, false, true , true , true , true , true , true , true , true ,	//^^ - ' //and a space and a double quote in there somewhere
+		true , true , true , true , true,  true , true , false, true , true ,	// ( ) * + , - . / 0 1
+		true , true , true , true , true , true , true , true , true,  true,	//2 - 9 : ;
+		true , true , true , true , true , true , true , true , true , true ,	//< - @ A B C D E
 		true , true , true , true , true , true , true , true , true , true ,	//F - O
 		true , true , true , true , true , true , true , true , true , true ,	//P - Y
-		true , true , false, true , false, true , false, true , true , true ,	//Z [ \ ] ^ _ ` a b c
+		true , true , false, true , true , true , true , true , true , true ,	//Z [ \ ] ^ _ ` a b c
 		true , true , true , true , true , true , true , true , true , true ,	//d - m
 		true , true , true , true , true , true , true , true , true , true ,	//n - w
-		true , true , true , true , true , true , true , false,					//x - z { | } ~ ^
+		true , true , true , true , true , true , true , false,					//x - z { | } ~ DEL
 };
 
 bool TextEntry::canType(char c)

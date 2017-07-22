@@ -9,7 +9,8 @@
 
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth {
+namespace AtomSynth
+{
 
 class SaveState;
 
@@ -39,7 +40,8 @@ public:
 };
 /* END MISC. USER-DEFINED CODE */
 
-class EnvelopeController: public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener {
+class EnvelopeController : public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener
+{
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	BpmMultiple m_releaseTime;
@@ -48,27 +50,27 @@ private:
 	BpmMultiple m_attackTime;
 	BpmMultiple m_delayTime;
 	AtomKnob m_releaseMult;
-	std::vector<double>::iterator m_releaseMultIter;
+	DVecIter m_releaseMultIter;
 	AtomKnob m_sustainLevel;
-	std::vector<double>::iterator m_sustainLevelIter;
+	DVecIter m_sustainLevelIter;
 	AtomKnob m_releaseShape;
-	std::vector<double>::iterator m_releaseShapeIter;
+	DVecIter m_releaseShapeIter;
 	AtomKnob m_attackLevel;
-	std::vector<double>::iterator m_attackLevelIter;
+	DVecIter m_attackLevelIter;
 	AtomKnob m_attackShape;
-	std::vector<double>::iterator m_attackShapeIter;
+	DVecIter m_attackShapeIter;
 	AtomKnob m_sustainShape;
-	std::vector<double>::iterator m_sustainShapeIter;
+	DVecIter m_sustainShapeIter;
 	AtomKnob m_holdLevel;
-	std::vector<double>::iterator m_holdLevelIter;
+	DVecIter m_holdLevelIter;
 	AtomKnob m_delayMult;
-	std::vector<double>::iterator m_delayMultIter;
+	DVecIter m_delayMultIter;
 	AtomKnob m_holdMult;
-	std::vector<double>::iterator m_holdMultIter;
+	DVecIter m_holdMultIter;
 	AtomKnob m_sustainMult;
-	std::vector<double>::iterator m_sustainMultIter;
+	DVecIter m_sustainMultIter;
 	AtomKnob m_attackMult;
-	std::vector<double>::iterator m_attackMultIter;
+	DVecIter m_attackMultIter;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
@@ -77,19 +79,12 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	EnvelopeController();
-	virtual AtomController * createNewInstance() {
-		return new EnvelopeController();
-	}
-	virtual ~EnvelopeController() {
-	}
+	virtual AtomController * createNewInstance() { return new EnvelopeController(); }
+	virtual ~EnvelopeController() { }
 
 	virtual Atom * createAtom(int index);
-	virtual std::string getCategory() {
-		return "Generation";
-	}
-	virtual std::string getName() {
-		return "Envelope";
-	}
+	virtual std::string getCategory() { return "Generation"; }
+	virtual std::string getName() { return "Envelope"; }
 	virtual void loadSaveState(SaveState state);
 	virtual SaveState saveSaveState();
 	/* END AUTO-GENERATED METHODS */
@@ -106,7 +101,8 @@ public:
 	friend class EnvelopeAtom;
 };
 
-class EnvelopeAtom: public Atom {
+class EnvelopeAtom : public Atom
+{
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	EnvelopeController & m_parent;
@@ -120,8 +116,7 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	EnvelopeAtom(EnvelopeController & parent, int index);
-	virtual ~EnvelopeAtom() {
-	}
+	virtual ~EnvelopeAtom() { }
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

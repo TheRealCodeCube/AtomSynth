@@ -1,5 +1,6 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[11.000000:0.000000:1.000000:3.000000:1.000000:sNoise:sGeneration:[[24.000000:0.000000:1.000000:10.000000:10.000000:sWaveformPlot:splot:s:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:4.500000:2.000000:2.000000:sAtomKnob:stime:sTime:]][0.000000:1.000000:0.000000:0.000000:1.000000:sms:]][[[24.000000:10.000000:8.000000:2.000000:3.000000:sMultiButton:stimeFrame:sT. Range:]][1.000000:0.000000:s0-1ms:s0-10ms:s0-0.1s:s0-1s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:sMultiButton:stype:s:]][0.000000:0.000000:sSharp:sLinear:sSmooth:]]]]
+// EDITOR SOURCE: [[11.000000:0.000000:1.000000:sNoise:sGeneration:s:saudio:[[24.000000:0.000000:1.000000:10.000000:10.000000:sWaveformPlot:splot:s:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:4.500000:2.000000:2.000000:sAtomKnob:stime:sTime:]][0.000000:1.000000:0.000000:0.000000:1.000000:sms:]][[[24.000000:10.000000:8.000000:2.000000:3.000000:sMultiButton:stimeFrame:sT. Range:]][1.000000:0.000000:s0-1ms:s0-10ms:s0-100ms:s0-1s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:sMultiButton:stype:s:]][0.000000:0.000000:sSharp:sLinear:sSmooth:]]]]
+
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Noise.h"
 #include "Technical/SaveState.h"
@@ -10,7 +11,8 @@
 #include "Technical/GlobalNoteStates.h"
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth {
+namespace AtomSynth
+{
 
 /* BEGIN MISC. USER-DEFINED CODE */
 void NoiseController::updatePlot() {
@@ -49,14 +51,15 @@ void NoiseController::updatePlot() {
 }
 /* END MISC. USER-DEFINED CODE */
 
-NoiseController::NoiseController() :
-		AtomController(AtomParameters(11, 0, true, 1)) {
+NoiseController::NoiseController()
+	: AtomController(AtomParameters(11, 0, true, 1))
+{
 	init();
 
-	m_gui.addComponent(&m_plot);
+	m_gui.addComponent(& m_plot);
 	m_plot.setBounds(CB(0.000000, 1.000000, 10.000000, 10.000000));
 
-	m_gui.addComponent(&m_amplitude);
+	m_gui.addComponent(& m_amplitude);
 	m_amplitude.setBounds(CB(10.000000, 1.500000, 2.000000, 2.000000));
 	m_amplitude.addListener(this);
 	m_amplitude.setRange(0.000000, 1.000000);
@@ -65,7 +68,7 @@ NoiseController::NoiseController() :
 	addAutomatedControl(m_amplitude, m_amplitudeIter);
 	m_gui.addComponent(m_amplitude.createLabel("Amplitude", true));
 
-	m_gui.addComponent(&m_time);
+	m_gui.addComponent(& m_time);
 	m_time.setBounds(CB(10.000000, 4.500000, 2.000000, 2.000000));
 	m_time.addListener(this);
 	m_time.setRange(0.000000, 1.000000);
@@ -74,17 +77,17 @@ NoiseController::NoiseController() :
 	addAutomatedControl(m_time, m_timeIter);
 	m_gui.addComponent(m_time.createLabel("Time", true));
 
-	m_gui.addComponent(&m_timeFrame);
+	m_gui.addComponent(& m_timeFrame);
 	m_timeFrame.setBounds(CB(10.000000, 8.000000, 2.000000, 3.000000));
 	m_timeFrame.addListener(this);
 	m_timeFrame.setVertical(true);
 	m_timeFrame.addLabel("0-1ms");
 	m_timeFrame.addLabel("0-10ms");
-	m_timeFrame.addLabel("0-0.1s");
+	m_timeFrame.addLabel("0-100ms");
 	m_timeFrame.addLabel("0-1s");
 	m_gui.addComponent(m_timeFrame.createLabel("T. Range", true));
 
-	m_gui.addComponent(&m_type);
+	m_gui.addComponent(& m_type);
 	m_type.setBounds(CB(0.000000, 0.000000, 12.000000, 1.000000));
 	m_type.addListener(this);
 	m_type.addLabel("Sharp");
@@ -98,16 +101,18 @@ NoiseController::NoiseController() :
 	m_gui.setAtomController(this);
 }
 
-Atom * NoiseController::createAtom(int index) {
-	return new NoiseAtom(*this, index);
+Atom * NoiseController::createAtom(int index)
+{
+	return new NoiseAtom(* this, index);
 }
 
-SaveState NoiseController::saveSaveState() {
-	SaveState & toReturn = *new SaveState();
+SaveState NoiseController::saveSaveState()
+{
+	SaveState & toReturn = * new SaveState();
 	toReturn.addState(AtomController::saveSaveState());
 
-	SaveState & extraData = *new SaveState();
-	extraData.addValue(3); //Store the revision this was saved with, to preserve backwards compatibility.
+	SaveState & extraData = * new SaveState();
+	extraData.addValue(0); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_amplitude.saveSaveState());
 	extraData.addState(m_time.saveSaveState());
 	extraData.addState(m_timeFrame.saveSaveState());
@@ -119,7 +124,8 @@ SaveState NoiseController::saveSaveState() {
 	return toReturn;
 }
 
-void NoiseController::loadSaveState(SaveState state) {
+void NoiseController::loadSaveState(SaveState state)
+{
 	AtomController::loadSaveState(state.getNextState());
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
@@ -136,21 +142,53 @@ void NoiseController::loadSaveState(SaveState state) {
 	/* END LOAD CODE */
 }
 
-void NoiseController::automatedControlChanged(AutomatedControl * control,
-		bool byUser) {
+void NoiseController::automatedControlChanged(AutomatedControl * control, bool byUser)
+{
 	/* BEGIN USER-DEFINED LISTENER CODE */
 	updatePlot();
 	/* END USER-DEFINED LISTENER CODE */
 }
 
-void NoiseController::multiButtonPressed(MultiButton * button) {
+void NoiseController::multiButtonPressed(MultiButton * button)
+{
 	/* BEGIN USER-DEFINED LISTENER CODE */
+	if(button == &m_timeFrame)
+	{
+		switch(m_timeFrame.getSelectedLabel())
+		{
+		case 0:
+			m_time.setRange(0.0, 1.0);
+			m_time.setValue(0.5);
+			break;
+		case 1:
+			m_time.setRange(0.0, 10.0);
+			m_time.setValue(5.0);
+			break;
+		case 2:
+			m_time.setRange(0.0, 100.0);
+			m_time.setValue(50.0);
+			break;
+		case 3:
+			m_time.setRange(0.0, 1.0);
+			m_time.setValue(0.5);
+			break;
+		}
+
+		if(m_timeFrame.getSelectedLabel() == 3)
+			m_time.setSuffix("s");
+		else
+			m_time.setSuffix("ms");
+
+		m_time.repaint();
+	}
 	updatePlot();
 	/* END USER-DEFINED LISTENER CODE */
 }
 
-NoiseAtom::NoiseAtom(NoiseController & parent, int index) :
-		Atom(parent, index), m_parent(parent) {
+NoiseAtom::NoiseAtom(NoiseController & parent, int index)
+	: Atom(parent, index),
+	  m_parent(parent)
+{
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 	m_lengthTimer.resize(2, 2.0);
 	m_previousValues.resize(AudioBuffer::getDefaultChannels(), std::vector<double>());
@@ -159,12 +197,16 @@ NoiseAtom::NoiseAtom(NoiseController & parent, int index) :
 	/* END USER-DEFINED CONSTRUCTION CODE */
 }
 
-void NoiseAtom::execute() {
+void NoiseAtom::execute()
+{
 	Atom::execute();
 	AutomationSet & automation = m_parent.m_automation;
 	automation.resetPosition();
-	std::vector<double>::iterator & amplitudeIter = m_parent.m_amplitudeIter;
-	std::vector<double>::iterator & timeIter = m_parent.m_timeIter;
+	DVecIter & amplitudeIter = m_parent.m_amplitudeIter;
+	DVecIter & timeIter = m_parent.m_timeIter;
+
+	IOSet io = IOSet();
+	DVecIter & audioOutput = io.addOutput(m_outputs[0]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	struct timespec t;
@@ -172,8 +214,8 @@ void NoiseAtom::execute() {
 	srand(t.tv_nsec);
 
 	double time = 1000.0 / (m_sampleRate_f * *timeIter + 0.00001);
-	if (m_parent.m_timeFrame.getSelectedLabel() > 1) //Labels 2 and 3 are measured in seconds rather than milliseconds.
-			{
+	if (m_parent.m_timeFrame.getSelectedLabel() == 3) //Label 3 is measured in seconds
+	{
 		time /= 1000.0;
 	}
 
@@ -203,7 +245,8 @@ void NoiseAtom::execute() {
 	/* END USER-DEFINED EXECUTION CODE */
 }
 
-void NoiseAtom::reset() {
+void NoiseAtom::reset()
+{
 	Atom::reset();
 	/* BEGIN USER-DEFINED RESET CODE */
 	for (std::vector<double> & vec : m_previousValues) {

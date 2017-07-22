@@ -223,6 +223,70 @@ void AtomController::cleanupInputsFromAtom(AtomController * source)
 	}
 }
 
+void IOSet::clear()
+{
+	m_constInputs.clear();
+	m_incInputs.clear();
+	m_outputs.clear();
+	m_incInputSources.clear();
+	m_constInputSources.clear();
+	m_outputSources.clear();
+}
+
+DVecIter* IOSet::addInput(AudioBuffer* input)
+{
+	if(input == nullptr)
+	{
+		return nullptr;
+	}
+	else
+	{
+		if(input->isConstant())
+		{ //begin returns a temporary value.
+			m_constInputs.push_back(new DVecIter(input->getData().begin()));
+			m_constInputSources.push_back(input);
+			return m_constInputs.back();
+		}
+		else
+		{
+			m_incInputs.push_back(new DVecIter(input->getData().begin()));
+			m_incInputSources.push_back(input);
+			return m_incInputs.back();
+		}
+	}
+}
+
+DVecIter& IOSet::addOutput(AudioBuffer& output)
+{
+	m_outputSources.push_back(&output);
+	m_outputs.push_back(new DVecIter(output.getData().begin()));
+	return *m_outputs.back();
+}
+
+void IOSet::resetPosition()
+{
+	for(int i = 0; i < m_incInputSources.size(); i++)
+		(*m_incInputs[i]) = DVecIter(m_incInputSources[i]->getData().begin());
+	for(int i = 0; i < m_constInputSources.size(); i++)
+		(*m_constInputs[i]) = DVecIter(m_constInputSources[i]->getData().begin());
+	for(int i = 0; i < m_outputs.size(); i++)
+		(*m_outputs[i]) = DVecIter(m_outputSources[i]->getData().begin());
+}
+
+void IOSet::incrementPosition()
+{
+	for(auto iter : m_incInputs)
+		(*iter)++;
+	for(DVecIter * iter : m_outputs)
+		(*iter)++;
+}
+
+void IOSet::incrementChannel()
+{
+	for(auto iter : m_constInputs)
+		(*iter) += AudioBuffer::getDefaultSamples(); //Increment by a whole channel at once.
+}
+
 Atom::Atom(AtomController & parent, int index)
 	: m_p(parent),
 	  m_updateTimer(0),

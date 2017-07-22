@@ -1,7 +1,14 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[1.000000:1.000000:0.000000:0.000000:0.000000:sOutput:sBasic:]]
+// EDITOR SOURCE: [[1.000000:1.000000:0.000000:sOutput:sBasic:saudio:s:]]
+
+/* BEGIN AUTO-GENERATED INCLUDES */
 #include "Output.h"
 #include "Technical/SaveState.h"
+/* END AUTO-GENERATED INCLUDES */
+
+/* BEGIN USER-DEFINED INCLUDES */
+
+/* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth
 {
@@ -34,7 +41,7 @@ SaveState OutputController::saveSaveState()
 	toReturn.addState(AtomController::saveSaveState());
 
 	SaveState & extraData = * new SaveState();
-	extraData.addValue(0); //Store the revision this was saved with, to preserve backwards compatibility.
+	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
 	/* BEGIN USER-DEFINED SAVE CODE */
 
 	/* END USER-DEFINED SAVE CODE */
@@ -63,20 +70,12 @@ OutputAtom::OutputAtom(OutputController & parent, int index)
 void OutputAtom::execute()
 {
 	Atom::execute();
-	AutomationSet & automation = m_parent.m_automation;
-	automation.resetPosition();
+
+	IOSet io = IOSet();
+	DVecIter * audioInput = io.addInput(m_primaryInputs[0]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
-	for(int c = 0; c < AudioBuffer::getDefaultChannels(); c++)
-	{
-		for(int s = 0; s < AudioBuffer::getDefaultSamples(); s++)
-		{
-			//PUT YOUR EXECUTION CODE HERE
-			
-			automation.incrementPosition();
-		}
-		automation.incrementChannel();
-	}
+	
 	/* END USER-DEFINED EXECUTION CODE */
 }
 

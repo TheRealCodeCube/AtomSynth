@@ -1,5 +1,6 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[12.000000:1.000000:1.000000:5.000000:1.000000:sEnvelope:sGeneration:[[[4.000000:9.000000:6.500000:2.000000:2.000000:sBpmMultiple:sreleaseTime:sRelease:]][1.000000:2.000000:]][[[4.000000:7.000000:6.500000:2.000000:2.000000:sBpmMultiple:ssustainTime:sSustain:]][0.000000:2.000000:]][[[4.000000:5.000000:6.500000:2.000000:2.000000:sBpmMultiple:sholdTime:sHold:]][1.000000:2.000000:]][[[4.000000:3.000000:6.500000:2.000000:2.000000:sBpmMultiple:sattackTime:sAttack:]][0.000000:2.000000:]][[[4.000000:1.000000:6.500000:2.000000:2.000000:sBpmMultiple:sdelayTime:sDelay:]][0.000000:2.000000:]][[[4.000000:9.000000:9.000000:2.000000:2.000000:sAtomKnob:sreleaseMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:14.000000:2.000000:2.000000:sAtomKnob:ssustainLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:9.000000:11.500000:2.000000:2.000000:sAtomKnob:sreleaseShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:14.000000:2.000000:2.000000:sAtomKnob:sattackLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:11.500000:2.000000:2.000000:sAtomKnob:sattackShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:11.500000:2.000000:2.000000:sAtomKnob:ssustainShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:14.000000:2.000000:2.000000:sAtomKnob:sholdLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:1.000000:9.000000:2.000000:2.000000:sAtomKnob:sdelayMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:9.000000:2.000000:2.000000:sAtomKnob:sholdMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:9.000000:2.000000:2.000000:sAtomKnob:ssustainMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:9.000000:2.000000:2.000000:sAtomKnob:sattackMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
+// EDITOR SOURCE: [[12.000000:1.000000:1.000000:sEnvelope:sGeneration:stime:senv:[[[4.000000:9.000000:6.500000:2.000000:2.000000:sBpmMultiple:sreleaseTime:sRelease:]][1.000000:2.000000:]][[[4.000000:7.000000:6.500000:2.000000:2.000000:sBpmMultiple:ssustainTime:sSustain:]][0.000000:2.000000:]][[[4.000000:5.000000:6.500000:2.000000:2.000000:sBpmMultiple:sholdTime:sHold:]][1.000000:2.000000:]][[[4.000000:3.000000:6.500000:2.000000:2.000000:sBpmMultiple:sattackTime:sAttack:]][0.000000:2.000000:]][[[4.000000:1.000000:6.500000:2.000000:2.000000:sBpmMultiple:sdelayTime:sDelay:]][0.000000:2.000000:]][[[4.000000:9.000000:9.000000:2.000000:2.000000:sAtomKnob:sreleaseMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:14.000000:2.000000:2.000000:sAtomKnob:ssustainLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:9.000000:11.500000:2.000000:2.000000:sAtomKnob:sreleaseShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:14.000000:2.000000:2.000000:sAtomKnob:sattackLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:11.500000:2.000000:2.000000:sAtomKnob:sattackShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:11.500000:2.000000:2.000000:sAtomKnob:ssustainShape:sShape:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:14.000000:2.000000:2.000000:sAtomKnob:sholdLevel:sLevel:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:1.000000:9.000000:2.000000:2.000000:sAtomKnob:sdelayMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:5.000000:9.000000:2.000000:2.000000:sAtomKnob:sholdMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:7.000000:9.000000:2.000000:2.000000:sAtomKnob:ssustainMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:3.000000:9.000000:2.000000:2.000000:sAtomKnob:sattackMult:sMultiplier:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
+
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Envelope.h"
 #include "Technical/SaveState.h"
@@ -9,7 +10,8 @@
 #include "Adsp/interpolation.h"
 /* END USER-DEFINED INCLUDES */
 
-namespace AtomSynth {
+namespace AtomSynth
+{
 
 /* BEGIN MISC. USER-DEFINED CODE */
 EnvelopePlot::EnvelopePlot() :
@@ -182,41 +184,42 @@ void EnvelopePlot::mouseDrag(const MouseEvent& e) {
 }
 /* END MISC. USER-DEFINED CODE */
 
-EnvelopeController::EnvelopeController() :
-		AtomController(AtomParameters(12, 1, true, 1)) {
+EnvelopeController::EnvelopeController()
+	: AtomController(AtomParameters(12, 1, true, 1))
+{
 	init();
 
-	m_gui.addComponent(&m_releaseTime);
+	m_gui.addComponent(& m_releaseTime);
 	m_releaseTime.setBounds(CB(9.000000, 6.500000, 2.000000, 2.000000));
 	m_releaseTime.addListener(this);
 	m_releaseTime.setFraction(1, 2);
 	m_gui.addComponent(m_releaseTime.createLabel("Release", true));
 
-	m_gui.addComponent(&m_sustainTime);
+	m_gui.addComponent(& m_sustainTime);
 	m_sustainTime.setBounds(CB(7.000000, 6.500000, 2.000000, 2.000000));
 	m_sustainTime.addListener(this);
 	m_sustainTime.setFraction(0, 2);
 	m_gui.addComponent(m_sustainTime.createLabel("Sustain", true));
 
-	m_gui.addComponent(&m_holdTime);
+	m_gui.addComponent(& m_holdTime);
 	m_holdTime.setBounds(CB(5.000000, 6.500000, 2.000000, 2.000000));
 	m_holdTime.addListener(this);
 	m_holdTime.setFraction(1, 2);
 	m_gui.addComponent(m_holdTime.createLabel("Hold", true));
 
-	m_gui.addComponent(&m_attackTime);
+	m_gui.addComponent(& m_attackTime);
 	m_attackTime.setBounds(CB(3.000000, 6.500000, 2.000000, 2.000000));
 	m_attackTime.addListener(this);
 	m_attackTime.setFraction(0, 2);
 	m_gui.addComponent(m_attackTime.createLabel("Attack", true));
 
-	m_gui.addComponent(&m_delayTime);
+	m_gui.addComponent(& m_delayTime);
 	m_delayTime.setBounds(CB(1.000000, 6.500000, 2.000000, 2.000000));
 	m_delayTime.addListener(this);
 	m_delayTime.setFraction(0, 2);
 	m_gui.addComponent(m_delayTime.createLabel("Delay", true));
 
-	m_gui.addComponent(&m_releaseMult);
+	m_gui.addComponent(& m_releaseMult);
 	m_releaseMult.setBounds(CB(9.000000, 9.000000, 2.000000, 2.000000));
 	m_releaseMult.addListener(this);
 	m_releaseMult.setRange(0.000000, 1.000000);
@@ -225,7 +228,7 @@ EnvelopeController::EnvelopeController() :
 	addAutomatedControl(m_releaseMult, m_releaseMultIter);
 	m_gui.addComponent(m_releaseMult.createLabel("Multiplier", true));
 
-	m_gui.addComponent(&m_sustainLevel);
+	m_gui.addComponent(& m_sustainLevel);
 	m_sustainLevel.setBounds(CB(7.000000, 14.000000, 2.000000, 2.000000));
 	m_sustainLevel.addListener(this);
 	m_sustainLevel.setRange(0.000000, 1.000000);
@@ -234,14 +237,14 @@ EnvelopeController::EnvelopeController() :
 	addAutomatedControl(m_sustainLevel, m_sustainLevelIter);
 	m_gui.addComponent(m_sustainLevel.createLabel("Level", true));
 
-	m_gui.addComponent(&m_releaseShape);
+	m_gui.addComponent(& m_releaseShape);
 	m_releaseShape.setBounds(CB(9.000000, 11.500000, 2.000000, 2.000000));
 	m_releaseShape.addListener(this);
 	m_releaseShape.setBounded(true);
 	addAutomatedControl(m_releaseShape, m_releaseShapeIter);
 	m_gui.addComponent(m_releaseShape.createLabel("Shape", true));
 
-	m_gui.addComponent(&m_attackLevel);
+	m_gui.addComponent(& m_attackLevel);
 	m_attackLevel.setBounds(CB(3.000000, 14.000000, 2.000000, 2.000000));
 	m_attackLevel.addListener(this);
 	m_attackLevel.setRange(0.000000, 1.000000);
@@ -250,21 +253,21 @@ EnvelopeController::EnvelopeController() :
 	addAutomatedControl(m_attackLevel, m_attackLevelIter);
 	m_gui.addComponent(m_attackLevel.createLabel("Level", true));
 
-	m_gui.addComponent(&m_attackShape);
+	m_gui.addComponent(& m_attackShape);
 	m_attackShape.setBounds(CB(3.000000, 11.500000, 2.000000, 2.000000));
 	m_attackShape.addListener(this);
 	m_attackShape.setBounded(true);
 	addAutomatedControl(m_attackShape, m_attackShapeIter);
 	m_gui.addComponent(m_attackShape.createLabel("Shape", true));
 
-	m_gui.addComponent(&m_sustainShape);
+	m_gui.addComponent(& m_sustainShape);
 	m_sustainShape.setBounds(CB(7.000000, 11.500000, 2.000000, 2.000000));
 	m_sustainShape.addListener(this);
 	m_sustainShape.setBounded(true);
 	addAutomatedControl(m_sustainShape, m_sustainShapeIter);
 	m_gui.addComponent(m_sustainShape.createLabel("Shape", true));
 
-	m_gui.addComponent(&m_holdLevel);
+	m_gui.addComponent(& m_holdLevel);
 	m_holdLevel.setBounds(CB(5.000000, 14.000000, 2.000000, 2.000000));
 	m_holdLevel.addListener(this);
 	m_holdLevel.setRange(0.000000, 1.000000);
@@ -273,7 +276,7 @@ EnvelopeController::EnvelopeController() :
 	addAutomatedControl(m_holdLevel, m_holdLevelIter);
 	m_gui.addComponent(m_holdLevel.createLabel("Level", true));
 
-	m_gui.addComponent(&m_delayMult);
+	m_gui.addComponent(& m_delayMult);
 	m_delayMult.setBounds(CB(1.000000, 9.000000, 2.000000, 2.000000));
 	m_delayMult.addListener(this);
 	m_delayMult.setRange(0.000000, 1.000000);
@@ -282,7 +285,7 @@ EnvelopeController::EnvelopeController() :
 	addAutomatedControl(m_delayMult, m_delayMultIter);
 	m_gui.addComponent(m_delayMult.createLabel("Multiplier", true));
 
-	m_gui.addComponent(&m_holdMult);
+	m_gui.addComponent(& m_holdMult);
 	m_holdMult.setBounds(CB(5.000000, 9.000000, 2.000000, 2.000000));
 	m_holdMult.addListener(this);
 	m_holdMult.setRange(0.000000, 1.000000);
@@ -291,7 +294,7 @@ EnvelopeController::EnvelopeController() :
 	addAutomatedControl(m_holdMult, m_holdMultIter);
 	m_gui.addComponent(m_holdMult.createLabel("Multiplier", true));
 
-	m_gui.addComponent(&m_sustainMult);
+	m_gui.addComponent(& m_sustainMult);
 	m_sustainMult.setBounds(CB(7.000000, 9.000000, 2.000000, 2.000000));
 	m_sustainMult.addListener(this);
 	m_sustainMult.setRange(0.000000, 1.000000);
@@ -300,7 +303,7 @@ EnvelopeController::EnvelopeController() :
 	addAutomatedControl(m_sustainMult, m_sustainMultIter);
 	m_gui.addComponent(m_sustainMult.createLabel("Multiplier", true));
 
-	m_gui.addComponent(&m_attackMult);
+	m_gui.addComponent(& m_attackMult);
 	m_attackMult.setBounds(CB(3.000000, 9.000000, 2.000000, 2.000000));
 	m_attackMult.addListener(this);
 	m_attackMult.setRange(0.000000, 1.000000);
@@ -318,16 +321,18 @@ EnvelopeController::EnvelopeController() :
 	m_gui.setAtomController(this);
 }
 
-Atom * EnvelopeController::createAtom(int index) {
-	return new EnvelopeAtom(*this, index);
+Atom * EnvelopeController::createAtom(int index)
+{
+	return new EnvelopeAtom(* this, index);
 }
 
-SaveState EnvelopeController::saveSaveState() {
-	SaveState & toReturn = *new SaveState();
+SaveState EnvelopeController::saveSaveState()
+{
+	SaveState & toReturn = * new SaveState();
 	toReturn.addState(AtomController::saveSaveState());
 
-	SaveState & extraData = *new SaveState();
-	extraData.addValue(5); //Store the revision this was saved with, to preserve backwards compatibility.
+	SaveState & extraData = * new SaveState();
+	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_releaseTime.saveSaveState());
 	extraData.addState(m_sustainTime.saveSaveState());
 	extraData.addState(m_holdTime.saveSaveState());
@@ -351,7 +356,8 @@ SaveState EnvelopeController::saveSaveState() {
 	return toReturn;
 }
 
-void EnvelopeController::loadSaveState(SaveState state) {
+void EnvelopeController::loadSaveState(SaveState state)
+{
 	AtomController::loadSaveState(state.getNextState());
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
@@ -395,20 +401,24 @@ void EnvelopeController::loadSaveState(SaveState state) {
 	/* END LOAD CODE */
 }
 
-void EnvelopeController::bpmMultipleChanged(BpmMultiple * multiple) {
+void EnvelopeController::bpmMultipleChanged(BpmMultiple * multiple)
+{
 	/* BEGIN USER-DEFINED LISTENER CODE */
 	m_plot.repaintAsync();
 	/* END USER-DEFINED LISTENER CODE */
 }
 
-void EnvelopeController::automatedControlChanged(AutomatedControl * control, bool byUser) {
+void EnvelopeController::automatedControlChanged(AutomatedControl * control, bool byUser)
+{
 	/* BEGIN USER-DEFINED LISTENER CODE */
 	m_plot.repaintAsync();
 	/* END USER-DEFINED LISTENER CODE */
 }
 
-EnvelopeAtom::EnvelopeAtom(EnvelopeController & parent, int index) :
-		Atom(parent, index), m_parent(parent) {
+EnvelopeAtom::EnvelopeAtom(EnvelopeController & parent, int index)
+	: Atom(parent, index),
+	  m_parent(parent)
+{
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 	m_releaseStart = 0.0;
 	m_releaseLevel.resize(AudioBuffer::getDefaultChannels(), 0.0);
@@ -416,24 +426,29 @@ EnvelopeAtom::EnvelopeAtom(EnvelopeController & parent, int index) :
 	/* END USER-DEFINED CONSTRUCTION CODE */
 }
 
-void EnvelopeAtom::execute() {
+void EnvelopeAtom::execute()
+{
 	Atom::execute();
 	AutomationSet & automation = m_parent.m_automation;
 	automation.resetPosition();
-	std::vector<double>::iterator & releaseMultIter = m_parent.m_releaseMultIter;
-	std::vector<double>::iterator & sustainLevelIter = m_parent.m_sustainLevelIter;
-	std::vector<double>::iterator & releaseShapeIter = m_parent.m_releaseShapeIter;
-	std::vector<double>::iterator & attackLevelIter = m_parent.m_attackLevelIter;
-	std::vector<double>::iterator & attackShapeIter = m_parent.m_attackShapeIter;
-	std::vector<double>::iterator & sustainShapeIter = m_parent.m_sustainShapeIter;
-	std::vector<double>::iterator & holdLevelIter = m_parent.m_holdLevelIter;
-	std::vector<double>::iterator & delayMultIter = m_parent.m_delayMultIter;
-	std::vector<double>::iterator & holdMultIter = m_parent.m_holdMultIter;
-	std::vector<double>::iterator & sustainMultIter = m_parent.m_sustainMultIter;
-	std::vector<double>::iterator & attackMultIter = m_parent.m_attackMultIter;
+	DVecIter & releaseMultIter = m_parent.m_releaseMultIter;
+	DVecIter & sustainLevelIter = m_parent.m_sustainLevelIter;
+	DVecIter & releaseShapeIter = m_parent.m_releaseShapeIter;
+	DVecIter & attackLevelIter = m_parent.m_attackLevelIter;
+	DVecIter & attackShapeIter = m_parent.m_attackShapeIter;
+	DVecIter & sustainShapeIter = m_parent.m_sustainShapeIter;
+	DVecIter & holdLevelIter = m_parent.m_holdLevelIter;
+	DVecIter & delayMultIter = m_parent.m_delayMultIter;
+	DVecIter & holdMultIter = m_parent.m_holdMultIter;
+	DVecIter & sustainMultIter = m_parent.m_sustainMultIter;
+	DVecIter & attackMultIter = m_parent.m_attackMultIter;
+
+	IOSet io = IOSet();
+	DVecIter * timeInput = io.addInput(m_primaryInputs[0]);
+	DVecIter & envOutput = io.addOutput(m_outputs[0]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
-	if (m_primaryInputs[0] != nullptr) {
+	if (timeInput != nullptr) {
 		double delayTime = m_parent.m_delayTime.getSeconds() * m_parent.m_delayMult.getDisplayValue();
 		double attackTime = m_parent.m_attackTime.getSeconds() * m_parent.m_attackMult.getDisplayValue() + 0.001;
 		double holdTime = m_parent.m_holdTime.getSeconds() * m_parent.m_holdMult.getDisplayValue();
@@ -444,7 +459,7 @@ void EnvelopeAtom::execute() {
 		bool triggerRelease = false;
 		for (int c = 0; c < AudioBuffer::getDefaultChannels(); c++) {
 			for (int s = 0; s < AudioBuffer::getDefaultSize(); s++) {
-				time = m_primaryInputs[0]->getValue(c, s);
+				time = (**timeInput);
 				triggerRelease = (time < 0.0); //Negative time = key not being pressed, waiting for note to finish.
 				time = fabs(time);
 				if ((!triggerRelease) && m_releasing[c])
@@ -454,42 +469,45 @@ void EnvelopeAtom::execute() {
 						ltime = time - m_releaseStart;
 						ltime /= releaseTime;
 						ltime = 1.0 - ltime; //go firom 0 - 1 to 1 - 0
-						m_outputs[0].setValue(c, s, Adsp::fastEnvelopeInterp(ltime, *releaseShapeIter) * m_releaseLevel[c] - 1.0);
+						(*envOutput) = Adsp::fastEnvelopeInterp(ltime, *releaseShapeIter) * m_releaseLevel[c] - 1.0;
 					} else {
-						m_outputs[0].setValue(c, s, -1.0);
+						(*envOutput) = -1.0;
 					}
 				} else {
 					if (time < delayTime) {
-						m_outputs[0].setValue(c, s, -1.0);
+						(*envOutput) = -1.0;
 					} else if (time < delayTime + attackTime) {
 						ltime = time - delayTime; //Time window between 0s and [attack length] seconds
 						ltime /= attackTime; //Between 0 and 1
-						m_outputs[0].setValue(c, s, Adsp::fastEnvelopeInterp(ltime, *attackShapeIter) * (*holdLevelIter) * 2.0 - 1.0);
+						(*envOutput) = Adsp::fastEnvelopeInterp(ltime, *attackShapeIter) * (*holdLevelIter) * 2.0 - 1.0;
 					} else if (time < delayTime + attackTime + holdTime) {
-						m_outputs[0].setValue(c, s, (*holdLevelIter) * 2.0 - 1.0);
+						(*envOutput) = (*holdLevelIter) * 2.0 - 1.0;
 					} else if (time < delayTime + attackTime + holdTime + sustainTime) {
 						ltime = time - (delayTime + attackTime + holdTime); //Time window between 0s and [sustain length] seconds
 						ltime /= sustainTime; //Between 0 and 1
 						ltime = 1.0 - ltime;
-						m_outputs[0].setValue(c, s, Adsp::fastEnvelopeInterp(ltime, *sustainShapeIter) * 2.0 * (*holdLevelIter - *sustainLevelIter) - 1.0 + (*sustainLevelIter * 2));
+						(*envOutput) = Adsp::fastEnvelopeInterp(ltime, *sustainShapeIter) * 2.0 * (*holdLevelIter - *sustainLevelIter) - 1.0 + (*sustainLevelIter * 2);
 					} else {
-						m_outputs[0].setValue(c, s, (*sustainLevelIter) * 2.0 - 1.0);
+						(*envOutput) = (*sustainLevelIter) * 2.0 - 1.0;
 					}
 
 					if (triggerRelease) {
 						m_releasing[c] = true;
 						m_releaseStart = time;
-						m_releaseLevel[c] = m_outputs[0].getValue(c, s) + 1.0;
+						m_releaseLevel[c] = (*envOutput) + 1.0;
 					}
 				}
 				automation.incrementPosition();
+				io.incrementPosition();
 			}
 			automation.incrementChannel();
+			io.incrementChannel();
 		}
 
 		if (m_shouldUpdateParent) {
 			double cursorPos = 0.0;
-			cursorPos = m_primaryInputs[0]->getValue(0, 0);
+			io.resetPosition(); //Get values from the start.
+			cursorPos = (**timeInput);
 			if (cursorPos >= 0.0) {
 				cursorPos /= (delayTime + attackTime + holdTime + sustainTime);
 				cursorPos = std::min(cursorPos, 1.0);
@@ -501,7 +519,7 @@ void EnvelopeAtom::execute() {
 				cursorPos *= ((releaseTime) / (delayTime + attackTime + holdTime + sustainTime + releaseTime));
 				cursorPos += ((delayTime + attackTime + holdTime + sustainTime) / (delayTime + attackTime + holdTime + sustainTime + releaseTime));
 			}
-			m_parent.m_plot.setCursorPos(cursorPos, (m_outputs[0].getValue(0, 0) - 1.0) / -2.0, C::CORNER_SIZE, C::CORNER_SIZE);
+			m_parent.m_plot.setCursorPos(cursorPos, ((*envOutput) - 1.0) / -2.0, C::CORNER_SIZE, C::CORNER_SIZE);
 		}
 	} else {
 		m_outputs[0].fill(-1.0);
@@ -509,7 +527,8 @@ void EnvelopeAtom::execute() {
 	/* END USER-DEFINED EXECUTION CODE */
 }
 
-void EnvelopeAtom::reset() {
+void EnvelopeAtom::reset()
+{
 	Atom::reset();
 	/* BEGIN USER-DEFINED RESET CODE */
 
@@ -517,3 +536,4 @@ void EnvelopeAtom::reset() {
 }
 
 } /* namespace AtomSynth */
+

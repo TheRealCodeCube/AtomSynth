@@ -1,8 +1,14 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[0.000000:0.000000:3.000000:0.000000:0.000000:sInput:sBasic:]]
+// EDITOR SOURCE: [[0.000000:0.000000:1.000000:sInput:sBasic:s:shz, time:]]
+
+/* BEGIN AUTO-GENERATED INCLUDES */
 #include "Input.h"
-#include "Technical/GlobalNoteStates.h"
 #include "Technical/SaveState.h"
+/* END AUTO-GENERATED INCLUDES */
+
+/* BEGIN USER-DEFINED INCLUDES */
+
+/* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth
 {
@@ -12,7 +18,7 @@ namespace AtomSynth
 /* END MISC. USER-DEFINED CODE */
 
 InputController::InputController()
-	: AtomController(AtomParameters(0, 0, false, 3))
+	: AtomController(AtomParameters(0, 0, true, 2))
 {
 	init();
 
@@ -64,8 +70,10 @@ InputAtom::InputAtom(InputController & parent, int index)
 void InputAtom::execute()
 {
 	Atom::execute();
-	AutomationSet & automation = m_parent.m_automation;
-	automation.resetPosition();
+
+	IOSet io = IOSet();
+	DVecIter & hzOutput = io.addOutput(m_outputs[0]);
+	DVecIter & timeOutput = io.addOutput(m_outputs[1]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	int multiplier = 0;
@@ -88,9 +96,11 @@ void InputAtom::execute()
 		for(int s = 0; s < AudioBuffer::getDefaultSize(); s++)
 		{
 			time = (double(s + base) / m_sampleRate_f) * multiplier;
-			m_outputs[0].setValue(c, s, frequency);
-			m_outputs[1].setValue(c, s, time);
+			(*hzOutput) = frequency;
+			(*timeOutput) = time;
+			io.incrementPosition();
 		}
+		io.incrementChannel();
 	}
 	/* END USER-DEFINED EXECUTION CODE */
 }

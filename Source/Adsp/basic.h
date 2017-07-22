@@ -12,7 +12,7 @@
 
 namespace Adsp {
 
-constexpr double PAN_BOOST = 0.707106781187; //cos(pi/4)
+constexpr double PAN_BOOST = 1.0 / 0.707106781187; //1.0 / cos(pi/4)
 
 //Just amplifies the first value. Nothing special, it's just multiplication. Mostly used for readability.
 constexpr double amplify(double value, double amplification) {

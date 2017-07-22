@@ -40,6 +40,8 @@ class AtomController;
 class AtomKnob;
 class SaveState;
 
+typedef std::vector<double>::iterator DVecIter;
+
 //Basic parameters that are shared by atoms and atom controllers.
 struct AtomParameters
 {
@@ -76,7 +78,7 @@ protected:
 	AutomationSet m_automation;
 	void init();
 	std::vector<Atom *> & getAtoms() { return m_atoms; }
-	void addAutomatedControl(AutomatedControl & knob, std::vector<double>::iterator & iterator) { m_automation.add(knob, iterator); }
+	void addAutomatedControl(AutomatedControl & knob, DVecIter & iterator) { m_automation.add(knob, iterator); }
 public:
 	//Construct an atom from basic parameters.
 	AtomController(AtomParameters parameters);
@@ -149,6 +151,27 @@ public:
 	void cleanupInputsFromAtom(AtomController * source);
 
 	friend class Atom;
+};
+
+//Contains iterators for inputs and outputs of an atom, used in execute().
+//Usage is similar to AutomationSet.
+class IOSet
+{
+private:
+	std::vector<AudioBuffer*> m_constInputSources, m_incInputSources, m_outputSources;
+	std::vector<DVecIter*> m_constInputs, m_incInputs, m_outputs;
+	//typedef std::vector<double>::iterator DVecIter;
+public:
+	IOSet() { }
+	virtual ~IOSet() { }
+
+	void clear();
+	DVecIter* addInput(AudioBuffer * input);
+	DVecIter& addOutput(AudioBuffer& output);
+
+	void resetPosition();
+	void incrementPosition();
+	void incrementChannel();
 };
 
 //Atom class

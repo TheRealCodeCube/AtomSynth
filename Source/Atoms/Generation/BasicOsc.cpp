@@ -1,5 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[10.000000:1.000000:1.000000:3.000000:1.000000:sBasic Osc:sGeneration:[[24.000000:0.000000:1.000000:10.000000:10.000000:sWaveformPlot:splot:s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:sMultiButton:swaveSelect:s:]][0.000000:0.000000:sSin:sSqr:sTri:sExp:sSExp:sCExp:sTahn:sSTanh:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:sAtomKnob:stop:sTop:]][-1.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:14.000000:2.000000:2.000000:sSimpleKnob:suVoices:sVoices:]][1.000000:12.000000:1.000000:1.000000:1.000000:s:]][[[4.000000:10.000000:4.000000:2.000000:2.000000:sAtomKnob:sbottom:sBottom:]][-1.000000:1.000000:-1.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:11.500000:2.000000:2.000000:sAtomKnob:span:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:11.500000:2.000000:2.000000:sAtomKnob:sphase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:11.500000:2.000000:2.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:9.000000:2.000000:2.000000:sAtomKnob:svar:sVariable:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:6.500000:2.000000:2.000000:sAtomKnob:scenter:sCenter:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:14.000000:2.000000:2.000000:sAtomKnob:suPan:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:14.000000:2.000000:2.000000:sAtomKnob:suPhase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:11.500000:2.000000:2.000000:sOctavesKnob:soctaves:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]][[[4.000000:6.000000:11.500000:2.000000:2.000000:sCentsKnob:scents:sDetune:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:6.000000:14.000000:2.000000:2.000000:sCentsKnob:suCents:sDetune�:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:10.000000:14.000000:2.000000:2.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]]]]
+// EDITOR SOURCE: [[10.000000:1.000000:1.000000:sBasic Osc:sGeneration:shz:saudio:[[24.000000:0.000000:1.000000:10.000000:10.000000:sWaveformPlot:splot:s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:sMultiButton:swaveSelect:s:]][0.000000:0.000000:sSin:sSqr:sTri:sExp:sSExp:sCExp:sTahn:sSTanh:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:sAtomKnob:stop:sTop:]][-1.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:14.000000:2.000000:2.000000:sSimpleKnob:suVoices:sVoices:]][1.000000:12.000000:1.000000:1.000000:1.000000:s:]][[[4.000000:10.000000:4.000000:2.000000:2.000000:sAtomKnob:sbottom:sBottom:]][-1.000000:1.000000:-1.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:11.500000:2.000000:2.000000:sAtomKnob:span:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:11.500000:2.000000:2.000000:sAtomKnob:sphase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:11.500000:2.000000:2.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:9.000000:2.000000:2.000000:sAtomKnob:svar:sVariable:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:6.500000:2.000000:2.000000:sAtomKnob:scenter:sCenter:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:14.000000:2.000000:2.000000:sAtomKnob:suPan:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:14.000000:2.000000:2.000000:sAtomKnob:suPhase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:11.500000:2.000000:2.000000:sOctavesKnob:soctaves:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]][[[4.000000:6.000000:11.500000:2.000000:2.000000:sCentsKnob:scents:sDetune:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:6.000000:14.000000:2.000000:2.000000:sCentsKnob:suCents:sDetune�:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:10.000000:14.000000:2.000000:2.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]]]]
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "BasicOsc.h"
@@ -202,7 +202,7 @@ BasicOscController::BasicOscController()
 	m_uCents.setBounds(CB(6.000000, 14.000000, 2.000000, 2.000000));
 	m_uCents.addListener(this);
 	addAutomatedControl(m_uCents, m_uCentsIter);
-	m_gui.addComponent(m_uCents.createLabel("Detune", true));
+	m_gui.addComponent(m_uCents.createLabel("Detune�", true));
 
 	m_gui.addComponent(& m_semis);
 	m_semis.setBounds(CB(10.000000, 14.000000, 2.000000, 2.000000));
@@ -228,7 +228,7 @@ SaveState BasicOscController::saveSaveState()
 	toReturn.addState(AtomController::saveSaveState());
 
 	SaveState & extraData = * new SaveState();
-	extraData.addValue(3); //Store the revision this was saved with, to preserve backwards compatibility.
+	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_waveSelect.saveSaveState());
 	extraData.addState(m_top.saveSaveState());
 	extraData.addState(m_uVoices.saveSaveState());
@@ -314,19 +314,23 @@ void BasicOscAtom::execute()
 	Atom::execute();
 	AutomationSet & automation = m_parent.m_automation;
 	automation.resetPosition();
-	std::vector<double>::iterator & topIter = m_parent.m_topIter;
-	std::vector<double>::iterator & bottomIter = m_parent.m_bottomIter;
-	std::vector<double>::iterator & panIter = m_parent.m_panIter;
-	std::vector<double>::iterator & phaseIter = m_parent.m_phaseIter;
-	std::vector<double>::iterator & amplitudeIter = m_parent.m_amplitudeIter;
-	std::vector<double>::iterator & varIter = m_parent.m_varIter;
-	std::vector<double>::iterator & centerIter = m_parent.m_centerIter;
-	std::vector<double>::iterator & uPanIter = m_parent.m_uPanIter;
-	std::vector<double>::iterator & uPhaseIter = m_parent.m_uPhaseIter;
-	std::vector<double>::iterator & octavesIter = m_parent.m_octavesIter;
-	std::vector<double>::iterator & centsIter = m_parent.m_centsIter;
-	std::vector<double>::iterator & uCentsIter = m_parent.m_uCentsIter;
-	std::vector<double>::iterator & semisIter = m_parent.m_semisIter;
+	DVecIter & topIter = m_parent.m_topIter;
+	DVecIter & bottomIter = m_parent.m_bottomIter;
+	DVecIter & panIter = m_parent.m_panIter;
+	DVecIter & phaseIter = m_parent.m_phaseIter;
+	DVecIter & amplitudeIter = m_parent.m_amplitudeIter;
+	DVecIter & varIter = m_parent.m_varIter;
+	DVecIter & centerIter = m_parent.m_centerIter;
+	DVecIter & uPanIter = m_parent.m_uPanIter;
+	DVecIter & uPhaseIter = m_parent.m_uPhaseIter;
+	DVecIter & octavesIter = m_parent.m_octavesIter;
+	DVecIter & centsIter = m_parent.m_centsIter;
+	DVecIter & uCentsIter = m_parent.m_uCentsIter;
+	DVecIter & semisIter = m_parent.m_semisIter;
+
+	IOSet io = IOSet();
+	DVecIter * hzInput = io.addInput(m_primaryInputs[0]);
+	DVecIter & audioOutput = io.addOutput(m_outputs[0]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	int voices = m_parent.m_uVoices.getValue();
@@ -346,9 +350,9 @@ void BasicOscAtom::execute()
 	}
 
 	double baseFrequency;
-	if(m_primaryInputs[0] != nullptr)
+	if(hzInput != nullptr)
 	{
-		baseFrequency = m_primaryInputs[0]->getValue(0, 0) * baseDetune;
+		baseFrequency = (**hzInput) * baseDetune;
 	}
 	else
 	{
@@ -392,6 +396,7 @@ void BasicOscAtom::execute()
 	for(int voice = 0; voice < voices; voice++) //Iterate over each voice.
 	{
 		automation.resetPosition();
+		io.resetPosition();
 		for(int c = 0; c < AudioBuffer::getDefaultChannels(); c++)
 		{
 			for(int s = 0; s < AudioBuffer::getDefaultSize(); s++)
@@ -484,20 +489,21 @@ void BasicOscAtom::execute()
 				default:
 					value = 0.2;
 				}
-
 				value *= * amplitudeIter;
 				value = Adsp::remap(value, -1.0, 1.0, * bottomIter, * topIter);
-				value *= panAmp * * amplitudeIter;
-				value /= (voices + 1.0);
+				value *= panAmp;
+				value /= (voices + 1.0) * 0.5; //This way, many-voice synths don't sound super loud.
 				if(voice % 2 == 1) {
-					value = -value; //To prevent a buildup of constructive interference.
+					value = -value; //To prevent a buildup of constructive interference / dc offsets.
 				}
 
-				m_outputs[0].getData()[s + (AudioBuffer::getDefaultSize() * c)] += value;
+				(*audioOutput) += value;
 				//if(animateCoarseDetune) m_outputs[0].getData()[s + (AudioBuffer::getDefaultSize() * c)] = freq / 800.0; //Debug
 				automation.incrementPosition();
+				io.incrementPosition();
 			}
 			automation.incrementChannel();
+			io.incrementChannel();
 		}
 	}
 

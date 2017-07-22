@@ -25,32 +25,32 @@ private:
 	WaveformPlot m_plot;
 	MultiButton m_waveSelect;
 	AtomKnob m_top;
-	std::vector<double>::iterator m_topIter;
+	DVecIter m_topIter;
 	SimpleKnob m_uVoices;
 	AtomKnob m_bottom;
-	std::vector<double>::iterator m_bottomIter;
+	DVecIter m_bottomIter;
 	AtomKnob m_pan;
-	std::vector<double>::iterator m_panIter;
+	DVecIter m_panIter;
 	AtomKnob m_phase;
-	std::vector<double>::iterator m_phaseIter;
+	DVecIter m_phaseIter;
 	AtomKnob m_amplitude;
-	std::vector<double>::iterator m_amplitudeIter;
+	DVecIter m_amplitudeIter;
 	AtomKnob m_var;
-	std::vector<double>::iterator m_varIter;
+	DVecIter m_varIter;
 	AtomKnob m_center;
-	std::vector<double>::iterator m_centerIter;
+	DVecIter m_centerIter;
 	AtomKnob m_uPan;
-	std::vector<double>::iterator m_uPanIter;
+	DVecIter m_uPanIter;
 	AtomKnob m_uPhase;
-	std::vector<double>::iterator m_uPhaseIter;
+	DVecIter m_uPhaseIter;
 	OctavesKnob m_octaves;
-	std::vector<double>::iterator m_octavesIter;
+	DVecIter m_octavesIter;
 	CentsKnob m_cents;
-	std::vector<double>::iterator m_centsIter;
+	DVecIter m_centsIter;
 	CentsKnob m_uCents;
-	std::vector<double>::iterator m_uCentsIter;
+	DVecIter m_uCentsIter;
 	SemitonesKnob m_semis;
-	std::vector<double>::iterator m_semisIter;
+	DVecIter m_semisIter;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */

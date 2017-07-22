@@ -24,9 +24,9 @@ private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	WaveformPlot m_plot;
 	AtomKnob m_amplitude;
-	std::vector<double>::iterator m_amplitudeIter;
+	DVecIter m_amplitudeIter;
 	AtomKnob m_time;
-	std::vector<double>::iterator m_timeIter;
+	DVecIter m_timeIter;
 	MultiButton m_timeFrame;
 	MultiButton m_type;
 	/* END AUTO-GENERATED MEMBERS */
