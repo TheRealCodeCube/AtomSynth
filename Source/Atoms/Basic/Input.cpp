@@ -68,7 +68,7 @@ void InputAtom::execute() {
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	int multiplier = 0;
-	switch (GlobalNoteStates::getNoteState(getId()).status) {
+	switch (GlobalNoteStates::getNoteState(getIndex()).status) {
 	case NoteState::ACTIVE:
 		multiplier = 1;
 		break;
@@ -79,8 +79,8 @@ void InputAtom::execute() {
 		multiplier = 0;
 	}
 
-	unsigned long int base = GlobalNoteStates::s_currentTimestamp - GlobalNoteStates::getNoteState(getId()).timestamp;
-	double time, frequency = GlobalNoteStates::getNoteState(getId()).frequency;
+	unsigned long int base = GlobalNoteStates::s_currentTimestamp - GlobalNoteStates::getNoteState(getIndex()).timestamp;
+	double time, frequency = GlobalNoteStates::getNoteState(getIndex()).frequency;
 	for (int c = 0; c < AudioBuffer::getDefaultChannels(); c++) {
 		for (int s = 0; s < AudioBuffer::getDefaultSize(); s++) {
 			time = (double(s + base) / m_sampleRate_f) * multiplier;

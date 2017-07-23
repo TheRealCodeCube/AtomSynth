@@ -6,3 +6,5 @@
 /.externalToolBuilders/
 /perf.data
 /perf.data.old
+/AtomSynth.doxyfile
+/Documentation/

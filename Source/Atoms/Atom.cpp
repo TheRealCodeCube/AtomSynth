@@ -265,6 +265,12 @@ void Atom::execute() {
 	}
 }
 
+void Atom::reset() {
+	m_shouldUpdateParent = getIndex() == 0;
+	if(m_shouldUpdateParent)
+		m_p.stopControlAnimation();
+}
+
 void Atom::linkInput(int index, AudioBuffer * buffer) {
 	if (index < m_parameters.m_numPrimaryInputs) {
 		linkPrimaryInput(index, buffer);

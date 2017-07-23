@@ -14,7 +14,6 @@
 namespace AtomSynth {
 
 class AtomController;
-class AtomControllerPreview;
 
 class AtomNetworkWidget: public Component {
 public:

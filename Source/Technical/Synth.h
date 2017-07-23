@@ -16,7 +16,6 @@ namespace AtomSynth {
 
 class Atom;
 class AtomController;
-class AtomControllerPreview;
 class AudioBuffer;
 class SaveState;
 
