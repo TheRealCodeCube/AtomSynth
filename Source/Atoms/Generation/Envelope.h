@@ -44,20 +44,8 @@ public:
 	void setParent(EnvelopeController * parent) {
 		m_parent = parent;
 	}
-	/**
-	 * Juce paint method. Renders the envelope.
-	 * @param g Juce graphics component.
-	 */
 	virtual void paint(Graphics & g);
-	/**
-	 * Juce mouseDown event. Used for handling editing.
-	 * @param e Juce MouseEvent
-	 */
 	virtual void mouseDown(const MouseEvent & e);
-	/**
-	 * Juce mouseUp event. Used for handling editing.
-	 * @param e Juce MouseEvent
-	 */
 	virtual void mouseDrag(const MouseEvent & e);
 };
 /* END MISC. USER-DEFINED CODE */
@@ -122,7 +110,9 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN AUTO-GENERATED LISTENERS */
+	///Listener function
 	virtual void bpmMultipleChanged(BpmMultiple * multiple);
+	///Listener function
 	virtual void automatedControlChanged(AutomatedControl * control, bool byUser);
 	/* END AUTO-GENERATED LISTENERS */
 
@@ -149,6 +139,7 @@ private:
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
+	/** Constructor which stores a more specific reference to the parent */
 	EnvelopeAtom(EnvelopeController & parent, int index);
 	virtual ~EnvelopeAtom() { }
 	virtual void execute();

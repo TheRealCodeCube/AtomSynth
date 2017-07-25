@@ -33,7 +33,6 @@ AtomNetworkWidget::AtomNetworkWidget() :
 		m_currentTab(-1),
 		m_px(0),
 		m_py(0),
-		m_shouldShowGuis(false),
 		m_dragStatus(DragStatus::MOVING) {
 
 }

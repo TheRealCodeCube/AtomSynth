@@ -169,7 +169,7 @@ SimpleKnob::SimpleKnob() :
 
 }
 
-SimpleKnob::SimpleKnob(double min, double max, bool bounded, std::string suffix, bool isInt) :
+/*SimpleKnob::SimpleKnob(double min, double max, bool bounded, std::string suffix, bool isInt) :
 		EnhancedComponent(),
 		m_listeners(std::vector<SimpleKnob::Listener *>()),
 		m_value(0.0),
@@ -179,7 +179,7 @@ SimpleKnob::SimpleKnob(double min, double max, bool bounded, std::string suffix,
 		m_int(isInt),
 		m_bounded(bounded) {
 
-}
+}*/
 
 SimpleKnob::~SimpleKnob() {
 

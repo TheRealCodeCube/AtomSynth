@@ -17,22 +17,40 @@ namespace AtomSynth {
 //Forward declarations
 class SaveState;
 
+/**
+ * Juce Component extended with some helpful methods.
+ */
 class EnhancedComponent: public Component, private AsyncUpdater {
 private:
 	void handleAsyncUpdate() {
 		repaint();
 	}
 public:
+	/**
+	 * Creates a label for this component with the
+	 * specified text.
+	 * @param text The text the label should contain.
+	 * @param top Whether the label should be positioned above or below the component.
+	 * @return A new Label that can be added to this component's parent.
+	 */
 	Label * createLabel(std::string text, bool top = true);
+	/**
+	 * Triggers a repaint. This can be called from any
+	 * thread without causing problems.
+	 */
 	void repaintAsync() {
 		triggerAsyncUpdate();
 	}
 };
 
+/**
+ * A grey box with a drop shadow.
+ */
 class RightClickMenu: public Component {
 private:
 	bool m_firstPress;
 public:
+	///Used for layout.
 	static constexpr int DS_SIZE = 8, DS_CORNER = 3;
 
 	RightClickMenu() :
@@ -43,16 +61,29 @@ public:
 	virtual ~RightClickMenu() {
 		Desktop::getInstance().removeGlobalMouseListener(this);
 	}
+	/**
+	 * Juce paint function.
+	 * @param g Juce Graphics object.
+	 */
 	virtual void paint(Graphics & g);
 };
 
+/**
+ * A rounded button with text inside it.
+ */
 class TextButton: public EnhancedComponent {
 public:
+	/**
+	 * Extend this to be informed of mouse clicks on TextButton objects.
+	 */
 	class JUCE_API Listener {
 	public:
 		virtual ~Listener() {
 		}
-		;
+		/**
+		 * Called when a TextButton is pressed.
+		 * @param textButton The TextButton that was pressed.
+		 */
 		virtual void textButtonPressed(TextButton * textButton) = 0;
 	};
 private:
@@ -64,34 +95,53 @@ public:
 			EnhancedComponent(),
 			m_flash(false) {
 	}
-	;
 	virtual ~TextButton() {
 	}
-	;
 
 	virtual void paint(Graphics & g);
 	virtual void mouseDown(const MouseEvent & event);
 	virtual void mouseUp(const MouseEvent & event);
+	/**
+	 * Add a listener for clicks on this component.
+	 * @param listener The listener to add.
+	 */
 	void addListener(Listener * listener) {
 		m_listeners.push_back(listener);
 	}
 
+	/**
+	 * Sets the text displayed on the button.
+	 * @param text The text to display.
+	 */
 	void setText(std::string text) {
 		m_string = String(text);
 		repaint();
 	}
+	/**
+	 * Gets the text currently displayed on the button.
+	 * @return The text displayed on the button.
+	 */
 	std::string getText() {
 		return m_string.toStdString();
 	}
 };
 
+/**
+ * A rounded container with several selectable options, called labels.
+ */
 class MultiButton: public EnhancedComponent {
 public:
+	/**
+	 * Extend this to be informed of mouse clicks on MultiButton objects.
+	 */
 	class JUCE_API Listener {
 	public:
 		virtual ~Listener() {
 		}
-		;
+		/**
+		 * Called when a MultiButton is clicked.
+		 * @param multiButton The MultiButton that was clicked.
+		 */
 		virtual void multiButtonPressed(MultiButton * multiButton) = 0;
 	};
 private:
@@ -105,54 +155,111 @@ public:
 
 	virtual void paint(Graphics & g);
 	virtual void mouseDown(const MouseEvent & event);
+	/**
+	 * Add a listener for clicks on this component.
+	 * @param listener The listener to add.
+	 */
 	void addListener(Listener * listener) {
 		m_listeners.push_back(listener);
 	}
 
+	/**
+	 * Adds a label to this MultiButton.
+	 * @param label Text that should show.
+	 */
 	void addLabel(std::string label) {
 		m_labels.push_back(label);
 	}
+	/**
+	 * Clears all labels from this MultiButton.
+	 */
 	void clearLabels() {
 		m_labels.clear();
 	}
+	/**
+	 * Sets which label is currently selected by
+	 * index. Does not check if the index is in
+	 * bounds.
+	 * @param index The index of the label to select.
+	 */
 	void setSelectedLabel(int index);
+	/**
+	 * Gets the index of the currently selected label.
+	 * @return The index of the currently selected label.
+	 */
 	int getSelectedLabel() {
 		return m_selectedLabel;
 	}
+	/**
+	 * Gets a vector of all labels in this MultiButton.
+	 * @return A vector of all labels.
+	 */
 	std::vector<std::string> & getLabels() {
 		return m_labels;
 	}
+	/**
+	 * Stack options vertically, rather than horizontally (the default.)
+	 * @param vertical Whether or not to stack options vertically.
+	 */
 	void setVertical(bool vertical = true) {
 		m_vertical = vertical;
 	}
+	/**
+	 * Gets if the options are stacked vertically.
+	 * @return True if the options are stacked vertically.
+	 */
 	bool isVertical() {
 		return m_vertical;
 	}
 
+	/**
+	 * Loads the MultiButton's state from a SaveState.
+	 * This does not include the labels, it only contains
+	 * which label is selected.
+	 * @param state The SaveState to load.
+	 */
 	void loadSaveState(SaveState state);
+	/**
+	 * Saves the MultiButton's state to a SaveState.
+	 * This does not include the labels, it only contains
+	 * which label is selected.
+	 * @return A SaveState representing the MultiButton's current state.
+	 */
 	SaveState saveSaveState();
 };
 
+/**
+ * A knob that cannot be automated.
+ */
 class SimpleKnob: public EnhancedComponent {
 public:
+	/**
+	 * Extend this to be informed of changes on SimpleKnob objects.
+	 */
 	class JUCE_API Listener {
 	public:
 		virtual ~Listener() {
 		}
-		;
+		/**
+		 * Called when a SimpleKnob is changed.
+		 * @param knob The SimpleKnob that was changed.
+		 */
 		virtual void simpleKnobChanged(SimpleKnob * knob) = 0;
 	};
 private:
 	Point<int> m_prevMousePos;
 	std::vector<Listener *> m_listeners;
 protected:
-	double m_value, m_min, m_max;
-	std::string m_suffix;
-	bool m_int, m_bounded;
+	double m_value, ///< Current value.
+		m_min, ///< Lower bound.
+		m_max; ///< Upper bound.
+	std::string m_suffix; ///< Suffix to be rendered after the value.
+	bool m_int, ///< If true, round user input to the nearest integer.
+		m_bounded; ///< If true, do not allow going past m_min or m_max.
 public:
 
 	SimpleKnob();
-	SimpleKnob(double min, double max, bool bounded = false, std::string suffix = "", bool isInt = true);
+	//SimpleKnob(double min, double max, bool bounded = false, std::string suffix = "", bool isInt = true);
 	virtual ~SimpleKnob();
 
 	virtual void paint(Graphics & g);
