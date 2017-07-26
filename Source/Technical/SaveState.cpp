@@ -102,7 +102,7 @@ SaveState & SaveState::getNextState() {
 	return m_states[m_nextStateCounter];
 }
 
-std::string SaveState::getString() {
+std::string SaveState::exportString() {
 	std::string output = "[";
 	for (double & value : m_values) {
 		output += std::to_string(value);
@@ -117,7 +117,7 @@ std::string SaveState::getString() {
 	}
 
 	for (SaveState & state : m_states) {
-		output += state.getString();
+		output += state.exportString();
 	}
 	output += ']';
 	return output;

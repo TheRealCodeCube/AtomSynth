@@ -89,8 +89,7 @@ void AutomatedControl::clearDisplayValue() {
 }
 
 double AutomatedControl::getDisplayValue() {
-	double tr = (m_displaying) ? m_display : m_value;
-	return (m_int) ? int(tr) : tr;
+	double tr = (m_displaying) ? m_display : getValue();
 }
 
 std::string AutomatedControl::getFormattedValue() {
@@ -99,7 +98,7 @@ std::string AutomatedControl::getFormattedValue() {
 	return stream.str() + m_suffix;
 }
 
-bool AutomatedControl::isAnimated() {
+bool AutomatedControl::isAutomated() {
 	for (AutomationInfluence inf : m_influences) {
 		if (inf.m_inputIndex != -1) {
 			return true;

@@ -776,7 +776,7 @@ void AtomSynthEditor::imageButtonPressed(AtomSynth::ImageButton * button) {
 	} else if (button->getIconName() == "addFolder") {
 		//m_presetBrowser.addFolder();
 	} else if (button->getIconName() == "save") {
-		info(Synth::s_instance->saveSaveState().getString());
+		info(Synth::s_instance->saveSaveState().exportString());
 	}
 }
 
