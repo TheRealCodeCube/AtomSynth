@@ -17,6 +17,7 @@
 class Graphics;
 class MouseEvent;
 class KeyPress;
+enum FocusChangeType { };
 /**
  * Juce component.
  */
@@ -56,12 +57,23 @@ public:
 	 */
 	virtual bool keyPressed(const KeyPress & key, Component * originatingComponent);
 	/**
+	 * Juce keyPressed event.
+	 * @param key Juce KeyPress object.
+	 * @return True if the key event shoulod be consumed.
+	 */
+	virtual bool keyPressed(const KeyPress & key);
+	/**
 	 * Does... something.
 	 * @param isKeyDown A thing.
 	 * @param originatingComponent A variable.
 	 * @return A boolean.
 	 */
 	virtual bool keyStateChanged(bool isKeyDown, Component * originatingComponent);
+	/**
+	 * Juce focusLost event.
+	 * @param cause Enum stating the cause of losing focus.
+	 */
+	virtual void focusLost(FocusChangeType cause);
 };
 
 #endif /* SOURCE_DOC_H_ */

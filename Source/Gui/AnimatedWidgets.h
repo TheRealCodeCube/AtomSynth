@@ -58,8 +58,8 @@ private:
 
 	static constexpr int TAB_WIDTH = HS(2), TAB_HEIGHT = HS(1), TAB_SPACING = C::SPACING, TAB_RADIUS = TAB_HEIGHT / 2, TAB_DIAMETER = TAB_HEIGHT, LANE_WIDTH = TAB_WIDTH * AUTOMATION_INPUTS + TAB_RADIUS * 2, LANE_HEIGHT = TAB_HEIGHT + TAB_SPACING, TOP_PART_HEIGHT = C::SPACING * 2 + C::KNOB_SIZE, SKINNY_HEIGHT = TAB_HEIGHT / 2, HANDLE_RADIUS = SKINNY_HEIGHT / 2, HANDLE_DIAMETER = SKINNY_HEIGHT, GRACE_RANGE = 6;
 public:
-	///Used for layout.
-	static constexpr int WIDTH = TAB_SPACING * 2 + TAB_RADIUS * 2 + TAB_WIDTH * AUTOMATION_INPUTS, HEIGHT = TAB_SPACING * 5 + TAB_HEIGHT * 4;
+	static constexpr int WIDTH = TAB_SPACING * 2 + TAB_RADIUS * 2 + TAB_WIDTH * AUTOMATION_INPUTS, ///< Used for layout.
+		HEIGHT = TAB_SPACING * 5 + TAB_HEIGHT * 4; ///< Used for layout.
 
 	AutomationEditor();
 	virtual ~AutomationEditor() {
@@ -182,8 +182,9 @@ protected:
 		repaintAsync();
 	}
 public:
-	///Used for layout.
-	static constexpr int HANDLE_WIDTH = C::CELL_SIZE - C::SPACING * 2, HANDLE_HEIGHT = C::HALF_CELL_SIZE, UNUSABLE_SPACE = HANDLE_HEIGHT + C::SPACING * 2;
+	static constexpr int HANDLE_WIDTH = C::CELL_SIZE - C::SPACING * 2, ///< Used for layout.
+		HANDLE_HEIGHT = C::HALF_CELL_SIZE, ///< Used for layout.
+		UNUSABLE_SPACE = HANDLE_HEIGHT + C::SPACING * 2; ///< Used for layout.
 	AtomSlider();
 	virtual ~AtomSlider() {
 	}
@@ -245,12 +246,12 @@ public:
 	}
 };
 
+#define SEMITONES_INTERVAL 1.05946309436 //12th root of 2
 /**
  * Subclass of DetuneKnob which detunes values in
  * semitones. (The range is 12, ~1 octave, and the
  * suffix is s for semitones.)
  */
-#define SEMITONES_INTERVAL 1.05946309436 //12th root of 2
 class SemitonesKnob: public DetuneKnob {
 public:
 	SemitonesKnob();
@@ -266,12 +267,12 @@ public:
 	}
 };
 
+#define OCTAVES_INTERVAL 2.0 //1th root of 2
 /**
  * Subclass of DetuneKnob which detunes values in
  * octaves. (The range is 4, and the suffix is o
  * for cents.)
  */
-#define OCTAVES_INTERVAL 2.0 //1th root of 2
 class OctavesKnob: public DetuneKnob {
 public:
 	OctavesKnob();

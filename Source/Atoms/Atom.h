@@ -406,7 +406,7 @@ public:
 	 * Add an input to this IOSet. The returned iterator
 	 * is managed and incremented by this IOSet. See
 	 * AudioBuffer for why this is necessary.
-	 * @param input A reference to an AudioBuffer to manage. (It must be the default size, but this is not checked.)
+	 * @param output A reference to an AudioBuffer to manage. (It must be the default size, but this is not checked.)
 	 * @return A pointer to an iterator over the output managed by this IOSet.
 	 */
 	DVecIter& addOutput(AudioBuffer& output);
