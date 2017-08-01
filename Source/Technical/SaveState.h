@@ -87,7 +87,7 @@ public:
 	 * @return The state at the index, or a blank state.
 	 */
 	SaveState & getState(int index) {
-		return (index > m_states.size()) ? SaveState() : m_states[index];
+		return (index > m_states.size()) ? * new SaveState() : m_states[index];
 	}
 	/**
 	 * Use this function repeatedly to extract

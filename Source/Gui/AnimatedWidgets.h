@@ -307,6 +307,8 @@ public:
 private:
 	int m_xLines, m_yLines, m_cursorX, m_cursorY;
 	CursorMode m_cursorMode;
+	void checkX();
+	void checkY();
 protected:
 	/**
 	 * Paint the background of the plot. Call this

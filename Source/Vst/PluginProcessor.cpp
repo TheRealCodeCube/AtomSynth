@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <fenv.h> //I'm getting NaN results that are hard to find.
 
 #include "JuceLibraryCode/JuceHeader.h"
 #include "Atoms/Atom.h"
@@ -27,6 +28,7 @@
 AtomSynthAudioProcessor::AtomSynthAudioProcessor() :
 		m_frequency(100.0f) {
 	C::loadFont();
+	feenableexcept(FE_INVALID|FE_OVERFLOW); //I'm getting NaN results that are hard to find.
 }
 
 AtomSynthAudioProcessor::~AtomSynthAudioProcessor() {

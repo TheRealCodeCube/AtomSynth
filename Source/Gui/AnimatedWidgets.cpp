@@ -71,7 +71,7 @@ void AutomationEditor::mouseDown(const MouseEvent & e) {
 	if (ModifierKeys::getCurrentModifiersRealtime().isRightButtonDown()) {
 		m_editing->getInfluence(y).m_inputIndex = -1;
 		repaint();
-		m_editing->repaint();
+		m_editing->valueChanged();
 	} else {
 		if (m_editing->getInfluence(y).m_inputIndex == -1) {
 			//Clicked on one of the rainbow colors
@@ -86,7 +86,7 @@ void AutomationEditor::mouseDown(const MouseEvent & e) {
 			m_editing->getInfluence(y).m_minRange = 0.0;
 			m_editing->getInfluence(y).m_maxRange = 1.0;
 			repaint();
-			m_editing->repaint();
+			m_editing->valueChanged();
 
 			m_dragging = Dragging::NOTHING;
 		} else {
@@ -417,6 +417,17 @@ OctavesKnob::~OctavesKnob() {
 
 }
 
+void PlotBase::checkX() {
+	if((m_cursorX < 0) || (m_cursorX > getWidth()))
+		m_cursorX = -1;
+}
+
+void PlotBase::checkY() {
+	if((m_cursorY < 0) || (m_cursorY > getHeight()))
+		m_cursorY = -1;
+}
+
+
 PlotBase::PlotBase() :
 		EnhancedComponent(),
 		m_xLines(9),
@@ -447,9 +458,11 @@ void PlotBase::paintFg(Graphics & g) {
 	g.setColour(FORE_LAYER);
 	switch (m_cursorMode) {
 	case CursorMode::CROSSHAIR:
-		g.fillRect(0, m_cursorY - (C::SMALL_LINE_SIZE / 2), getWidth(), C::SMALL_LINE_SIZE);
+		if(m_cursorY != -1)
+			g.fillRect(0, m_cursorY - (C::SMALL_LINE_SIZE / 2), getWidth(), C::SMALL_LINE_SIZE);
 	case CursorMode::VERTICAL:
-		g.fillRect(m_cursorX - (C::SMALL_LINE_SIZE / 2), 0, C::SMALL_LINE_SIZE, getHeight());
+		if(m_cursorX != -1)
+			g.fillRect(m_cursorX - (C::SMALL_LINE_SIZE / 2), 0, C::SMALL_LINE_SIZE, getHeight());
 	}
 }
 
@@ -463,18 +476,23 @@ void PlotBase::finish() {
 
 void PlotBase::setCursorPos(double x) {
 	m_cursorX = x * getWidth();
+	checkX();
 	repaintAsync();
 }
 
 void PlotBase::setCursorPos(double x, double y, int padx, int pady) {
 	m_cursorX = x * (getWidth() - padx * 2) + padx;
+	checkX();
 	m_cursorY = y * (getHeight() - pady * 2) + pady;
+	checkY();
 	repaintAsync();
 }
 
 void PlotBase::setCursorPosAbsolute(int x, int y) {
 	m_cursorX = x;
+	checkX();
 	m_cursorY = y;
+	checkY();
 	repaintAsync();
 }
 

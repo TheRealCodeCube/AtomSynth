@@ -350,6 +350,13 @@ public:
 	}
 
 	/**
+	 * Sets the value.
+	 * @param value What the value should be.
+	 */
+	void setValue(double value) {
+		m_value = value;
+	}
+	/**
 	 * Gets the value set by the user.
 	 * @return The default value.
 	 */

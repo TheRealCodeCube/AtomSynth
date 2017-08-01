@@ -32,6 +32,11 @@
     </GROUP>
     <GROUP id="{7B7A367B-E750-FFA3-8877-3F14B868AD43}" name="Source">
       <GROUP id="{CAF72947-40F8-D3EE-F22E-DED889B0C84E}" name="Adsp">
+        <FILE id="NrydX1" name="basic.cpp" compile="1" resource="0" file="Source/Adsp/basic.cpp"/>
+        <FILE id="yVmjYU" name="basic.h" compile="0" resource="0" file="Source/Adsp/basic.h"/>
+        <FILE id="Ido3Ef" name="interpolation.cpp" compile="1" resource="0"
+              file="Source/Adsp/interpolation.cpp"/>
+        <FILE id="Vx3xnh" name="interpolation.h" compile="0" resource="0" file="Source/Adsp/interpolation.h"/>
         <FILE id="fSDdRC" name="remap.cpp" compile="1" resource="0" file="Source/Adsp/remap.cpp"/>
         <FILE id="U7WHRf" name="remap.h" compile="0" resource="0" file="Source/Adsp/remap.h"/>
         <FILE id="D6x2FR" name="waveform.cpp" compile="1" resource="0" file="Source/Adsp/waveform.cpp"/>
@@ -83,10 +88,6 @@
         <FILE id="PQ7UHg" name="AudioBuffer.h" compile="0" resource="0" file="Source/Technical/AudioBuffer.h"/>
         <FILE id="z9sxfj" name="Log.cpp" compile="1" resource="0" file="Source/Technical/Log.cpp"/>
         <FILE id="BVQwmH" name="Log.h" compile="0" resource="0" file="Source/Technical/Log.h"/>
-        <FILE id="Rr7o05" name="BuiltinWaveform.cpp" compile="1" resource="0"
-              file="Source/Technical/BuiltinWaveform.cpp"/>
-        <FILE id="QYDRfo" name="BuiltinWaveform.h" compile="0" resource="0"
-              file="Source/Technical/BuiltinWaveform.h"/>
         <FILE id="rnWLLJ" name="GlobalNoteStates.cpp" compile="1" resource="0"
               file="Source/Technical/GlobalNoteStates.cpp"/>
         <FILE id="UECulb" name="GlobalNoteStates.h" compile="0" resource="0"

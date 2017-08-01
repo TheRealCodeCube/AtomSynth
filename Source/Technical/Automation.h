@@ -76,15 +76,15 @@ private:
 	std::vector<Listener *> m_listeners;
 	void checkBounds();
 	void informListeners(bool byUser);
-protected:
+public:
+	AutomatedControl();
+	virtual ~AutomatedControl() {
+	}
+
 	/**
 	 * Called whenever the value has changed.
 	 */
 	virtual void valueChanged() {
-	}
-public:
-	AutomatedControl();
-	virtual ~AutomatedControl() {
 	}
 
 	/**
