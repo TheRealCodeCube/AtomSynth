@@ -38,6 +38,9 @@ void EnvelopePlot::paint(Graphics & g) {
 			releasePercent = m_parent->m_releaseTime.getFraction() * m_parent->m_releaseMult.getDisplayValue(),
 			total = delayPercent + attackPercent + holdPercent + sustainPercent + releasePercent,
 			o = (C::LINE_SIZE + C::HANDLE_SIZE) / 2.0, w = getWidth() - o * 2.0, h = getHeight() - o * 2.0;
+	if(total < 1e-99) { //Otherwise, Div0 errors!
+		return;
+	}
 	delayPercent /= total / w;
 	attackPercent /= total / w;
 	holdPercent /= total / w;

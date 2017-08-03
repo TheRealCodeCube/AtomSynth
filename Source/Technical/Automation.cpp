@@ -89,7 +89,7 @@ void AutomatedControl::clearDisplayValue() {
 }
 
 double AutomatedControl::getDisplayValue() {
-	double tr = (m_displaying) ? m_display : getValue();
+	return (m_displaying) ? m_display : getValue();
 }
 
 std::string AutomatedControl::getFormattedValue() {

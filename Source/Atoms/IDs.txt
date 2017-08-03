@@ -1,18 +1,21 @@
 0 - 9:   Basic
 	0:  [Note] Input
 	1:  [Note] Output
+	2:  Multiply
 
 10 - 29: Generation
 	10: Basic Osc
 	11: Noise
 	12: Envelope
 	
-30 - 49: Filters
+30 - 39: Processing
 	30: Amplifier
-	31: Comb
-	32: Mixer
-	33: Reverb
+	31: Mixer
+	32: Reverb
 	
-50 - 59: Transforms
+40 - 59: Filters
+    31: Comb
+	
+60 - 69: Transforms
 	50: LFO Frequency
 	51: Pitch Slide

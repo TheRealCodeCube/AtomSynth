@@ -110,6 +110,65 @@ constexpr double clip(double value, double min, double max) {
 	return (value < min) ? min : ((value > max) ? max : value);
 }
 
+constexpr int MIX_MODE_AVERAGE = 0, ///< Values should be mixed by averaging them.
+		MIX_MODE_MULTIPLY = 1, ///< Values should be mixed by multiplying them.
+		MIX_MODE_MINIMUM = 2, ///< Only the minimum of all the values should be used.
+		MIX_MODE_MAXIMUM = 3, ///< Only the maximum of all the values should be used.
+		MIX_MODE_ADD = 4; ///< Values should be mixed by adding them.
+
+/**
+ * Mixes two values using the specified mix mode. This is
+ * handy in applications where the user can specify their
+ * own mix mode, rather than having it hard-coded in.
+ * @param value1 A value to mix.
+ * @param value2 A value to mix.
+ * @param mixMode The method by which to mix the two values.
+ * @return A mixture of the two input values.
+ */
+constexpr double mix2(double value1, double value2, int mixMode) {
+	switch(mixMode) {
+	case MIX_MODE_AVERAGE:
+		return (value1 + value2) / 2.0;
+	case MIX_MODE_MULTIPLY:
+		return (value1 * value2);
+	case MIX_MODE_MINIMUM:
+		return (value1 < value2) ? value1 : value2;
+	case MIX_MODE_MAXIMUM:
+		return (value1 > value2) ? value1 : value2;
+	case MIX_MODE_ADD:
+		return value1 + value2;
+	default:
+		return NAN;
+	}
+}
+
+/**
+ * Mixes three values using the specified mix mode. This is
+ * handy in applications where the user can specify their
+ * own mix mode, rather than having it hard-coded in.
+ * @param value1 A value to mix.
+ * @param value2 A value to mix.
+ * @param value3 A value to mix.
+ * @param mixMode The method by which to mix the two values.
+ * @return A mixture of the two input values.
+ */
+constexpr double mix3(double value1, double value2, double value3, int mixMode) {
+	switch(mixMode) {
+	case MIX_MODE_AVERAGE:
+		return (value1 + value2 + value3) / 3.0;
+	case MIX_MODE_MULTIPLY:
+		return (value1 * value2 * value3);
+	case MIX_MODE_MINIMUM:
+		return (value1 < value2) ? value1 : ((value2 < value3) ? value2: value3);
+	case MIX_MODE_MAXIMUM:
+		return (value1 > value2) ? value1 : ((value2 > value3) ? value2: value3);
+	case MIX_MODE_ADD:
+		return value1 + value2 + value3;
+	default:
+		return NAN;
+	}
+}
+
 /** @} */
 
 } /* namespace Adsp */

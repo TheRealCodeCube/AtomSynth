@@ -295,7 +295,7 @@ BasicOscAtom::BasicOscAtom(BasicOscController & parent, int index) :
 		Atom(parent, index),
 		m_parent(parent) {
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
-	m_phases.resize(12, std::vector<double>(AudioBuffer::getDefaultChannels(), -1.0));
+	m_phases.resize(20, std::vector<double>(AudioBuffer::getDefaultChannels(), 0.0));
 	/* END USER-DEFINED CONSTRUCTION CODE */
 }
 
@@ -324,57 +324,58 @@ void BasicOscAtom::execute() {
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	int voices = m_parent.m_uVoices.getValue();
 
-	double baseDetune = 1.0;
+	double baseDetune;
 	bool animateCoarseDetune = !m_parent.m_octaves.getResult().isConstant();
-	if (!animateCoarseDetune) {
-		baseDetune *= OctavesKnob::detune(1.0, (*octavesIter)); //Detuning 1 hz up 2 octaves = 2 hz. This is the same as getting the detune factor for the number of octaves. Used later.
-		baseDetune *= SemitonesKnob::detune(1.0, (*semisIter));
-	}
-
 	bool animateCents = !m_parent.m_cents.getResult().isConstant();
-	if (!animateCents) {
-		baseDetune *= CentsKnob::detune(1.0, (*centsIter));
-	}
-
 	double baseFrequency;
-	if (hzInput != nullptr) {
-		baseFrequency = (**hzInput) * baseDetune;
-	} else {
-		baseFrequency = 440.0 * baseDetune;
-	}
-
+	bool animateBaseFreq = false;
 	std::vector<double> panAmplitudes;
 	double pan;
 	bool animatePan = !m_parent.m_pan.getResult().isConstant();
-	if (!animatePan) {
-		if (voices > 1) {
-			for (int voice = 0; voice < voices; voice++) {
-				pan = (*panIter) + (getUnisonFactor(voice, voices) * (*uPanIter));
-				pan = Adsp::clip(pan);
-				panAmplitudes.push_back(Adsp::panLeftAmplitude(pan));
-				panAmplitudes.push_back(Adsp::panRightAmplitude(pan));
-			}
-		} else {
-			pan = Adsp::clip(*panIter);
-			panAmplitudes.push_back(Adsp::panLeftAmplitude(pan));
-			panAmplitudes.push_back(Adsp::panRightAmplitude(pan));
-		}
-	}
-
-	std::vector<double> voiceDetunes;
-	if (voices > 1) {
-		for (int voice = 0; voice < voices; voice++) {
-			voiceDetunes.push_back(CentsKnob::detune(1.0, (*uCentsIter) * getUnisonFactor(voice, m_phases.size())));
-		}
-	}
-
 	m_outputs[0].fill(0.0);
 	double basePan, freq, panAmp, phase, uFac, value;
-	for (int voice = 0; voice < voices; voice++) //Iterate over each voice.
-			{
+	for (int voice = 0; voice < voices; voice++) { //Iterate over each voice.
 		automation.resetPosition();
 		io.resetPosition();
 		for (int c = 0; c < AudioBuffer::getDefaultChannels(); c++) {
+			baseDetune = 1.0;
+			if (!animateCoarseDetune) {
+				baseDetune *= OctavesKnob::detune(1.0, (*octavesIter)); //Detuning 1 hz up 2 octaves = 2 hz. This is the same as getting the detune factor for the number of octaves. Used later.
+				baseDetune *= SemitonesKnob::detune(1.0, (*semisIter));
+			}
+			if (!animateCents) {
+				baseDetune *= CentsKnob::detune(1.0, (*centsIter));
+			}
+			if (hzInput != nullptr) {
+				baseFrequency = (**hzInput) * baseDetune;
+				if(m_primaryInputs[0]->isConstant()) {
+					baseFrequency = (**hzInput) * baseDetune;
+				} else {
+					animateBaseFreq = true;
+				}
+			} else {
+				baseFrequency = 440.0 * baseDetune;
+			}
+			if (!animatePan) {
+				if (voices > 1) {
+					for (int voice = 0; voice < voices; voice++) {
+						pan = (*panIter) + (getUnisonFactor(voice, voices) * (*uPanIter));
+						pan = Adsp::clip(pan);
+						panAmplitudes.push_back(Adsp::panLeftAmplitude(pan));
+						panAmplitudes.push_back(Adsp::panRightAmplitude(pan));
+					}
+				} else {
+					pan = Adsp::clip(*panIter);
+					panAmplitudes.push_back(Adsp::panLeftAmplitude(pan));
+					panAmplitudes.push_back(Adsp::panRightAmplitude(pan));
+				}
+			}
+			std::vector<double> voiceDetunes;
+			if (voices > 1) {
+				for (int voice = 0; voice < voices; voice++) {
+					voiceDetunes.push_back(CentsKnob::detune(1.0, (*uCentsIter) * getUnisonFactor(voice, m_phases.size())));
+				}
+			}
 			for (int s = 0; s < AudioBuffer::getDefaultSize(); s++) {
 				uFac = getUnisonFactor(voice, voices);
 				if (animatePan) {
@@ -393,10 +394,14 @@ void BasicOscAtom::execute() {
 					panAmp = panAmplitudes[voice * AudioBuffer::getDefaultChannels() + c];
 				}
 
-				if (voices > 1) {
-					freq = baseFrequency * voiceDetunes[voice];
+				if(animateBaseFreq) {
+					freq = (**hzInput) * baseDetune;
 				} else {
 					freq = baseFrequency;
+				}
+
+				if (voices > 1) {
+					freq *= voiceDetunes[voice];
 				}
 
 				if (animateCoarseDetune) {
@@ -408,15 +413,9 @@ void BasicOscAtom::execute() {
 				}
 
 				m_phases[voice][c] += freq / m_sampleRate;
-				if (m_phases[voice][c] >= 1.0)
-					m_phases[voice][c] -= 2.0;
-				phase = m_phases[voice][c] + (*phaseIter) * 2.0 + ((*uPhaseIter) * uFac);
-				while (phase >= 1.0) {
-					phase -= 2.0;
-				}
-				while (phase <= -1.0) {
-					phase += 2.0;
-				}
+				phase = m_phases[voice][c] + (*phaseIter) * 2.0 + ((*uPhaseIter) * uFac) + 10.0; //+10.0 is so that I don't have to do a branch in case the phase went into fmod being negative.
+				phase = std::fmod(phase, 2.0);
+				phase -= 1.0; //Convert range from 0-2 to -1-1.
 
 				if (phase <= *centerIter) {
 					phase = (phase + 1.0) / (*centerIter + 1.0 + 1.0e-64) - 1.0; //1.0e-64 is there to prevent divide by zero errors when * centerIter == -1.0

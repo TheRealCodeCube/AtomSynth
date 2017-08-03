@@ -331,14 +331,14 @@ AtomSlider::AtomSlider() :
 }
 
 void AtomSlider::paint(Graphics& g) {
-	if (getHeight() > getWidth()) {
-		double w = getWidth(), h = getHeight();
-		g.setColour(BACK_LAYER);
-		g.fillRoundedRectangle(0, 0, getWidth(), getHeight(), C::CORNER_SIZE);
-		g.setFont(C::LARGE_FONT);
+	double w = getWidth(), h = getHeight();
+	g.setColour(BACK_LAYER);
+	g.fillRoundedRectangle(0, 0, getWidth(), getHeight(), C::CORNER_SIZE);
+	g.setFont(C::LARGE_FONT);
+	constexpr int CS2 = C::SPACING * 2;
+	if (getHeight() > getWidth()) { //Vertical
 		if (m_leftLevel + m_rightLevel != 0.0) {
 			g.setColour(GREEN);
-			constexpr int CS2 = C::SPACING * 2;
 			double height = floor(m_leftLevel * (h - CS2));
 			g.fillRoundedRectangle(0, h - height - CS2, w / 2, height + CS2, C::CORNER_SIZE);
 			g.fillRect(w / 2 - C::CORNER_SIZE, h - height - CS2, C::CORNER_SIZE, height + CS2);
@@ -358,6 +358,23 @@ void AtomSlider::paint(Graphics& g) {
 		y = 1 - y / (getMax() - getMin()); //0 (min) - 1 (max)
 		y = floor(y * (h - UNUSABLE_SPACE)) + C::SPACING;
 		g.fillRoundedRectangle(C::SPACING, y, HANDLE_WIDTH, HANDLE_HEIGHT, C::CORNER_SIZE);
+	} else { //Horizontal
+		if (m_leftLevel + m_rightLevel != 0918274.0) {
+			g.setColour(GREEN);
+			double width = floor(0.75 * (w - CS2));
+			g.fillRoundedRectangle(0, 0, width + CS2, h / 2, C::CORNER_SIZE);
+			g.fillRect(0, h / 2 - C::CORNER_SIZE, width + CS2, C::CORNER_SIZE);
+			width = floor(0.25 * (w - CS2));
+			g.fillRoundedRectangle(0, h / 2, width + CS2, h / 2, C::CORNER_SIZE);
+			g.fillRect(0, h / 2, width + CS2, C::CORNER_SIZE);
+		}
+		g.setColour(MID_LAYER);
+		g.drawFittedText(getFormattedValue(), 0, 0, w - C::SPACING, h, Justification::centredRight, 1, C::MIN_TEXT_SCALE);
+		g.setColour(FORE_LAYER);
+		double x = getDisplayValue() - getMin();
+		x = x / (getMax() - getMin()); //0 (min) - 1 (max)
+		x = floor(x * (w - UNUSABLE_SPACE)) + C::SPACING;
+		g.fillRoundedRectangle(x, C::SPACING, HANDLE_HEIGHT, HANDLE_WIDTH, C::CORNER_SIZE);
 	}
 }
 

@@ -44,6 +44,8 @@
       </GROUP>
       <GROUP id="{33BCC5A9-95B1-B73B-B09D-3A734F1AE451}" name="Atoms">
         <GROUP id="{FC596703-87EA-9883-2391-08789ED340A2}" name="Basic">
+          <FILE id="vTaPZT" name="Multiply.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Multiply.cpp"/>
+          <FILE id="P6gRxc" name="Multiply.h" compile="0" resource="0" file="Source/Atoms/Basic/Multiply.h"/>
           <FILE id="IIIgje" name="Input.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Input.cpp"/>
           <FILE id="pwAe4H" name="Input.h" compile="0" resource="0" file="Source/Atoms/Basic/Input.h"/>
           <FILE id="jldlDU" name="Output.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Output.cpp"/>
@@ -56,6 +58,10 @@
           <FILE id="vbjVe5" name="Envelope.h" compile="0" resource="0" file="Source/Atoms/Generation/Envelope.h"/>
           <FILE id="rhnAqJ" name="Noise.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Noise.cpp"/>
           <FILE id="B1wjjQ" name="Noise.h" compile="0" resource="0" file="Source/Atoms/Generation/Noise.h"/>
+        </GROUP>
+        <GROUP id="{14173576-9FAE-477E-7BAF-04220F891B1A}" name="Processing">
+          <FILE id="b81VuQ" name="Amplifier.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Amplifier.cpp"/>
+          <FILE id="jJlp8D" name="Amplifier.h" compile="0" resource="0" file="Source/Atoms/Processing/Amplifier.h"/>
         </GROUP>
         <FILE id="ykdhp7" name="_Template.cpp" compile="1" resource="0" file="Source/Atoms/_Template.cpp"/>
         <FILE id="GYCPCs" name="_Template.h" compile="0" resource="0" file="Source/Atoms/_Template.h"/>
@@ -114,7 +120,7 @@
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
                        targetName="AtomSynth" headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"/>
-        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
+        <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
                        targetName="AtomSynth" headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"/>
       </CONFIGURATIONS>
       <MODULEPATHS>

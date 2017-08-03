@@ -350,6 +350,22 @@ public:
 	}
 
 	/**
+	 * Sets the suffix to render at the end of the number.
+	 * @param suffix The suffix to render.
+	 */
+	void setSuffix(std::string suffix) {
+		m_suffix = suffix;
+	}
+
+	/**
+	 * Gets the current suffix. See setSuffix().
+	 * @return The current suffix.
+	 */
+	std::string getSuffix() {
+		return m_suffix;
+	}
+
+	/**
 	 * Sets the value.
 	 * @param value What the value should be.
 	 */

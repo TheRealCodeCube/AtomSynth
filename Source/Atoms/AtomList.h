@@ -14,9 +14,11 @@
 #ifdef INCLUDE_ATOMS
 #include "Basic/Input.h"
 #include "Basic/Output.h"
+#include "Basic/Multiply.h"
 #include "Generation/BasicOsc.h"
 #include "Generation/Noise.h"
 #include "Generation/Envelope.h"
+#include "Processing/Amplifier.h"
 /*
  #include "Filters/Amplifier.h"
  #include "Filters/Comb.h"
@@ -32,9 +34,11 @@ std::vector<AtomController *> getAllAtoms() {
 #ifdef INCLUDE_ATOMS
 	toReturn.push_back(new InputController());
 	toReturn.push_back(new OutputController());
+	toReturn.push_back(new MultiplyController());
 	toReturn.push_back(new BasicOscController());
 	toReturn.push_back(new NoiseController());
 	toReturn.push_back(new EnvelopeController());
+	toReturn.push_back(new AmplifierController());
 	/*
 	 toReturn.push_back(new EnvelopeController());
 	 toReturn.push_back(new LfoTunerController());
