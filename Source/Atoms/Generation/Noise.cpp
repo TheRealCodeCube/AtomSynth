@@ -1,5 +1,6 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[11.000000:0.000000:1.000000:sNoise:sGeneration:s:saudio:[[24.000000:0.000000:1.000000:10.000000:10.000000:sWaveformPlot:splot:s:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:4.500000:2.000000:2.000000:sAtomKnob:stime:sTime:]][0.000000:1.000000:0.000000:0.000000:1.000000:sms:]][[[24.000000:10.000000:8.000000:2.000000:3.000000:sMultiButton:stimeFrame:sT. Range:]][1.000000:0.000000:s0-1ms:s0-10ms:s0-100ms:s0-1s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:sMultiButton:stype:s:]][0.000000:0.000000:sSharp:sLinear:sSmooth:]]]]
+// EDITOR SOURCE: [[11.000000:0.000000:1.000000:sNoise:sGeneration:s:saudio:s:swave:[[24.000000:0.000000:1.000000:10.000000:10.000000:1.000000:sWaveformPlot:splot:s:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:1.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:4.500000:2.000000:2.000000:1.000000:sAtomKnob:stime:sTime:]][0.000000:1.000000:0.000000:0.000000:1.000000:sms:]][[[24.000000:10.000000:8.000000:2.000000:3.000000:1.000000:sMultiButton:stimeFrame:sT. Range:]][1.000000:0.000000:s0-1ms:s0-10ms:s0-100ms:s0-1s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:1.000000:sMultiButton:stype:s:]][0.000000:0.000000:sSharp:sLinear:sSmooth:]]]]
+
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Noise.h"
 #include "Technical/SaveState.h"
@@ -52,6 +53,8 @@ void NoiseController::updatePlot() {
 NoiseController::NoiseController() :
 		AtomController(AtomParameters(11, 0, true, 1)) {
 	init();
+
+	addOutputIcon("wave");
 
 	m_gui.addComponent(&m_plot);
 	m_plot.setBounds(CB(0.000000, 1.000000, 10.000000, 10.000000));

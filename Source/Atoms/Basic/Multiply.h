@@ -18,9 +18,10 @@ class SaveState;
 /* END MISC. USER-DEFINED CODE */
 
 /**
-* YOUR DOCUMENTATION HERE
+* Multiplies all samples of the incoming
+* signal, whatever it may be.
 */
-class MultiplyController : public AtomController, public AutomatedControl::Listener {
+class MultiplyController: public AtomController, public AutomatedControl::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	AtomKnob m_fac11;
@@ -35,7 +36,7 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	MultiplyController();
-		virtual AtomController * createNewInstance() {
+	virtual AtomController * createNewInstance() {
 		return new MultiplyController();
 	}
 	virtual ~MultiplyController() {
@@ -65,9 +66,9 @@ public:
 };
 
 /**
-* YOUR DOCUMENTATION HERE
+* See MultiplyController.
 */
-class MultiplyAtom : public Atom {
+class MultiplyAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	MultiplyController & m_parent;
@@ -80,7 +81,8 @@ public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	/** Constructor which stores a more specific reference to the parent */
 	MultiplyAtom(MultiplyController & parent, int index);
-	virtual ~MultiplyAtom() { }
+	virtual ~MultiplyAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

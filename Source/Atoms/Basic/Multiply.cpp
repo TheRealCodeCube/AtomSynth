@@ -1,5 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[2.000000:1.000000:1.000000:sMultiply:sBasic:ssignal:ssignal:[[[4.000000:8.000000:2.000000:2.000000:2.000000:sAtomKnob:sfac11:sMult. Factor (-1 to 1):]][-1.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:2.000000:2.000000:2.000000:sAtomKnob:sfac01:sMult. Factor (0 to 1):]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
+// EDITOR SOURCE: [[2.000000:1.000000:1.000000:sMultiply:sBasic:ssignal:ssignal:swave:swave:[[[4.000000:8.000000:2.000000:2.000000:2.000000:1.000000:sAtomKnob:sfac11:sMult. Factor (-1 to 1):]][-1.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:2.000000:2.000000:2.000000:1.000000:sAtomKnob:sfac01:sMult. Factor (0 to 1):]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Multiply.h"
@@ -16,11 +16,14 @@ namespace AtomSynth {
 
 /* END MISC. USER-DEFINED CODE */
 
-MultiplyController::MultiplyController()
-	: AtomController(AtomParameters(2, 1, true, 1)) {
+MultiplyController::MultiplyController() :
+		AtomController(AtomParameters(2, 1, true, 1)) {
 	init();
 
-	m_gui.addComponent(& m_fac11);
+	addInputIcon("wave");
+	addOutputIcon("wave");
+
+	m_gui.addComponent(&m_fac11);
 	m_fac11.setBounds(CB(8.000000, 2.000000, 2.000000, 2.000000));
 	m_fac11.addListener(this);
 	m_fac11.setValue(1.000000);
@@ -28,7 +31,7 @@ MultiplyController::MultiplyController()
 	addAutomatedControl(m_fac11, m_fac11Iter);
 	m_gui.addComponent(m_fac11.createLabel("Mult. Factor (-1 to 1)", true));
 
-	m_gui.addComponent(& m_fac01);
+	m_gui.addComponent(&m_fac01);
 	m_fac01.setBounds(CB(2.000000, 2.000000, 2.000000, 2.000000));
 	m_fac01.addListener(this);
 	m_fac01.setRange(0.000000, 1.000000);
@@ -45,14 +48,14 @@ MultiplyController::MultiplyController()
 }
 
 Atom * MultiplyController::createAtom(int index) {
-	return new MultiplyAtom(* this, index);
+	return new MultiplyAtom(*this, index);
 }
 
 SaveState MultiplyController::saveSaveState() {
-	SaveState & toReturn = * new SaveState();
+	SaveState & toReturn = *new SaveState();
 	toReturn.addState(AtomController::saveSaveState());
 
-	SaveState & extraData = * new SaveState();
+	SaveState & extraData = *new SaveState();
 	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_fac11.saveSaveState());
 	extraData.addState(m_fac01.saveSaveState());
@@ -84,9 +87,9 @@ void MultiplyController::automatedControlChanged(AutomatedControl * control, boo
 	/* END USER-DEFINED LISTENER CODE */
 }
 
-MultiplyAtom::MultiplyAtom(MultiplyController & parent, int index)
-	: Atom(parent, index),
-	  m_parent(parent) {
+MultiplyAtom::MultiplyAtom(MultiplyController & parent, int index) :
+		Atom(parent, index),
+		m_parent(parent) {
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 
 	/* END USER-DEFINED CONSTRUCTION CODE */

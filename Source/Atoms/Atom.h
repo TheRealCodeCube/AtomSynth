@@ -91,6 +91,7 @@ private:
 	std::vector<std::pair<AtomController *, int>> m_primaryInputs;
 	std::vector<std::pair<AtomController *, int>> m_automationInputs;
 	std::vector<Atom *> m_atoms;
+	std::vector<std::string> m_inputIcons, m_outputIcons;
 	AtomParameters m_parameters;
 	int m_x, m_y;
 	bool m_stopped, m_shouldBeDeleted;
@@ -116,6 +117,22 @@ protected:
 	 */
 	void addAutomatedControl(AutomatedControl & knob, DVecIter & iterator) {
 		m_automation.add(knob, iterator);
+	}
+	/**
+	 * Add an icon to be rendered on an input. Call this once
+	 * for each input to set icons for all of them.
+	 * @param iconName The name of the icon to render. The _png suffix is added for you.
+	 */
+	void addInputIcon(std::string iconName) {
+		m_inputIcons.push_back(iconName + "_png");
+	}
+	/**
+	 * Add an icon to be rendered on an output. Call this once
+	 * for each output to set icons for all of them.
+	 * @param iconName The name of the icon to render. The _png suffix is added for you.
+	 */
+	void addOutputIcon(std::string iconName) {
+		m_outputIcons.push_back(iconName + "_png");
 	}
 public:
 	/**
@@ -340,6 +357,22 @@ public:
 	 */
 	int getY() {
 		return m_y;
+	}
+	/**
+	 * Returns the vector of all the names of the input icons
+	 * for this atom.
+	 * @return The vector of all the names of the input icons.
+	 */
+	std::vector<std::string>& getInputIcons() {
+		return m_inputIcons;
+	}
+	/**
+	 * Returns the vector of all the names of the output icons
+	 * for this atom.
+	 * @return The vector of all the names of the output icons.
+	 */
+	std::vector<std::string>& getOutputIcons() {
+		return m_outputIcons;
 	}
 
 	/**

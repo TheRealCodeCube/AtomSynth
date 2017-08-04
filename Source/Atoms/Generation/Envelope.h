@@ -54,7 +54,7 @@ public:
  * Takes a time (in seconds) as an input, and outputs an
  * envelope as defined by parameters in the GUI.
  */
-class EnvelopeController : public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener {
+class EnvelopeController: public AtomController, public AutomatedControl::Listener, public BpmMultiple::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	BpmMultiple m_releaseTime;
@@ -92,7 +92,7 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	EnvelopeController();
-		virtual AtomController * createNewInstance() {
+	virtual AtomController * createNewInstance() {
 		return new EnvelopeController();
 	}
 	virtual ~EnvelopeController() {
@@ -110,9 +110,9 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN AUTO-GENERATED LISTENERS */
-	///Listener function
+	/** Listener function. */
 	virtual void bpmMultipleChanged(BpmMultiple * multiple);
-	///Listener function
+	/** Listener function. */
 	virtual void automatedControlChanged(AutomatedControl * control, bool byUser);
 	/* END AUTO-GENERATED LISTENERS */
 
@@ -126,7 +126,7 @@ public:
 /**
  * See EnvelopeController
  */
-class EnvelopeAtom : public Atom {
+class EnvelopeAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	EnvelopeController & m_parent;
@@ -141,7 +141,8 @@ public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	/** Constructor which stores a more specific reference to the parent */
 	EnvelopeAtom(EnvelopeController & parent, int index);
-	virtual ~EnvelopeAtom() { }
+	virtual ~EnvelopeAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

@@ -1,5 +1,6 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[0.000000:0.000000:1.000000:sInput:sBasic:s:shz, time:]]
+// EDITOR SOURCE: [[0.000000:0.000000:1.000000:sInput:sBasic:s:shz, time:s:shz, time:]]
+
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Input.h"
 #include "Technical/SaveState.h"
@@ -18,6 +19,10 @@ namespace AtomSynth {
 InputController::InputController() :
 		AtomController(AtomParameters(0, 0, true, 2)) {
 	init();
+
+	addOutputIcon("hz");
+	addOutputIcon("time");
+
 
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 

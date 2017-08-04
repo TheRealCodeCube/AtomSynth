@@ -17,6 +17,11 @@ class SaveState;
 
 /* END MISC. USER-DEFINED CODE */
 
+/**
+ * The final output of the synth. Any audio
+ * routed into here will be routed out to the
+ * host.
+ */
 class OutputController: public AtomController {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -55,6 +60,9 @@ public:
 	friend class OutputAtom;
 };
 
+/**
+ * See OutputController.
+ */
 class OutputAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -66,6 +74,7 @@ private:
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
+	/** Constructor which stores a more specific reference to the parent */
 	OutputAtom(OutputController & parent, int index);
 	virtual ~OutputAtom() {
 	}

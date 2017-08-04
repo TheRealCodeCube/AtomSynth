@@ -1,5 +1,6 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[1.000000:1.000000:0.000000:sOutput:sBasic:saudio:s:]]
+// EDITOR SOURCE: [[1.000000:1.000000:0.000000:sOutput:sBasic:saudio:s:swave:s:]]
+
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Output.h"
 #include "Technical/SaveState.h"
@@ -18,6 +19,9 @@ namespace AtomSynth {
 OutputController::OutputController() :
 		AtomController(AtomParameters(1, 1, false, 0)) {
 	init();
+
+	addInputIcon("wave");
+
 
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 

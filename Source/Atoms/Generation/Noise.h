@@ -17,6 +17,11 @@ class SaveState;
 
 /* END MISC. USER-DEFINED CODE */
 
+/**
+ * Creates noise, with the option to use an interpolation
+ * algorithm and to reduce the speed at which the noise
+ * changes.
+ */
 class NoiseController: public AtomController, public AutomatedControl::Listener, public MultiButton::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -53,7 +58,9 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN AUTO-GENERATED LISTENERS */
+	/** Listener function. */
 	virtual void automatedControlChanged(AutomatedControl * control, bool byUser);
+	/** Listener function. */
 	virtual void multiButtonPressed(MultiButton * button);
 	/* END AUTO-GENERATED LISTENERS */
 
@@ -64,6 +71,9 @@ public:
 	friend class NoiseAtom;
 };
 
+/**
+ * See NoiseController.
+ */
 class NoiseAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -71,11 +81,12 @@ private:
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
-	std::vector<double> m_lengthTimer;
 	std::vector<std::vector<double>> m_previousValues;
+	std::vector<double> m_lengthTimer;
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
+	/** Constructor which stores a more specific reference to the parent */
 	NoiseAtom(NoiseController & parent, int index);
 	virtual ~NoiseAtom() {
 	}
@@ -84,7 +95,7 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN USER-DEFINED METHODS */
-
+	void updatePlot();
 	/* END USER-DEFINED METHODS */
 
 	friend class NoiseController;

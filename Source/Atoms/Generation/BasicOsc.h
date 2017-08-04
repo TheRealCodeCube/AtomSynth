@@ -17,6 +17,10 @@ class SaveState;
 
 /* END MISC. USER-DEFINED CODE */
 
+/**
+ * Capable of rendering several simple waveforms with various
+ * modulations and effects, such as pm, am, and unison.
+ */
 class BasicOscController: public AtomController, public AutomatedControl::Listener, public MultiButton::Listener, public SimpleKnob::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -75,8 +79,11 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN AUTO-GENERATED LISTENERS */
+	/** Listener function. */
 	virtual void multiButtonPressed(MultiButton * button);
+	/** Listener function. */
 	virtual void automatedControlChanged(AutomatedControl * control, bool byUser);
+	/** Listener function. */
 	virtual void simpleKnobChanged(SimpleKnob * knob);
 	/* END AUTO-GENERATED LISTENERS */
 
@@ -87,6 +94,9 @@ public:
 	friend class BasicOscAtom;
 };
 
+/**
+ * See BasicOscController.
+ */
 class BasicOscAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -98,6 +108,7 @@ private:
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
+	/** Constructor which stores a more specific reference to the parent */
 	BasicOscAtom(BasicOscController & parent, int index);
 	virtual ~BasicOscAtom() {
 	}

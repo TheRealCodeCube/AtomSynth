@@ -1,5 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[30.000000:1.000000:1.000000:sAmplifier:sProcessing:ssignal:ssignal:[[24.000000:0.000000:0.000000:10.000000:10.000000:sWaveformPlot:splot:s:]][[[16.000000:11.000000:0.000000:1.000000:6.000000:sAtomSlider:samp2:sVol2:]][0.000000:4.000000:1.000000:0.000000:1.000000:s:]][[[16.000000:10.000000:0.000000:1.000000:6.000000:sAtomSlider:samp1:sVol1:]][0.000000:4.000000:1.000000:0.000000:1.000000:s:]][[[24.000000:10.000000:7.000000:2.000000:3.000000:sMultiButton:smixMode:sMix Mode:]][1.000000:0.000000:sSingle:sAverage:sMultiply:sMinimum:sMaximum:]][[[24.000000:0.000000:10.500000:2.000000:2.000000:sMultiButton:sclip:sClipping?:]][1.000000:0.000000:sNo:sYes:]][[[4.000000:4.000000:10.500000:2.000000:2.000000:sAtomKnob:sclipSkew:sClip Skew:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:10.500000:2.000000:2.000000:sAtomKnob:sclipLevel:sClip Level:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
+// EDITOR SOURCE: [[30.000000:1.000000:1.000000:sAmplifier:sProcessing:ssignal:ssignal:swave:swave:[[24.000000:0.000000:0.000000:10.000000:10.000000:1.000000:sWaveformPlot:splot:s:]][[[16.000000:11.000000:0.000000:1.000000:6.000000:0.000000:sAtomSlider:samp2:sVol2:]][0.000000:4.000000:1.000000:0.000000:1.000000:s:]][[[16.000000:10.000000:0.000000:1.000000:6.000000:0.000000:sAtomSlider:samp1:sVol1:]][0.000000:4.000000:1.000000:0.000000:1.000000:s:]][[[24.000000:10.000000:7.000000:2.000000:3.000000:1.000000:sMultiButton:smixMode:sMix Mode:]][1.000000:0.000000:sSingle:sAverage:sMultiply:sMinimum:sMaximum:]][[[24.000000:0.000000:10.500000:2.000000:2.000000:1.000000:sMultiButton:sclip:sClipping?:]][1.000000:0.000000:sNo:sYes:]][[[4.000000:4.000000:10.500000:2.000000:2.000000:1.000000:sAtomKnob:sclipSkew:sClip Skew:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:10.500000:2.000000:2.000000:1.000000:sAtomKnob:sclipLevel:sClip Level:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]]]]
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Amplifier.h"
@@ -16,14 +16,17 @@ namespace AtomSynth {
 
 /* END MISC. USER-DEFINED CODE */
 
-AmplifierController::AmplifierController()
-	: AtomController(AtomParameters(30, 1, true, 1)) {
+AmplifierController::AmplifierController() :
+		AtomController(AtomParameters(30, 1, true, 1)) {
 	init();
 
-	m_gui.addComponent(& m_plot);
+	addInputIcon("wave");
+	addOutputIcon("wave");
+
+	m_gui.addComponent(&m_plot);
 	m_plot.setBounds(CB(0.000000, 0.000000, 10.000000, 10.000000));
 
-	m_gui.addComponent(& m_amp2);
+	m_gui.addComponent(&m_amp2);
 	m_amp2.setBounds(CB(11.000000, 0.000000, 1.000000, 6.000000));
 	m_amp2.addListener(this);
 	m_amp2.setRange(0.000000, 4.000000);
@@ -32,7 +35,7 @@ AmplifierController::AmplifierController()
 	addAutomatedControl(m_amp2, m_amp2Iter);
 	m_gui.addComponent(m_amp2.createLabel("Vol2", false));
 
-	m_gui.addComponent(& m_amp1);
+	m_gui.addComponent(&m_amp1);
 	m_amp1.setBounds(CB(10.000000, 0.000000, 1.000000, 6.000000));
 	m_amp1.addListener(this);
 	m_amp1.setRange(0.000000, 4.000000);
@@ -41,7 +44,7 @@ AmplifierController::AmplifierController()
 	addAutomatedControl(m_amp1, m_amp1Iter);
 	m_gui.addComponent(m_amp1.createLabel("Vol1", false));
 
-	m_gui.addComponent(& m_mixMode);
+	m_gui.addComponent(&m_mixMode);
 	m_mixMode.setBounds(CB(10.000000, 7.000000, 2.000000, 3.000000));
 	m_mixMode.addListener(this);
 	m_mixMode.setVertical(true);
@@ -52,7 +55,7 @@ AmplifierController::AmplifierController()
 	m_mixMode.addLabel("Maximum");
 	m_gui.addComponent(m_mixMode.createLabel("Mix Mode", true));
 
-	m_gui.addComponent(& m_clip);
+	m_gui.addComponent(&m_clip);
 	m_clip.setBounds(CB(0.000000, 10.500000, 2.000000, 2.000000));
 	m_clip.addListener(this);
 	m_clip.setVertical(true);
@@ -60,14 +63,14 @@ AmplifierController::AmplifierController()
 	m_clip.addLabel("Yes");
 	m_gui.addComponent(m_clip.createLabel("Clipping?", true));
 
-	m_gui.addComponent(& m_clipSkew);
+	m_gui.addComponent(&m_clipSkew);
 	m_clipSkew.setBounds(CB(4.000000, 10.500000, 2.000000, 2.000000));
 	m_clipSkew.addListener(this);
 	m_clipSkew.setBounded(true);
 	addAutomatedControl(m_clipSkew, m_clipSkewIter);
 	m_gui.addComponent(m_clipSkew.createLabel("Clip Skew", true));
 
-	m_gui.addComponent(& m_clipLevel);
+	m_gui.addComponent(&m_clipLevel);
 	m_clipLevel.setBounds(CB(2.000000, 10.500000, 2.000000, 2.000000));
 	m_clipLevel.addListener(this);
 	m_clipLevel.setRange(0.000000, 1.000000);
@@ -84,14 +87,14 @@ AmplifierController::AmplifierController()
 }
 
 Atom * AmplifierController::createAtom(int index) {
-	return new AmplifierAtom(* this, index);
+	return new AmplifierAtom(*this, index);
 }
 
 SaveState AmplifierController::saveSaveState() {
-	SaveState & toReturn = * new SaveState();
+	SaveState & toReturn = *new SaveState();
 	toReturn.addState(AtomController::saveSaveState());
 
-	SaveState & extraData = * new SaveState();
+	SaveState & extraData = *new SaveState();
 	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_amp2.saveSaveState());
 	extraData.addState(m_amp1.saveSaveState());
@@ -155,9 +158,9 @@ void AmplifierController::multiButtonPressed(MultiButton * button) {
 	/* END USER-DEFINED LISTENER CODE */
 }
 
-AmplifierAtom::AmplifierAtom(AmplifierController & parent, int index)
-	: Atom(parent, index),
-	  m_parent(parent) {
+AmplifierAtom::AmplifierAtom(AmplifierController & parent, int index) :
+		Atom(parent, index),
+		m_parent(parent) {
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 
 	/* END USER-DEFINED CONSTRUCTION CODE */

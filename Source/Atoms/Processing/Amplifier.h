@@ -20,7 +20,7 @@ class SaveState;
 /**
 * YOUR DOCUMENTATION HERE
 */
-class AmplifierController : public AtomController, public AutomatedControl::Listener, public MultiButton::Listener {
+class AmplifierController: public AtomController, public AutomatedControl::Listener, public MultiButton::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	WaveformPlot m_plot;
@@ -42,7 +42,7 @@ private:
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	AmplifierController();
-		virtual AtomController * createNewInstance() {
+	virtual AtomController * createNewInstance() {
 		return new AmplifierController();
 	}
 	virtual ~AmplifierController() {
@@ -76,7 +76,7 @@ public:
 /**
 * YOUR DOCUMENTATION HERE
 */
-class AmplifierAtom : public Atom {
+class AmplifierAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
 	AmplifierController & m_parent;
@@ -89,7 +89,8 @@ public:
 	/* BEGIN AUTO-GENERATED METHODS */
 	/** Constructor which stores a more specific reference to the parent */
 	AmplifierAtom(AmplifierController & parent, int index);
-	virtual ~AmplifierAtom() { }
+	virtual ~AmplifierAtom() {
+	}
 	virtual void execute();
 	virtual void reset();
 	/* END AUTO-GENERATED METHODS */

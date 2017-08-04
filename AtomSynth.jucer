@@ -14,6 +14,12 @@
               buildStandalone="1" enableIAA="0">
   <MAINGROUP id="q4OkZd" name="JUCE Project">
     <GROUP id="{0ECEF37E-F575-93BA-FF7A-8D9C232FE228}" name="Resources">
+      <GROUP id="{910933C3-11A9-7AE9-17C2-63BD4D53ACA8}" name="typeIcons">
+        <FILE id="XDEJ9r" name="db.png" compile="0" resource="1" file="Resources/typeIcons/db.png"/>
+        <FILE id="wvrHkN" name="hz.png" compile="0" resource="1" file="Resources/typeIcons/hz.png"/>
+        <FILE id="nxlnYU" name="time.png" compile="0" resource="1" file="Resources/typeIcons/time.png"/>
+        <FILE id="awHalj" name="wave.png" compile="0" resource="1" file="Resources/typeIcons/wave.png"/>
+      </GROUP>
       <FILE id="OCDVi5" name="add.png" compile="0" resource="1" file="Resources/add.png"/>
       <FILE id="acCx5t" name="addFolder.png" compile="0" resource="1" file="Resources/addFolder.png"/>
       <FILE id="BEB7Ea" name="VeraMono.ttf" compile="0" resource="1" file="Resources/VeraMono.ttf"/>

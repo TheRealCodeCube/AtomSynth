@@ -93,6 +93,22 @@ void AtomNetworkWidget::drawAtomController(Graphics & g, AtomSynth::AtomControll
 		g.fillRoundedRectangle(x + LARGE_TAB_SEPERATION + i * TAB_WIDTH, y, TAB_WIDTH - TAB_SEPERATION, TAB_HEIGHT, 4.0);
 		g.fillRect(x + LARGE_TAB_SEPERATION + i * TAB_WIDTH, y, TAB_WIDTH - TAB_SEPERATION, 4);
 	}
+
+	std::vector<std::string>& inputIcons = c->getInputIcons();
+	int size;
+	x = c->getX() - m_xOffset + LARGE_TAB_SEPERATION;
+	for(int i = 0; i < inputIcons.size(); i++) {
+		const char * data = BinaryData::getNamedResource(inputIcons[i].c_str(), size);
+		g.drawImageAt(ImageCache::getFromMemory(data, size), x + 1, y - LARGE_TAB_HUMP + 1);
+		x += LARGE_TAB_WIDTH;
+	}
+	std::vector<std::string>& outputIcons = c->getOutputIcons();
+	x = c->getX() - m_xOffset + LARGE_TAB_SEPERATION;
+	for(int i = 0; i < outputIcons.size(); i++) {
+		const char * data = BinaryData::getNamedResource(outputIcons[i].c_str(), size);
+		g.drawImageAt(ImageCache::getFromMemory(data, size), x + 1, y + ATOM_HEIGHT + LARGE_TAB_HUMP - 22 - 1);
+		x += LARGE_TAB_WIDTH;
+	}
 }
 
 void AtomNetworkWidget::paint(Graphics & g) {

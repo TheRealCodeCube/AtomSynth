@@ -17,6 +17,12 @@ class SaveState;
 
 /* END MISC. USER-DEFINED CODE */
 
+/**
+ * Gives access to all the values inputted
+ * into the synth for each note (frequency,
+ * velocity, time the note has been playing
+ * for, etc.)
+ */
 class InputController: public AtomController {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -55,6 +61,9 @@ public:
 	friend class InputAtom;
 };
 
+/**
+ * See InputController.
+ */
 class InputAtom: public Atom {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
@@ -66,6 +75,7 @@ private:
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
+	/** Constructor which stores a more specific reference to the parent */
 	InputAtom(InputController & parent, int index);
 	virtual ~InputAtom() {
 	}

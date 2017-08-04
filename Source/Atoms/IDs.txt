@@ -11,11 +11,13 @@
 30 - 39: Processing
 	30: Amplifier
 	31: Mixer
-	32: Reverb
 	
 40 - 59: Filters
-    31: Comb
+    40: Comb
 	
-60 - 69: Transforms
+60 - 79: Effects
+    60: Reverb
+	
+80 - 89: Transforms
 	50: LFO Frequency
 	51: Pitch Slide
