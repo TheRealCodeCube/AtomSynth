@@ -65,9 +65,11 @@
           <FILE id="rhnAqJ" name="Noise.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Noise.cpp"/>
           <FILE id="B1wjjQ" name="Noise.h" compile="0" resource="0" file="Source/Atoms/Generation/Noise.h"/>
         </GROUP>
-        <GROUP id="{14173576-9FAE-477E-7BAF-04220F891B1A}" name="Processing">
+        <GROUP id="{26F848C8-0AA9-2297-25B0-8D2E2284C04B}" name="Processing">
           <FILE id="b81VuQ" name="Amplifier.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Amplifier.cpp"/>
           <FILE id="jJlp8D" name="Amplifier.h" compile="0" resource="0" file="Source/Atoms/Processing/Amplifier.h"/>
+          <FILE id="gLWIJt" name="Mixer.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Mixer.cpp"/>
+          <FILE id="M253Sh" name="Mixer.h" compile="0" resource="0" file="Source/Atoms/Processing/Mixer.h"/>
         </GROUP>
         <FILE id="ykdhp7" name="_Template.cpp" compile="1" resource="0" file="Source/Atoms/_Template.cpp"/>
         <FILE id="GYCPCs" name="_Template.h" compile="0" resource="0" file="Source/Atoms/_Template.h"/>
