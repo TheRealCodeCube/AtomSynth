@@ -45,6 +45,14 @@ private:
 	MultiButton m_mixMode2;
 	AtomKnob m_pan4;
 	DVecIter m_pan4Iter;
+	Arrow m_arrow12;
+	Arrow m_arrow13;
+	Arrow m_arrow14;
+	Arrow m_arrow15;
+	Arrow m_arrow16;
+	Arrow m_arrow17;
+	Arrow m_arrow18;
+	Arrow m_arrow19;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */

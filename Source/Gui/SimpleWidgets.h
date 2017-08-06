@@ -1004,6 +1004,45 @@ public:
 	}
 };
 
+/**
+ * An arrow, for illustrating what is happening
+ * inside of an atom.
+ */
+class Arrow: public EnhancedComponent {
+private:
+	int m_cap1 = 0, m_cap2 = 0;
+public:
+	static constexpr int NO_CAP = 0, ///< Don't add any cap to the end of the arrow.
+		LINE_CAP = 1, ///< Add a straight line to the end of the arrow.
+		ARROW_CAP = 2, ///< Add an arrow to the end of the arrow.
+		POINT_CAP = 3; ///< Add a circle to the end of the arrow.
+
+	Arrow();
+
+	/**
+	 * Set what cap should be rendered at each end of
+	 * the arrow.
+	 * @param cap1 The cap to be rendered at the top / left end.
+	 * @param cap2 The cap to be rendered at the bottom / right end.
+	 */
+	void setCaps(int cap1, int cap2);
+	/**
+	 * Returns the style of the top / left cap.
+	 * @return The style of the top / left cap.
+	 */
+	int getCap1() {
+		return m_cap1;
+	}
+	/**
+	 * Returns the style of the bottom / right cap.
+	 * @return The style of the bottom / right cap.
+	 */
+	int getCap2() {
+		return m_cap2;
+	}
+	virtual void paint(Graphics & g);
+};
+
 } /* namespace AtomSynth */
 
 #endif /* SOURCE_GUI_SIMPLEWIDGETS_H_ */

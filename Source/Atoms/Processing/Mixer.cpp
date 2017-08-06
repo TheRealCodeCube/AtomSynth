@@ -1,5 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[31.000000:2.000000:1.000000:s4x Mixer:sProcessing:sch1, ch2, ch3, ch4:sch1:swave, wave, wave, wave:swave:[[[16.000000:10.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol4:sInput 4:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[24.000000:8.000000:12.000000:2.000000:3.000000:1.000000:sMultiButton:smixMode3:sIn3 > In4:]][1.000000:0.000000:sAdd:sAverage:sMultiply:sMinimum:sMaximum:]][[[16.000000:1.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol1:sInput 1:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[24.000000:2.000000:12.000000:2.000000:3.000000:1.000000:sMultiButton:smixMode1:sIn1 > In2:]][1.000000:0.000000:sAdd:sAverage:sMultiply:sMinimum:sMaximum:]][[[16.000000:4.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol2:sInput 2:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[16.000000:7.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol3:sInput 3:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:0.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span1:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:3.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span2:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:6.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span3:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[24.000000:5.000000:12.000000:2.000000:3.000000:1.000000:sMultiButton:smixMode2:sIn2 > In3:]][1.000000:0.000000:sAdd:sAverage:sMultiply:sMinimum:sMaximum:]][[[4.000000:9.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span4:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]]]]
+// EDITOR SOURCE: [[31.000000:4.000000:1.000000:s4x Mixer:sProcessing:sch1, ch2, ch3, ch4:sch1:swave, wave, wave, wave:swave:[[[16.000000:10.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol4:sInput 4:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[24.000000:9.500000:12.500000:2.000000:3.000000:1.000000:sMultiButton:smixMode3:s:]][1.000000:0.000000:sAdd:sAverage:sMultiply:sMinimum:sMaximum:]][[[16.000000:1.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol1:sInput 1:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[24.000000:3.500000:12.500000:2.000000:3.000000:1.000000:sMultiButton:smixMode1:s:]][1.000000:0.000000:sAdd:sAverage:sMultiply:sMinimum:sMaximum:]][[[16.000000:4.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol2:sInput 2:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[16.000000:7.000000:1.000000:1.000000:8.000000:1.000000:sAtomSlider:svol3:sInput 3:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:0.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span1:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:3.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span2:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:6.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span3:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[24.000000:6.500000:12.500000:2.000000:3.000000:1.000000:sMultiButton:smixMode2:s:]][1.000000:0.000000:sAdd:sAverage:sMultiply:sMinimum:sMaximum:]][[[4.000000:9.500000:9.500000:2.000000:2.000000:1.000000:sAtomKnob:span4:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[24.000000:10.000000:15.000000:1.000000:2.000000:0.000000:sArrow:sArrow:sOutput:]][2.000000:0.000000:]][[[24.000000:4.000000:11.000000:1.000000:1.500000:1.000000:sArrow:sArrow:s:]][2.000000:0.000000:]][[[24.000000:1.000000:11.000000:1.000000:3.500000:1.000000:sArrow:sArrow:s:]][3.000000:0.000000:]][[[24.000000:10.000000:11.000000:1.000000:1.500000:1.000000:sArrow:sArrow:s:]][2.000000:0.000000:]][[[24.000000:7.000000:11.000000:1.000000:1.500000:1.000000:sArrow:sArrow:s:]][2.000000:0.000000:]][[[24.000000:5.000000:13.500000:1.500000:1.000000:1.000000:sArrow:sArrow:s:]][2.000000:0.000000:]][[[24.000000:8.000000:13.500000:1.500000:1.000000:1.000000:sArrow:sArrow:s:]][2.000000:0.000000:]][[[24.000000:1.000000:13.500000:2.500000:1.000000:1.000000:sArrow:sArrow:s:]][2.000000:0.000000:]]]]
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Mixer.h"
@@ -36,7 +36,7 @@ MixerController::MixerController() :
 	m_gui.addComponent(m_vol4.createLabel("Input 4", true));
 
 	m_gui.addComponent(&m_mixMode3);
-	m_mixMode3.setBounds(CB(8.000000, 12.000000, 2.000000, 3.000000));
+	m_mixMode3.setBounds(CB(9.500000, 12.500000, 2.000000, 3.000000));
 	m_mixMode3.addListener(this);
 	m_mixMode3.setVertical(true);
 	m_mixMode3.addLabel("Add");
@@ -44,7 +44,6 @@ MixerController::MixerController() :
 	m_mixMode3.addLabel("Multiply");
 	m_mixMode3.addLabel("Minimum");
 	m_mixMode3.addLabel("Maximum");
-	m_gui.addComponent(m_mixMode3.createLabel("In3 > In4", true));
 
 	m_gui.addComponent(&m_vol1);
 	m_vol1.setBounds(CB(1.000000, 1.000000, 1.000000, 8.000000));
@@ -56,7 +55,7 @@ MixerController::MixerController() :
 	m_gui.addComponent(m_vol1.createLabel("Input 1", true));
 
 	m_gui.addComponent(&m_mixMode1);
-	m_mixMode1.setBounds(CB(2.000000, 12.000000, 2.000000, 3.000000));
+	m_mixMode1.setBounds(CB(3.500000, 12.500000, 2.000000, 3.000000));
 	m_mixMode1.addListener(this);
 	m_mixMode1.setVertical(true);
 	m_mixMode1.addLabel("Add");
@@ -64,7 +63,6 @@ MixerController::MixerController() :
 	m_mixMode1.addLabel("Multiply");
 	m_mixMode1.addLabel("Minimum");
 	m_mixMode1.addLabel("Maximum");
-	m_gui.addComponent(m_mixMode1.createLabel("In1 > In2", true));
 
 	m_gui.addComponent(&m_vol2);
 	m_vol2.setBounds(CB(4.000000, 1.000000, 1.000000, 8.000000));
@@ -106,7 +104,7 @@ MixerController::MixerController() :
 	m_gui.addComponent(m_pan3.createLabel("Panning", true));
 
 	m_gui.addComponent(&m_mixMode2);
-	m_mixMode2.setBounds(CB(5.000000, 12.000000, 2.000000, 3.000000));
+	m_mixMode2.setBounds(CB(6.500000, 12.500000, 2.000000, 3.000000));
 	m_mixMode2.addListener(this);
 	m_mixMode2.setVertical(true);
 	m_mixMode2.addLabel("Add");
@@ -114,7 +112,6 @@ MixerController::MixerController() :
 	m_mixMode2.addLabel("Multiply");
 	m_mixMode2.addLabel("Minimum");
 	m_mixMode2.addLabel("Maximum");
-	m_gui.addComponent(m_mixMode2.createLabel("In2 > In3", true));
 
 	m_gui.addComponent(&m_pan4);
 	m_pan4.setBounds(CB(9.500000, 9.500000, 2.000000, 2.000000));
@@ -122,6 +119,39 @@ MixerController::MixerController() :
 	m_pan4.setBounded(true);
 	addAutomatedControl(m_pan4, m_pan4Iter);
 	m_gui.addComponent(m_pan4.createLabel("Panning", true));
+
+	m_gui.addComponent(&m_arrow12);
+	m_arrow12.setBounds(CB(10.000000, 15.000000, 1.000000, 2.000000));
+	m_arrow12.setCaps(0, 2);
+	m_gui.addComponent(m_arrow12.createLabel("Output", false));
+
+	m_gui.addComponent(&m_arrow13);
+	m_arrow13.setBounds(CB(4.000000, 11.000000, 1.000000, 1.500000));
+	m_arrow13.setCaps(0, 2);
+
+	m_gui.addComponent(&m_arrow14);
+	m_arrow14.setBounds(CB(1.000000, 11.000000, 1.000000, 3.500000));
+	m_arrow14.setCaps(0, 3);
+
+	m_gui.addComponent(&m_arrow15);
+	m_arrow15.setBounds(CB(10.000000, 11.000000, 1.000000, 1.500000));
+	m_arrow15.setCaps(0, 2);
+
+	m_gui.addComponent(&m_arrow16);
+	m_arrow16.setBounds(CB(7.000000, 11.000000, 1.000000, 1.500000));
+	m_arrow16.setCaps(0, 2);
+
+	m_gui.addComponent(&m_arrow17);
+	m_arrow17.setBounds(CB(5.000000, 13.500000, 1.500000, 1.000000));
+	m_arrow17.setCaps(0, 2);
+
+	m_gui.addComponent(&m_arrow18);
+	m_arrow18.setBounds(CB(8.000000, 13.500000, 1.500000, 1.000000));
+	m_arrow18.setCaps(0, 2);
+
+	m_gui.addComponent(&m_arrow19);
+	m_arrow19.setBounds(CB(1.000000, 13.500000, 2.500000, 1.000000));
+	m_arrow19.setCaps(0, 2);
 
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 
@@ -139,7 +169,7 @@ SaveState MixerController::saveSaveState() {
 	toReturn.addState(AtomController::saveSaveState());
 
 	SaveState & extraData = *new SaveState();
-	extraData.addValue(2); //Store the revision this was saved with, to preserve backwards compatibility.
+	extraData.addValue(4); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_vol4.saveSaveState());
 	extraData.addState(m_mixMode3.saveSaveState());
 	extraData.addState(m_vol1.saveSaveState());
@@ -163,7 +193,39 @@ void MixerController::loadSaveState(SaveState state) {
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
 	/* BEGIN LOAD CODE */
-	if(version == 1)
+	if(version == 4) {
+		m_vol4.loadSaveState(extraData.getNextState());
+		m_mixMode3.loadSaveState(extraData.getNextState());
+		m_vol1.loadSaveState(extraData.getNextState());
+		m_mixMode1.loadSaveState(extraData.getNextState());
+		m_vol2.loadSaveState(extraData.getNextState());
+		m_vol3.loadSaveState(extraData.getNextState());
+		m_pan1.loadSaveState(extraData.getNextState());
+		m_pan2.loadSaveState(extraData.getNextState());
+		m_pan3.loadSaveState(extraData.getNextState());
+		m_mixMode2.loadSaveState(extraData.getNextState());
+		m_pan4.loadSaveState(extraData.getNextState());
+		/* BEGIN USER-DEFINED LOAD CODE */
+
+		/* END USER-DEFINED LOAD CODE */
+	}
+	else if(version == 3) {
+		m_vol4.loadSaveState(extraData.getNextState());
+		m_mixMode3.loadSaveState(extraData.getNextState());
+		m_vol1.loadSaveState(extraData.getNextState());
+		m_mixMode1.loadSaveState(extraData.getNextState());
+		m_vol2.loadSaveState(extraData.getNextState());
+		m_vol3.loadSaveState(extraData.getNextState());
+		m_pan1.loadSaveState(extraData.getNextState());
+		m_pan2.loadSaveState(extraData.getNextState());
+		m_pan3.loadSaveState(extraData.getNextState());
+		m_mixMode2.loadSaveState(extraData.getNextState());
+		m_pan4.loadSaveState(extraData.getNextState());
+		/* BEGIN USER-DEFINED LOAD CODE */
+
+		/* END USER-DEFINED LOAD CODE */
+	}
+	else if(version == 1)
 	{
 		m_vol4.loadSaveState(extraData.getNextState());
 		m_mixMode3.loadSaveState(extraData.getNextState());

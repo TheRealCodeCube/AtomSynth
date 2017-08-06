@@ -468,4 +468,68 @@ bool NumberEntry::keyPressed(const KeyPress& key) {
 	return tr;
 }
 
+Arrow::Arrow() {
+}
+
+void Arrow::setCaps(int cap1, int cap2) {
+	m_cap1 = cap1;
+	m_cap2 = cap2;
+}
+
+void Arrow::paint(Graphics& g) {
+	g.setColour(FORE_LAYER);
+	constexpr int C2 = C::CELL_SIZE / 2, LS = C::LINE_SIZE;
+	if(getWidth() >= getHeight()) {
+		g.drawLine(C2, C2, getWidth() - C2, C2, LS);
+		switch(m_cap1) {
+		case LINE_CAP:
+			g.drawLine(0, C2, C2, C2, LS);
+			break;
+		case ARROW_CAP:
+			g.drawArrow(Line<float>(C2, C2, 0, C2), LS, LS * 3, LS * 3);
+			break;
+		case POINT_CAP:
+			g.fillEllipse(C2 - LS, C2 - LS, LS * 2, LS * 2);
+			break;
+		}
+
+		switch(m_cap2) {
+		case LINE_CAP:
+			g.drawLine(getWidth() - C2, C2, getWidth(), C2, LS);
+			break;
+		case ARROW_CAP:
+			g.drawArrow(Line<float>(getWidth() - C2, C2, getWidth(), C2), LS, LS * 3, LS * 3);
+			break;
+		case POINT_CAP:
+			g.fillEllipse(getWidth() - C2 - LS, C2 - LS, LS * 2, LS * 2);
+			break;
+		}
+	} else {
+		g.drawLine(C2, C2, C2, getHeight() - C2, LS);
+		switch(m_cap1) {
+		case LINE_CAP:
+			g.drawLine(C2, 0, C2, C2, LS);
+			break;
+		case ARROW_CAP:
+			g.drawArrow(Line<float>(C2, C2, C2, 0), LS, LS * 3, LS * 3);
+			break;
+		case POINT_CAP:
+			g.fillEllipse(C2 - LS, C2 - LS, LS * 2, LS * 2);
+			break;
+		}
+
+		switch(m_cap2) {
+		case LINE_CAP:
+			g.drawLine(C2, getHeight() - C2, C2, getHeight(), LS);
+			break;
+		case ARROW_CAP:
+			g.drawArrow(Line<float>(C2, getHeight() - C2, C2, getHeight()), LS, LS * 3, LS * 3);
+			break;
+		case POINT_CAP:
+			g.fillEllipse(C2 - LS, getHeight() - C2 - LS, LS * 2, LS * 2);
+			break;
+		}
+	}
+}
+
 } /* namespace AtomSynth */

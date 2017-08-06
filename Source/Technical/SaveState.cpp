@@ -80,7 +80,7 @@ SaveState::~SaveState() {
 
 double SaveState::getNextValue() {
 	m_nextValueCounter++;
-	if (m_nextValueCounter > m_values.size()) {
+	if (m_nextValueCounter == m_values.size()) {
 		m_nextValueCounter = 0;
 	}
 	return m_values[m_nextValueCounter];
@@ -88,7 +88,7 @@ double SaveState::getNextValue() {
 
 std::string SaveState::getNextString() {
 	m_nextStringCounter++;
-	if (m_nextStringCounter > m_strings.size()) {
+	if (m_nextStringCounter == m_strings.size()) {
 		m_nextStringCounter = 0;
 	}
 	return m_strings[m_nextStringCounter];
@@ -96,7 +96,7 @@ std::string SaveState::getNextString() {
 
 SaveState & SaveState::getNextState() {
 	m_nextStateCounter++;
-	if (m_nextStateCounter > m_states.size()) {
+	if (m_nextStateCounter == m_states.size()) {
 		m_nextStateCounter = 0;
 	}
 	return m_states[m_nextStateCounter];
