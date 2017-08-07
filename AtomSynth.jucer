@@ -38,15 +38,15 @@
     </GROUP>
     <GROUP id="{7B7A367B-E750-FFA3-8877-3F14B868AD43}" name="Source">
       <GROUP id="{CAF72947-40F8-D3EE-F22E-DED889B0C84E}" name="Adsp">
-        <FILE id="NrydX1" name="basic.cpp" compile="1" resource="0" file="Source/Adsp/basic.cpp"/>
-        <FILE id="yVmjYU" name="basic.h" compile="0" resource="0" file="Source/Adsp/basic.h"/>
-        <FILE id="Ido3Ef" name="interpolation.cpp" compile="1" resource="0"
-              file="Source/Adsp/interpolation.cpp"/>
-        <FILE id="Vx3xnh" name="interpolation.h" compile="0" resource="0" file="Source/Adsp/interpolation.h"/>
-        <FILE id="fSDdRC" name="remap.cpp" compile="1" resource="0" file="Source/Adsp/remap.cpp"/>
-        <FILE id="U7WHRf" name="remap.h" compile="0" resource="0" file="Source/Adsp/remap.h"/>
-        <FILE id="D6x2FR" name="waveform.cpp" compile="1" resource="0" file="Source/Adsp/waveform.cpp"/>
-        <FILE id="Ki9JGW" name="waveform.h" compile="0" resource="0" file="Source/Adsp/waveform.h"/>
+        <FILE id="gCq0Qv" name="Basic.cpp" compile="1" resource="0" file="Source/Adsp/Basic.cpp"/>
+        <FILE id="CDXlsG" name="Basic.h" compile="0" resource="0" file="Source/Adsp/Basic.h"/>
+        <FILE id="VFKAdm" name="Interpolation.cpp" compile="1" resource="0"
+              file="Source/Adsp/Interpolation.cpp"/>
+        <FILE id="hb17WD" name="Interpolation.h" compile="0" resource="0" file="Source/Adsp/Interpolation.h"/>
+        <FILE id="PVBrj5" name="Remap.cpp" compile="1" resource="0" file="Source/Adsp/Remap.cpp"/>
+        <FILE id="cLSAku" name="Remap.h" compile="0" resource="0" file="Source/Adsp/Remap.h"/>
+        <FILE id="Eec1dM" name="Waveform.cpp" compile="1" resource="0" file="Source/Adsp/Waveform.cpp"/>
+        <FILE id="S4187c" name="Waveform.h" compile="0" resource="0" file="Source/Adsp/Waveform.h"/>
       </GROUP>
       <GROUP id="{33BCC5A9-95B1-B73B-B09D-3A734F1AE451}" name="Atoms">
         <GROUP id="{FC596703-87EA-9883-2391-08789ED340A2}" name="Basic">
@@ -56,6 +56,10 @@
           <FILE id="pwAe4H" name="Input.h" compile="0" resource="0" file="Source/Atoms/Basic/Input.h"/>
           <FILE id="jldlDU" name="Output.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Output.cpp"/>
           <FILE id="xcWhFo" name="Output.h" compile="0" resource="0" file="Source/Atoms/Basic/Output.h"/>
+        </GROUP>
+        <GROUP id="{BF8B0D1B-B39B-5B40-CDA9-A768EE1FA30B}" name="Filters">
+          <FILE id="r67DDf" name="Comb.cpp" compile="1" resource="0" file="Source/Atoms/Filters/Comb.cpp"/>
+          <FILE id="NAYIxS" name="Comb.h" compile="0" resource="0" file="Source/Atoms/Filters/Comb.h"/>
         </GROUP>
         <GROUP id="{CD17A6E4-8D6A-E4E0-0345-CB6A0A09484A}" name="Generation">
           <FILE id="ZiHQ2D" name="BasicOsc.cpp" compile="1" resource="0" file="Source/Atoms/Generation/BasicOsc.cpp"/>

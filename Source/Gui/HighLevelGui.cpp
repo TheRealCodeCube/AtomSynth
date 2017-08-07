@@ -736,7 +736,7 @@ AtomSynthEditor::AtomSynthEditor() :
 		}
 		categories[controller->getCategory()]->push_back(controller);
 	}
-	double x = 0.0, y = 0.0;
+	double x = -4.0, y = 0.0;
 	for (std::pair<std::string, std::vector<AtomController *> *> category : categories) {
 		Label * label = new Label();
 		m_addAtom.addAndMakeVisible(label);
@@ -744,22 +744,20 @@ AtomSynthEditor::AtomSynthEditor() :
 		label->setText(String(category.first), NotificationType::dontSendNotification);
 		y += 0.5;
 		for (AtomController * controller : *category.second) {
+			x += 4.0;
+			if (x == 12.0) {
+				x = 0.0;
+				y += 1.0;
+			}
 			TextButton * button = new TextButton();
 			m_addAtom.addAndMakeVisible(button);
 			button->setBounds(CB(x, y, 4, 1));
 			button->setText(controller->getName());
 			button->addListener(this);
 			info(controller->getName());
-			x += 4.0;
-			if (x == 12.0) {
-				x = 0.0;
-				y += 1.0;
-			}
 		}
-		if (x != 12.0) {
-			y += 1.0;
-		}
-		x = 0.0;
+		y += 1.0;
+		x = -4.0;
 	}
 
 	setWantsKeyboardFocus(true);

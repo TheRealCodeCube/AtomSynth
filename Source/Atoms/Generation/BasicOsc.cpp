@@ -9,9 +9,9 @@
 /* BEGIN USER-DEFINED INCLUDES */
 #include <cmath>
 
-#include "Adsp/basic.h"
-#include "Adsp/remap.h"
-#include "Adsp/waveform.h"
+#include "../../Adsp/Basic.h"
+#include "../../Adsp/Remap.h"
+#include "../../Adsp/Waveform.h"
 /* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth {

@@ -3,11 +3,12 @@
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Envelope.h"
+
+#include "../../Adsp/Interpolation.h"
 #include "Technical/SaveState.h"
 /* END AUTO-GENERATED INCLUDES */
 
 /* BEGIN USER-DEFINED INCLUDES */
-#include "Adsp/interpolation.h"
 /* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth {

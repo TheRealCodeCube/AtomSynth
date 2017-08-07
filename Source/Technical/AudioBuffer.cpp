@@ -67,9 +67,9 @@ void AtomSynth::AudioBuffer::copyData(AudioBuffer & copyFrom) {
 void AudioBuffer::copyData(AudioBuffer & copyFrom, int sampleOffset, int channelOffset) {
 	int channels = std::min(copyFrom.getChannels(), m_channels - channelOffset);
 	int samples = std::min(copyFrom.getSize(), m_size - sampleOffset);
-	for (int c = channelOffset; c < channels + channelOffset; c++) {
-		for (int s = sampleOffset; s < samples + sampleOffset; s++) {
-			m_data[c * m_size + s] = copyFrom.getValue(c, s);
+	for (int c = 0, cd = channelOffset; c < channels; c++, cd++) {
+		for (int s = 0, sd = sampleOffset; s < samples; s++, sd++) {
+			m_data[cd * m_size + sd] = copyFrom.getValue(c, s);
 		}
 	}
 }

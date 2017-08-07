@@ -3,11 +3,12 @@
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Noise.h"
+
+#include "../../Adsp/Interpolation.h"
 #include "Technical/SaveState.h"
 /* END AUTO-GENERATED INCLUDES */
 
 /* BEGIN USER-DEFINED INCLUDES */
-#include "Adsp/interpolation.h"
 #include "Technical/GlobalNoteStates.h"
 /* END USER-DEFINED INCLUDES */
 

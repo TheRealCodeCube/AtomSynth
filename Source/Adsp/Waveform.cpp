@@ -5,7 +5,7 @@
  *      Author: josh
  */
 
-#include "waveform.h"
+#include "Waveform.h"
 
 #include <cmath>
 

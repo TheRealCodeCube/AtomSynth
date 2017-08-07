@@ -5,7 +5,7 @@
  *      Author: josh
  */
 
-#include "interpolation.h"
+#include "Interpolation.h"
 
 namespace Adsp {
 

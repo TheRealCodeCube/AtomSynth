@@ -20,6 +20,7 @@
 #include "Generation/Envelope.h"
 #include "Processing/Amplifier.h"
 #include "Processing/Mixer.h"
+#include "Filters/Comb.h"
 /*
  #include "Filters/Amplifier.h"
  #include "Filters/Comb.h"
@@ -41,6 +42,7 @@ std::vector<AtomController *> getAllAtoms() {
 	toReturn.push_back(new EnvelopeController());
 	toReturn.push_back(new AmplifierController());
 	toReturn.push_back(new MixerController());
+	toReturn.push_back(new CombController());
 	/*
 	 toReturn.push_back(new EnvelopeController());
 	 toReturn.push_back(new LfoTunerController());

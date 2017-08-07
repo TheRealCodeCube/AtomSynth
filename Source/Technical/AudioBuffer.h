@@ -90,8 +90,9 @@ public:
 	 * audio buffer, with an optional offset. If the
 	 *  source and destination are different sizes,
 	 * the smallest size will be used. An offfset can
-	 * also be provided, which will start copying at
-	 * a later point in both audio buffers.
+	 * also be provided, which will copy all data from
+	 * copyFrom into an earlier (if negative) or later
+	 * (if positive) point in this AudioBuffer.
 	 * @param copyFrom The source to copy data from.
 	 * @param sampleOffset What sample index to start copying at.
 	 * @param channelOffset What channel index to start copying at.
@@ -146,6 +147,30 @@ public:
 	 */
 	void setValue(int channel, int sample, double value) {
 		m_data[channel * m_size + sample] = value;
+	}
+	/**
+	 * Gets a value on a particular channel at
+	 * a particular position. Other implementations
+	 * can add interpolation, but a basic AudioBuffer
+	 * has no interpolation.
+	 * @param channel The channel to get the value from.
+	 * @param sample The sample position to get the value from. Can be a decimal value.
+	 * @return The value at that position. (Not interpolated, use one of the subclasses if you want interpolation.)
+	 */
+	virtual double get(int channel, double sample) {
+		return m_data[channel * m_size + int(sample + 0.5)];
+	}
+	/**
+	 * Sets a value on a particular channel at
+	 * a particular position. Other implementations
+	 * can add interpolation, but a basic AudioBuffer
+	 * has no interpolation.
+	 * @param channel The channel to set the value on.
+	 * @param sample The sample position to set the value on. Can be a decimal value.
+	 * @return The value to set.
+	 */
+	virtual void set(int channel, double sample, double value) {
+		m_data[channel * m_size + int(sample + 0.5)] = value;
 	}
 
 	/**

@@ -3,11 +3,12 @@
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Amplifier.h"
+
+#include "../../Adsp/Basic.h"
 #include "Technical/SaveState.h"
 /* END AUTO-GENERATED INCLUDES */
 
 /* BEGIN USER-DEFINED INCLUDES */
-#include "Adsp/basic.h"
 /* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth {
