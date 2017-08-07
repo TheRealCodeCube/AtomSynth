@@ -11,6 +11,7 @@
 #include <iostream>
 
 #include "Technical/SaveState.h"
+#include "Technical/Synth.h"
 
 namespace AtomSynth {
 
@@ -29,7 +30,7 @@ AtomParameters AtomParameters::withId(int newId) {
 }
 
 void AtomController::init() {
-	for (int i = 0; i < GlobalNoteStates::getPolyphony(); i++) {
+	for (int i = 0; i < Synth::getInstance()->getParameters().m_polyphony; i++) {
 		m_atoms.push_back(createAtom(i));
 	}
 }
@@ -143,14 +144,14 @@ SaveState AtomController::saveSaveState() {
 
 void AtomController::execute() {
 	//TODO: Change this so only active notes are calculated.
-	for (int i = 0; i < GlobalNoteStates::getPolyphony(); i++) {
-		if (GlobalNoteStates::getIsActive(i)) //Only bother calculating active notes
+	for (int i = 0; i < Synth::getInstance()->getParameters().m_polyphony; i++) {
+		if (Synth::getInstance()->getNoteManager().getIsActive(i)) //Only bother calculating active notes
 				{
 			m_atoms[i]->execute();
 		}
 	}
 
-	if (GlobalNoteStates::getIsActive(0)) {
+	if (Synth::getInstance()->getNoteManager().getIsActive(0)) {
 		m_stopped = true;
 	} else if (m_stopped) {
 		stopControlAnimation();
@@ -248,7 +249,7 @@ Atom::~Atom() {
 }
 
 void Atom::execute() {
-	m_sampleRate = GlobalNoteStates::s_sampleRate;
+	m_sampleRate = Synth::getInstance()->getParameters().m_sampleRate;
 	m_sampleRate_f = double(m_sampleRate);
 	if (m_parameters.m_id == 0) {
 		if (m_updateTimer == 0) {
@@ -267,7 +268,7 @@ void Atom::execute() {
 
 void Atom::reset() {
 	m_shouldUpdateParent = getIndex() == 0;
-	if(m_shouldUpdateParent)
+	if (m_shouldUpdateParent)
 		m_p.stopControlAnimation();
 }
 

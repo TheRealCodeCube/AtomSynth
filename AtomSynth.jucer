@@ -37,91 +37,94 @@
       <FILE id="xxmtVh" name="save.png" compile="0" resource="1" file="Resources/save.png"/>
     </GROUP>
     <GROUP id="{7B7A367B-E750-FFA3-8877-3F14B868AD43}" name="Source">
-      <GROUP id="{CAF72947-40F8-D3EE-F22E-DED889B0C84E}" name="Adsp">
-        <FILE id="gCq0Qv" name="Basic.cpp" compile="1" resource="0" file="Source/Adsp/Basic.cpp"/>
-        <FILE id="CDXlsG" name="Basic.h" compile="0" resource="0" file="Source/Adsp/Basic.h"/>
-        <FILE id="VFKAdm" name="Interpolation.cpp" compile="1" resource="0"
+      <GROUP id="{D3915235-5069-D40C-ECF5-3C6423B27AD1}" name="Adsp">
+        <FILE id="DKUfS6" name="Basic.cpp" compile="1" resource="0" file="Source/Adsp/Basic.cpp"/>
+        <FILE id="q7INhk" name="Basic.h" compile="0" resource="0" file="Source/Adsp/Basic.h"/>
+        <FILE id="SbsTZt" name="Interpolation.cpp" compile="1" resource="0"
               file="Source/Adsp/Interpolation.cpp"/>
-        <FILE id="hb17WD" name="Interpolation.h" compile="0" resource="0" file="Source/Adsp/Interpolation.h"/>
-        <FILE id="PVBrj5" name="Remap.cpp" compile="1" resource="0" file="Source/Adsp/Remap.cpp"/>
-        <FILE id="cLSAku" name="Remap.h" compile="0" resource="0" file="Source/Adsp/Remap.h"/>
-        <FILE id="Eec1dM" name="Waveform.cpp" compile="1" resource="0" file="Source/Adsp/Waveform.cpp"/>
-        <FILE id="S4187c" name="Waveform.h" compile="0" resource="0" file="Source/Adsp/Waveform.h"/>
+        <FILE id="zBCwz1" name="Interpolation.h" compile="0" resource="0" file="Source/Adsp/Interpolation.h"/>
+        <FILE id="b69B5X" name="Remap.cpp" compile="1" resource="0" file="Source/Adsp/Remap.cpp"/>
+        <FILE id="Uph8Ha" name="Remap.h" compile="0" resource="0" file="Source/Adsp/Remap.h"/>
+        <FILE id="A1Y1ib" name="Waveform.cpp" compile="1" resource="0" file="Source/Adsp/Waveform.cpp"/>
+        <FILE id="LW8L22" name="Waveform.h" compile="0" resource="0" file="Source/Adsp/Waveform.h"/>
       </GROUP>
-      <GROUP id="{33BCC5A9-95B1-B73B-B09D-3A734F1AE451}" name="Atoms">
-        <GROUP id="{FC596703-87EA-9883-2391-08789ED340A2}" name="Basic">
-          <FILE id="vTaPZT" name="Multiply.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Multiply.cpp"/>
-          <FILE id="P6gRxc" name="Multiply.h" compile="0" resource="0" file="Source/Atoms/Basic/Multiply.h"/>
-          <FILE id="IIIgje" name="Input.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Input.cpp"/>
-          <FILE id="pwAe4H" name="Input.h" compile="0" resource="0" file="Source/Atoms/Basic/Input.h"/>
-          <FILE id="jldlDU" name="Output.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Output.cpp"/>
-          <FILE id="xcWhFo" name="Output.h" compile="0" resource="0" file="Source/Atoms/Basic/Output.h"/>
+      <GROUP id="{1EC01CA0-C628-4419-605E-030E96F3508A}" name="Atoms">
+        <GROUP id="{2ED4BB6A-D0B1-947D-4CF0-43F38380FB25}" name="Basic">
+          <FILE id="mBuVbW" name="Input.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Input.cpp"/>
+          <FILE id="IohT1Q" name="Input.h" compile="0" resource="0" file="Source/Atoms/Basic/Input.h"/>
+          <FILE id="zaFwoM" name="Multiply.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Multiply.cpp"/>
+          <FILE id="qLV7wL" name="Multiply.h" compile="0" resource="0" file="Source/Atoms/Basic/Multiply.h"/>
+          <FILE id="WUYors" name="Output.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Output.cpp"/>
+          <FILE id="FFTffK" name="Output.h" compile="0" resource="0" file="Source/Atoms/Basic/Output.h"/>
         </GROUP>
-        <GROUP id="{BF8B0D1B-B39B-5B40-CDA9-A768EE1FA30B}" name="Filters">
-          <FILE id="r67DDf" name="Comb.cpp" compile="1" resource="0" file="Source/Atoms/Filters/Comb.cpp"/>
-          <FILE id="NAYIxS" name="Comb.h" compile="0" resource="0" file="Source/Atoms/Filters/Comb.h"/>
+        <GROUP id="{9F313AB3-F5E9-C065-A72C-D757BDAAFEBA}" name="Filters">
+          <FILE id="l2sbpn" name="Comb.cpp" compile="1" resource="0" file="Source/Atoms/Filters/Comb.cpp"/>
+          <FILE id="Uk9sJM" name="Comb.h" compile="0" resource="0" file="Source/Atoms/Filters/Comb.h"/>
         </GROUP>
-        <GROUP id="{CD17A6E4-8D6A-E4E0-0345-CB6A0A09484A}" name="Generation">
-          <FILE id="ZiHQ2D" name="BasicOsc.cpp" compile="1" resource="0" file="Source/Atoms/Generation/BasicOsc.cpp"/>
-          <FILE id="J7DbFs" name="BasicOsc.h" compile="0" resource="0" file="Source/Atoms/Generation/BasicOsc.h"/>
-          <FILE id="iOP4V7" name="Envelope.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Envelope.cpp"/>
-          <FILE id="vbjVe5" name="Envelope.h" compile="0" resource="0" file="Source/Atoms/Generation/Envelope.h"/>
-          <FILE id="rhnAqJ" name="Noise.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Noise.cpp"/>
-          <FILE id="B1wjjQ" name="Noise.h" compile="0" resource="0" file="Source/Atoms/Generation/Noise.h"/>
+        <GROUP id="{F5A6A5BC-D004-6A8F-71C6-845DAD2F2C05}" name="Generation">
+          <FILE id="PsWV89" name="BasicOsc.cpp" compile="1" resource="0" file="Source/Atoms/Generation/BasicOsc.cpp"/>
+          <FILE id="LsyjI8" name="BasicOsc.h" compile="0" resource="0" file="Source/Atoms/Generation/BasicOsc.h"/>
+          <FILE id="pIXOzs" name="Envelope.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Envelope.cpp"/>
+          <FILE id="ccQugL" name="Envelope.h" compile="0" resource="0" file="Source/Atoms/Generation/Envelope.h"/>
+          <FILE id="jUw4o9" name="Noise.cpp" compile="1" resource="0" file="Source/Atoms/Generation/Noise.cpp"/>
+          <FILE id="pMY8pP" name="Noise.h" compile="0" resource="0" file="Source/Atoms/Generation/Noise.h"/>
         </GROUP>
-        <GROUP id="{26F848C8-0AA9-2297-25B0-8D2E2284C04B}" name="Processing">
-          <FILE id="b81VuQ" name="Amplifier.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Amplifier.cpp"/>
-          <FILE id="jJlp8D" name="Amplifier.h" compile="0" resource="0" file="Source/Atoms/Processing/Amplifier.h"/>
-          <FILE id="gLWIJt" name="Mixer.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Mixer.cpp"/>
-          <FILE id="M253Sh" name="Mixer.h" compile="0" resource="0" file="Source/Atoms/Processing/Mixer.h"/>
+        <GROUP id="{B2DB30B4-5335-92FF-957A-1A1DBED83701}" name="Processing">
+          <FILE id="hjDIl6" name="Amplifier.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Amplifier.cpp"/>
+          <FILE id="BTIV0r" name="Amplifier.h" compile="0" resource="0" file="Source/Atoms/Processing/Amplifier.h"/>
+          <FILE id="LQo8Si" name="Mixer.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Mixer.cpp"/>
+          <FILE id="s0s32r" name="Mixer.h" compile="0" resource="0" file="Source/Atoms/Processing/Mixer.h"/>
         </GROUP>
-        <FILE id="ykdhp7" name="_Template.cpp" compile="1" resource="0" file="Source/Atoms/_Template.cpp"/>
-        <FILE id="GYCPCs" name="_Template.h" compile="0" resource="0" file="Source/Atoms/_Template.h"/>
-        <FILE id="E6MIem" name="Atom.cpp" compile="1" resource="0" file="Source/Atoms/Atom.cpp"/>
-        <FILE id="catnrz" name="Atom.h" compile="0" resource="0" file="Source/Atoms/Atom.h"/>
-        <FILE id="PJ5nta" name="AtomList.h" compile="0" resource="0" file="Source/Atoms/AtomList.h"/>
+        <FILE id="c73JUU" name="_Template.cpp" compile="1" resource="0" file="Source/Atoms/_Template.cpp"/>
+        <FILE id="JeIh9U" name="_Template.h" compile="0" resource="0" file="Source/Atoms/_Template.h"/>
+        <FILE id="yGLMiK" name="Atom.cpp" compile="1" resource="0" file="Source/Atoms/Atom.cpp"/>
+        <FILE id="ABG2Pf" name="Atom.h" compile="0" resource="0" file="Source/Atoms/Atom.h"/>
+        <FILE id="nbBviX" name="AtomList.h" compile="0" resource="0" file="Source/Atoms/AtomList.h"/>
+        <FILE id="f4KqVf" name="IDs.txt" compile="0" resource="1" file="Source/Atoms/IDs.txt"/>
       </GROUP>
-      <GROUP id="{634C00AC-4CD6-BD05-6018-640301D71E23}" name="Gui">
-        <FILE id="mX8RPj" name="AnimatedWidgets.cpp" compile="1" resource="0"
+      <GROUP id="{D1250FFA-D313-E60A-88CC-A5017A94C72A}" name="Gui">
+        <FILE id="ii8cXz" name="AnimatedWidgets.cpp" compile="1" resource="0"
               file="Source/Gui/AnimatedWidgets.cpp"/>
-        <FILE id="yz2ZTq" name="AnimatedWidgets.h" compile="0" resource="0"
+        <FILE id="ZpvQck" name="AnimatedWidgets.h" compile="0" resource="0"
               file="Source/Gui/AnimatedWidgets.h"/>
-        <FILE id="Vz540k" name="AtomGui.cpp" compile="1" resource="0" file="Source/Gui/AtomGui.cpp"/>
-        <FILE id="sSoIM9" name="AtomGui.h" compile="0" resource="0" file="Source/Gui/AtomGui.h"/>
-        <FILE id="ezS3DA" name="Colours.cpp" compile="1" resource="0" file="Source/Gui/Colours.cpp"/>
-        <FILE id="CEL5lD" name="Colours.h" compile="0" resource="0" file="Source/Gui/Colours.h"/>
-        <FILE id="dn0Gcv" name="Global.cpp" compile="1" resource="0" file="Source/Gui/Global.cpp"/>
-        <FILE id="wn56Rs" name="Global.h" compile="0" resource="0" file="Source/Gui/Global.h"/>
-        <FILE id="aecxra" name="HighLevelGui.cpp" compile="1" resource="0"
+        <FILE id="KLPp30" name="AtomGui.cpp" compile="1" resource="0" file="Source/Gui/AtomGui.cpp"/>
+        <FILE id="ZQd23N" name="AtomGui.h" compile="0" resource="0" file="Source/Gui/AtomGui.h"/>
+        <FILE id="kd5OSQ" name="Colours.cpp" compile="1" resource="0" file="Source/Gui/Colours.cpp"/>
+        <FILE id="ivk34f" name="Colours.h" compile="0" resource="0" file="Source/Gui/Colours.h"/>
+        <FILE id="ltFAvP" name="Global.cpp" compile="1" resource="0" file="Source/Gui/Global.cpp"/>
+        <FILE id="mPy1PO" name="Global.h" compile="0" resource="0" file="Source/Gui/Global.h"/>
+        <FILE id="mJ4blk" name="HighLevelGui.cpp" compile="1" resource="0"
               file="Source/Gui/HighLevelGui.cpp"/>
-        <FILE id="axqyh7" name="HighLevelGui.h" compile="0" resource="0" file="Source/Gui/HighLevelGui.h"/>
-        <FILE id="Gv2ZYR" name="SimpleWidgets.cpp" compile="1" resource="0"
+        <FILE id="hnNiSb" name="HighLevelGui.h" compile="0" resource="0" file="Source/Gui/HighLevelGui.h"/>
+        <FILE id="AZ8VxI" name="SimpleWidgets.cpp" compile="1" resource="0"
               file="Source/Gui/SimpleWidgets.cpp"/>
-        <FILE id="m5pKVY" name="SimpleWidgets.h" compile="0" resource="0" file="Source/Gui/SimpleWidgets.h"/>
+        <FILE id="uSeoJT" name="SimpleWidgets.h" compile="0" resource="0" file="Source/Gui/SimpleWidgets.h"/>
       </GROUP>
-      <GROUP id="{93A924D0-FF4C-D5EE-9ADE-CA113D074A65}" name="Technical">
-        <FILE id="Mw4Y3H" name="AudioBuffer.cpp" compile="1" resource="0" file="Source/Technical/AudioBuffer.cpp"/>
-        <FILE id="t5Jzxh" name="Automation.cpp" compile="1" resource="0" file="Source/Technical/Automation.cpp"/>
-        <FILE id="t0hjOQ" name="Automation.h" compile="0" resource="0" file="Source/Technical/Automation.h"/>
-        <FILE id="PQ7UHg" name="AudioBuffer.h" compile="0" resource="0" file="Source/Technical/AudioBuffer.h"/>
-        <FILE id="z9sxfj" name="Log.cpp" compile="1" resource="0" file="Source/Technical/Log.cpp"/>
-        <FILE id="BVQwmH" name="Log.h" compile="0" resource="0" file="Source/Technical/Log.h"/>
-        <FILE id="rnWLLJ" name="GlobalNoteStates.cpp" compile="1" resource="0"
-              file="Source/Technical/GlobalNoteStates.cpp"/>
-        <FILE id="UECulb" name="GlobalNoteStates.h" compile="0" resource="0"
-              file="Source/Technical/GlobalNoteStates.h"/>
-        <FILE id="ZqbrDI" name="SaveState.cpp" compile="1" resource="0" file="Source/Technical/SaveState.cpp"/>
-        <FILE id="YsbQZ4" name="SaveState.h" compile="0" resource="0" file="Source/Technical/SaveState.h"/>
-        <FILE id="LJD706" name="Synth.cpp" compile="1" resource="0" file="Source/Technical/Synth.cpp"/>
-        <FILE id="yzeoYi" name="Synth.h" compile="0" resource="0" file="Source/Technical/Synth.h"/>
+      <GROUP id="{335211A4-7B7B-D45D-28FD-4903F67C1AB5}" name="Technical">
+        <FILE id="QKQLPO" name="AtomManager.cpp" compile="1" resource="0" file="Source/Technical/AtomManager.cpp"/>
+        <FILE id="Im5YEW" name="AtomManager.h" compile="0" resource="0" file="Source/Technical/AtomManager.h"/>
+        <FILE id="zCreby" name="AudioBuffer.cpp" compile="1" resource="0" file="Source/Technical/AudioBuffer.cpp"/>
+        <FILE id="wIGNg0" name="AudioBuffer.h" compile="0" resource="0" file="Source/Technical/AudioBuffer.h"/>
+        <FILE id="xCCRyD" name="Automation.cpp" compile="1" resource="0" file="Source/Technical/Automation.cpp"/>
+        <FILE id="RWkoPy" name="Automation.h" compile="0" resource="0" file="Source/Technical/Automation.h"/>
+        <FILE id="gmwtoO" name="GuiManager.cpp" compile="1" resource="0" file="Source/Technical/GuiManager.cpp"/>
+        <FILE id="T5KesX" name="GuiManager.h" compile="0" resource="0" file="Source/Technical/GuiManager.h"/>
+        <FILE id="W0nv3p" name="Log.cpp" compile="1" resource="0" file="Source/Technical/Log.cpp"/>
+        <FILE id="yn2pXP" name="Log.h" compile="0" resource="0" file="Source/Technical/Log.h"/>
+        <FILE id="AGTaNj" name="NoteManager.cpp" compile="1" resource="0" file="Source/Technical/NoteManager.cpp"/>
+        <FILE id="P0mQM3" name="NoteManager.h" compile="0" resource="0" file="Source/Technical/NoteManager.h"/>
+        <FILE id="t6Cr48" name="SaveState.cpp" compile="1" resource="0" file="Source/Technical/SaveState.cpp"/>
+        <FILE id="vS7SJE" name="SaveState.h" compile="0" resource="0" file="Source/Technical/SaveState.h"/>
+        <FILE id="mjNP9b" name="Synth.cpp" compile="1" resource="0" file="Source/Technical/Synth.cpp"/>
+        <FILE id="UfaDzc" name="Synth.h" compile="0" resource="0" file="Source/Technical/Synth.h"/>
       </GROUP>
-      <GROUP id="{D0FE9A6F-246D-9435-33D9-E61B75889008}" name="Vst">
-        <FILE id="wM4ZTN" name="PluginEditor.cpp" compile="1" resource="0"
+      <GROUP id="{E17BED80-E07B-2ABA-54C3-5D8E1FC4440C}" name="Vst">
+        <FILE id="HTFtHz" name="PluginEditor.cpp" compile="1" resource="0"
               file="Source/Vst/PluginEditor.cpp"/>
-        <FILE id="vlt37y" name="PluginEditor.h" compile="0" resource="0" file="Source/Vst/PluginEditor.h"/>
-        <FILE id="cf5kRQ" name="PluginProcessor.cpp" compile="1" resource="0"
+        <FILE id="H3zF3x" name="PluginEditor.h" compile="0" resource="0" file="Source/Vst/PluginEditor.h"/>
+        <FILE id="JQ4Zxy" name="PluginProcessor.cpp" compile="1" resource="0"
               file="Source/Vst/PluginProcessor.cpp"/>
-        <FILE id="RPxuRS" name="PluginProcessor.h" compile="0" resource="0"
+        <FILE id="QyRqtK" name="PluginProcessor.h" compile="0" resource="0"
               file="Source/Vst/PluginProcessor.h"/>
       </GROUP>
     </GROUP>

@@ -5,14 +5,16 @@
  *      Author: josh
  */
 
-#ifndef SOURCE_GLOBALNOTESTATES_H_
-#define SOURCE_GLOBALNOTESTATES_H_
+#ifndef SOURCE_NOTEMANAGER_H_
+#define SOURCE_NOTEMANAGER_H_
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include <vector>
 #include "Technical/AudioBuffer.h"
 
 namespace AtomSynth {
+
+class Synth;
 
 /**
  * Describes the state of a single note.
@@ -35,23 +37,20 @@ struct NoteState {
 };
 
 /**
- * This should really get refactored. Stores global
- * data about the synth and active notes.
+ * Stores information about the state of notes.
+ * See NoteState for more details about what it
+ * stores.
  */
-class GlobalNoteStates {
+class NoteManager {
 private:
-	static std::vector<NoteState> s_notes;
+	std::vector<NoteState> m_notes;
+	Synth * m_parent = nullptr;
+	void setup();
+
+	friend class Synth;
 public:
-	static double s_bpm; ///< The current BPM, which can be set from the plugin host.
-	static unsigned long int s_currentTimestamp; ///< The current time.
-	static int s_sampleRate, ///< The current sample rate, which can be set from the plugin host.
-		s_polyphony; ///< The number of polyphonies to use.
-	GlobalNoteStates();
-	virtual ~GlobalNoteStates();
-	/**
-	 * Initializes one note state for every polyphony.
-	 */
-	static void init();
+	NoteManager();
+	virtual ~NoteManager();
 	/**
 	 * Starts a note at a particular polyphony index.
 	 * If that polyphony index is already taken by another
@@ -60,7 +59,7 @@ public:
 	 * @param index The polyphony index to start the note at.
 	 * @param newState A note state containing data about the new note.
 	 */
-	static void start(int index, NoteState newState);
+	void start(int index, NoteState newState);
 	/**
 	 * Stops a note at a particular polyphony index.
 	 * This will also give any AtomController objects
@@ -68,7 +67,7 @@ public:
 	 * start() for ethical ramifications.
 	 * @param index The note to stop's polyphony index.
 	 */
-	static void stop(int index);
+	void stop(int index);
 	/**
 	 * Completely kills a note at a particular polyphony
 	 * index. This will not give any AtomController
@@ -77,77 +76,61 @@ public:
 	 * see start() for ethical ramifications.
 	 * @param index The note to end's polyphony index.
 	 */
-	static void end(int index);
+	void end(int index);
 	/**
 	 * Adds a note from a MidiMessage.
 	 * @param midi The MidiMessage to convert into a note and add.
 	 */
-	static void addMidiNote(MidiMessage midi);
+	void addMidiNote(MidiMessage midi);
 	/**
 	 * Removes a note from a MidiMessage.
 	 * @param midi The MidiMessage to find and remove.
 	 */
-	static void removeMidiNote(MidiMessage midi);
+	void removeMidiNote(MidiMessage midi);
 	/**
 	 * Adds a note from a frequency.
 	 * @param frequency The frequency to convert into a note and add.
 	 */
-	static void addFrequency(double frequency);
+	void addFrequency(double frequency);
 	/**
 	 * Removes a note from a frequency.
 	 * @param frequency The frequency to find and remove.
 	 */
-	static void removeFrequency(double frequency);
+	void removeFrequency(double frequency);
 	/**
 	 * Finds if any notes are playing at a particular frequency.
 	 * @param frequency The frequency to search for.
 	 * @return True if a note on that frequency is currently being played.
 	 */
-	static bool getIsFrequencyActive(double frequency);
+	bool getIsFrequencyActive(double frequency);
 	/**
 	 * Dumps all note states to the console. Use
 	 * this if you don't have access to a real
 	 * debugger.
 	 */
-	static void listNotes();
+	void listNotes();
 	/**
 	 * Gets a note state at a particular polyphony index.
 	 * @param index The polyphony index to retrieve the NoteState from.
 	 * @return The NoteState at that particular index.
 	 */
-	static NoteState getNoteState(int index);
+	NoteState getNoteState(int index);
 	/**
 	 * Gets if a note at a particular polyphony index is
 	 * stopped. Also see NoteState::Status::STOPPED.
 	 * @param index The polyphony index to check.
 	 * @return True if the selected note state is stopped.
 	 */
-	static bool getIsStopped(int index);
+	bool getIsStopped(int index);
 	/**
 	 * Gets if a note at a particular polyphony index is
 	 * active (the status is not NoteState::Status::SILENT.)
 	 * @param index The polyphony index to check.
 	 * @return True if the selected note state is active.
 	 */
-	static bool getIsActive(int index);
-	/**
-	 * Sets the number of notes the synth can render at
-	 * a time.
-	 * @param polyphony The number of notes the synth should be able to render at a time.
-	 */
-	static void setPolyphony(int polyphony) {
-		s_polyphony = polyphony;
-	}
-	/**
-	 * Gets the number of notes the synth can render at
-	 * a time.
-	 * @return The number of notes the synth can render at a time.
-	 */
-	static int getPolyphony() {
-		return s_polyphony;
-	}
+	bool getIsActive(int index);
 };
 
 } /* namespace AtomSynth */
 
-#endif /* SOURCE_GLOBALNOTESTATES_H_ */
+#endif /* SOURCE_NOTEMANAGER_H_ */

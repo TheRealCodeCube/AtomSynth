@@ -138,7 +138,7 @@ void AtomNetworkWidget::paint(Graphics & g) {
 	}
 
 	//Draw connections
-	for (AtomSynth::AtomController * controller : Synth::s_instance->getAtoms()) {
+	for (AtomSynth::AtomController * controller : Synth::getInstance()->getAtomManager().getAtoms()) {
 		int index = 0, x = controller->getX() + 4 - m_xOffset, y = controller->getY() - m_yOffset, ix = 0, iy = 0;
 		for (std::pair<AtomSynth::AtomController *, int> input : controller->getAllInputs()) {
 			if (input.first != nullptr) {
@@ -177,7 +177,7 @@ void AtomNetworkWidget::paint(Graphics & g) {
 	}
 
 	//Draw controllers
-	for (AtomSynth::AtomController * controller : Synth::s_instance->getAtoms()) {
+	for (AtomSynth::AtomController * controller : Synth::getInstance()->getAtomManager().getAtoms()) {
 		drawAtomController(g, controller);
 	}
 }
@@ -187,8 +187,8 @@ void AtomNetworkWidget::mouseDown(const MouseEvent & event) {
 	m_py = event.y;
 	m_dragStatus = DragStatus::MOVING;
 	int x, y, w;
-	for (int i = Synth::s_instance->getAtoms().size() - 1; i >= 0; i--) {
-		AtomController * controller = Synth::s_instance->getAtoms()[i];
+	for (int i = Synth::getInstance()->getAtomManager().getAtoms().size() - 1; i >= 0; i--) {
+		AtomController * controller = Synth::getInstance()->getAtomManager().getAtoms()[i];
 		AtomController * c = controller;
 		x = event.x - controller->getX() + m_xOffset;
 		y = event.y - controller->getY() + m_yOffset;
@@ -201,7 +201,7 @@ void AtomNetworkWidget::mouseDown(const MouseEvent & event) {
 			m_currentAtom = controller;
 			if (ModifierKeys::getCurrentModifiersRealtime().isRightButtonDown()) {
 				m_currentAtom->markForDeletion();
-				Synth::s_instance->updateExecutionOrder();
+				Synth::getInstance()->getAtomManager().updateExecutionOrder();
 				m_currentAtom = nullptr;
 				for (Listener * listener : m_listeners) {
 					listener->currentAtomChanged(oldController, m_currentAtom);
@@ -281,7 +281,7 @@ void AtomNetworkWidget::mouseUp(const MouseEvent & event) {
 	m_dragStatus = DragStatus::MOVING;
 	if ((dragStatus == DragStatus::IN_TO_OUT) || (dragStatus == DragStatus::OUT_TO_IN)) {
 		repaint();
-		for (AtomSynth::AtomController * controller : Synth::s_instance->getAtoms()) {
+		for (AtomSynth::AtomController * controller : Synth::getInstance()->getAtomManager().getAtoms()) {
 			int x = event.x - controller->getX() + m_xOffset, y = event.y - controller->getY() + m_yOffset;
 			if ((x >= 0) && (y >= -LARGE_TAB_HUMP) && (x <= ATOM_WIDTH * 2) && (y <= ATOM_HEIGHT + LARGE_TAB_HUMP)) {
 				if ((dragStatus == DragStatus::IN_TO_OUT) && (y >= ATOM_HEIGHT - TAB_HEIGHT)) {
@@ -318,7 +318,7 @@ void AtomNetworkWidget::mouseUp(const MouseEvent & event) {
 				dropped->linkInput(tab, m_currentAtom, m_currentTab);
 			}
 		}
-		Synth::s_instance->updateExecutionOrder();
+		Synth::getInstance()->getAtomManager().updateExecutionOrder();
 	}
 }
 
@@ -663,11 +663,11 @@ void AtomSynthEditor::switchView(std::string name) {
 }
 
 void AtomSynthEditor::createNewAtom(std::string name) {
-	for (AtomController * controller : Synth::s_instance->getAvailableAtoms()) {
+	for (AtomController * controller : Synth::getInstance()->getAtomManager().getAvailableAtoms()) {
 		if (controller->getName() == name) {
 			AtomController * newController = controller->createNewInstance();
 			newController->setPosition(m_network.getXOffset() + C::GUI_WIDTH + C::SPACING, m_network.getYOffset() + C::SPACING);
-			Synth::s_instance->addAtom(newController);
+			Synth::getInstance()->getAtomManager().addAtom(newController);
 			currentAtomChanged(m_network.getCurrentAtom(), newController);
 			m_network.setCurrentAtom(newController);
 			m_network.repaint();
@@ -682,7 +682,7 @@ AtomSynthEditor::AtomSynthEditor() :
 	// Make sure that before the constructor has finished, you've set the
 	// editor's size to whatever you need it to be.
 	setSize(C::VST_WIDTH, C::VST_HEIGHT);
-	Synth::s_instance->setAtomsReloaded(true);
+	Synth::getInstance()->getGuiManager().setReloadGuis();
 
 	//Atom network widget
 	addAndMakeVisible(m_network, -1000);
@@ -730,7 +730,7 @@ AtomSynthEditor::AtomSynthEditor() :
 	m_addAtom.setColour(MID_LAYER);
 	m_addAtom.setVisible(false);
 	std::map<std::string, std::vector<AtomController *> *> categories;
-	for (AtomController * controller : Synth::s_instance->getAvailableAtoms()) {
+	for (AtomController * controller : Synth::getInstance()->getAtomManager().getAvailableAtoms()) {
 		if (categories[controller->getCategory()] == nullptr) {
 			categories[controller->getCategory()] = new std::vector<AtomController *>();
 		}
@@ -774,7 +774,7 @@ AtomSynthEditor::~AtomSynthEditor() {
 
 void AtomSynthEditor::presetLoaded() {
 	int minx = 0, miny = 0;
-	for (AtomController * controller : Synth::s_instance->getAtoms()) {
+	for (AtomController * controller : Synth::getInstance()->getAtomManager().getAtoms()) {
 		minx = std::min(minx, controller->getX());
 		miny = std::min(miny, controller->getY());
 	}
@@ -790,7 +790,7 @@ void AtomSynthEditor::imageButtonPressed(AtomSynth::ImageButton * button) {
 	} else if (button->getIconName() == "addFolder") {
 		//m_presetBrowser.addFolder();
 	} else if (button->getIconName() == "save") {
-		info(Synth::s_instance->saveSaveState().exportString());
+		info(Synth::getInstance()->getAtomManager().saveSaveState().exportString());
 	}
 }
 
@@ -863,12 +863,12 @@ bool AtomSynthEditor::keyStateChanged(bool isKeyDown, Component * originatingCom
 		if (units[i - 44] != -1) {
 			double frequency = 440.0 * pow(SEMITONE_DETUNE, units[i - 44] - 9);
 			bool pressed = KeyPress::isKeyCurrentlyDown(i);
-			bool active = GlobalNoteStates::getIsFrequencyActive(frequency);
+			bool active = Synth::getInstance()->getNoteManager().getIsFrequencyActive(frequency);
 			if (pressed != active) {
 				if (pressed) {
-					GlobalNoteStates::addFrequency(frequency);
+					Synth::getInstance()->getNoteManager().addFrequency(frequency);
 				} else {
-					GlobalNoteStates::removeFrequency(frequency);
+					Synth::getInstance()->getNoteManager().removeFrequency(frequency);
 				}
 			}
 		}
@@ -884,11 +884,11 @@ void AtomSynthEditor::selectedFileChanged(PresetBrowser* browser) {
 
 //==============================================================================
 void AtomSynthEditor::paint(Graphics & g) {
-	if (Synth::s_instance->getAtomsReloaded()) {
-		for (AtomController * controller : Synth::s_instance->getAtoms()) {
+	if (Synth::getInstance()->getGuiManager().shouldReloadGuis()) {
+		for (AtomController * controller : AtomSynth::Synth::getInstance()->getAtomManager().getAtoms()) {
 			controller->getGui().setParent(this);
 		}
-		Synth::s_instance->setAtomsReloaded(false);
+		Synth::getInstance()->getGuiManager().setReloadGuis(false);
 	}
 
 	g.fillAll(ATOM_CANVAS);

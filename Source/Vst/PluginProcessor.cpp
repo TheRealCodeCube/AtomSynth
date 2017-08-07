@@ -20,7 +20,6 @@
 #include "Gui/Global.h"
 #include "Technical/AudioBuffer.h"
 #include "Technical/SaveState.h"
-#include "Technical/GlobalNoteStates.h"
 #include "Technical/Synth.h"
 #include "Vst/PluginEditor.h"
 
@@ -80,8 +79,6 @@ void AtomSynthAudioProcessor::changeProgramName(int index, const String& newName
 
 //==============================================================================
 void AtomSynthAudioProcessor::prepareToPlay(double sampleRate, int samplesPerBlock) {
-	// Use this method as the place to do any pre-playback
-	// initialisation that you need..
 	AtomSynth::Synth::initialize(sampleRate, samplesPerBlock);
 }
 
@@ -119,9 +116,9 @@ void AtomSynthAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
 	const int totalNumInputChannels = getTotalNumInputChannels();
 	const int totalNumOutputChannels = getTotalNumOutputChannels();
 	const int numSamples = buffer.getNumSamples();
-	AtomSynth::GlobalNoteStates::s_currentTimestamp += numSamples;
+	AtomSynth::Synth::getInstance()->getParameters().m_timestamp += numSamples;
 
-#define LMMS_COMPATIBILITY
+//#define LMMS_COMPATIBILITY
 #ifdef LMMS_COMPATIBILITY //LMMS does weird things, the prepareToPlay function says 1024 samples / block, but actually gives 256 samples / block.
 	if (numSamples != AtomSynth::AudioBuffer::getDefaultSize())
 		prepareToPlay(AtomSynth::GlobalNoteStates::s_sampleRate, numSamples);
@@ -132,28 +129,17 @@ void AtomSynthAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
 	for (MidiBuffer::Iterator i(midiMessages); i.getNextEvent(message, time);) {
 		if (message.isNoteOn()) {
 			double frequency = pow(2.0, (double(message.getNoteNumber()) - 69.0) / 12.0) * 440.0;
-			AtomSynth::GlobalNoteStates::addMidiNote(message);
+			AtomSynth::Synth::getInstance()->getNoteManager().addMidiNote(message);
 		} else if (message.isNoteOff()) {
 			double frequency = pow(2.0, (double(message.getNoteNumber()) - 69.0) / 12.0) * 440.0;
-			AtomSynth::GlobalNoteStates::removeMidiNote(message);
+			AtomSynth::Synth::getInstance()->getNoteManager().removeMidiNote(message);
 		}
 	}
 
-	// In case we have more outputs than inputs, this code clears any output
-	// channels that didn't contain input data, (because these aren't
-	// guaranteed to be empty - they may contain garbage).
-	// This is here to avoid people getting screaming feedback
-	// when they first compile a plugin, but obviously you don't need to keep
-	// this code if your algorithm always overwrites all the output channels.
-	for (int i = totalNumInputChannels; i < totalNumOutputChannels; ++i)
-		buffer.clear(i, 0, buffer.getNumSamples());
-
-	// This is the place where you'd normally do the guts of your plugin's
-	// audio processing...
-	AtomSynth::AudioBuffer result = AtomSynth::Synth::s_instance->execute();
+	AtomSynth::AudioBuffer result = AtomSynth::Synth::getInstance()->getAtomManager().execute();
 	for (int c = 0; c < AtomSynth::AudioBuffer::getDefaultChannels(); c++) {
 		for (int s = 0; s < AtomSynth::AudioBuffer::getDefaultSize(); s++) {
-			buffer.addSample(c, s, result.getValue(c, s));
+			buffer.setSample(c, s, result.getValue(c, s));
 		}
 	}
 
@@ -161,9 +147,9 @@ void AtomSynthAudioProcessor::processBlock(AudioSampleBuffer& buffer, MidiBuffer
 	if (AudioPlayHead * head = getPlayHead())
 		head->getCurrentPosition(info);
 	if (info.bpm <= 1.0)
-		AtomSynth::GlobalNoteStates::s_bpm = 140.0f;
+		AtomSynth::Synth::getInstance()->getParameters().m_bpm = 140.0f;
 	else
-		AtomSynth::GlobalNoteStates::s_bpm = info.bpm;
+		AtomSynth::Synth::getInstance()->getParameters().m_bpm = info.bpm;
 }
 
 //==============================================================================

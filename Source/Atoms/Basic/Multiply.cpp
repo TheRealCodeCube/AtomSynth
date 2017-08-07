@@ -107,9 +107,6 @@ void MultiplyAtom::execute() {
 	DVecIter & signalOutput = io.addOutput(m_outputs[0]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
-	if(m_parent.m_fac01.getResult().isConstant()) {
-		std::cout << "Fac01 is constant!" << std::endl;
-	}
 	if(signalInput == nullptr) {
 		m_primaryInputs[0]->fill(0.0);
 	} else {

@@ -14,7 +14,6 @@
 #include "SimpleWidgets.h"
 #include "Technical/AudioBuffer.h"
 #include "Technical/Automation.h"
-#include "Technical/GlobalNoteStates.h"
 #include "Technical/SaveState.h"
 
 namespace AtomSynth {

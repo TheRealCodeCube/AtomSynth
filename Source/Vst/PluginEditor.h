@@ -36,7 +36,7 @@ public:
 	virtual bool keyPressed(const KeyPress & key, Component * originatingComponent);
 
 private:
-	AtomSynth::AtomSynthEditor m_editor;JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtomSynthAudioProcessorEditor)
+	AtomSynth::AtomSynthEditor m_editor; JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (AtomSynthAudioProcessorEditor)
 };
 
 #endif  // PLUGINEDITOR_H_INCLUDED

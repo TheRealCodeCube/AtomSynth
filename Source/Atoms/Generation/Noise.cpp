@@ -4,12 +4,12 @@
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Noise.h"
 
-#include "../../Adsp/Interpolation.h"
+#include "Adsp/Interpolation.h"
 #include "Technical/SaveState.h"
+#include "Technical/Synth.h"
 /* END AUTO-GENERATED INCLUDES */
 
 /* BEGIN USER-DEFINED INCLUDES */
-#include "Technical/GlobalNoteStates.h"
 /* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth {

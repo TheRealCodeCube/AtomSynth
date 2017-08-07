@@ -5,8 +5,8 @@
  *      Author: josh
  */
 
-#ifndef SOURCE_ATOM_H_
-#define SOURCE_ATOM_H_
+#ifndef SOURCE_ATOMMM_H_
+#define SOURCE_ATOMMM_H_
 
 #include <iostream>
 #include <functional>
@@ -15,7 +15,6 @@
 
 #include "Gui/AtomGui.h"
 #include "Technical/AudioBuffer.h"
-#include "Technical/GlobalNoteStates.h"
 #include "Technical/Log.h"
 
 #define ATOM_TIME ((double(sample) / m_sampleRate_f) + m_time)
@@ -580,4 +579,4 @@ public:
 
 } /* namespace AtomSynth */
 
-#endif /* SOURCE_ATOM_H_ */
+#endif /* SOURCE_ATOM2_H_ */

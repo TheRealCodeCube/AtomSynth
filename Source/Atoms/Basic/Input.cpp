@@ -1,13 +1,14 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[0.000000:0.000000:1.000000:sInput:sBasic:s:shz, time:s:shz, time:]]
+// EDITOR SOURCE: [[0.000000:0.000000:0.000000:sInput:sBasic:s:shz, time:s:shz, time:]]
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Input.h"
+#include "Technical/NoteManager.h"
 #include "Technical/SaveState.h"
 /* END AUTO-GENERATED INCLUDES */
 
 /* BEGIN USER-DEFINED INCLUDES */
-
+#include "Technical/Synth.h"
 /* END USER-DEFINED INCLUDES */
 
 namespace AtomSynth {
@@ -17,7 +18,7 @@ namespace AtomSynth {
 /* END MISC. USER-DEFINED CODE */
 
 InputController::InputController() :
-		AtomController(AtomParameters(0, 0, true, 2)) {
+		AtomController(AtomParameters(0, 0, false, 2)) {
 	init();
 
 	addOutputIcon("hz");
@@ -73,7 +74,8 @@ void InputAtom::execute() {
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
 	int multiplier = 0;
-	switch (GlobalNoteStates::getNoteState(getIndex()).status) {
+	NoteState state = Synth::getInstance()->getNoteManager().getNoteState(getIndex());
+	switch (state.status) {
 	case NoteState::ACTIVE:
 		multiplier = 1;
 		break;
@@ -84,8 +86,8 @@ void InputAtom::execute() {
 		multiplier = 0;
 	}
 
-	unsigned long int base = GlobalNoteStates::s_currentTimestamp - GlobalNoteStates::getNoteState(getIndex()).timestamp;
-	double time, frequency = GlobalNoteStates::getNoteState(getIndex()).frequency;
+	unsigned long int base = Synth::getInstance()->getParameters().m_timestamp - state.timestamp;
+	double time, frequency = state.frequency;
 	for (int c = 0; c < AudioBuffer::getDefaultChannels(); c++) {
 		for (int s = 0; s < AudioBuffer::getDefaultSize(); s++) {
 			time = (double(s + base) / m_sampleRate_f) * multiplier;

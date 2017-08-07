@@ -197,13 +197,13 @@ AtomKnob::~AtomKnob() {
 void AtomKnob::mouseDown(const MouseEvent& event) {
 	if (ModifierKeys::getCurrentModifiersRealtime().isRightButtonDown()) {
 		if (m_menuOpened) {
-			Synth::s_instance->closeRightClickMenu();
+			Synth::getInstance()->getGuiManager().closeRightClickMenu();
 			m_menuOpened = false;
 		} else {
 			ThisRightClickMenu * m = new ThisRightClickMenu(*this);
 			//RightClickMenu * m = new RightClickMenu();
 			//m->setBounds(0, 0, 100, 100);
-			Synth::s_instance->openRightClickMenu(m);
+			Synth::getInstance()->getGuiManager().openRightClickMenu(m);
 			m_menuOpened = true;
 		}
 		m_dragging = false;

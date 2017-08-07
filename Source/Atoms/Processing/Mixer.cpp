@@ -4,7 +4,7 @@
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "Mixer.h"
 
-#include "../../Adsp/Basic.h"
+#include "Adsp/Basic.h"
 #include "Technical/SaveState.h"
 /* END AUTO-GENERATED INCLUDES */
 

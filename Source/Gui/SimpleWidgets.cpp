@@ -13,6 +13,7 @@
 #include "Global.h"
 #include "Gui/Colours.h"
 #include "Technical/SaveState.h"
+#include "Technical/Synth.h"
 
 namespace AtomSynth {
 
@@ -296,6 +297,10 @@ void BpmMultiple::paint(Graphics & g) {
 	g.drawFittedText(std::to_string(getNumerator()), 0, 0, int(w), int(h), Justification::centred, 1, 1.0);
 	g.drawFittedText(std::to_string(getDenominator()), 0, int(h), int(w), int(h), Justification::centred, 1, 1.0);
 	return;
+}
+
+double BpmMultiple::getSeconds() {
+	return getFraction() * (60.0f / Synth::getInstance()->getParameters().m_bpm);
 }
 
 void BpmMultiple::loadSaveState(SaveState state) {

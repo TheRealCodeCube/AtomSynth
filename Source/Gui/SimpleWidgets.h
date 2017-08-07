@@ -10,7 +10,6 @@
 
 #include "JuceLibraryCode/JuceHeader.h"
 #include "Gui/Colours.h"
-#include "Technical/GlobalNoteStates.h"
 
 namespace AtomSynth {
 
@@ -545,9 +544,7 @@ public:
 	 * half a beat at 120 BPM, or 0.25 seconds.
 	 * @return
 	 */
-	double getSeconds() {
-		return getFraction() * (60.0f / GlobalNoteStates::s_bpm);
-	}
+	double getSeconds();
 	/**
 	 * Gets 1.0 / getSeconds(). If getSeconds() is 0, it
 	 * returns 0.0001.
