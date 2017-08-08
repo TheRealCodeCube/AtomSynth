@@ -18,17 +18,24 @@
 namespace AtomSynth {
 
 Label * EnhancedComponent::createLabel(std::string text, bool top) {
-	Label * toReturn = new Label();
-	toReturn->setText(text, NotificationType::dontSendNotification);
-	toReturn->setFont(Font(C::DEFAULT_FONT));
-	toReturn->setMinimumHorizontalScale(C::MIN_TEXT_SCALE);
+	m_label = new Label();
+	m_label->setText(text, NotificationType::dontSendNotification);
+	m_label->setFont(Font(C::DEFAULT_FONT));
+	m_label->setMinimumHorizontalScale(C::MIN_TEXT_SCALE);
 	if (top) {
-		toReturn->setBounds(getX() - getWidth(), getY() - C::LABEL_HEIGHT - C::SPACING, getWidth() * 3, C::LABEL_HEIGHT);
+		m_label->setBounds(getX() - getWidth(), getY() - C::LABEL_HEIGHT - C::SPACING, getWidth() * 3, C::LABEL_HEIGHT);
 	} else {
-		toReturn->setBounds(getX() - getWidth(), getY() + getHeight() + C::SPACING, getWidth() * 3, C::LABEL_HEIGHT);
+		m_label->setBounds(getX() - getWidth(), getY() + getHeight() + C::SPACING, getWidth() * 3, C::LABEL_HEIGHT);
 	}
-	toReturn->setJustificationType(Justification::centred);
-	return toReturn;
+	m_label->setJustificationType(Justification::centred);
+	return m_label;
+}
+
+void EnhancedComponent::setVisible(bool isVisible) {
+	Component::setVisible(isVisible);
+	if(m_label != nullptr) {
+		m_label->setVisible(isVisible);
+	}
 }
 
 void RightClickMenu::paint(Graphics& g) {

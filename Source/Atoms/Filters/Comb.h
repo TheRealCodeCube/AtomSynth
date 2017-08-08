@@ -28,9 +28,6 @@ private:
 	Arrow m_arrow2;
 	Arrow m_arrow3;
 	Arrow m_arrow4;
-	Arrow m_arrow5;
-	Arrow m_arrow6;
-	Arrow m_arrow7;
 	MultiButton m_delaySource;
 	AtomKnob m_delayTime;
 	DVecIter m_delayTimeIter;
@@ -42,6 +39,14 @@ private:
 	DVecIter m_dryMixIter;
 	AtomKnob m_feedback;
 	DVecIter m_feedbackIter;
+	Arrow m_arrow5;
+	Arrow m_arrow6;
+	Arrow m_arrow7;
+	OctavesKnob m_octaves;
+	DVecIter m_octavesIter;
+	SemitonesKnob m_semitones;
+	DVecIter m_semitonesIter;
+	WaveformPlot m_plot;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */

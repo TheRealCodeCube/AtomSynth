@@ -27,7 +27,7 @@
 AtomSynthAudioProcessor::AtomSynthAudioProcessor() :
 		m_frequency(100.0f) {
 	C::loadFont();
-	feenableexcept(FE_INVALID|FE_OVERFLOW); //I'm getting NaN results that are hard to find.
+	//feenableexcept(FE_INVALID|FE_OVERFLOW); //I'm getting NaN results that are hard to find.
 }
 
 AtomSynthAudioProcessor::~AtomSynthAudioProcessor() {

@@ -426,6 +426,19 @@ public:
 	 * @param clip Whether or not to limit the number of samples retrieved from the AudioBuffer.
 	 */
 	void setDataFromAudioBuffer(AudioBuffer & buf, bool clip = true);
+	/**
+	 * 'Draws' samples from the left channel of an
+	 * AudioBuffer. This is different
+	 * from setDataFromAudioBuffer() in that it will
+	 * use decimal indexes to retrieve one sample for
+	 * each pixel. If your AudioBuffer has antialiasing
+	 * on the AudioBuffer::get() function, it will show
+	 * up on the WaveformPlot.
+	 * @param buf The buffer to draw data from.
+	 * @param start The index to start drawing from.
+	 * @param end The index to stop drawing at.
+	 */
+	void drawDataFromAudioBuffer(AudioBuffer & buf, double start = 0.0, double end = -1.0);
 	virtual void clear();
 };
 

@@ -10,6 +10,7 @@
 
 #include "AnimatedWidgets.h"
 #include "Colours.h"
+#include "Adsp/Remap.h"
 #include "Technical/Automation.h"
 #include "Technical/Synth.h"
 
@@ -577,6 +578,20 @@ void WaveformPlot::setDataFromAudioBuffer(AudioBuffer& source, bool clip) {
 void WaveformPlot::clear() {
 	m_values.clear();
 	PlotBase::clear();
+}
+
+void WaveformPlot::drawDataFromAudioBuffer(AudioBuffer& buf, double start, double end) {
+	m_values.clear();
+	if(end == -1.0) {
+		end = buf.getSize() - 1.0;
+	}
+	//It was intended to be used for audio signals (hence dsp), but it's very handy for this too.
+	double a = Adsp::fastRemapComputeA(0.0, getWidth(), start, end),
+			b = Adsp::fastRemapComputeB(0.0, getWidth(), start, end);
+	for(int x = 0; x < getWidth(); x++) {
+		m_values.push_back(buf.get(0, Adsp::fastRemap(x, a, b)));
+	}
+	repaintAsync();
 }
 
 } /* namespace AtomSynth */

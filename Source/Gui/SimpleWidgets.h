@@ -21,6 +21,7 @@ class SaveState;
  */
 class EnhancedComponent: public Component, private AsyncUpdater {
 private:
+	Label * m_label = nullptr;
 	void handleAsyncUpdate() {
 		repaint();
 	}
@@ -40,6 +41,12 @@ public:
 	void repaintAsync() {
 		triggerAsyncUpdate();
 	}
+	/**
+	 * Sets the visibility of this EnhancedComponent
+	 * and its label, if one was ever created.
+	 * @param isVisible Whether or not the component and its label should be visible.
+	 */
+	virtual void setVisible(bool isVisible);
 };
 
 /**
