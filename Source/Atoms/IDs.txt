@@ -19,5 +19,5 @@
     60: Reverb
 	
 80 - 89: Transforms
-	50: LFO Frequency
-	51: Pitch Slide
+	80: LFO Tuner
+	81: Pitch Mixer

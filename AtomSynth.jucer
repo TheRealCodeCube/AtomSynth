@@ -75,6 +75,12 @@
           <FILE id="LQo8Si" name="Mixer.cpp" compile="1" resource="0" file="Source/Atoms/Processing/Mixer.cpp"/>
           <FILE id="s0s32r" name="Mixer.h" compile="0" resource="0" file="Source/Atoms/Processing/Mixer.h"/>
         </GROUP>
+        <GROUP id="{C8091944-3559-747B-D096-459983E68E96}" name="Transforms">
+          <FILE id="qcsdxF" name="Pitch.cpp" compile="1" resource="0" file="Source/Atoms/Transforms/Pitch.cpp"/>
+          <FILE id="uf0xo4" name="Pitch.h" compile="0" resource="0" file="Source/Atoms/Transforms/Pitch.h"/>
+          <FILE id="HfG2eo" name="LfoTuner.cpp" compile="1" resource="0" file="Source/Atoms/Transforms/LfoTuner.cpp"/>
+          <FILE id="eoz4E3" name="LfoTuner.h" compile="0" resource="0" file="Source/Atoms/Transforms/LfoTuner.h"/>
+        </GROUP>
         <FILE id="c73JUU" name="_Template.cpp" compile="1" resource="0" file="Source/Atoms/_Template.cpp"/>
         <FILE id="JeIh9U" name="_Template.h" compile="0" resource="0" file="Source/Atoms/_Template.h"/>
         <FILE id="yGLMiK" name="Atom.cpp" compile="1" resource="0" file="Source/Atoms/Atom.cpp"/>
@@ -130,7 +136,7 @@
     </GROUP>
   </MAINGROUP>
   <EXPORTFORMATS>
-    <LINUX_MAKE targetFolder="Builds/LinuxMakefile" vstFolder="" cppLanguageStandard="-std=c++14"
+    <LINUX_MAKE targetFolder="Builds/LinuxVst" vstFolder="" cppLanguageStandard="-std=c++14"
                 extraCompilerFlags="" extraDefs="INCLUDE_ATOMS">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
@@ -156,7 +162,8 @@
         <MODULEPATH id="juce_audio_utils" path="../../Programs/JUCE/modules"/>
       </MODULEPATHS>
     </LINUX_MAKE>
-    <VS2015 targetFolder="Builds/VisualStudio2015" vstFolder="" vst3Folder="">
+    <VS2015 targetFolder="Builds/VisualStudio2015Vst" vstFolder="" vst3Folder=""
+            extraDefs="INCLUDE_ATOMS">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
                        isDebug="1" optimisation="1" targetName="AtomSynth"/>
