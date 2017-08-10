@@ -21,8 +21,12 @@
 #include "Processing/Amplifier.h"
 #include "Processing/Mixer.h"
 #include "Filters/Comb.h"
+#include "Filters/FirLowpass.h"
 #include "Transforms/LfoTuner.h"
 #include "Transforms/Pitch.h"
+#ifdef INCLUDE_DEBUG_ATOMS
+#include "Debug/FirTest.h"
+#endif /* INCLUDE_DEBUG_ATOMS */
 /*
  #include "Filters/Amplifier.h"
  #include "Filters/Comb.h"
@@ -45,8 +49,12 @@ std::vector<AtomController *> getAllAtoms() {
 	toReturn.push_back(new AmplifierController());
 	toReturn.push_back(new MixerController());
 	toReturn.push_back(new CombController());
+	toReturn.push_back(new FirLowpassController());
 	toReturn.push_back(new LfoTunerController());
 	toReturn.push_back(new PitchController());
+#ifdef INCLUDE_DEBUG_ATOMS
+	toReturn.push_back(new FirTestController());
+#endif /* INCLUDE_DEBUG_ATOMS */
 	/*
 	 toReturn.push_back(new EnvelopeController());
 	 toReturn.push_back(new LfoTunerController());

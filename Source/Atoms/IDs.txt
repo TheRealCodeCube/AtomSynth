@@ -14,6 +14,7 @@
 	
 40 - 59: Filters
     40: Comb
+    41: FIR Lowpass
 	
 60 - 79: Effects
     60: Reverb
@@ -21,3 +22,6 @@
 80 - 89: Transforms
 	80: LFO Tuner
 	81: Pitch Mixer
+	
+190 - 199: Debug
+	190: FIR Tester

@@ -37,16 +37,18 @@
       <FILE id="xxmtVh" name="save.png" compile="0" resource="1" file="Resources/save.png"/>
     </GROUP>
     <GROUP id="{7B7A367B-E750-FFA3-8877-3F14B868AD43}" name="Source">
-      <GROUP id="{D3915235-5069-D40C-ECF5-3C6423B27AD1}" name="Adsp">
-        <FILE id="DKUfS6" name="Basic.cpp" compile="1" resource="0" file="Source/Adsp/Basic.cpp"/>
-        <FILE id="q7INhk" name="Basic.h" compile="0" resource="0" file="Source/Adsp/Basic.h"/>
-        <FILE id="SbsTZt" name="Interpolation.cpp" compile="1" resource="0"
+      <GROUP id="{CAF72947-40F8-D3EE-F22E-DED889B0C84E}" name="Adsp">
+        <FILE id="LP77yE" name="Basic.cpp" compile="1" resource="0" file="Source/Adsp/Basic.cpp"/>
+        <FILE id="Eeu4WY" name="Basic.h" compile="0" resource="0" file="Source/Adsp/Basic.h"/>
+        <FILE id="B9una2" name="Fir.cpp" compile="1" resource="0" file="Source/Adsp/Fir.cpp"/>
+        <FILE id="CjnWqI" name="Fir.h" compile="0" resource="0" file="Source/Adsp/Fir.h"/>
+        <FILE id="a2shyM" name="Interpolation.cpp" compile="1" resource="0"
               file="Source/Adsp/Interpolation.cpp"/>
-        <FILE id="zBCwz1" name="Interpolation.h" compile="0" resource="0" file="Source/Adsp/Interpolation.h"/>
-        <FILE id="b69B5X" name="Remap.cpp" compile="1" resource="0" file="Source/Adsp/Remap.cpp"/>
-        <FILE id="Uph8Ha" name="Remap.h" compile="0" resource="0" file="Source/Adsp/Remap.h"/>
-        <FILE id="A1Y1ib" name="Waveform.cpp" compile="1" resource="0" file="Source/Adsp/Waveform.cpp"/>
-        <FILE id="LW8L22" name="Waveform.h" compile="0" resource="0" file="Source/Adsp/Waveform.h"/>
+        <FILE id="OuP0eX" name="Interpolation.h" compile="0" resource="0" file="Source/Adsp/Interpolation.h"/>
+        <FILE id="DaACnB" name="Remap.cpp" compile="1" resource="0" file="Source/Adsp/Remap.cpp"/>
+        <FILE id="J6Hg5U" name="Remap.h" compile="0" resource="0" file="Source/Adsp/Remap.h"/>
+        <FILE id="X7BESt" name="Waveform.cpp" compile="1" resource="0" file="Source/Adsp/Waveform.cpp"/>
+        <FILE id="KI1cGC" name="Waveform.h" compile="0" resource="0" file="Source/Adsp/Waveform.h"/>
       </GROUP>
       <GROUP id="{1EC01CA0-C628-4419-605E-030E96F3508A}" name="Atoms">
         <GROUP id="{2ED4BB6A-D0B1-947D-4CF0-43F38380FB25}" name="Basic">
@@ -57,7 +59,13 @@
           <FILE id="WUYors" name="Output.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Output.cpp"/>
           <FILE id="FFTffK" name="Output.h" compile="0" resource="0" file="Source/Atoms/Basic/Output.h"/>
         </GROUP>
+        <GROUP id="{366B152E-69B3-D4F6-60E4-87E645DD739C}" name="Debug">
+          <FILE id="tokTZs" name="FirTest.cpp" compile="1" resource="0" file="Source/Atoms/Debug/FirTest.cpp"/>
+          <FILE id="cPjRfA" name="FirTest.h" compile="0" resource="0" file="Source/Atoms/Debug/FirTest.h"/>
+        </GROUP>
         <GROUP id="{9F313AB3-F5E9-C065-A72C-D757BDAAFEBA}" name="Filters">
+          <FILE id="uUV3VF" name="FirLowpass.cpp" compile="1" resource="0" file="Source/Atoms/Filters/FirLowpass.cpp"/>
+          <FILE id="LCpScP" name="FirLowpass.h" compile="0" resource="0" file="Source/Atoms/Filters/FirLowpass.h"/>
           <FILE id="l2sbpn" name="Comb.cpp" compile="1" resource="0" file="Source/Atoms/Filters/Comb.cpp"/>
           <FILE id="Uk9sJM" name="Comb.h" compile="0" resource="0" file="Source/Atoms/Filters/Comb.h"/>
         </GROUP>
@@ -140,7 +148,8 @@
                 extraCompilerFlags="" extraDefs="INCLUDE_ATOMS">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" libraryPath="/usr/X11R6/lib/" isDebug="1" optimisation="1"
-                       targetName="AtomSynth" headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"/>
+                       targetName="AtomSynth" headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"
+                       defines="INCLUDE_DEBUG_ATOMS"/>
         <CONFIGURATION name="Release" libraryPath="/usr/X11R6/lib/" isDebug="0" optimisation="3"
                        targetName="AtomSynth" headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"/>
       </CONFIGURATIONS>

@@ -1,0 +1,164 @@
+/* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
+// EDITOR SOURCE: [[41.000000:1.000000:1.000000:sLowpass (FIR):sFilters:ssignal, cutoff:ssignal:swave, hz:swave:[[[24.000000:1.500000:1.000000:2.000000:2.000000:1.000000:sMultiButton:scutoffSource:sCutoff Source:]][1.000000:0.000000:sInput:sFixed (440+-):]][[[4.000000:8.500000:1.000000:2.000000:2.000000:1.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]][[[4.000000:5.000000:1.000000:2.000000:2.000000:1.000000:sOctavesKnob:socts:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]]]]
+
+/* BEGIN AUTO-GENERATED INCLUDES */
+#include "FirLowpass.h"
+#include "Technical/SaveState.h"
+/* END AUTO-GENERATED INCLUDES */
+
+/* BEGIN USER-DEFINED INCLUDES */
+#include "Technical/Synth.h"
+/* END USER-DEFINED INCLUDES */
+
+namespace AtomSynth {
+
+/* BEGIN MISC. USER-DEFINED CODE */
+
+/* END MISC. USER-DEFINED CODE */
+
+FirLowpassController::FirLowpassController() :
+		AtomController(AtomParameters(41, 2, true, 1)) {
+	init();
+
+	addInputIcon("wave");
+	addInputIcon("hz");
+	addOutputIcon("wave");
+
+	m_gui.addComponent(&m_cutoffSource);
+	m_cutoffSource.setBounds(CB(1.500000, 1.000000, 2.000000, 2.000000));
+	m_cutoffSource.addListener(this);
+	m_cutoffSource.setVertical(true);
+	m_cutoffSource.addLabel("Input");
+	m_cutoffSource.addLabel("Fixed (440+-)");
+	m_gui.addComponent(m_cutoffSource.createLabel("Cutoff Source", true));
+
+	m_gui.addComponent(&m_semis);
+	m_semis.setBounds(CB(8.500000, 1.000000, 2.000000, 2.000000));
+	m_semis.addListener(this);
+	addAutomatedControl(m_semis, m_semisIter);
+	m_gui.addComponent(m_semis.createLabel("Semitones", true));
+
+	m_gui.addComponent(&m_octs);
+	m_octs.setBounds(CB(5.000000, 1.000000, 2.000000, 2.000000));
+	m_octs.addListener(this);
+	addAutomatedControl(m_octs, m_octsIter);
+	m_gui.addComponent(m_octs.createLabel("Octaves", true));
+
+	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
+
+	/* END USER-DEFINED CONSTRUCTION CODE */
+
+	m_gui.setAtomController(this);
+}
+
+Atom * FirLowpassController::createAtom(int index) {
+	return new FirLowpassAtom(*this, index);
+}
+
+SaveState FirLowpassController::saveSaveState() {
+	SaveState & toReturn = *new SaveState();
+	toReturn.addState(AtomController::saveSaveState());
+
+	SaveState & extraData = *new SaveState();
+	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
+	extraData.addState(m_cutoffSource.saveSaveState());
+	extraData.addState(m_semis.saveSaveState());
+	extraData.addState(m_octs.saveSaveState());
+	/* BEGIN USER-DEFINED SAVE CODE */
+
+	/* END USER-DEFINED SAVE CODE */
+	toReturn.addState(extraData);
+	return toReturn;
+}
+
+void FirLowpassController::loadSaveState(SaveState state) {
+	AtomController::loadSaveState(state.getNextState());
+	SaveState & extraData = state.getNextState();
+	int version = extraData.getNextValue();
+	/* BEGIN LOAD CODE */
+	if(version == 1) {
+		m_cutoffSource.loadSaveState(extraData.getNextState());
+		m_semis.loadSaveState(extraData.getNextState());
+		m_octs.loadSaveState(extraData.getNextState());
+		/* BEGIN USER-DEFINED LOAD CODE */
+
+		/* END USER-DEFINED LOAD CODE */
+	}
+	/* END LOAD CODE */
+}
+
+void FirLowpassController::multiButtonPressed(MultiButton * button) {
+	/* BEGIN USER-DEFINED LISTENER CODE */
+	/* END USER-DEFINED LISTENER CODE */
+}
+
+void FirLowpassController::automatedControlChanged(AutomatedControl * control, bool byUser) {
+	/* BEGIN USER-DEFINED LISTENER CODE */
+	/* END USER-DEFINED LISTENER CODE */
+}
+
+bool FirLowpassAtom::recalculate(double newFreq) {
+	if(std::abs(newFreq - m_currentFreq) < RECALC_THRESH) {
+		return false;
+	}
+	newFreq /= Synth::getInstance()->getParameters().m_sampleRate;
+	Adsp::createLowpassCoefficients(SIZE, m_filter.getCoefficients(), newFreq);
+	return true;
+}
+
+FirLowpassAtom::FirLowpassAtom(FirLowpassController & parent, int index) :
+		Atom(parent, index),
+		m_parent(parent) {
+	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
+	m_delayLine.setSize(AudioBuffer::getDefaultSize() + SIZE);
+	/* END USER-DEFINED CONSTRUCTION CODE */
+}
+
+void FirLowpassAtom::execute() {
+	Atom::execute();
+	AutomationSet & automation = m_parent.m_automation;
+	automation.resetPosition();
+	DVecIter & semisIter = m_parent.m_semisIter;
+	DVecIter & octsIter = m_parent.m_octsIter;
+
+	IOSet io = IOSet();
+	DVecIter * signalInput = io.addInput(m_primaryInputs[0]);
+	DVecIter * cutoffInput = io.addInput(m_primaryInputs[1]);
+	DVecIter & signalOutput = io.addOutput(m_outputs[0]);
+
+	/* BEGIN USER-DEFINED EXECUTION CODE */
+	if(m_primaryInputs[0] == nullptr) {
+		m_outputs[0].fill(0.0);
+	} else {
+		if(m_parent.m_cutoffSource.getSelectedLabel() == 0) {
+			//Hz input.
+			if(m_primaryInputs[1] == nullptr) {
+				m_outputs[0].copyData(*m_primaryInputs[0]);
+			} else {
+				double freq = **cutoffInput;
+				freq = OctavesKnob::detune(freq, *octsIter);
+				freq = SemitonesKnob::detune(freq, *semisIter);
+				recalculate(freq);
+			}
+		} else {
+			//Fixed input
+			double freq = OctavesKnob::detune(440.0, *octsIter);
+			freq = SemitonesKnob::detune(freq, *semisIter);
+			recalculate(freq);
+		}
+		m_delayLine.copyData(*m_primaryInputs[0], SIZE);
+		m_filter.compute(m_delayLine, m_outputs[0]);
+		m_delayLine.offsetData(-AudioBuffer::getDefaultSamples());
+	}
+	/* END USER-DEFINED EXECUTION CODE */
+}
+
+void FirLowpassAtom::reset() {
+	Atom::reset();
+	/* BEGIN USER-DEFINED RESET CODE */
+
+	/* END USER-DEFINED RESET CODE */
+}
+
+} /* namespace AtomSynth */
+

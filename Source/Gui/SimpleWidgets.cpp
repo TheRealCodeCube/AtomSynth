@@ -169,10 +169,10 @@ SimpleKnob::SimpleKnob() :
 		EnhancedComponent(),
 		m_listeners(std::vector<SimpleKnob::Listener *>()),
 		m_value(0.0),
-		m_min(-10.0),
-		m_max(10.0),
+		m_min(-1.0),
+		m_max(1.0),
 		m_suffix(""),
-		m_int(true),
+		m_int(false),
 		m_bounded(true) {
 
 }
