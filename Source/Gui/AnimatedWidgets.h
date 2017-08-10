@@ -51,14 +51,31 @@ private:
 		NOTHING, MIN, BOTH, MAX
 	};
 	AutomatedControl * m_editing;
-	int m_px, m_py, m_influence;
+	int m_px, m_py, m_influence, m_snapping = 0;
+	double m_fakeMin = 0.0, m_fakeMax = 0.0;
+	bool m_vertical = false;
 	Dragging m_dragging;
 	std::vector<Listener *> m_listeners;
 
-	static constexpr int TAB_WIDTH = HS(2), TAB_HEIGHT = HS(1), TAB_SPACING = C::SPACING, TAB_RADIUS = TAB_HEIGHT / 2, TAB_DIAMETER = TAB_HEIGHT, LANE_WIDTH = TAB_WIDTH * AUTOMATION_INPUTS + TAB_RADIUS * 2, LANE_HEIGHT = TAB_HEIGHT + TAB_SPACING, TOP_PART_HEIGHT = C::SPACING * 2 + C::KNOB_SIZE, SKINNY_HEIGHT = TAB_HEIGHT / 2, HANDLE_RADIUS = SKINNY_HEIGHT / 2, HANDLE_DIAMETER = SKINNY_HEIGHT, GRACE_RANGE = 6;
+	static constexpr double snap(double value, double snaps) {
+		return double(int(value * snaps + 0.5)) / snaps;
+	}
+
+	static constexpr int TAB_WIDTH = HS(1) + 4,
+			TAB_HEIGHT = HS(1),
+			TAB_SPACING = C::SMALL_SPACING,
+			TAB_RADIUS = TAB_HEIGHT / 2,
+			TAB_DIAMETER = TAB_HEIGHT,
+			LANE_WIDTH = TAB_WIDTH * AUTOMATION_INPUTS + TAB_RADIUS * 2,
+			LANE_HEIGHT = TAB_HEIGHT + TAB_SPACING,
+			TOP_PART_HEIGHT = C::SPACING * 2 + C::KNOB_SIZE,
+			SKINNY_HEIGHT = TAB_HEIGHT / 2,
+			HANDLE_RADIUS = SKINNY_HEIGHT / 2,
+			HANDLE_DIAMETER = SKINNY_HEIGHT,
+			GRACE_RANGE = 6;
 public:
-	static constexpr int WIDTH = TAB_SPACING * 2 + TAB_RADIUS * 2 + TAB_WIDTH * AUTOMATION_INPUTS, ///< Used for layout.
-		HEIGHT = TAB_SPACING * 5 + TAB_HEIGHT * 4; ///< Used for layout.
+	static constexpr int WIDTH = TAB_SPACING * 2 + TAB_RADIUS * 2 + TAB_WIDTH * AUTOMATION_INPUTS, ///< Width of the box (when placed horizontally)
+		HEIGHT = TAB_SPACING * 5 + TAB_HEIGHT * 4; ///< Height of the box (when placed horizontally)
 
 	AutomationEditor();
 	virtual ~AutomationEditor() {
@@ -67,6 +84,7 @@ public:
 	virtual void paint(Graphics & g);
 	virtual void mouseDown(const MouseEvent & e);
 	virtual void mouseDrag(const MouseEvent & e);
+	virtual void mouseUp(const MouseEvent & e);
 
 	/**
 	 * Add a listener to this object. Any changes made
@@ -92,6 +110,12 @@ public:
 	AutomatedControl * getEditing() {
 		return m_editing;
 	}
+	/**
+	 * Sets whether this AutomationEditor should be rendered
+	 * as vertical rather than horizontal.
+	 * @param vertical True if it should be rendered vertical.
+	 */
+	void setVertical(bool vertical = true);
 };
 
 /**
@@ -104,12 +128,15 @@ private:
 		AtomKnob & m_editing;
 		AutomationEditor m_automationEditor;
 		MultiButton m_mixModeSelector;
-		Point<int> m_previousPos, m_prevMousePos;
+		Point<int> m_previousPos;
 		Component * m_previousParent;
-		int m_dragging, m_influence, m_previousSize;
+		int m_previousSize;
+		static constexpr int TOP_Y = DS_SIZE + C::SPACING,
+				AUTOMATION_X = DS_SIZE + C::SPACING + C::KNOB_SIZE + C::SPACING,
+				MIXMODE_X = AUTOMATION_X + AutomationEditor::WIDTH + C::SPACING,
+				WIDTH = MIXMODE_X + CS(2) + C::SPACING + DS_SIZE,
+				HEIGHT = TOP_Y + CS(2) + C::SPACING + DS_SIZE;
 	public:
-		static constexpr int TOP_PART_HEIGHT = C::SPACING * 2 + C::KNOB_SIZE, BOX_X = DS_SIZE + C::SPACING, BOX_Y = DS_SIZE + TOP_PART_HEIGHT, MIXMODE_X = DS_SIZE + C::SPACING * 2 + C::KNOB_SIZE, TOP_PART_Y = DS_SIZE + C::SPACING, WIDTH = (DS_SIZE * 2 + C::SPACING * 2 + AutomationEditor::WIDTH), HEIGHT = (DS_SIZE * 2 + TOP_PART_HEIGHT + AutomationEditor::HEIGHT + C::SPACING);
-
 		ThisRightClickMenu(AtomKnob & editing);
 		virtual ~ThisRightClickMenu();
 		virtual void multiButtonPressed(MultiButton *);
@@ -138,7 +165,7 @@ public:
 	virtual void mouseDown(const MouseEvent & event);
 	virtual void mouseDrag(const MouseEvent & event);
 	/**
-	 * Closes the menu (an instance of AutomationEditor.)
+	 * Called when the right-click menu is closed.
 	 */
 	void setMenuClosed() {
 		m_menuOpened = false;
@@ -161,10 +188,17 @@ private:
 	class ThisRightClickMenu: public RightClickMenu, public MultiButton::Listener {
 	private:
 		AtomSlider & m_editing;
+		AutomationEditor m_automationEditor;
 		MultiButton m_mixModeSelector;
-		Point<int> m_previousPos, m_prevMousePos;
+		Point<int> m_previousPos;
 		Component * m_previousParent;
-		int m_dragging, m_influence;
+		int m_previousSize;
+		static constexpr int TOP_Y = DS_SIZE + C::SPACING,
+				OTHER_X = DS_SIZE + C::SPACING + CS(1) + C::SPACING,
+				MIXMODE_Y = TOP_Y + AutomationEditor::WIDTH + C::SPACING,
+				WIDTH = OTHER_X + CS(2) + C::SPACING + DS_SIZE,
+				HEIGHT = MIXMODE_Y + CS(2) + C::SPACING + DS_SIZE,
+				SLIDER_HEIGHT = HEIGHT - DS_SIZE - C::SPACING - C::SPACING - DS_SIZE;
 	public:
 		ThisRightClickMenu(AtomSlider & editing);
 		virtual ~ThisRightClickMenu();
@@ -172,8 +206,9 @@ private:
 	};
 	bool m_menuOpened, m_dragging;
 	double m_leftLevel, m_rightLevel;
-	int m_px, m_py;
+	Point<int> m_prevMousePos;
 protected:
+	static constexpr int AI_SIZE = 6;
 	/**
 	 * Call this whenever the value to be displayed changes.
 	 */
@@ -203,6 +238,12 @@ public:
 		m_leftLevel = left;
 		m_rightLevel = right;
 		repaintAsync();
+	}
+	/**
+	 * Called when the right-click menu is closed.
+	 */
+	void setMenuClosed() {
+		m_menuOpened = false;
 	}
 };
 

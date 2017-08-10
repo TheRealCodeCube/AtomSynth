@@ -27,42 +27,102 @@ AutomationEditor::AutomationEditor() :
 
 void AutomationEditor::paint(Graphics& g) {
 	g.setColour(BACK_LAYER);
-	g.fillRoundedRectangle(0, 0, WIDTH, HEIGHT, TAB_RADIUS);
+	if(m_vertical) {
+		g.fillRoundedRectangle(0, 0, HEIGHT, WIDTH, TAB_RADIUS);
+		for (int i = 0; i < 4; i++) {
+			AutomationInfluence inf = m_editing->getInfluence(i);
+			if (inf.m_inputIndex == -1) {
+				for (int c = 0; c < AUTOMATION_INPUTS; c++) {
+					g.setColour(ATOM_COLOURS[c + 2]);
+					g.fillRect(TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING + TAB_RADIUS + (c * TAB_WIDTH), TAB_HEIGHT, TAB_WIDTH);
+				}
 
-	g.setColour(MID_LAYER);
-	for (int i = 0; i < 4; i++) {
-		AutomationInfluence inf = m_editing->getInfluence(i);
-		if (inf.m_inputIndex == -1) {
-			for (int c = 0; c < AUTOMATION_INPUTS; c++) {
-				g.setColour(ATOM_COLOURS[c + 2]);
-				g.fillRect(TAB_SPACING + TAB_RADIUS + (c * TAB_WIDTH), TAB_SPACING + (i * LANE_HEIGHT), TAB_WIDTH, TAB_HEIGHT);
-			}
-
-			g.setColour(ATOM_COLOURS[2]);
-			g.fillEllipse(TAB_SPACING, TAB_SPACING + (i * LANE_HEIGHT), TAB_DIAMETER, TAB_DIAMETER);
-			g.setColour(ATOM_COLOURS[11]);
-			g.fillEllipse(WIDTH - TAB_SPACING - TAB_DIAMETER, TAB_SPACING + (i * LANE_HEIGHT), TAB_DIAMETER, TAB_DIAMETER);
-		} else {
-			g.setColour(MID_LAYER);
-			g.fillRoundedRectangle(TAB_SPACING, TAB_SPACING + (i * LANE_HEIGHT), LANE_WIDTH, TAB_HEIGHT, TAB_RADIUS);
-			g.setColour(ATOM_COLOURS[inf.m_inputIndex + 2]);
-			int low = inf.m_minRange * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS, high = inf.m_maxRange * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS;
-			if (high < low) {
-				g.fillEllipse(low - TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), TAB_RADIUS * 2, TAB_RADIUS * 2);
-				g.fillEllipse(high - TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), TAB_RADIUS * 2, TAB_RADIUS * 2);
-				g.fillRect(high, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - SKINNY_HEIGHT) / 2), low - high, SKINNY_HEIGHT);
+				g.setColour(ATOM_COLOURS[2]);
+				g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING, TAB_DIAMETER, TAB_DIAMETER);
+				g.setColour(ATOM_COLOURS[11]);
+				g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT), WIDTH - TAB_SPACING - TAB_DIAMETER, TAB_DIAMETER, TAB_DIAMETER);
 			} else {
-				g.fillRoundedRectangle(low - TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), high - low + TAB_DIAMETER, TAB_DIAMETER, TAB_RADIUS);
+				g.setColour(MID_LAYER);
+				g.fillRoundedRectangle(TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING, TAB_HEIGHT, LANE_WIDTH, TAB_RADIUS);
+				g.setColour(ATOM_COLOURS[inf.m_inputIndex + 2]);
+				int low = (1.0 - inf.m_minRange) * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS,
+						high = (1.0 - inf.m_maxRange) * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS;
+				if (high > low) {
+					g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT), low - TAB_RADIUS, TAB_RADIUS * 2, TAB_RADIUS * 2);
+					g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT), high - TAB_RADIUS, TAB_RADIUS * 2, TAB_RADIUS * 2);
+					g.fillRect(TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - SKINNY_HEIGHT) / 2), low, SKINNY_HEIGHT, high - low);
+				} else {
+					g.fillRoundedRectangle(TAB_SPACING + (i * LANE_HEIGHT), high - TAB_RADIUS, TAB_DIAMETER, low - high + TAB_DIAMETER, TAB_RADIUS);
+				}
+				g.setColour(FORE_LAYER);
+				g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), low - HANDLE_RADIUS, HANDLE_DIAMETER, HANDLE_DIAMETER);
+				g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), high - HANDLE_RADIUS, HANDLE_DIAMETER, HANDLE_DIAMETER);
 			}
-			g.setColour(FORE_LAYER);
-			g.fillEllipse(low - HANDLE_RADIUS, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), HANDLE_DIAMETER, HANDLE_DIAMETER);
-			g.fillEllipse(high - HANDLE_RADIUS, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), HANDLE_DIAMETER, HANDLE_DIAMETER);
+			if((m_dragging != Dragging::NOTHING) && (i == m_influence) && (m_snapping)) {
+				g.setColour(FORE_LAYER);
+				int snapParts = 8;
+				double spacing = double(LANE_WIDTH - TAB_DIAMETER) / snapParts;
+				for(int y = 0; y < snapParts + 1; y++) {
+					g.drawHorizontalLine(TAB_SPACING + TAB_RADIUS + int(y * spacing + 0.5), TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING + (i * LANE_HEIGHT) + TAB_HEIGHT);
+				}
+			}
 		}
+	} else {
+		g.fillRoundedRectangle(0, 0, WIDTH, HEIGHT, TAB_RADIUS);
+		for (int i = 0; i < 4; i++) {
+			AutomationInfluence inf = m_editing->getInfluence(i);
+			if (inf.m_inputIndex == -1) {
+				for (int c = 0; c < AUTOMATION_INPUTS; c++) {
+					g.setColour(ATOM_COLOURS[c + 2]);
+					g.fillRect(TAB_SPACING + TAB_RADIUS + (c * TAB_WIDTH), TAB_SPACING + (i * LANE_HEIGHT), TAB_WIDTH, TAB_HEIGHT);
+				}
+
+				g.setColour(ATOM_COLOURS[2]);
+				g.fillEllipse(TAB_SPACING, TAB_SPACING + (i * LANE_HEIGHT), TAB_DIAMETER, TAB_DIAMETER);
+				g.setColour(ATOM_COLOURS[11]);
+				g.fillEllipse(WIDTH - TAB_SPACING - TAB_DIAMETER, TAB_SPACING + (i * LANE_HEIGHT), TAB_DIAMETER, TAB_DIAMETER);
+			} else {
+				g.setColour(MID_LAYER);
+				g.fillRoundedRectangle(TAB_SPACING, TAB_SPACING + (i * LANE_HEIGHT), LANE_WIDTH, TAB_HEIGHT, TAB_RADIUS);
+				g.setColour(ATOM_COLOURS[inf.m_inputIndex + 2]);
+				int low = inf.m_minRange * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS, high = inf.m_maxRange * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS;
+				if (high < low) {
+					g.fillEllipse(low - TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), TAB_RADIUS * 2, TAB_RADIUS * 2);
+					g.fillEllipse(high - TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), TAB_RADIUS * 2, TAB_RADIUS * 2);
+					g.fillRect(high, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - SKINNY_HEIGHT) / 2), low - high, SKINNY_HEIGHT);
+				} else {
+					g.fillRoundedRectangle(low - TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), high - low + TAB_DIAMETER, TAB_DIAMETER, TAB_RADIUS);
+				}
+				g.setColour(FORE_LAYER);
+				g.fillEllipse(low - HANDLE_RADIUS, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), HANDLE_DIAMETER, HANDLE_DIAMETER);
+				g.fillEllipse(high - HANDLE_RADIUS, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), HANDLE_DIAMETER, HANDLE_DIAMETER);
+			}
+			if((m_dragging != Dragging::NOTHING) && (i == m_influence) && (m_snapping)) {
+				g.setColour(FORE_LAYER);
+				//g.fillRect(TAB_SPACING + TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), LANE_WIDTH - TAB_DIAMETER, TAB_HEIGHT);
+				int snapParts = 8;
+				double spacing = double(LANE_WIDTH - TAB_DIAMETER) / snapParts;
+				for(int x = 0; x < snapParts + 1; x++) {
+					g.drawVerticalLine(TAB_SPACING + TAB_RADIUS + int(x * spacing + 0.5), TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING + (i * LANE_HEIGHT) + TAB_HEIGHT);
+				}
+			}
+		}
+
 	}
 }
 
 void AutomationEditor::mouseDown(const MouseEvent & e) {
-	int x = e.getMouseDownPosition().getX(), y = e.getMouseDownPosition().getY();
+	int x, y;
+	if(m_vertical) {
+		y = e.getMouseDownPosition().getX();
+		x = e.getMouseDownPosition().getY();
+	} else {
+		x = e.getMouseDownPosition().getX();
+		y = e.getMouseDownPosition().getY();
+	}
+	m_px = x;
+	m_py = y;
+
 	y -= TAB_SPACING;
 	y /= LANE_HEIGHT;
 	if (y > 3) {
@@ -91,7 +151,12 @@ void AutomationEditor::mouseDown(const MouseEvent & e) {
 
 			m_dragging = Dragging::NOTHING;
 		} else {
+			if(m_vertical) {
+				x = getHeight() - x;
+			}
 			m_influence = y;
+			m_fakeMin = m_editing->getInfluence(m_influence).m_minRange;
+			m_fakeMax = m_editing->getInfluence(m_influence).m_maxRange;
 			if (abs(x - TAB_SPACING - m_editing->getInfluence(y).m_maxRange * LANE_WIDTH) <= TAB_RADIUS + GRACE_RANGE) {
 				m_dragging = Dragging::MAX;
 			} else if (abs(x - TAB_SPACING - m_editing->getInfluence(y).m_minRange * LANE_WIDTH) <= TAB_RADIUS + GRACE_RANGE) {
@@ -99,48 +164,93 @@ void AutomationEditor::mouseDown(const MouseEvent & e) {
 			} else {
 				m_dragging = Dragging::BOTH;
 			}
+			if(m_dragging != Dragging::NOTHING) {
+				if(e.mods.isShiftDown()) {
+					m_snapping = 1;
+				} else {
+					m_snapping = 0;
+				}
+			}
 		}
 	}
-	m_px = e.getPosition().getX();
-	m_py = e.getPosition().getY();
+	repaint();
 }
 
 void AutomationEditor::mouseDrag(const MouseEvent & e) {
-	double delta = e.getPosition().getX() - m_px;
-	m_px = e.getPosition().getX();
+	if(m_dragging == Dragging::NOTHING) return;
+	int x, y;
+	if(m_vertical) {
+		y = e.getPosition().getX();
+		x = e.getPosition().getY();
+	} else {
+		x = e.getPosition().getX();
+		y = e.getPosition().getY();
+	}
+	double delta = x - m_px;
+	if(m_vertical) {
+		delta = -delta;
+	}
+	m_px = x;
+
+	if(e.mods.isShiftDown()) {
+		m_snapping = 1;
+	} else {
+		m_snapping = 0;
+	}
+
 	switch (m_dragging) {
 	case Dragging::MIN:
-		m_editing->getInfluence(m_influence).m_minRange += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
+		m_fakeMin += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
 		break;
 	case Dragging::BOTH:
-		m_editing->getInfluence(m_influence).m_minRange += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
-		m_editing->getInfluence(m_influence).m_maxRange += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
+		m_fakeMin += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
+		m_fakeMax += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
 		break;
 	case Dragging::MAX:
-		m_editing->getInfluence(m_influence).m_maxRange += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
+		m_fakeMax += (delta / (LANE_WIDTH - TAB_RADIUS * 2));
 		break;
 	}
 
-	if (m_editing->getInfluence(m_influence).m_minRange > 1.0) {
-		m_editing->getInfluence(m_influence).m_minRange = 1.0;
-	} else if (m_editing->getInfluence(m_influence).m_minRange < 0.0) {
-		m_editing->getInfluence(m_influence).m_minRange = 0.0;
+	if (m_fakeMin > 1.0) {
+		m_fakeMin = 1.0;
+	} else if (m_fakeMin < 0.0) {
+		m_fakeMin = 0.0;
 	}
 
-	if (m_editing->getInfluence(m_influence).m_maxRange > 1.0) {
-		m_editing->getInfluence(m_influence).m_maxRange = 1.0;
-	} else if (m_editing->getInfluence(m_influence).m_maxRange < 0.0) {
-		m_editing->getInfluence(m_influence).m_maxRange = 0.0;
+	if (m_fakeMax > 1.0) {
+		m_fakeMax = 1.0;
+	} else if (m_fakeMax < 0.0) {
+		m_fakeMax = 0.0;
 	}
+
+	double roundedMin = m_fakeMin, roundedMax = m_fakeMax;
+	if(m_snapping == 1) {
+		roundedMin = snap(roundedMin, 8);
+		roundedMax = snap(roundedMax, 8);
+	}
+	m_editing->getInfluence(m_influence).m_minRange = roundedMin;
+	m_editing->getInfluence(m_influence).m_maxRange = roundedMax;
 
 	repaint();
 }
 
+void AutomationEditor::mouseUp(const MouseEvent & e) {
+	m_dragging = Dragging::NOTHING;
+	repaint();
+}
+
+void AutomationEditor::setVertical(bool vertical) {
+	m_vertical = vertical;
+	if(m_vertical) {
+		setSize(HEIGHT, WIDTH);
+	} else {
+		setSize(WIDTH, HEIGHT);
+	}
+}
+
 AtomKnob::ThisRightClickMenu::ThisRightClickMenu(AtomKnob & editing) :
 		RightClickMenu(),
-		m_editing(editing),
-		m_dragging(-2),
-		m_influence(0) {
+		m_editing(editing) {
 
 	m_previousPos = editing.getPosition();
 	m_previousParent = editing.getParentComponent();
@@ -157,7 +267,7 @@ AtomKnob::ThisRightClickMenu::ThisRightClickMenu(AtomKnob & editing) :
 	setSize(WIDTH, HEIGHT);
 
 	addAndMakeVisible(m_mixModeSelector);
-	m_mixModeSelector.setBounds(MIXMODE_X, TOP_PART_Y, CS(2), CS(2));
+	m_mixModeSelector.setBounds(MIXMODE_X, TOP_Y, CS(2), CS(2));
 	m_mixModeSelector.addLabel("Average");
 	m_mixModeSelector.addLabel("Multiply");
 	m_mixModeSelector.addLabel("Minimum");
@@ -167,7 +277,7 @@ AtomKnob::ThisRightClickMenu::ThisRightClickMenu(AtomKnob & editing) :
 	m_mixModeSelector.addListener(this);
 
 	addAndMakeVisible(m_automationEditor);
-	m_automationEditor.setTopLeftPosition(BOX_X, BOX_Y);
+	m_automationEditor.setTopLeftPosition(AUTOMATION_X, TOP_Y);
 	m_automationEditor.setEditing(&m_editing);
 }
 
@@ -286,38 +396,49 @@ double AtomKnob::getAngle() {
 AtomSlider::ThisRightClickMenu::ThisRightClickMenu(AtomSlider & editing) :
 		RightClickMenu(),
 		m_editing(editing),
-		m_dragging(-2),
-		m_influence(0),
 		m_previousParent(nullptr) {
 
-	/*m_previousPos = editing.getPosition();
-	 m_previousParent = editing.getParentComponent();
-	 m_previousParent->repaint();
-	 setTopLeftPosition(editing.getScreenX() - editing.getTopLevelComponent()->getScreenX() - DS_SIZE - C::SPACING, editing.getScreenY() - editing.getTopLevelComponent()->getScreenY() - DS_SIZE - C::SPACING);
-	 editing.setTopLeftPosition(DS_SIZE + C::SPACING, DS_SIZE + C::SPACING);
-	 addAndMakeVisible(editing);
-	 if(getX() < -(DS_SIZE + C::SPACING)) setTopLeftPosition(getPosition().withX(-(DS_SIZE + C::SPACING)));
-	 if(getY() < -(DS_SIZE + C::SPACING)) setTopLeftPosition(getPosition().withY(-(DS_SIZE + C::SPACING)));
+	m_previousPos = editing.getPosition();
+	m_previousParent = editing.getParentComponent();
+	m_previousParent->repaint();
+	setTopLeftPosition(editing.getScreenX() - editing.getTopLevelComponent()->getScreenX() - DS_SIZE - C::SPACING,
+			editing.getScreenY() - editing.getTopLevelComponent()->getScreenY() - DS_SIZE - C::SPACING);
+	editing.setTopLeftPosition(DS_SIZE + C::SPACING, TOP_Y);
+	m_previousSize = m_editing.getHeight();
+	m_editing.setSize(m_editing.getWidth(), SLIDER_HEIGHT);
+	addAndMakeVisible(editing);
+	if (getX() < -(DS_SIZE + C::SPACING))
+		setTopLeftPosition(getPosition().withX(-(DS_SIZE + C::SPACING)));
+	if (getY() < -(DS_SIZE + C::SPACING))
+		setTopLeftPosition(getPosition().withY(-(DS_SIZE + C::SPACING)));
+	setSize(WIDTH, HEIGHT);
 
-	 addAndMakeVisible(& m_mixModeSelector);
-	 //m_mixModeSelector.setBounds(MIXMODE_X, TOP_PART_Y, CS(2), CS(2));
-	 m_mixModeSelector.addLabel("AVG");
-	 m_mixModeSelector.addLabel("MULT");
-	 m_mixModeSelector.addLabel("MIN");
-	 m_mixModeSelector.addLabel("MAX");
-	 m_mixModeSelector.setVertical();
-	 m_mixModeSelector.addListener(this);*/
+	addAndMakeVisible(m_mixModeSelector);
+	m_mixModeSelector.setBounds(OTHER_X, MIXMODE_Y, CS(2), CS(2));
+	m_mixModeSelector.addLabel("Average");
+	m_mixModeSelector.addLabel("Multiply");
+	m_mixModeSelector.addLabel("Minimum");
+	m_mixModeSelector.addLabel("Maximum");
+	m_mixModeSelector.setSelectedLabel(static_cast<int>(editing.getMixMode()));
+	m_mixModeSelector.setVertical();
+	m_mixModeSelector.addListener(this);
+
+	addAndMakeVisible(m_automationEditor);
+	m_automationEditor.setTopLeftPosition(OTHER_X, TOP_Y);
+	m_automationEditor.setVertical();
+	m_automationEditor.setEditing(&m_editing);
 }
 
 AtomSlider::ThisRightClickMenu::~ThisRightClickMenu() {
-	/*m_editing.setTopLeftPosition(m_previousPos);
-	 m_previousParent->addAndMakeVisible(m_editing);
-	 m_editing.setMenuClosed();
-	 m_previousParent->repaint();*/
+	m_editing.setTopLeftPosition(m_previousPos);
+	m_editing.setSize(m_editing.getWidth(), m_previousSize);
+	m_previousParent->addAndMakeVisible(m_editing);
+	m_editing.setMenuClosed();
+	m_previousParent->repaint();
 }
 
 void AtomSlider::ThisRightClickMenu::multiButtonPressed(MultiButton * b) {
-	/*m_editing.m_mixMode = (MixMode) b->getSelectedLabel();*/
+	m_editing.setMixMode((MixMode) b->getSelectedLabel());
 }
 
 AtomSlider::AtomSlider() :
@@ -325,9 +446,7 @@ AtomSlider::AtomSlider() :
 		m_menuOpened(false),
 		m_dragging(false),
 		m_leftLevel(0.0),
-		m_rightLevel(0.0),
-		m_px(0),
-		m_py(0) {
+		m_rightLevel(0.0) {
 
 }
 
@@ -354,6 +473,15 @@ void AtomSlider::paint(Graphics& g) {
 		g.drawFittedText(getFormattedValue(), 0, 0, w * 2 - C::SPACING, w, Justification::centredRight, 1, C::MIN_TEXT_SCALE);
 		//Because there's no g.clearTransform()?!
 		g.restoreState();
+		//Render automation influences
+		for(int i = 0; i < 4; i++) {
+			int index = getInfluence(i).m_inputIndex;
+			if(index != -1) {
+				g.setColour(ATOM_COLOURS[i + 2]);
+				g.fillEllipse(C::SMALL_SPACING, h - C::SMALL_SPACING * (i + 1) - AI_SIZE * (i + 1), AI_SIZE, AI_SIZE);
+			}
+		}
+		//Render handle
 		g.setColour(FORE_LAYER);
 		double y = getDisplayValue() - getMin();
 		y = 1 - y / (getMax() - getMin()); //0 (min) - 1 (max)
@@ -380,17 +508,29 @@ void AtomSlider::paint(Graphics& g) {
 }
 
 void AtomSlider::mouseDown(const MouseEvent& event) {
-	m_px = event.getPosition().getX();
-	m_py = event.getPosition().getY();
-	m_dragging = !ModifierKeys::getCurrentModifiersRealtime().isRightButtonDown();
+	if (ModifierKeys::getCurrentModifiersRealtime().isRightButtonDown()) {
+		if (m_menuOpened) {
+			Synth::getInstance()->getGuiManager().closeRightClickMenu();
+			m_menuOpened = false;
+		} else {
+			ThisRightClickMenu * m = new ThisRightClickMenu(*this);
+			//RightClickMenu * m = new RightClickMenu();
+			//m->setBounds(0, 0, 100, 100);
+			Synth::getInstance()->getGuiManager().openRightClickMenu(m);
+			m_menuOpened = true;
+		}
+		m_dragging = false;
+	} else {
+		m_prevMousePos = event.getMouseDownPosition();
+		m_dragging = true;
+	}
 }
 
 void AtomSlider::mouseDrag(const MouseEvent& event) {
 	if (!m_dragging)
 		return;
-	double offset = event.getPosition().getY() - m_py;
-	m_px = event.getPosition().getX();
-	m_py = event.getPosition().getY();
+	double offset = event.getPosition().getY() - m_prevMousePos.getY();
+	m_prevMousePos = event.getPosition();
 	offset /= getHeight() - HANDLE_HEIGHT - UNUSABLE_SPACE;
 	offset *= -(getMax() - getMin());
 	offsetValue(offset);
