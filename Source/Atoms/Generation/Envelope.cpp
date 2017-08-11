@@ -381,7 +381,7 @@ void EnvelopeController::loadSaveState(SaveState state) {
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
 	/* BEGIN LOAD CODE */
-	if (version == 5) {
+	if (version == 1) {
 		m_releaseTime.loadSaveState(extraData.getNextState());
 		m_sustainTime.loadSaveState(extraData.getNextState());
 		m_holdTime.loadSaveState(extraData.getNextState());
@@ -398,21 +398,6 @@ void EnvelopeController::loadSaveState(SaveState state) {
 		m_holdMult.loadSaveState(extraData.getNextState());
 		m_sustainMult.loadSaveState(extraData.getNextState());
 		m_attackMult.loadSaveState(extraData.getNextState());
-		/* BEGIN USER-DEFINED LOAD CODE */
-
-		/* END USER-DEFINED LOAD CODE */
-	} else if (version == 4) {
-		m_releaseMult.loadSaveState(extraData.getNextState());
-		m_sustainLevel.loadSaveState(extraData.getNextState());
-		m_releaseShape.loadSaveState(extraData.getNextState());
-		m_attackLevel.loadSaveState(extraData.getNextState());
-		m_attackShape.loadSaveState(extraData.getNextState());
-		m_sustainShape.loadSaveState(extraData.getNextState());
-		m_holdLevel.loadSaveState(extraData.getNextState());
-		m_delayMult.loadSaveState(extraData.getNextState());
-		m_attackMult.loadSaveState(extraData.getNextState());
-		m_holdMult.loadSaveState(extraData.getNextState());
-		m_sustainMult.loadSaveState(extraData.getNextState());
 		/* BEGIN USER-DEFINED LOAD CODE */
 
 		/* END USER-DEFINED LOAD CODE */

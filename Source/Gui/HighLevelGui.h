@@ -188,13 +188,39 @@ public:
 	}
 };
 
+class PropertiesSidepane: public Rectangle, public TextEntry::Listener, public TextButton::Listener {
+private:
+	TextEntry m_name;
+	TextButton m_saveNow;
+	Label *m_lastSaved;
+	class UpdateContentTimer: public Timer {
+	private:
+		PropertiesSidepane *m_parent;
+	public:
+		UpdateContentTimer(PropertiesSidepane *parent):
+				m_parent(parent) {
+
+		}
+		virtual void timerCallback();
+	};
+	UpdateContentTimer m_updateContentTimer;
+	friend class UpdateContentTimer;
+public:
+	PropertiesSidepane();
+	virtual ~PropertiesSidepane();
+
+	virtual void textEntryChanged(TextEntry *entry);
+	virtual void textButtonPressed(TextButton *button);
+};
+
 /**
  * The complete GUI to edit an entire Synth object.
  */
 class AtomSynthEditor: public Component, public KeyListener, public ImageButton::Listener, public MultiButton::Listener, public TextEntry::Listener, public PresetBrowser::Listener, public AtomNetworkWidget::Listener, public TextButton::Listener {
 private:
 	Rectangle m_addAtom;
-	Component m_properties, m_buttons;
+	PropertiesSidepane m_properties;
+	Component m_buttons;
 	enum class Sidepane {
 		NOTHING, EDITOR, ADD
 	};
@@ -202,7 +228,7 @@ private:
 	AtomNetworkWidget m_network;
 	MultiButton m_synthSaveLoadButton;
 	TextEntry m_synthNameEntry;
-	ImageButton m_noSidepane, m_propertySidepane, m_save, m_addSidepane;
+	ImageButton m_toggleSidepane, m_add, m_open;
 	AtomSynth::ImageButton m_saveLoadButton, m_addDeleteButton;
 	void switchView(std::string name);
 	void createNewAtom(std::string name);

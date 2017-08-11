@@ -632,6 +632,49 @@ void PresetBrowser::mouseDown(const MouseEvent& event) {
 	repaint();
 }
 
+void PropertiesSidepane::UpdateContentTimer::timerCallback() {
+	m_parent->m_lastSaved->setText("Last saved " + std::to_string(Synth::getInstance()->getSaveManager().getTimeSinceSave() / 1000) +
+			" seconds ago.", NotificationType::dontSendNotification);
+	m_parent->m_name.setText(Synth::getInstance()->getSaveManager().getPatchName(), false);
+}
+
+PropertiesSidepane::PropertiesSidepane():
+		Rectangle(),
+		m_updateContentTimer(this) {
+	setColour(MID_LAYER);
+
+	addAndMakeVisible(m_name);
+	m_name.setBounds(CB(0, 0.5, 6, 1));
+	m_name.setText("Unnamed");
+	m_name.addListener(this);
+	addAndMakeVisible(m_name.createLabel("Patch Name"));
+
+	addAndMakeVisible(m_saveNow);
+	m_saveNow.setBounds(CB(6, 0.5, 6, 1));
+	m_saveNow.setText("Save Now");
+	m_saveNow.addListener(this);
+	m_lastSaved = m_saveNow.createLabel("Last saved never.");
+	addAndMakeVisible(m_lastSaved);
+
+	m_updateContentTimer.startTimer(500);
+}
+
+PropertiesSidepane::~PropertiesSidepane() {
+
+}
+
+void PropertiesSidepane::textEntryChanged(TextEntry *entry) {
+	if(entry == &m_name) {
+		Synth::getInstance()->getSaveManager().setPatchName(m_name.getText());
+	}
+}
+
+void PropertiesSidepane::textButtonPressed(TextButton *button) {
+	if(button == &m_saveNow) {
+		Synth::getInstance()->getSaveManager().saveNow();
+	}
+}
+
 void AtomSynthEditor::switchView(std::string name) {
 	if (m_sidepane == Sidepane::EDITOR) {
 		if (m_network.getCurrentAtom() != nullptr) {
@@ -646,18 +689,21 @@ void AtomSynthEditor::switchView(std::string name) {
 	if (name == "network") {
 		m_sidepane = Sidepane::NOTHING;
 		m_buttons.setBounds(0, 0, CD(4), CD(1));
-	} else if (name == "edit") {
-		m_sidepane = Sidepane::EDITOR;
-		if (m_network.getCurrentAtom() != nullptr) {
-			m_network.getCurrentAtom()->getGui().setVisible(true);
-		} else {
-			m_properties.setVisible(true);
+		m_toggleSidepane.setIcon("edit");
+	} else {
+		if (name == "edit") {
+			m_sidepane = Sidepane::EDITOR;
+			if (m_network.getCurrentAtom() != nullptr) {
+				m_network.getCurrentAtom()->getGui().setVisible(true);
+			} else {
+				m_properties.setVisible(true);
+			}
+		} else if (name == "add") {
+			m_sidepane = Sidepane::ADD;
+			m_addAtom.setVisible(true);
 		}
 		m_buttons.setBounds(C::SPACING + C::HEADER_WIDTH, 0, CD(4), CD(1));
-	} else if (name == "add") {
-		m_sidepane = Sidepane::ADD;
-		m_addAtom.setVisible(true);
-		m_buttons.setBounds(C::SPACING + C::HEADER_WIDTH, 0, CD(4), CD(1));
+		m_toggleSidepane.setIcon("network");
 	}
 	repaint();
 }
@@ -691,8 +737,7 @@ AtomSynthEditor::AtomSynthEditor() :
 
 	//Properties view
 	addAndMakeVisible(&m_properties);
-	m_properties.setBounds(0, C::HEADER_HEIGHT, C::GUI_WIDTH, C::GUI_HEIGHT);
-	m_properties.setVisible(false);
+	m_properties.setBounds(0, C::SPACING + C::HEADER_HEIGHT + C::SPACING, C::GUI_WIDTH, C::GUI_HEIGHT);
 
 	String seperator;
 #ifdef OS_WIN
@@ -704,25 +749,20 @@ AtomSynthEditor::AtomSynthEditor() :
 	m_buttons.setBounds(C::SPACING + C::HEADER_WIDTH, 0, CD(4), CD(1));
 
 	//Navigation buttons
-	m_buttons.addAndMakeVisible(m_noSidepane);
-	m_noSidepane.setBounds(CB(0, 0, 1, 1));
-	m_noSidepane.setIcon("network");
-	m_noSidepane.addListener(this);
+	m_buttons.addAndMakeVisible(m_toggleSidepane);
+	m_toggleSidepane.setBounds(CB(0, 0, 1, 1));
+	m_toggleSidepane.setIcon("network");
+	m_toggleSidepane.addListener(this);
 
-	m_buttons.addAndMakeVisible(m_propertySidepane);
-	m_propertySidepane.setBounds(CB(1, 0, 1, 1));
-	m_propertySidepane.setIcon("edit");
-	m_propertySidepane.addListener(this);
+	m_buttons.addAndMakeVisible(m_open);
+	m_open.setBounds(CB(2, 0, 1, 1));
+	m_open.setIcon("open");
+	m_open.addListener(this);
 
-	m_buttons.addAndMakeVisible(m_save);
-	m_save.setBounds(CB(2, 0, 1, 1));
-	m_save.setIcon("save");
-	m_save.addListener(this);
-
-	m_buttons.addAndMakeVisible(m_addSidepane);
-	m_addSidepane.setBounds(CB(3, 0, 1, 1));
-	m_addSidepane.setIcon("add");
-	m_addSidepane.addListener(this);
+	m_buttons.addAndMakeVisible(m_add);
+	m_add.setBounds(CB(3, 0, 1, 1));
+	m_add.setIcon("add");
+	m_add.addListener(this);
 
 	//Add view
 	addAndMakeVisible(&m_addAtom);
@@ -791,6 +831,12 @@ void AtomSynthEditor::imageButtonPressed(AtomSynth::ImageButton * button) {
 		//m_presetBrowser.addFolder();
 	} else if (button->getIconName() == "save") {
 		info(Synth::getInstance()->getAtomManager().saveSaveState().exportString());
+	} else if (name == "open") {
+		FileChooser chooser("Pick A Patch",
+				File::getCurrentWorkingDirectory().getChildFile("Patches"),
+				"*.ssf", false);
+		chooser.browseForFileToOpen();
+		Synth::getInstance()->getSaveManager().load(chooser.getResult());
 	}
 }
 
@@ -900,25 +946,27 @@ void AtomSynthEditor::paint(Graphics & g) {
 }
 
 void AtomSynthEditor::paintOverChildren(Graphics & g) {
-	if ((m_sidepane == Sidepane::EDITOR) || (m_sidepane == Sidepane::ADD)) {
+	if (m_sidepane == Sidepane::NOTHING) {
+		g.setColour(MID_LAYER);
+		g.fillRoundedRectangle(-C::CORNER_SIZE, -C::CORNER_SIZE, C::BUTTON_TRAY_WIDTH + C::CORNER_SIZE, C::SPACING + C::HEADER_HEIGHT + C::SPACING + C::CORNER_SIZE, C::CORNER_SIZE);
+	} else {
 		g.setColour(MID_LAYER);
 		g.fillRect(0, 0, C::GUI_WIDTH, C::SPACING + C::HEADER_HEIGHT + C::SPACING);
 		g.setColour(BACK_LAYER);
 		g.fillRoundedRectangle(C::SPACING, C::SPACING, C::HEADER_WIDTH, C::HEADER_HEIGHT, C::CORNER_SIZE);
 		g.setColour(MID_LAYER);
 		g.setFont(C::LARGE_FONT);
+		std::string title;
 		if (m_sidepane == Sidepane::EDITOR) {
 			if (m_network.getCurrentAtom() != nullptr) {
-				g.drawFittedText(m_network.getCurrentAtom()->getName(), C::SPACING, C::SPACING, C::HEADER_WIDTH, C::HEADER_HEIGHT, Justification::centred, 1, C::MIN_TEXT_SCALE);
+				title = m_network.getCurrentAtom()->getName();
 			} else {
-				g.fillRect(0, C::HEADER_HEIGHT, C::GUI_WIDTH, C::GUI_HEIGHT);
+				title = "Patch Properties";
 			}
-		} else {
-			g.drawFittedText("Add Atom", C::SPACING, C::SPACING, C::HEADER_WIDTH, C::HEADER_HEIGHT, Justification::centred, 1, C::MIN_TEXT_SCALE);
+		} else if (m_sidepane == Sidepane::ADD) {
+			title = "Add Atom";
 		}
-	} else if (m_sidepane == Sidepane::NOTHING) {
-		g.setColour(MID_LAYER);
-		g.fillRoundedRectangle(-C::CORNER_SIZE, -C::CORNER_SIZE, C::BUTTON_TRAY_WIDTH + C::CORNER_SIZE, C::SPACING + C::HEADER_HEIGHT + C::SPACING + C::CORNER_SIZE, C::CORNER_SIZE);
+		g.drawFittedText(title, C::SPACING, C::SPACING, C::HEADER_WIDTH, C::HEADER_HEIGHT, Justification::centred, 1, C::MIN_TEXT_SCALE);
 	}
 
 	//Don't do this at home, kids.
@@ -937,14 +985,21 @@ void AtomSynthEditor::currentAtomChanged(AtomController * oldController, AtomCon
 		m_sidepane = Sidepane::EDITOR;
 		m_addAtom.setVisible(false);
 		repaint();
-		info("Changed to editor");
 	}
-	if ((oldController != nullptr) && (m_sidepane == Sidepane::EDITOR)) {
-		oldController->getGui().setVisible(false);
+	if (m_sidepane == Sidepane::EDITOR) {
+		if(oldController == nullptr) {
+			m_properties.setVisible(false);
+		} else {
+			oldController->getGui().setVisible(false);
+		}
 	}
-	if ((newController != nullptr) && (m_sidepane == Sidepane::EDITOR)) {
-		newController->getGui().setVisible(true);
-		newController->getGui().setAlwaysOnTop(true);
+	if (m_sidepane == Sidepane::EDITOR) {
+		if(newController == nullptr) {
+			m_properties.setVisible(true);
+		} else {
+			newController->getGui().setVisible(true);
+			newController->getGui().setAlwaysOnTop(true);
+		}
 	}
 }
 

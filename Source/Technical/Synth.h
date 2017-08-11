@@ -14,12 +14,14 @@
 #include "AtomManager.h"
 #include "GuiManager.h"
 #include "NoteManager.h"
+#include "SaveManager.h"
 
 namespace AtomSynth {
 
 class Atom;
 class AtomController;
 class AudioBuffer;
+class SaveManager;
 class SaveState;
 
 /**
@@ -42,6 +44,7 @@ private:
 	AtomManager m_atomManager;
 	GuiManager m_guiManager;
 	NoteManager m_noteManager;
+	SaveManager m_saveManager;
 	SynthParameters m_parameters;
 	static Synth * s_instance;
 	Synth();
@@ -100,6 +103,15 @@ public:
 	 */
 	SynthParameters & getParameters() {
 		return m_parameters;
+	}
+	/**
+	 * Returns this Synth's instance of SaveManager, which is
+	 * responsible for saving / loading the synth to / from
+	 * files, as well as keeping track of the name of the patch.
+	 * @return
+	 */
+	SaveManager & getSaveManager() {
+		return m_saveManager;
 	}
 };
 

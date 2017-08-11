@@ -108,13 +108,18 @@ bool AutomatedControl::isAutomated() {
 }
 
 void AutomatedControl::loadSaveState(SaveState state) {
-	m_value = state.getValue(0);
-	m_mixMode = static_cast<MixMode>(int(state.getValue(1)));
+	m_value = state.getNextValue();
+	m_mixMode = static_cast<MixMode>(int(state.getNextValue()));
 	for (AutomationInfluence & i : m_influences) {
 		SaveState knobState = state.getNextState();
-		i.m_inputIndex = int(knobState.getValue(0));
-		i.m_minRange = knobState.getValue(1);
-		i.m_maxRange = knobState.getValue(2);
+		i.m_inputIndex = int(knobState.getNextValue());
+		i.m_minRange = knobState.getNextValue();
+		i.m_maxRange = knobState.getNextValue();
+	}
+	if(state.getValues().size() > 2) {
+		m_min = state.getNextValue();
+		m_max = state.getNextValue();
+		m_suffix = state.getNextString();
 	}
 	valueChanged();
 	if (!m_silent) {
@@ -133,6 +138,9 @@ SaveState AutomatedControl::saveSaveState() {
 		knobState.addValue(i.m_maxRange);
 		state.addState(knobState);
 	}
+	state.addValue(m_min);
+	state.addValue(m_max);
+	state.addString(m_suffix);
 	return state;
 }
 

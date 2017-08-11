@@ -115,6 +115,8 @@
         <FILE id="uSeoJT" name="SimpleWidgets.h" compile="0" resource="0" file="Source/Gui/SimpleWidgets.h"/>
       </GROUP>
       <GROUP id="{335211A4-7B7B-D45D-28FD-4903F67C1AB5}" name="Technical">
+        <FILE id="VcawG3" name="SaveManager.cpp" compile="1" resource="0" file="Source/Technical/SaveManager.cpp"/>
+        <FILE id="YUXACn" name="SaveManager.h" compile="0" resource="0" file="Source/Technical/SaveManager.h"/>
         <FILE id="QKQLPO" name="AtomManager.cpp" compile="1" resource="0" file="Source/Technical/AtomManager.cpp"/>
         <FILE id="Im5YEW" name="AtomManager.h" compile="0" resource="0" file="Source/Technical/AtomManager.h"/>
         <FILE id="zCreby" name="AudioBuffer.cpp" compile="1" resource="0" file="Source/Technical/AudioBuffer.cpp"/>

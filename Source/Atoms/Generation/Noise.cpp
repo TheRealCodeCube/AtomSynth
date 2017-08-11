@@ -128,7 +128,7 @@ void NoiseController::loadSaveState(SaveState state) {
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
 	/* BEGIN LOAD CODE */
-	if (version == 3) {
+	if (version == 0) {
 		m_amplitude.loadSaveState(extraData.getNextState());
 		m_time.loadSaveState(extraData.getNextState());
 		m_timeFrame.loadSaveState(extraData.getNextState());

@@ -189,20 +189,6 @@ void CombController::loadSaveState(SaveState state) {
 
 		/* END USER-DEFINED LOAD CODE */
 	}
-	else if(version == 3) {
-		m_delaySource.loadSaveState(extraData.getNextState());
-		m_delayTime.loadSaveState(extraData.getNextState());
-		m_timeRange.loadSaveState(extraData.getNextState());
-		m_hertzRange.loadSaveState(extraData.getNextState());
-		m_delayHz.loadSaveState(extraData.getNextState());
-		m_dryMix.loadSaveState(extraData.getNextState());
-		m_feedback.loadSaveState(extraData.getNextState());
-		m_octaves.loadSaveState(extraData.getNextState());
-		m_semitones.loadSaveState(extraData.getNextState());
-		/* BEGIN USER-DEFINED LOAD CODE */
-
-		/* END USER-DEFINED LOAD CODE */
-	}
 	else if(version == 2) {
 		m_delaySource.loadSaveState(extraData.getNextState());
 		m_delayTime.loadSaveState(extraData.getNextState());
@@ -213,8 +199,6 @@ void CombController::loadSaveState(SaveState state) {
 		m_feedback.loadSaveState(extraData.getNextState());
 		/* BEGIN USER-DEFINED LOAD CODE */
 		multiButtonPressed(&m_delaySource); //Show / hide things based on the selected delay source.
-		multiButtonPressed(&m_hertzRange); //Update knob range based on selected range.
-		multiButtonPressed(&m_timeRange); //Update knob range based on selected range.
 		/* END USER-DEFINED LOAD CODE */
 	}
 	/* END LOAD CODE */

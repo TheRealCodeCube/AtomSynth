@@ -335,7 +335,11 @@ public:
 	 * Saves the control's current state to a SaveState.
 	 * The returned SaveState contains information about
 	 * the default value and all four automation influence
-	 * channels.
+	 * channels. It also contains information about the
+	 * minimum and maximum possible values, as well as the
+	 * suffix, so that knobs that are changed by code can
+	 * be restored without having to execute that code
+	 * again.
 	 * @return A SaveState representing the control's current state.
 	 */
 	SaveState saveSaveState();

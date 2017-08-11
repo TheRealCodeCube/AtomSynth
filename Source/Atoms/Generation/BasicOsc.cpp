@@ -255,7 +255,7 @@ void BasicOscController::loadSaveState(SaveState state) {
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
 	/* BEGIN LOAD CODE */
-	if (version == 3) {
+	if (version == 1) {
 		m_waveSelect.loadSaveState(extraData.getNextState());
 		m_top.loadSaveState(extraData.getNextState());
 		m_uVoices.loadSaveState(extraData.getNextState());
