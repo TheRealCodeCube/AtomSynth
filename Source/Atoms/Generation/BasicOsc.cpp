@@ -1,5 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[10.000000:1.000000:1.000000:sBasic Osc:sGeneration:shz:saudio:shz:swave:[[24.000000:0.000000:1.000000:10.000000:10.000000:1.000000:sWaveformPlot:splot:s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:1.000000:sMultiButton:swaveSelect:s:]][0.000000:0.000000:sSin:sSqr:sTri:sExp:sSExp:sCExp:sTahn:sSTanh:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:1.000000:sAtomKnob:stop:sTop:]][-1.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:14.000000:2.000000:2.000000:1.000000:sSimpleKnob:suVoices:sVoices:]][1.000000:12.000000:1.000000:1.000000:1.000000:s:]][[[4.000000:10.000000:4.000000:2.000000:2.000000:1.000000:sAtomKnob:sbottom:sBottom:]][-1.000000:1.000000:-1.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:span:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:sphase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:9.000000:2.000000:2.000000:1.000000:sAtomKnob:svar:sVariable:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:6.500000:2.000000:2.000000:1.000000:sAtomKnob:scenter:sCenter:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:14.000000:2.000000:2.000000:1.000000:sAtomKnob:suPan:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:14.000000:2.000000:2.000000:1.000000:sAtomKnob:suPhase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:11.500000:2.000000:2.000000:1.000000:sOctavesKnob:soctaves:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]][[[4.000000:6.000000:11.500000:2.000000:2.000000:1.000000:sCentsKnob:scents:sDetune:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:6.000000:14.000000:2.000000:2.000000:1.000000:sCentsKnob:suCents:sDetuneï¿½:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:10.000000:14.000000:2.000000:2.000000:1.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]]]]
+// EDITOR SOURCE: [[10.000000:2.000000:1.000000:sBasic Osc:sGeneration:shz:saudio:shz:swave:[[24.000000:0.000000:1.000000:10.000000:10.000000:1.000000:sWaveformPlot:splot:s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:1.000000:sMultiButton:swaveSelect:s:]][0.000000:0.000000:sSin:sSqr:sTri:sExp:sSExp:sCExp:sTahn:sSTanh:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:1.000000:sAtomKnob:stop:sTop:]][-1.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:14.000000:2.000000:2.000000:1.000000:sSimpleKnob:suVoices:sVoices:]][1.000000:12.000000:1.000000:1.000000:1.000000:s:]][[[4.000000:10.000000:4.000000:2.000000:2.000000:1.000000:sAtomKnob:sbottom:sBottom:]][-1.000000:1.000000:-1.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:span:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:sphase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:9.000000:2.000000:2.000000:1.000000:sAtomKnob:svar:sVariable:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:6.500000:2.000000:2.000000:1.000000:sAtomKnob:scenter:sCenter:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:14.000000:2.000000:2.000000:1.000000:sAtomKnob:suPan:sPanning:]][-1.000000:1.000000:0.500000:0.000000:1.000000:s:]][[[4.000000:2.000000:14.000000:2.000000:2.000000:1.000000:sAtomKnob:suPhase:s°Phase:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:11.500000:2.000000:2.000000:1.000000:sOctavesKnob:soctaves:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]][[[4.000000:6.000000:11.500000:2.000000:2.000000:1.000000:sCentsKnob:scents:sDetune:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:6.000000:14.000000:2.000000:2.000000:1.000000:sCentsKnob:suCents:sDetune±:]][-100.000000:100.000000:20.000000:1.000000:0.000000:sc:]][[[4.000000:10.000000:14.000000:2.000000:2.000000:1.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]][[[4.000000:8.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:sfm:sFM:]][-2.000000:2.000000:1.000000:0.000000:1.000000:s:]]]]
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "BasicOsc.h"
@@ -85,7 +85,7 @@ double BasicOscAtom::getUnisonFactor(int voice, int totalVoices) {
 	if (totalVoices == 1)
 		return 0.0;
 	else
-		return (double(voice) / double(totalVoices - 1)) * 2.0 - 1.0;
+		return Adsp::remap(voice, 0.0, totalVoices - 1.0, -1.0, 1.0);
 }
 /* END MISC. USER-DEFINED CODE */
 
@@ -176,6 +176,7 @@ BasicOscController::BasicOscController() :
 	m_gui.addComponent(&m_uPan);
 	m_uPan.setBounds(CB(4.000000, 14.000000, 2.000000, 2.000000));
 	m_uPan.addListener(this);
+	m_uPan.setValue(0.500000);
 	m_uPan.setBounded(true);
 	addAutomatedControl(m_uPan, m_uPanIter);
 	m_gui.addComponent(m_uPan.createLabel("Panning", true));
@@ -183,9 +184,11 @@ BasicOscController::BasicOscController() :
 	m_gui.addComponent(&m_uPhase);
 	m_uPhase.setBounds(CB(2.000000, 14.000000, 2.000000, 2.000000));
 	m_uPhase.addListener(this);
+	m_uPhase.setRange(0.000000, 1.000000);
+	m_uPhase.setValue(1.000000);
 	m_uPhase.setBounded(true);
 	addAutomatedControl(m_uPhase, m_uPhaseIter);
-	m_gui.addComponent(m_uPhase.createLabel("Phase", true));
+	m_gui.addComponent(m_uPhase.createLabel("[Phase", true));
 
 	m_gui.addComponent(&m_octaves);
 	m_octaves.setBounds(CB(10.000000, 11.500000, 2.000000, 2.000000));
@@ -203,13 +206,22 @@ BasicOscController::BasicOscController() :
 	m_uCents.setBounds(CB(6.000000, 14.000000, 2.000000, 2.000000));
 	m_uCents.addListener(this);
 	addAutomatedControl(m_uCents, m_uCentsIter);
-	m_gui.addComponent(m_uCents.createLabel("Detuneï¿½", true));
+	m_gui.addComponent(m_uCents.createLabel("Detune]", true));
 
 	m_gui.addComponent(&m_semis);
 	m_semis.setBounds(CB(10.000000, 14.000000, 2.000000, 2.000000));
 	m_semis.addListener(this);
 	addAutomatedControl(m_semis, m_semisIter);
 	m_gui.addComponent(m_semis.createLabel("Semitones", true));
+
+	m_gui.addComponent(&m_fm);
+	m_fm.setBounds(CB(8.000000, 11.500000, 2.000000, 2.000000));
+	m_fm.addListener(this);
+	m_fm.setRange(-2.000000, 2.000000);
+	m_fm.setValue(1.000000);
+	m_fm.setBounded(true);
+	addAutomatedControl(m_fm, m_fmIter);
+	m_gui.addComponent(m_fm.createLabel("FM", true));
 
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 
@@ -227,7 +239,7 @@ SaveState BasicOscController::saveSaveState() {
 	toReturn.addState(AtomController::saveSaveState());
 
 	SaveState & extraData = *new SaveState();
-	extraData.addValue(1); //Store the revision this was saved with, to preserve backwards compatibility.
+	extraData.addValue(2); //Store the revision this was saved with, to preserve backwards compatibility.
 	extraData.addState(m_waveSelect.saveSaveState());
 	extraData.addState(m_top.saveSaveState());
 	extraData.addState(m_uVoices.saveSaveState());
@@ -243,6 +255,7 @@ SaveState BasicOscController::saveSaveState() {
 	extraData.addState(m_cents.saveSaveState());
 	extraData.addState(m_uCents.saveSaveState());
 	extraData.addState(m_semis.saveSaveState());
+	extraData.addState(m_fm.saveSaveState());
 	/* BEGIN USER-DEFINED SAVE CODE */
 
 	/* END USER-DEFINED SAVE CODE */
@@ -255,7 +268,28 @@ void BasicOscController::loadSaveState(SaveState state) {
 	SaveState & extraData = state.getNextState();
 	int version = extraData.getNextValue();
 	/* BEGIN LOAD CODE */
-	if (version == 1) {
+	if(version == 2) {
+		m_waveSelect.loadSaveState(extraData.getNextState());
+		m_top.loadSaveState(extraData.getNextState());
+		m_uVoices.loadSaveState(extraData.getNextState());
+		m_bottom.loadSaveState(extraData.getNextState());
+		m_pan.loadSaveState(extraData.getNextState());
+		m_phase.loadSaveState(extraData.getNextState());
+		m_amplitude.loadSaveState(extraData.getNextState());
+		m_var.loadSaveState(extraData.getNextState());
+		m_center.loadSaveState(extraData.getNextState());
+		m_uPan.loadSaveState(extraData.getNextState());
+		m_uPhase.loadSaveState(extraData.getNextState());
+		m_octaves.loadSaveState(extraData.getNextState());
+		m_cents.loadSaveState(extraData.getNextState());
+		m_uCents.loadSaveState(extraData.getNextState());
+		m_semis.loadSaveState(extraData.getNextState());
+		m_fm.loadSaveState(extraData.getNextState());
+		/* BEGIN USER-DEFINED LOAD CODE */
+
+		/* END USER-DEFINED LOAD CODE */
+	}
+	else if (version == 1) {
 		m_waveSelect.loadSaveState(extraData.getNextState());
 		m_top.loadSaveState(extraData.getNextState());
 		m_uVoices.loadSaveState(extraData.getNextState());
@@ -320,6 +354,7 @@ void BasicOscAtom::execute() {
 	DVecIter & centsIter = m_parent.m_centsIter;
 	DVecIter & uCentsIter = m_parent.m_uCentsIter;
 	DVecIter & semisIter = m_parent.m_semisIter;
+	DVecIter & fmIter = m_parent.m_fmIter;
 
 	IOSet io = IOSet();
 	DVecIter * hzInput = io.addInput(m_primaryInputs[0]);
@@ -331,13 +366,14 @@ void BasicOscAtom::execute() {
 	double baseDetune;
 	bool animateCoarseDetune = !m_parent.m_octaves.getResult().isConstant();
 	bool animateCents = !m_parent.m_cents.getResult().isConstant();
+	bool animateFm = !m_parent.m_fm.getResult().isConstant();
 	double baseFrequency;
 	bool animateBaseFreq = false;
 	std::vector<double> panAmplitudes;
 	double pan;
 	bool animatePan = !m_parent.m_pan.getResult().isConstant();
 	m_outputs[0].fill(0.0);
-	double basePan, freq, panAmp, phase, uFac, value;
+	double basePan, freq, panAmp, phase, uFac, uDetune, value;
 	for (int voice = 0; voice < voices; voice++) { //Iterate over each voice.
 		automation.resetPosition();
 		io.resetPosition();
@@ -349,6 +385,9 @@ void BasicOscAtom::execute() {
 			}
 			if (!animateCents) {
 				baseDetune *= CentsKnob::detune(1.0, (*centsIter));
+			}
+			if (!animateFm) {
+				baseDetune *= *fmIter;
 			}
 			if (hzInput != nullptr) {
 				baseFrequency = (**hzInput) * baseDetune;
@@ -374,11 +413,8 @@ void BasicOscAtom::execute() {
 					panAmplitudes.push_back(Adsp::panRightAmplitude(pan));
 				}
 			}
-			std::vector<double> voiceDetunes;
 			if (voices > 1) {
-				for (int voice = 0; voice < voices; voice++) {
-					voiceDetunes.push_back(CentsKnob::detune(1.0, (*uCentsIter) * getUnisonFactor(voice, m_phases.size())));
-				}
+				uDetune = CentsKnob::detune(1.0, (*uCentsIter) * getUnisonFactor(voice, voices));
 			}
 			for (int s = 0; s < AudioBuffer::getDefaultSize(); s++) {
 				uFac = getUnisonFactor(voice, voices);
@@ -405,7 +441,7 @@ void BasicOscAtom::execute() {
 				}
 
 				if (voices > 1) {
-					freq *= voiceDetunes[voice];
+					freq *= uDetune;
 				}
 
 				if (animateCoarseDetune) {
@@ -415,11 +451,13 @@ void BasicOscAtom::execute() {
 				if (animateCents) {
 					freq = CentsKnob::detune(freq, (*centsIter));
 				}
+				if(animateFm) {
+					freq *= *fmIter;
+				}
 
 				m_phases[voice][c] += freq / m_sampleRate;
 				phase = m_phases[voice][c] + (*phaseIter) * 2.0 + ((*uPhaseIter) * uFac) + 10.0; //+10.0 is so that I don't have to do a branch in case the phase went into fmod being negative.
-				phase = std::fmod(phase, 2.0);
-				phase -= 1.0; //Convert range from 0-2 to -1-1.
+				phase = std::fmod(phase, 2.0) - 1.0; //Output needs to be in range -1-1
 
 				if (phase <= *centerIter) {
 					phase = (phase + 1.0) / (*centerIter + 1.0 + 1.0e-64) - 1.0; //1.0e-64 is there to prevent divide by zero errors when * centerIter == -1.0

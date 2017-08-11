@@ -64,7 +64,7 @@ constexpr double fastRemapComputeA(double inMin, double inMax, double outMin, do
  * @return The value of constB for use in fastRemap().
  */
 constexpr double fastRemapComputeB(double inMin, double inMax, double outMin, double outMax) {
-	return (inMin * (outMax - outMin)) / (inMax - inMin) + outMin;
+	return (-inMin * (outMax - outMin)) / (inMax - inMin) + outMin;
 }
 
 //Fast remap function. Takes A and B constants created by the fastRemapCompute functions.

@@ -10,6 +10,7 @@
 #include <iomanip>
 #include <sstream>
 
+#include "Adsp/Remap.h"
 #include "Atoms/Atom.h"
 
 namespace AtomSynth {
@@ -34,6 +35,12 @@ AutomationInfluence::AutomationInfluence() :
 		m_minRange(0.0),
 		m_maxRange(1.0) {
 
+}
+
+double AutomatedControl::snap(double value, int snaps) {
+	value = Adsp::remap(value, m_min, m_max, 0.0, snaps);
+	value = double(int(value + 0.5));
+	return Adsp::remap(value, 0.0, snaps, m_min, m_max);
 }
 
 AutomatedControl::AutomatedControl() :

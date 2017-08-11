@@ -14,7 +14,6 @@
 #ifdef INCLUDE_ATOMS
 #include "Basic/Input.h"
 #include "Basic/Output.h"
-#include "Basic/Multiply.h"
 #include "Generation/BasicOsc.h"
 #include "Generation/Noise.h"
 #include "Generation/Envelope.h"
@@ -25,6 +24,7 @@
 #include "Transforms/LfoTuner.h"
 #include "Transforms/Pitch.h"
 #ifdef INCLUDE_DEBUG_ATOMS
+#include "Debug/Multiply.h"
 #include "Debug/FirTest.h"
 #endif /* INCLUDE_DEBUG_ATOMS */
 /*
@@ -42,7 +42,6 @@ std::vector<AtomController *> getAllAtoms() {
 #ifdef INCLUDE_ATOMS
 	toReturn.push_back(new InputController());
 	toReturn.push_back(new OutputController());
-	toReturn.push_back(new MultiplyController());
 	toReturn.push_back(new BasicOscController());
 	toReturn.push_back(new NoiseController());
 	toReturn.push_back(new EnvelopeController());
@@ -53,6 +52,7 @@ std::vector<AtomController *> getAllAtoms() {
 	toReturn.push_back(new LfoTunerController());
 	toReturn.push_back(new PitchController());
 #ifdef INCLUDE_DEBUG_ATOMS
+	toReturn.push_back(new MultiplyController());
 	toReturn.push_back(new FirTestController());
 #endif /* INCLUDE_DEBUG_ATOMS */
 	/*

@@ -35,7 +35,7 @@ constexpr int CELL_SIZE = 30,          //Used for generic layouts.
 #define HS(INDEX) (C::HALF_CELL_SIZE * (INDEX) + C::SPACING * ((INDEX) - 1)) //Half cell size. Same as CS, except with half cells.
 #define HB(X, Y, W, H) HD(X), HD(Y), HS(W), HS(H)                            //Half cell bounding box. Same as CB, except with half cells.
 
-constexpr int HEADER_WIDTH = CS(8), HEADER_HEIGHT = CS(1), VST_WIDTH = CD(30), GUI_HEIGHT = CD(20), VST_HEIGHT = GUI_HEIGHT + HEADER_HEIGHT, GUI_WIDTH = CD(12), BUTTON_TRAY_WIDTH = GUI_WIDTH - HEADER_WIDTH - SPACING;
+constexpr int HEADER_WIDTH = CS(9), HEADER_HEIGHT = CS(1), VST_WIDTH = CD(30), GUI_HEIGHT = CD(20), VST_HEIGHT = GUI_HEIGHT + HEADER_HEIGHT, GUI_WIDTH = CD(12), BUTTON_TRAY_WIDTH = GUI_WIDTH - HEADER_WIDTH - SPACING;
 
 constexpr double MIN_TEXT_SCALE = 0.8, //Used for drawing fitted text.
 		MOUSE_MULT = 0.005;   //Used for mouse input.

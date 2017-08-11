@@ -54,12 +54,12 @@
         <GROUP id="{2ED4BB6A-D0B1-947D-4CF0-43F38380FB25}" name="Basic">
           <FILE id="mBuVbW" name="Input.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Input.cpp"/>
           <FILE id="IohT1Q" name="Input.h" compile="0" resource="0" file="Source/Atoms/Basic/Input.h"/>
-          <FILE id="zaFwoM" name="Multiply.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Multiply.cpp"/>
-          <FILE id="qLV7wL" name="Multiply.h" compile="0" resource="0" file="Source/Atoms/Basic/Multiply.h"/>
           <FILE id="WUYors" name="Output.cpp" compile="1" resource="0" file="Source/Atoms/Basic/Output.cpp"/>
           <FILE id="FFTffK" name="Output.h" compile="0" resource="0" file="Source/Atoms/Basic/Output.h"/>
         </GROUP>
         <GROUP id="{366B152E-69B3-D4F6-60E4-87E645DD739C}" name="Debug">
+          <FILE id="cwMoLN" name="Multiply.cpp" compile="1" resource="0" file="Source/Atoms/Debug/Multiply.cpp"/>
+          <FILE id="EyMORV" name="Multiply.h" compile="0" resource="0" file="Source/Atoms/Debug/Multiply.h"/>
           <FILE id="tokTZs" name="FirTest.cpp" compile="1" resource="0" file="Source/Atoms/Debug/FirTest.cpp"/>
           <FILE id="cPjRfA" name="FirTest.h" compile="0" resource="0" file="Source/Atoms/Debug/FirTest.h"/>
         </GROUP>

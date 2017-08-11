@@ -76,6 +76,8 @@ private:
 	std::vector<Listener *> m_listeners;
 	void checkBounds();
 	void informListeners(bool byUser);
+protected:
+	double snap(double value, int snaps);
 public:
 	AutomatedControl();
 	virtual ~AutomatedControl() {

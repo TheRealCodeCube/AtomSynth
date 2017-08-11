@@ -27,7 +27,7 @@ AutomationEditor::AutomationEditor() :
 
 void AutomationEditor::paint(Graphics& g) {
 	g.setColour(BACK_LAYER);
-	if(m_vertical) {
+	if (m_vertical) {
 		g.fillRoundedRectangle(0, 0, HEIGHT, WIDTH, TAB_RADIUS);
 		for (int i = 0; i < 4; i++) {
 			AutomationInfluence inf = m_editing->getInfluence(i);
@@ -45,8 +45,7 @@ void AutomationEditor::paint(Graphics& g) {
 				g.setColour(MID_LAYER);
 				g.fillRoundedRectangle(TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING, TAB_HEIGHT, LANE_WIDTH, TAB_RADIUS);
 				g.setColour(ATOM_COLOURS[inf.m_inputIndex + 2]);
-				int low = (1.0 - inf.m_minRange) * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS,
-						high = (1.0 - inf.m_maxRange) * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS;
+				int low = (1.0 - inf.m_minRange) * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS, high = (1.0 - inf.m_maxRange) * (LANE_WIDTH - (TAB_RADIUS * 2)) + TAB_SPACING + TAB_RADIUS;
 				if (high > low) {
 					g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT), low - TAB_RADIUS, TAB_RADIUS * 2, TAB_RADIUS * 2);
 					g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT), high - TAB_RADIUS, TAB_RADIUS * 2, TAB_RADIUS * 2);
@@ -58,11 +57,11 @@ void AutomationEditor::paint(Graphics& g) {
 				g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), low - HANDLE_RADIUS, HANDLE_DIAMETER, HANDLE_DIAMETER);
 				g.fillEllipse(TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), high - HANDLE_RADIUS, HANDLE_DIAMETER, HANDLE_DIAMETER);
 			}
-			if((m_dragging != Dragging::NOTHING) && (i == m_influence) && (m_snapping)) {
+			if ((m_dragging != Dragging::NOTHING) && (i == m_influence) && (m_snapping)) {
 				g.setColour(FORE_LAYER);
 				int snapParts = 8;
 				double spacing = double(LANE_WIDTH - TAB_DIAMETER) / snapParts;
-				for(int y = 0; y < snapParts + 1; y++) {
+				for (int y = 0; y < snapParts + 1; y++) {
 					g.drawHorizontalLine(TAB_SPACING + TAB_RADIUS + int(y * spacing + 0.5), TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING + (i * LANE_HEIGHT) + TAB_HEIGHT);
 				}
 			}
@@ -97,12 +96,12 @@ void AutomationEditor::paint(Graphics& g) {
 				g.fillEllipse(low - HANDLE_RADIUS, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), HANDLE_DIAMETER, HANDLE_DIAMETER);
 				g.fillEllipse(high - HANDLE_RADIUS, TAB_SPACING + (i * LANE_HEIGHT) + ((TAB_HEIGHT - HANDLE_DIAMETER) / 2), HANDLE_DIAMETER, HANDLE_DIAMETER);
 			}
-			if((m_dragging != Dragging::NOTHING) && (i == m_influence) && (m_snapping)) {
+			if ((m_dragging != Dragging::NOTHING) && (i == m_influence) && (m_snapping)) {
 				g.setColour(FORE_LAYER);
 				//g.fillRect(TAB_SPACING + TAB_RADIUS, TAB_SPACING + (i * LANE_HEIGHT), LANE_WIDTH - TAB_DIAMETER, TAB_HEIGHT);
 				int snapParts = 8;
 				double spacing = double(LANE_WIDTH - TAB_DIAMETER) / snapParts;
-				for(int x = 0; x < snapParts + 1; x++) {
+				for (int x = 0; x < snapParts + 1; x++) {
 					g.drawVerticalLine(TAB_SPACING + TAB_RADIUS + int(x * spacing + 0.5), TAB_SPACING + (i * LANE_HEIGHT), TAB_SPACING + (i * LANE_HEIGHT) + TAB_HEIGHT);
 				}
 			}
@@ -113,7 +112,7 @@ void AutomationEditor::paint(Graphics& g) {
 
 void AutomationEditor::mouseDown(const MouseEvent & e) {
 	int x, y;
-	if(m_vertical) {
+	if (m_vertical) {
 		y = e.getMouseDownPosition().getX();
 		x = e.getMouseDownPosition().getY();
 	} else {
@@ -151,7 +150,7 @@ void AutomationEditor::mouseDown(const MouseEvent & e) {
 
 			m_dragging = Dragging::NOTHING;
 		} else {
-			if(m_vertical) {
+			if (m_vertical) {
 				x = getHeight() - x;
 			}
 			m_influence = y;
@@ -164,8 +163,8 @@ void AutomationEditor::mouseDown(const MouseEvent & e) {
 			} else {
 				m_dragging = Dragging::BOTH;
 			}
-			if(m_dragging != Dragging::NOTHING) {
-				if(e.mods.isShiftDown()) {
+			if (m_dragging != Dragging::NOTHING) {
+				if (e.mods.isShiftDown()) {
 					m_snapping = 1;
 				} else {
 					m_snapping = 0;
@@ -177,9 +176,10 @@ void AutomationEditor::mouseDown(const MouseEvent & e) {
 }
 
 void AutomationEditor::mouseDrag(const MouseEvent & e) {
-	if(m_dragging == Dragging::NOTHING) return;
+	if (m_dragging == Dragging::NOTHING)
+		return;
 	int x, y;
-	if(m_vertical) {
+	if (m_vertical) {
 		y = e.getPosition().getX();
 		x = e.getPosition().getY();
 	} else {
@@ -187,12 +187,12 @@ void AutomationEditor::mouseDrag(const MouseEvent & e) {
 		y = e.getPosition().getY();
 	}
 	double delta = x - m_px;
-	if(m_vertical) {
+	if (m_vertical) {
 		delta = -delta;
 	}
 	m_px = x;
 
-	if(e.mods.isShiftDown()) {
+	if (e.mods.isShiftDown()) {
 		m_snapping = 1;
 	} else {
 		m_snapping = 0;
@@ -224,7 +224,7 @@ void AutomationEditor::mouseDrag(const MouseEvent & e) {
 	}
 
 	double roundedMin = m_fakeMin, roundedMax = m_fakeMax;
-	if(m_snapping == 1) {
+	if (m_snapping == 1) {
 		roundedMin = snap(roundedMin, 8);
 		roundedMax = snap(roundedMax, 8);
 	}
@@ -241,7 +241,7 @@ void AutomationEditor::mouseUp(const MouseEvent & e) {
 
 void AutomationEditor::setVertical(bool vertical) {
 	m_vertical = vertical;
-	if(m_vertical) {
+	if (m_vertical) {
 		setSize(HEIGHT, WIDTH);
 	} else {
 		setSize(WIDTH, HEIGHT);
@@ -321,23 +321,62 @@ void AtomKnob::mouseDown(const MouseEvent& event) {
 	} else {
 		m_prevMousePos = event.getMouseDownPosition();
 		m_dragging = true;
+		if (event.mods.isShiftDown()) {
+			m_snapping = 1;
+		} else {
+			m_snapping = 0;
+		}
+		m_fakeValue = getValue();
+		repaint();
 	}
 }
 
 void AtomKnob::mouseDrag(const MouseEvent& event) {
 	if (!m_dragging)
 		return;
+	if (event.mods.isShiftDown()) {
+		m_snapping = 1;
+	} else {
+		m_snapping = 0;
+	}
 	double offset = event.getPosition().getY() - m_prevMousePos.getY();
 	m_prevMousePos = event.getPosition();
 	offset *= C::MOUSE_MULT;
 	offset *= -(getMax() - getMin());
-	offsetValue(offset);
+	m_fakeValue += offset;
+	if (isBounded()) {
+		if (m_fakeValue > getMax())
+			m_fakeValue = getMax();
+		if (m_fakeValue < getMin())
+			m_fakeValue = getMin();
+	}
+	double value = m_fakeValue;
+	if (m_snapping == 1)
+		value = snap(value, 8);
+	setValue(value);
+}
+
+void AtomKnob::mouseUp(const MouseEvent& event) {
+	m_snapping = 0;
+	repaint();
 }
 
 void AtomKnob::paint(Graphics & g) {
 	int w = getWidth(), h = getHeight();
 	g.setColour(BACK_LAYER);
 	g.fillEllipse(0, 0, w, h);
+	g.setColour(MID_LAYER);
+	if (m_snapping) {
+		for (int a = -1; a > -8; a--) {
+			double angle = a * M_PI / 4.0;
+			if (isBounded()) {
+				angle *= ANGLE_REDUCTION;
+				angle -= M_PI * (1.0 - ANGLE_REDUCTION);
+			}
+			double x = (std::sin(angle) * w / 2) + (w / 2), y = (std::cos(angle) * h / 2) + (h / 2);
+			g.drawLine(x, y, w / 2, h / 2, C::SMALL_LINE_SIZE);
+		}
+	}
 	double angle = getAngle();
 	if (isBounded()) //Slightly shrink angle, so -1 and 1 do not look the same.
 	{
@@ -345,12 +384,11 @@ void AtomKnob::paint(Graphics & g) {
 		angle -= M_PI * (1.0 - ANGLE_REDUCTION);
 	}
 	double x = (std::sin(angle) * w / 2) + (w / 2), y = (std::cos(angle) * h / 2) + (h / 2);
-	g.setColour(MID_LAYER);
-	if (isBounded()) //Draw a barrier between -1 and 1.
-		g.drawLine(w / 2, h / 2, w / 2, h, C::LINE_SIZE);
 	g.setColour(FORE_LAYER);
 	g.drawLine(x, y, w / 2, h / 2, C::LINE_SIZE);
 	g.setColour(MID_LAYER);
+	if (isBounded()) //Draw a barrier between -1 and 1.
+		g.drawLine(w / 2, h / 2, w / 2, h, C::LINE_SIZE);
 	g.fillEllipse(C::LINE_SIZE, C::LINE_SIZE, w - C::LINE_SIZE * 2, h - C::LINE_SIZE * 2);
 
 	x = w / 2;
@@ -401,8 +439,7 @@ AtomSlider::ThisRightClickMenu::ThisRightClickMenu(AtomSlider & editing) :
 	m_previousPos = editing.getPosition();
 	m_previousParent = editing.getParentComponent();
 	m_previousParent->repaint();
-	setTopLeftPosition(editing.getScreenX() - editing.getTopLevelComponent()->getScreenX() - DS_SIZE - C::SPACING,
-			editing.getScreenY() - editing.getTopLevelComponent()->getScreenY() - DS_SIZE - C::SPACING);
+	setTopLeftPosition(editing.getScreenX() - editing.getTopLevelComponent()->getScreenX() - DS_SIZE - C::SPACING, editing.getScreenY() - editing.getTopLevelComponent()->getScreenY() - DS_SIZE - C::SPACING);
 	editing.setTopLeftPosition(DS_SIZE + C::SPACING, TOP_Y);
 	m_previousSize = m_editing.getHeight();
 	m_editing.setSize(m_editing.getWidth(), SLIDER_HEIGHT);
@@ -466,6 +503,12 @@ void AtomSlider::paint(Graphics& g) {
 			g.fillRoundedRectangle(w / 2, h - height - CS2, w / 2, height + CS2, C::CORNER_SIZE);
 			g.fillRect(w / 2, h - height - CS2, C::CORNER_SIZE, height + CS2);
 		}
+		if (m_snapping) {
+			g.setColour(MID_LAYER);
+			for(int y = 1; y < 8; y++) {
+				g.drawHorizontalLine(int(y * (getHeight() - UNUSABLE_SPACE) / 8.0) + (UNUSABLE_SPACE / 2), 0.0, getWidth());
+			}
+		}
 		g.saveState();
 		//I'm not sure *why* this is the correct transform / bounding box, but it works.
 		g.addTransform(AffineTransform::identity.rotated(M_PI * -0.5, w, w));
@@ -474,9 +517,9 @@ void AtomSlider::paint(Graphics& g) {
 		//Because there's no g.clearTransform()?!
 		g.restoreState();
 		//Render automation influences
-		for(int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			int index = getInfluence(i).m_inputIndex;
-			if(index != -1) {
+			if (index != -1) {
 				g.setColour(ATOM_COLOURS[i + 2]);
 				g.fillEllipse(C::SMALL_SPACING, h - C::SMALL_SPACING * (i + 1) - AI_SIZE * (i + 1), AI_SIZE, AI_SIZE);
 			}
@@ -523,17 +566,44 @@ void AtomSlider::mouseDown(const MouseEvent& event) {
 	} else {
 		m_prevMousePos = event.getMouseDownPosition();
 		m_dragging = true;
+		if (event.mods.isShiftDown()) {
+			m_snapping = 1;
+		} else {
+			m_snapping = 0;
+		}
+		m_fakeValue = getValue();
+		repaint();
 	}
 }
 
 void AtomSlider::mouseDrag(const MouseEvent& event) {
 	if (!m_dragging)
 		return;
+	if (event.mods.isShiftDown()) {
+		m_snapping = 1;
+	} else {
+		m_snapping = 0;
+	}
 	double offset = event.getPosition().getY() - m_prevMousePos.getY();
 	m_prevMousePos = event.getPosition();
 	offset /= getHeight() - HANDLE_HEIGHT - UNUSABLE_SPACE;
 	offset *= -(getMax() - getMin());
-	offsetValue(offset);
+	m_fakeValue += offset;
+	if (isBounded()) {
+		if (m_fakeValue > getMax())
+			m_fakeValue = getMax();
+		if (m_fakeValue < getMin())
+			m_fakeValue = getMin();
+	}
+	double value = m_fakeValue;
+	if (m_snapping == 1)
+		value = snap(value, 8);
+	setValue(value);
+}
+
+void AtomSlider::mouseUp(const MouseEvent& event) {
+	m_snapping = 0;
+	repaint();
 }
 
 DetuneKnob::DetuneKnob(int range, std::string suffix) :
@@ -576,15 +646,14 @@ OctavesKnob::~OctavesKnob() {
 }
 
 void PlotBase::checkX() {
-	if((m_cursorX < 0) || (m_cursorX > getWidth()))
+	if ((m_cursorX < 0) || (m_cursorX > getWidth()))
 		m_cursorX = -1;
 }
 
 void PlotBase::checkY() {
-	if((m_cursorY < 0) || (m_cursorY > getHeight()))
+	if ((m_cursorY < 0) || (m_cursorY > getHeight()))
 		m_cursorY = -1;
 }
-
 
 PlotBase::PlotBase() :
 		EnhancedComponent(),
@@ -616,10 +685,10 @@ void PlotBase::paintFg(Graphics & g) {
 	g.setColour(FORE_LAYER);
 	switch (m_cursorMode) {
 	case CursorMode::CROSSHAIR:
-		if(m_cursorY != -1)
+		if (m_cursorY != -1)
 			g.fillRect(0, m_cursorY - (C::SMALL_LINE_SIZE / 2), getWidth(), C::SMALL_LINE_SIZE);
 	case CursorMode::VERTICAL:
-		if(m_cursorX != -1)
+		if (m_cursorX != -1)
 			g.fillRect(m_cursorX - (C::SMALL_LINE_SIZE / 2), 0, C::SMALL_LINE_SIZE, getHeight());
 	}
 }
@@ -722,13 +791,12 @@ void WaveformPlot::clear() {
 
 void WaveformPlot::drawDataFromAudioBuffer(AudioBuffer& buf, double start, double end) {
 	m_values.clear();
-	if(end == -1.0) {
+	if (end == -1.0) {
 		end = buf.getSize() - 1.0;
 	}
 	//It was intended to be used for audio signals (hence dsp), but it's very handy for this too.
-	double a = Adsp::fastRemapComputeA(0.0, getWidth(), start, end),
-			b = Adsp::fastRemapComputeB(0.0, getWidth(), start, end);
-	for(int x = 0; x < getWidth(); x++) {
+	double a = Adsp::fastRemapComputeA(0.0, getWidth(), start, end), b = Adsp::fastRemapComputeB(0.0, getWidth(), start, end);
+	for (int x = 0; x < getWidth(); x++) {
 		m_values.push_back(buf.get(0, Adsp::fastRemap(x, a, b)));
 	}
 	repaintAsync();

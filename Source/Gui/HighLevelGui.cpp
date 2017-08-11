@@ -443,7 +443,7 @@ AtomSynthEditor::AtomSynthEditor() :
 	seperator = "/";
 #endif
 	addAndMakeVisible(m_buttons, 1000);
-	m_buttons.setBounds(C::SPACING + C::HEADER_WIDTH, 0, CD(4), CD(1));
+	m_buttons.setBounds(C::SPACING + C::HEADER_WIDTH, 0, CD(3), CD(1));
 
 	//Navigation buttons
 	m_buttons.addAndMakeVisible(m_toggleSidepane);
@@ -452,12 +452,12 @@ AtomSynthEditor::AtomSynthEditor() :
 	m_toggleSidepane.addListener(this);
 
 	m_buttons.addAndMakeVisible(m_open);
-	m_open.setBounds(CB(2, 0, 1, 1));
+	m_open.setBounds(CB(1, 0, 1, 1));
 	m_open.setIcon("open");
 	m_open.addListener(this);
 
 	m_buttons.addAndMakeVisible(m_add);
-	m_add.setBounds(CB(3, 0, 1, 1));
+	m_add.setBounds(CB(2, 0, 1, 1));
 	m_add.setIcon("add");
 	m_add.addListener(this);
 

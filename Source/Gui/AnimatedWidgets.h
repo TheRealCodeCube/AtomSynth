@@ -141,6 +141,8 @@ private:
 		virtual ~ThisRightClickMenu();
 		virtual void multiButtonPressed(MultiButton *);
 	};
+	int m_snapping = 0;
+	double m_fakeValue = 0.0;
 	bool m_menuOpened, m_dragging;
 	Point<int> m_prevMousePos;
 protected:
@@ -164,6 +166,7 @@ public:
 	virtual void paint(Graphics & g);
 	virtual void mouseDown(const MouseEvent & event);
 	virtual void mouseDrag(const MouseEvent & event);
+	virtual void mouseUp(const MouseEvent& event);
 	/**
 	 * Called when the right-click menu is closed.
 	 */
@@ -204,8 +207,9 @@ private:
 		virtual ~ThisRightClickMenu();
 		virtual void multiButtonPressed(MultiButton *);
 	};
+	int m_snapping = 0;
 	bool m_menuOpened, m_dragging;
-	double m_leftLevel, m_rightLevel;
+	double m_leftLevel, m_rightLevel, m_fakeValue = 0.0;
 	Point<int> m_prevMousePos;
 protected:
 	static constexpr int AI_SIZE = 6;
@@ -226,6 +230,7 @@ public:
 	virtual void paint(Graphics & g);
 	virtual void mouseDown(const MouseEvent & event);
 	virtual void mouseDrag(const MouseEvent & event);
+	virtual void mouseUp(const MouseEvent & event);
 
 	/**
 	 * Sets audio levels to show to the user. These

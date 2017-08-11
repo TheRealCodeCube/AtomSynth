@@ -44,7 +44,7 @@ public:
 
 	virtual Atom * createAtom(int index);
 	virtual std::string getCategory() {
-		return "Basic";
+		return "Debug";
 	}
 	virtual std::string getName() {
 		return "Multiply";

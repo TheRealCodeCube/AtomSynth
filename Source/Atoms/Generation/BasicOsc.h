@@ -53,6 +53,8 @@ private:
 	DVecIter m_uCentsIter;
 	SemitonesKnob m_semis;
 	DVecIter m_semisIter;
+	AtomKnob m_fm;
+	DVecIter m_fmIter;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
