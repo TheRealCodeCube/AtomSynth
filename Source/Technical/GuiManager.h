@@ -9,10 +9,40 @@
 #define SOURCE_TECHNICAL_GUIMANAGER_H_
 
 #include "Atoms/Atom.h"
+#include "Gui/SimpleWidgets.h"
 
 namespace AtomSynth {
 
+class GuiManager;
+class MessageOverlay;
 class Synth;
+
+/**
+ * A worker thread for MessageOverlay which
+ * repaints it every now and then to make
+ * sure that the latest messages are shown.
+ */
+class MessageOverlayRepaintThread: public Thread {
+private:
+	MessageOverlay *m_parent;
+public:
+	MessageOverlayRepaintThread(MessageOverlay *parent);
+	virtual ~MessageOverlayRepaintThread();
+
+	virtual void run();
+};
+
+class MessageOverlay: public EnhancedComponent {
+private:
+	GuiManager *m_parent = nullptr;
+	MessageOverlayRepaintThread m_repaintThread;
+public:
+	MessageOverlay();
+	virtual ~MessageOverlay();
+
+	void setParent(GuiManager *parent);
+	virtual void paintOverChildren(Graphics &g);
+};
 
 class GuiManager: public MouseListener {
 private:
@@ -20,8 +50,11 @@ private:
 	Component * m_currentRightClickMenu = nullptr;
 	Component * m_rootComponent = nullptr;
 	Synth * m_parent = nullptr;
+	std::vector<std::pair<std::string, unsigned int>> m_messages;
 	void setup();
+	unsigned int getTime(); ///< The c++ time library is a mess, I just want milliseconds!
 
+	friend class MessageOverlay;
 	friend class Synth;
 public:
 	GuiManager();
@@ -51,9 +84,7 @@ public:
 	 * and under any right-click menus.
 	 * @param newRootComponent The main Component that should be rendered.
 	 */
-	void setRootComponent(Component * newRootComponent) {
-		m_rootComponent = newRootComponent;
-	}
+	void setRootComponent(Component * newRootComponent);
 	/**
 	 * Triggers a repaint of the entire root component.
 	 * This is used when a patch is loaded, and the entire
@@ -82,6 +113,28 @@ public:
 	 */
 	bool shouldReloadGuis() {
 		return m_shouldReloadGuis;
+	}
+
+	/**
+	 * Adds a message to be displayed to the user. It
+	 * should show on the screen and disappear after 5
+	 * seconds.
+	 * @param message The message to display.
+	 */
+	void addMessage(std::string message);
+	/**
+	 * Remove messages that have passed their allotted
+	 * show time.
+	 */
+	void clearOldMessages();
+	/**
+	 * Returns a vector of messages to be displayed to
+	 * the user. The unsigned int is the time that it
+	 * should stop being displayed.
+	 * @return A vector of messages.
+	 */
+	std::vector<std::pair<std::string, unsigned int>>& getMessages() {
+		return m_messages;
 	}
 };
 

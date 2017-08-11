@@ -520,7 +520,7 @@ void AtomSlider::paint(Graphics& g) {
 		for (int i = 0; i < 4; i++) {
 			int index = getInfluence(i).m_inputIndex;
 			if (index != -1) {
-				g.setColour(ATOM_COLOURS[i + 2]);
+				g.setColour(ATOM_COLOURS[index + 2]);
 				g.fillEllipse(C::SMALL_SPACING, h - C::SMALL_SPACING * (i + 1) - AI_SIZE * (i + 1), AI_SIZE, AI_SIZE);
 			}
 		}

@@ -24,6 +24,7 @@
 
 #define RED Colour(255, 15, 15)
 #define GREEN Colour(15, 240, 127)
+#define DEBUG_PINK Colour(255, 0, 255)
 
 extern Colour ATOM_COLOURS[12];
 

@@ -1,5 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[41.000000:1.000000:1.000000:sLowpass (FIR):sFilters:ssignal, cutoff:ssignal:swave, hz:swave:[[[24.000000:1.500000:1.000000:2.000000:2.000000:1.000000:sMultiButton:scutoffSource:sCutoff Source:]][1.000000:0.000000:sInput:sFixed (440+-):]][[[4.000000:8.500000:1.000000:2.000000:2.000000:1.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]][[[4.000000:5.000000:1.000000:2.000000:2.000000:1.000000:sOctavesKnob:socts:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]]]]
+// EDITOR SOURCE: [[41.000000:1.000000:1.000000:sLowpass (FIR):sFilters:ssignal, cutoff:ssignal:swave, hz:swave:[[[24.000000:1.500000:1.000000:2.000000:2.000000:1.000000:sMultiButton:scutoffSource:sCutoff Source:]][1.000000:0.000000:sInput:s+-440Hz:]][[[4.000000:8.500000:1.000000:2.000000:2.000000:1.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]][[[4.000000:5.000000:1.000000:2.000000:2.000000:1.000000:sOctavesKnob:socts:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]]]]
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "FirLowpass.h"
@@ -29,7 +29,7 @@ FirLowpassController::FirLowpassController() :
 	m_cutoffSource.addListener(this);
 	m_cutoffSource.setVertical(true);
 	m_cutoffSource.addLabel("Input");
-	m_cutoffSource.addLabel("Fixed (440+-)");
+	m_cutoffSource.addLabel("+-440Hz");
 	m_gui.addComponent(m_cutoffSource.createLabel("Cutoff Source", true));
 
 	m_gui.addComponent(&m_semis);

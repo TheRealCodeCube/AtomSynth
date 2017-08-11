@@ -89,7 +89,8 @@ void SaveManager::saveNow() {
 		output->flush();
 		output->truncate();
 		delete(output);
-		info("Saved patch to: " + toWrite.getFullPathName().toStdString());
+		info("Saved patch to " + toWrite.getFullPathName().toStdString());
+		m_parent->getGuiManager().addMessage("Saved patch to " + toWrite.getFullPathName().toStdString());
 		m_lastAutosave = getTime();
 	}
 }
@@ -115,6 +116,7 @@ bool SaveManager::load(File loadFrom) {
 	m_autosaveRevision = -1;
 
 	m_parent->getGuiManager().repaintRootComponent();
+	m_parent->getGuiManager().addMessage("Loaded patch from " + loadFrom.getFullPathName().toStdString());
 	return true;
 }
 

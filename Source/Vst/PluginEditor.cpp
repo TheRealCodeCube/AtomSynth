@@ -29,6 +29,7 @@ AtomSynthAudioProcessorEditor::AtomSynthAudioProcessorEditor(AtomSynthAudioProce
 }
 
 AtomSynthAudioProcessorEditor::~AtomSynthAudioProcessorEditor() {
+	AtomSynth::Synth::getInstance()->getGuiManager().setRootComponent(nullptr);
 	AtomSynth::Synth::getInstance()->getGuiManager().closeRightClickMenu();
 }
 
