@@ -54,6 +54,12 @@ public:
 	void setRootComponent(Component * newRootComponent) {
 		m_rootComponent = newRootComponent;
 	}
+	/**
+	 * Triggers a repaint of the entire root component.
+	 * This is used when a patch is loaded, and the entire
+	 * gui needs to update.
+	 */
+	void repaintRootComponent();
 
 	/**
 	 * Juce mouseDown event.

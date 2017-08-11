@@ -111,83 +111,6 @@ public:
 	}
 };
 
-/**
- * Deprecated.
- */
-class PresetBrowser: public Component {
-public:
-	class JUCE_API Listener {
-	public:
-		virtual ~Listener() {
-		}
-		;
-		virtual void selectedFileChanged(PresetBrowser * browser) = 0;
-	};
-private:
-	struct GuiElement {
-		std::string m_name;
-		juce::File m_path;
-		bool m_isFolder, m_expanded;
-		int m_depth;
-		GuiElement * m_parent;
-		std::vector<GuiElement *> m_contains;
-
-		~GuiElement() {
-			for (GuiElement * e : m_contains)
-				delete (e);
-		}
-	};
-	std::vector<Listener *> m_listeners;
-	static Image s_closedFolder, s_openFolder, s_preset;
-	GuiElement m_root;
-	GuiElement * m_selected, *m_savePath;
-	std::string m_saveName;
-
-	void update(GuiElement & toUpdate);
-	GuiElement * find(int & index, GuiElement * element);
-	GuiElement * find(juce::File path, GuiElement * root);
-	void expandParent(GuiElement * leaf);
-	int paintElement(Graphics & g, GuiElement & toPaint, int yOffset);
-public:
-	PresetBrowser() :
-			Component(),
-			m_root(),
-			m_selected(&m_root),
-			m_savePath(&m_root),
-			m_saveName("new synth") {
-	}
-	virtual ~PresetBrowser() {
-	}
-
-	void setRoot(juce::File newRoot);
-	void updateList();
-
-	juce::File getSelectedFile() {
-		return (m_selected == nullptr) ? m_root.m_path : m_selected->m_path;
-	}
-	juce::File getSavePath() {
-		return (m_savePath == nullptr) ? m_root.m_path : m_savePath->m_path;
-	}
-	void setSavePath(juce::File savePath);
-
-	void rename(std::string name);
-	void remove();
-	void addFolder();
-	bool selectFile(juce::File toSelect);
-	bool addFile(std::string name, bool select = false);
-	bool saveFile();
-	void setSaveName(std::string name, bool force = false);
-	std::string getSaveName() {
-		return m_saveName;
-	}
-
-	virtual void paint(Graphics & g);
-	virtual void mouseDown(const MouseEvent & event);
-	void addListener(Listener * listener) {
-		m_listeners.push_back(listener);
-	}
-};
-
 class PropertiesSidepane: public Rectangle, public TextEntry::Listener, public TextButton::Listener {
 private:
 	TextEntry m_name;
@@ -216,7 +139,7 @@ public:
 /**
  * The complete GUI to edit an entire Synth object.
  */
-class AtomSynthEditor: public Component, public KeyListener, public ImageButton::Listener, public MultiButton::Listener, public TextEntry::Listener, public PresetBrowser::Listener, public AtomNetworkWidget::Listener, public TextButton::Listener {
+class AtomSynthEditor: public Component, public KeyListener, public ImageButton::Listener, public AtomNetworkWidget::Listener, public TextButton::Listener {
 private:
 	Rectangle m_addAtom;
 	PropertiesSidepane m_properties;
@@ -250,12 +173,6 @@ public:
 
 	///Event handler.
 	virtual void imageButtonPressed(AtomSynth::ImageButton * button);
-	///Event handler.
-	virtual void multiButtonPressed(MultiButton * button);
-	///Event handler.
-	virtual void textEntryChanged(TextEntry * entry);
-	///Event handler.
-	virtual void selectedFileChanged(PresetBrowser * browser);
 	///Event handler.
 	virtual void currentAtomChanged(AtomController * oldController, AtomController * newController);
 	///Event handler.

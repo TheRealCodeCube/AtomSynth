@@ -47,6 +47,12 @@ void GuiManager::closeRightClickMenu() {
 	m_currentRightClickMenu = nullptr;
 }
 
+void GuiManager::repaintRootComponent() {
+	if(m_rootComponent != nullptr) {
+		m_rootComponent->repaint();
+	}
+}
+
 void GuiManager::mouseDown(const MouseEvent & event) {
 	if ((m_rootComponent != nullptr) && (m_currentRightClickMenu != nullptr)) {
 		if (!((event.originalComponent == m_currentRightClickMenu) || (m_currentRightClickMenu->isParentOf(event.originalComponent)))) {

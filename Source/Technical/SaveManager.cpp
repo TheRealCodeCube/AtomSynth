@@ -113,6 +113,8 @@ bool SaveManager::load(File loadFrom) {
 	m_lastAutosave = getTime();
 	m_name = loadFrom.getFileNameWithoutExtension().toStdString();
 	m_autosaveRevision = -1;
+
+	m_parent->getGuiManager().repaintRootComponent();
 	return true;
 }
 
