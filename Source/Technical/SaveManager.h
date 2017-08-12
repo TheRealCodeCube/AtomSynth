@@ -14,8 +14,9 @@
 
 namespace AtomSynth {
 
-class Synth;
 class SaveManager;
+class SaveState;
+class Synth;
 
 /**
  * A worker thread for SaveManager which calls
@@ -49,6 +50,8 @@ private:
 	Synth * m_parent = nullptr;
 	void setup();
 	unsigned int getTime(); ///< The c++ time library is a mess, I just want milliseconds!
+	SaveState saveSaveState(); ///< Saves to a saveState with a bit of extra info.
+	void loadSaveState(SaveState state); ///< Loads from a saveState.
 
 	friend class Synth;
 	friend class AutosaveThread;
@@ -91,6 +94,34 @@ public:
 	 * @return False if there was a problem loading the file.
 	 */
 	bool load(File loadFrom);
+	/**
+	 * Exports the state of the synth as a string
+	 * array, used for exporting via the clipboard.
+	 * @return A string representing the state of the current patch.
+	 */
+	std::string exportString();
+	/**
+	 * Imports the state of the synth from a string
+	 * used for importing via the clipboard.
+	 * @param input The std::string to import from
+	 */
+	void importString(std::string input);
+	/**
+	 * Exports the state of the synth as a raw byte
+	 * array, used for exporting through the VST
+	 * API.
+	 * @param size Overwrites this with the number of bytes that were exported.
+	 * @return A char array representing the state of the current patch.
+	 */
+	char * exportBytes(int& size);
+	/**
+	 * Imports the state of the synth from a raw
+	 * byte array, used for importing through the
+	 * VST API.
+	 * @param bytes The byte array to import from
+	 * @param size The number of bytes in the array.
+	 */
+	void importBytes(char* bytes, int size);
 	/**
 	 * Returns a list of patch names that can be loaded
 	 * via load().

@@ -28,6 +28,7 @@ AtomSynthAudioProcessor::AtomSynthAudioProcessor() :
 		m_frequency(100.0f) {
 	C::loadFont();
 	//feenableexcept(FE_INVALID|FE_OVERFLOW); //I'm getting NaN results that are hard to find.
+	AtomSynth::Synth::getInstance()->initialize(441000, 256); //Initialize with dummy values, so that if any other code that has to run after initialization is called before we know the real values, it will still work.
 }
 
 AtomSynthAudioProcessor::~AtomSynthAudioProcessor() {
@@ -71,10 +72,11 @@ void AtomSynthAudioProcessor::setCurrentProgram(int index) {
 }
 
 const String AtomSynthAudioProcessor::getProgramName(int index) {
-	return String();
+	return String(AtomSynth::Synth::getInstance()->getSaveManager().getPatchName());
 }
 
 void AtomSynthAudioProcessor::changeProgramName(int index, const String& newName) {
+	AtomSynth::Synth::getInstance()->getSaveManager().setPatchName(newName.toStdString());
 }
 
 //==============================================================================
@@ -166,11 +168,17 @@ void AtomSynthAudioProcessor::getStateInformation(MemoryBlock& destData) {
 	// You should use this method to store your parameters in the memory block.
 	// You could do that either as raw data, or use the XML or ValueTree classes
 	// as intermediaries to make it easy to save and load complex data.
+	int size;
+	char * data = AtomSynth::Synth::getInstance()->getSaveManager().exportBytes(size);
+	destData.setSize(size);
+	destData.replaceWith(data, size);
 }
 
 void AtomSynthAudioProcessor::setStateInformation(const void* data, int sizeInBytes) {
 	// You should use this method to restore your parameters from this memory block,
 	// whose contents will have been created by the getStateInformation() call.
+	std::cout << "Attempting to load state information!" << std::endl;
+	AtomSynth::Synth::getInstance()->getSaveManager().importBytes((char*) data, sizeInBytes);
 }
 
 //==============================================================================

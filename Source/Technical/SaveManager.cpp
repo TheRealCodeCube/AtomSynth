@@ -26,24 +26,39 @@ AutosaveThread::~AutosaveThread() {
 }
 
 void AutosaveThread::run() {
+#ifdef CUSTOM_SAVE_LOAD
 	while(!threadShouldExit()) {
 		if(m_parent->getTime() >= m_parent->m_nextAutosave) {
 			m_parent->saveNow();
 		}
 		sleep(100);
 	}
+#endif
 }
 
 void SaveManager::setup() {
 	m_autosaveThread.startThread();
-	for(auto name : getAvailablePatches()) {
-		std::cout << name << std::endl;
-	}
 }
 
 unsigned int SaveManager::getTime() {
 	//Yuck.
 	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+}
+
+SaveState SaveManager::saveSaveState() {
+	SaveState tr, extraData;
+	tr.addState(m_parent->getAtomManager().saveSaveState());
+
+	extraData.addString(getPatchName());
+
+	tr.addState(extraData);
+	return tr;
+}
+
+void SaveManager::loadSaveState(SaveState state) {
+	m_parent->getAtomManager().loadSaveState(state.getNextState());
+	SaveState& extraData = state.getNextState();
+	setPatchName(extraData.getNextString());
 }
 
 SaveManager::SaveManager():
@@ -63,12 +78,9 @@ void SaveManager::setPatchName(std::string newName) {
 }
 
 void SaveManager::saveNow() {
+#ifdef CUSTOM_SAVE_LOAD
 	scheduleAutosave(30 * 1000);
 
-	SaveState toSave, extraData;
-	toSave.addState(m_parent->getAtomManager().saveSaveState());
-
-	toSave.addState(extraData);
 	std::string name;
 	if(m_autosaveRevision == -1) {
 		name = m_name + ".ssf";
@@ -83,7 +95,7 @@ void SaveManager::saveNow() {
 	toWrite.create();
 	FileOutputStream *output = toWrite.createOutputStream();
 	if(output != nullptr) {
-		std::string data = toSave.exportString();
+		std::string data = saveSaveState().exportString();
 		output->setPosition(0); //Because otherwise it appends to the file.
 		output->write(data.c_str(), data.size());
 		output->flush();
@@ -93,9 +105,13 @@ void SaveManager::saveNow() {
 		m_parent->getGuiManager().addMessage("Saved patch to " + toWrite.getFullPathName().toStdString());
 		m_lastAutosave = getTime();
 	}
+#else
+
+#endif
 }
 
 bool SaveManager::load(File loadFrom) {
+#ifdef CUSTOM_SAVE_LOAD
 	scheduleAutosave(30 * 1000);
 
 	info("Attempting to load patch " + loadFrom.getFullPathName().toStdString());
@@ -104,11 +120,7 @@ bool SaveManager::load(File loadFrom) {
 	std::string result(input->getTotalLength(), '.');
 	input->setPosition(0);
 	input->read(&result[0], input->getTotalLength());
-	std::cout << result << std::endl;
-	SaveState state(result),
-			atomData = state.getNextState(),
-			extraData = state.getNextState();
-	Synth::getInstance()->getAtomManager().loadSaveState(atomData);
+	loadSaveState(SaveState(result));
 	info("Loaded patch from: " + loadFrom.getFullPathName().toStdString());
 
 	m_lastAutosave = getTime();
@@ -118,9 +130,38 @@ bool SaveManager::load(File loadFrom) {
 	m_parent->getGuiManager().repaintRootComponent();
 	m_parent->getGuiManager().addMessage("Loaded patch from " + loadFrom.getFullPathName().toStdString());
 	return true;
+#else
+	return false;
+#endif
+}
+
+std::string AtomSynth::SaveManager::exportString() {
+	return saveSaveState().exportString();
+}
+
+void AtomSynth::SaveManager::importString(std::string input) {
+	loadSaveState(SaveState(input));
+}
+
+char* AtomSynth::SaveManager::exportBytes(int& size) {
+	std::string output = exportString();
+	size = output.length() + 1;
+	char* array = (char*) malloc(sizeof(char) * size), *iter = array;
+	for(char c : output) {
+		(*iter) = c;
+		iter++;
+	}
+	(*iter) = '\x00';
+	return array;
+}
+
+void AtomSynth::SaveManager::importBytes(char* bytes, int size) {
+	std::string result = std::string(bytes, bytes + size);
+	importString(result);
 }
 
 std::vector<std::string> SaveManager::getAvailablePatches() {
+#ifdef CUSTOM_SAVE_LOAD
 	std::vector<std::string> tr;
 
 	File directory = File::getCurrentWorkingDirectory().getChildFile("Patches");
@@ -134,6 +175,9 @@ std::vector<std::string> SaveManager::getAvailablePatches() {
 
 	std::sort(tr.begin(), tr.end());
 	return tr;
+#else
+	return std::vector<std::string>(1, "Integrated save / load has been disabled in this build.");
+#endif
 }
 
 } /* namespace AtomSynth */

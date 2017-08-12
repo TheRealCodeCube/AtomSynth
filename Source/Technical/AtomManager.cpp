@@ -22,7 +22,8 @@ AtomManager::~AtomManager() {
 }
 
 void AtomManager::setup() {
-	m_atoms.clear();
+	//m_atoms.clear();
+	m_availableAtoms.clear();
 	//Because memory management.
 	for(auto atom : getAllAtoms()) {
 		m_availableAtoms.push_back(atom);
@@ -99,11 +100,12 @@ void AtomManager::updateExecutionOrder() {
 			index++;
 		}
 		if(!remaining) {
-			info("Compile succeeded!");
+			info("Network successfully compiled");
 			running = false;
 		} else if(!progress) {
-			warn("Compile failed!");
-			warn(std::to_string(remaining) + " remained.");
+			warn("Network compile failed");
+			warn("Unable to compute paths for " + std::to_string(remaining) + " atoms.");
+			m_parent->getGuiManager().addMessage("Your patch is invalid! Make sure that it does not have any feedback loops.");
 			running = false;
 		}
 	}
@@ -174,6 +176,7 @@ void AtomManager::addAtom(AtomController* controller) {
 }
 
 void AtomManager::loadSaveState(SaveState state) {
+	info("Network loaded from SaveState");
 	m_atoms.clear();
 	for (SaveState & atomState : state.getStates()) {
 		for (AtomController * controller : m_availableAtoms) {

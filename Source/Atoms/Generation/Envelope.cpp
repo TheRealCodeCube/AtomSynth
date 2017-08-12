@@ -530,7 +530,10 @@ void EnvelopeAtom::execute() {
 void EnvelopeAtom::reset() {
 	Atom::reset();
 	/* BEGIN USER-DEFINED RESET CODE */
-
+	if(m_shouldUpdateParent) {
+		//Out of sight, basically hidden.
+		m_parent.m_plot.setCursorPosAbsolute(-8, -8);
+	}
 	/* END USER-DEFINED RESET CODE */
 }
 

@@ -306,9 +306,11 @@ void AtomNetworkWidget::mouseUp(const MouseEvent & event) {
 			}
 		}
 
-		if ((dropped == nullptr) || (dropped == m_currentAtom))
+		if ((dropped == nullptr) || (dropped == m_currentAtom)) {
+			//In case the user disconnected something.
+			Synth::getInstance()->getAtomManager().updateExecutionOrder();
 			return;
-
+		}
 		if (dragStatus == DragStatus::IN_TO_OUT) {
 			if (tab < dropped->getNumOutputs()) {
 				m_currentAtom->linkInput(m_currentTab, dropped, tab);
@@ -330,8 +332,10 @@ void AtomNetworkWidget::setCurrentAtom(AtomController * current) {
 }
 
 void PropertiesSidepane::UpdateContentTimer::timerCallback() {
+#ifdef CUSTOM_SAVE_LOAD
 	m_parent->m_lastSaved->setText("Last saved " + std::to_string(Synth::getInstance()->getSaveManager().getTimeSinceSave() / 1000) +
 			" seconds ago.", NotificationType::dontSendNotification);
+#endif
 	m_parent->m_name.setText(Synth::getInstance()->getSaveManager().getPatchName(), false);
 }
 
@@ -346,12 +350,24 @@ PropertiesSidepane::PropertiesSidepane():
 	m_name.addListener(this);
 	addAndMakeVisible(m_name.createLabel("Patch Name"));
 
+#ifdef CUSTOM_SAVE_LOAD
 	addAndMakeVisible(m_saveNow);
 	m_saveNow.setBounds(CB(6, 0.5, 6, 1));
 	m_saveNow.setText("Save Now");
 	m_saveNow.addListener(this);
 	m_lastSaved = m_saveNow.createLabel("Last saved never.");
 	addAndMakeVisible(m_lastSaved);
+#else
+	addAndMakeVisible(m_copyToClipboard);
+	m_copyToClipboard.setBounds(CB(0, 1.5, 6, 1));
+	m_copyToClipboard.setText("Copy patch to clipboard");
+	m_copyToClipboard.addListener(this);
+
+	addAndMakeVisible(m_pasteFromClipboard);
+	m_pasteFromClipboard.setBounds(CB(6, 1.5, 6, 1));
+	m_pasteFromClipboard.setText("Paste patch from clipboard");
+	m_pasteFromClipboard.addListener(this);
+#endif
 
 	m_updateContentTimer.startTimer(500);
 }
@@ -367,9 +383,19 @@ void PropertiesSidepane::textEntryChanged(TextEntry *entry) {
 }
 
 void PropertiesSidepane::textButtonPressed(TextButton *button) {
+#ifdef CUSTOM_SAVE_LOAD
 	if(button == &m_saveNow) {
 		Synth::getInstance()->getSaveManager().saveNow();
 	}
+#else
+	if(button == &m_copyToClipboard) {
+		SystemClipboard::copyTextToClipboard(String(Synth::getInstance()->getSaveManager().exportString()));
+		Synth::getInstance()->getGuiManager().addMessage("Patch successfully copied to clipboard.");
+	} else if (button == &m_pasteFromClipboard) {
+		Synth::getInstance()->getSaveManager().importString(SystemClipboard::getTextFromClipboard().toStdString());
+		Synth::getInstance()->getGuiManager().addMessage("Patch successfully loaded from clipboard.");
+	}
+#endif
 }
 
 void AtomSynthEditor::switchView(std::string name) {
@@ -451,10 +477,12 @@ AtomSynthEditor::AtomSynthEditor() :
 	m_toggleSidepane.setIcon("network");
 	m_toggleSidepane.addListener(this);
 
+#ifdef CUSTOM_SAVE_LOAD
 	m_buttons.addAndMakeVisible(m_open);
 	m_open.setBounds(CB(1, 0, 1, 1));
 	m_open.setIcon("open");
 	m_open.addListener(this);
+#endif
 
 	m_buttons.addAndMakeVisible(m_add);
 	m_add.setBounds(CB(2, 0, 1, 1));
@@ -491,7 +519,6 @@ AtomSynthEditor::AtomSynthEditor() :
 			button->setBounds(CB(x, y, 4, 1));
 			button->setText(controller->getName());
 			button->addListener(this);
-			info(controller->getName());
 		}
 		y += 1.0;
 		x = -4.0;

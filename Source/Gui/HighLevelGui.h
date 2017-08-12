@@ -114,8 +114,13 @@ public:
 class PropertiesSidepane: public Rectangle, public TextEntry::Listener, public TextButton::Listener {
 private:
 	TextEntry m_name;
+#ifdef CUSTOM_SAVE_LOAD
 	TextButton m_saveNow;
 	Label *m_lastSaved;
+#else
+	TextButton m_copyToClipboard;
+	TextButton m_pasteFromClipboard;
+#endif
 	class UpdateContentTimer: public Timer {
 	private:
 		PropertiesSidepane *m_parent;
