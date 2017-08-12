@@ -187,6 +187,7 @@ NoiseAtom::NoiseAtom(NoiseController & parent, int index) :
 	m_previousValues.resize(AudioBuffer::getDefaultChannels(), std::vector<double>());
 	m_previousValues[0].resize(3, 0.0);
 	m_previousValues[1].resize(3, 0.0);
+	//m_seed is deliberately not initialized.
 	/* END USER-DEFINED CONSTRUCTION CODE */
 }
 
@@ -201,9 +202,8 @@ void NoiseAtom::execute() {
 	DVecIter & audioOutput = io.addOutput(m_outputs[0]);
 
 	/* BEGIN USER-DEFINED EXECUTION CODE */
-	struct timespec t;
-	clock_gettime(CLOCK_MONOTONIC_RAW, &t);
-	srand(t.tv_nsec);
+	srand(m_seed);
+	m_seed += 1;
 
 	double time = 1000.0 / (m_sampleRate_f * *timeIter + 0.00001);
 	if (m_parent.m_timeFrame.getSelectedLabel() == 3) //Label 3 is measured in seconds

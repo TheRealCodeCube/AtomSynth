@@ -8,6 +8,7 @@
 #ifndef SOURCE_TECHNICAL_AUTOMATION_H_
 #define SOURCE_TECHNICAL_AUTOMATION_H_
 
+#include <array>
 #include <vector>
 
 #include "AudioBuffer.h"

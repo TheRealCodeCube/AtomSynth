@@ -31,6 +31,9 @@ constexpr double linearInterp(double val1, double val2, double blend) {
 	return val2 * blend + val1 * (1.0 - blend);
 }
 
+#ifdef USE_STRICT_CONSTEXPR
+double smoothInterp(double val1, double val2, double blend);
+#else
 /**
  * Performs 'smooth' interpolation. It's not really smooth,
  * it just has a bendy shape. The shape is defined by a
@@ -43,6 +46,7 @@ constexpr double linearInterp(double val1, double val2, double blend) {
 constexpr double smoothInterp(double val1, double val2, double blend) {
 	return linearInterp(val1, val2, (6 * pow(blend, 5)) - (15 * pow(blend, 4)) + (10 * pow(blend, 3)));
 }
+#endif
 
 /**
  * Lookup table defining the shape used in fastEnvelopeInterp().

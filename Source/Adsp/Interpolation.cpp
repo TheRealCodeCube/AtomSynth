@@ -9,6 +9,12 @@
 
 namespace Adsp {
 
+#ifdef USE_STRICT_CONSTEXPR
+double smoothInterp(double val1, double val2, double blend) {
+	return linearInterp(val1, val2, (6 * pow(blend, 5)) - (15 * pow(blend, 4)) + (10 * pow(blend, 3)));
+}
+#endif
+
 double fastEnvelopeInterp(double blend, double shape) {
 	if (shape == 0.0) {
 		return blend;

@@ -9,9 +9,9 @@
               pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
               pluginEditorRequiresKeys="1" pluginAUExportPrefix="AtomSynthAU"
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.AtomSynth"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.1.1"
               displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
-              buildStandalone="1" enableIAA="0">
+              buildStandalone="1" enableIAA="0" cppLanguageStandard="14">
   <MAINGROUP id="q4OkZd" name="JUCE Project">
     <GROUP id="{0ECEF37E-F575-93BA-FF7A-8D9C232FE228}" name="Resources">
       <GROUP id="{910933C3-11A9-7AE9-17C2-63BD4D53ACA8}" name="typeIcons">
@@ -177,9 +177,12 @@
             extraDefs="INCLUDE_ATOMS">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="1" optimisation="1" targetName="AtomSynth"/>
+                       isDebug="1" optimisation="1" targetName="AtomSynth" defines="_USE_MATH_DEFINES&#10;USE_STRICT_CONSTEXPR"
+                       headerPath="\VBOXSVR\AtomSynth\JuceLibraryCode\&#10;\VBOXSVR\AtomSynth\&#10;\\VBOXSVR\AtomSynth\Source\&#10;\\VBOXSVR\vst3_sdk"/>
         <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
-                       isDebug="0" optimisation="3" targetName="AtomSynth" useRuntimeLibDLL=""/>
+                       isDebug="0" optimisation="3" targetName="AtomSynth" useRuntimeLibDLL=""
+                       headerPath="\\VBOXSVR\AtomSynth\&#10;\\VBOXSVR\AtomSynth\Source\&#10;\\VBOXSVR\AtomSynth\JuceLibraryCode\&#10;\\VBOXSVR\vst3_sdk"
+                       defines="_USE_MATH_DEFINES&#10;USE_STRICT_CONSTEXPR"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
         <MODULEPATH id="juce_video" path="C:\Users\Code Cube\Downloads\JUCE\modules\"/>

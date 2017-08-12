@@ -83,6 +83,7 @@ private:
 	/* BEGIN USER-DEFINED MEMBERS */
 	std::vector<std::vector<double>> m_previousValues;
 	std::vector<double> m_lengthTimer;
+	int m_seed; //Deliberately uninitialized.
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */

@@ -40,6 +40,47 @@ constexpr double amplify(double value, double amplification) {
 }
 
 /**
+ * Hard clipping between -1 and 1. If the input is less than
+ * -1, the output is -1. Likewise, if the output is greater
+ * than 1, the output is 1.
+ * @param value The sample to clip.
+ * @return The clipped sample, in a range between -1 and 1.
+ */
+constexpr double clip(double value) {
+	return (value < -1.0) ? -1.0 : ((value > 1.0) ? 1.0 : value);
+}
+
+/**
+ * Hard clipping between an arbitrary range. If the input
+ * is less than the minimum, the output is the minimum.
+ * Likewise, if the output is greater than the maximum,
+ * the output is the maximum.
+ * @param value The sample to be clipped.
+ * @param min The minimum value the sample can have before being clipped.
+ * @param max The maximum value the sample can have before being clipped.
+ * @return The clipped sample.
+ */
+constexpr double clip(double value, double min, double max) {
+	return (value < min) ? min : ((value > max) ? max : value);
+}
+
+constexpr int MIX_MODE_AVERAGE = 0, ///< Values should be mixed by averaging them.
+		MIX_MODE_MULTIPLY = 1, ///< Values should be mixed by multiplying them.
+		MIX_MODE_MINIMUM = 2, ///< Only the minimum of all the values should be used.
+		MIX_MODE_MAXIMUM = 3, ///< Only the maximum of all the values should be used.
+		MIX_MODE_ADD = 4; ///< Values should be mixed by adding them.
+
+#ifdef USE_STRICT_CONSTEXPR
+//Microsoft apparently doesn't like well-optimized c++14 code :P
+double panLeftAmplitude(double panning);
+double panRightAmplitude(double panning);
+double panLeft(double value, double panning);
+double panRight(double value, double panning);
+
+double mix2(double value1, double value2, int mixMode);
+double mix3(double value1, double value2, double value3, int mixMode);
+#else
+/**
  * Gets the amplitude of the left channel for panning. Given a
  * panning value, this calculates how loud the left channel
  * should be. Uses a sinusoidal panning algorithm.
@@ -84,37 +125,6 @@ constexpr double panLeft(double value, double panning) {
 constexpr double panRight(double value, double panning) {
 	return amplify(value, panRightAmplitude(panning));
 }
-
-/**
- * Hard clipping between -1 and 1. If the input is less than
- * -1, the output is -1. Likewise, if the output is greater
- * than 1, the output is 1.
- * @param value The sample to clip.
- * @return The clipped sample, in a range between -1 and 1.
- */
-constexpr double clip(double value) {
-	return (value < -1.0) ? -1.0 : ((value > 1.0) ? 1.0 : value);
-}
-
-/**
- * Hard clipping between an arbitrary range. If the input
- * is less than the minimum, the output is the minimum.
- * Likewise, if the output is greater than the maximum,
- * the output is the maximum.
- * @param value The sample to be clipped.
- * @param min The minimum value the sample can have before being clipped.
- * @param max The maximum value the sample can have before being clipped.
- * @return The clipped sample.
- */
-constexpr double clip(double value, double min, double max) {
-	return (value < min) ? min : ((value > max) ? max : value);
-}
-
-constexpr int MIX_MODE_AVERAGE = 0, ///< Values should be mixed by averaging them.
-		MIX_MODE_MULTIPLY = 1, ///< Values should be mixed by multiplying them.
-		MIX_MODE_MINIMUM = 2, ///< Only the minimum of all the values should be used.
-		MIX_MODE_MAXIMUM = 3, ///< Only the maximum of all the values should be used.
-		MIX_MODE_ADD = 4; ///< Values should be mixed by adding them.
 
 /**
  * Mixes two values using the specified mix mode. This is
@@ -168,6 +178,8 @@ constexpr double mix3(double value1, double value2, double value3, int mixMode) 
 		return NAN;
 	}
 }
+
+#endif
 
 /** @} */
 
