@@ -126,10 +126,10 @@
                 cppLanguageStandard="-std=c++14">
       <CONFIGURATIONS>
         <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="AtomSynthStandalone"
-                       headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"
+                       headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;../../&#10;../../Source/"
                        libraryPath="/usr/X11R6/lib/"/>
         <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="AtomSynthStandalone"
-                       headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;/home/josh/workspace/AtomSynth/&#10;/home/josh/workspace/AtomSynth/Source/"
+                       headerPath="/usr/include/freetype2/freetype&#10;/usr/include/freetype2&#10;../../&#10;../../Source/"
                        libraryPath="/usr/X11R6/lib/"/>
       </CONFIGURATIONS>
       <MODULEPATHS>
