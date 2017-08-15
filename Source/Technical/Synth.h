@@ -62,6 +62,14 @@ public:
 		return s_instance;
 	}
 	/**
+	 * Deletes the current instance of the synth (singleton.)
+	 */
+	static void deleteInstance() {
+		if(s_instance == nullptr) return;
+		delete(s_instance);
+		s_instance = nullptr;
+	}
+	/**
 	 * Call this once the sampleRate and bufferSize have
 	 * been established (usually by the plugin host.)
 	 * @param sampleRate The sample rate that should be rendered, in samples per second.

@@ -32,6 +32,7 @@ AtomSynthAudioProcessor::AtomSynthAudioProcessor() :
 }
 
 AtomSynthAudioProcessor::~AtomSynthAudioProcessor() {
+	AtomSynth::Synth::deleteInstance();
 }
 
 //==============================================================================

@@ -34,7 +34,7 @@ MessageOverlay::MessageOverlay():
 }
 
 MessageOverlay::~MessageOverlay() {
-	m_repaintThread.stopThread(110);
+	m_repaintThread.stopThread(200);
 }
 
 void MessageOverlay::setParent(GuiManager* parent) {

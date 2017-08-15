@@ -26,6 +26,7 @@ private:
 		repaint();
 	}
 public:
+	virtual ~EnhancedComponent();
 	/**
 	 * Creates a label for this component with the
 	 * specified text.

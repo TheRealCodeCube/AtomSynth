@@ -29,6 +29,8 @@ private:
 	std::vector<AtomController *> m_availableAtoms;
 	AtomSynth::AudioBuffer m_output;
 	Synth * m_parent = nullptr;
+	void clearAtoms();
+	void clearAvailableAtoms();
 	void setup();
 
 	friend class Synth;

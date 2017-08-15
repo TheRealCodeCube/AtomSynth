@@ -13,23 +13,38 @@
 
 namespace AtomSynth {
 
-AtomManager::AtomManager() {
-
+void AtomManager::clearAtoms() {
+	for(auto atom : m_atoms) {
+		delete(atom);
+	}
+	m_atoms.clear();
 }
 
-AtomManager::~AtomManager() {
-	// TODO Auto-generated destructor stub
+void AtomManager::clearAvailableAtoms() {
+	for(auto atom : m_availableAtoms) {
+		delete(atom);
+	}
+	m_availableAtoms.clear();
 }
 
 void AtomManager::setup() {
 	//m_atoms.clear();
-	m_availableAtoms.clear();
+	clearAvailableAtoms();
 	//Because memory management.
 	for(auto atom : getAllAtoms()) {
 		m_availableAtoms.push_back(atom);
 	}
 	updateExecutionOrder();
 	m_output = AudioBuffer();
+}
+
+AtomManager::AtomManager() {
+
+}
+
+AtomManager::~AtomManager() {
+	clearAtoms();
+	clearAvailableAtoms();
 }
 
 /**
@@ -57,6 +72,7 @@ void AtomManager::updateExecutionOrder() {
 			for(auto atom : m_atoms) {
 				atom->cleanupInputsFromAtom(m_atoms[i]);
 			}
+			delete(m_atoms[i]);
 			m_atoms.erase(m_atoms.begin() + i);
 		}
 	}
@@ -205,7 +221,7 @@ void AtomManager::addAtom(AtomController* controller) {
 
 void AtomManager::loadSaveState(SaveState state) {
 	info("Network loaded from SaveState");
-	m_atoms.clear();
+	clearAtoms();
 	for (SaveState & atomState : state.getStates()) {
 		for (AtomController * controller : m_availableAtoms) {
 			if (controller->getId() == int(atomState.getValue(0))) {

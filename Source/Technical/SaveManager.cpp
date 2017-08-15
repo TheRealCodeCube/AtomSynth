@@ -68,7 +68,7 @@ SaveManager::SaveManager():
 }
 
 SaveManager::~SaveManager() {
-
+	m_autosaveThread.stopThread(200);
 }
 
 void SaveManager::setPatchName(std::string newName) {

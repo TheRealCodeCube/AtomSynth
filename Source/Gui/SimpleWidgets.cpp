@@ -17,7 +17,16 @@
 
 namespace AtomSynth {
 
+EnhancedComponent::~EnhancedComponent() {
+	if(m_label != nullptr) {
+		delete(m_label);
+	}
+}
+
 Label * EnhancedComponent::createLabel(std::string text, bool top) {
+	if(m_label == nullptr) {
+		delete(m_label);
+	}
 	m_label = new Label();
 	m_label->setText(text, NotificationType::dontSendNotification);
 	m_label->setFont(Font(C::DEFAULT_FONT));

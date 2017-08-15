@@ -19,7 +19,7 @@ AtomGui::AtomGui() :
 }
 
 AtomGui::~AtomGui() {
-	// TODO Auto-generated destructor stub
+	deleteAllChildren();
 }
 
 void AtomGui::paint(Graphics& g) {

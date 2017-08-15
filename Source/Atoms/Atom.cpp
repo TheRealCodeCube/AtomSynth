@@ -50,7 +50,9 @@ AtomController::AtomController(AtomParameters parameters) :
 }
 
 AtomController::~AtomController() {
-
+	for(auto atom : m_atoms) {
+		delete(atom);
+	}
 }
 
 Atom * AtomController::createAtom(int index) {

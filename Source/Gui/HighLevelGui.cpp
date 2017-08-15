@@ -529,7 +529,10 @@ AtomSynthEditor::AtomSynthEditor() :
 		}
 		y += 1.0;
 		x = -4.0;
+		delete(category.second);
 	}
+
+
 
 	setWantsKeyboardFocus(true);
 	//grabKeyboardFocus();
@@ -644,6 +647,7 @@ void AtomSynthEditor::paintOverChildren(Graphics & g) {
 	Graphics * ig = new Graphics(i);
 	m_buttons.paintEntireComponent(*ig, true);
 	g.drawImageAt(i, m_buttons.getX(), m_buttons.getY(), false);
+	delete(ig);
 }
 
 void AtomSynthEditor::updateScreen() {
