@@ -13,6 +13,7 @@
 #include "AudioBuffer.h"
 #include "AtomManager.h"
 #include "GuiManager.h"
+#include "LogManager.h"
 #include "NoteManager.h"
 #include "SaveManager.h"
 
@@ -43,6 +44,7 @@ class Synth: public MouseListener {
 private:
 	AtomManager m_atomManager;
 	GuiManager m_guiManager;
+	LogManager m_logManager;
 	NoteManager m_noteManager;
 	SaveManager m_saveManager;
 	SynthParameters m_parameters;
@@ -86,6 +88,15 @@ public:
 	 */
 	GuiManager & getGuiManager() {
 		return m_guiManager;
+	}
+	/**
+	 * Returns this Synth's instance of LogManager, which is
+	 * used to output detailed logs upon user request to help
+	 * with debugging.
+	 * @return
+	 */
+	LogManager & getLogManager() {
+		return m_logManager;
 	}
 	/**
 	 * Returns this Synth's instance of NoteManager, which is

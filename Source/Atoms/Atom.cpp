@@ -143,11 +143,17 @@ SaveState AtomController::saveSaveState() {
 }
 
 void AtomController::execute() {
-	//TODO: Change this so only active notes are calculated.
+	if(Synth::getInstance()->getLogManager().shouldDebugEverything()) {
+		Synth::getInstance()->getLogManager().addLabel(getName());
+			Synth::getInstance()->getLogManager().addLabel("Position");
+				Synth::getInstance()->getLogManager().writeInt(m_x);
+				Synth::getInstance()->getLogManager().writeInt(m_y);
+			Synth::getInstance()->getLogManager().endLabel();
+	}
+
 	for (int i = 0; i < Synth::getInstance()->getParameters().m_polyphony; i++) {
-		if (Synth::getInstance()->getNoteManager().getIsActive(i)) //Only bother calculating active notes
-				{
-			m_atoms[i]->execute();
+		if (Synth::getInstance()->getNoteManager().getIsActive(i)) { //Only bother calculating active notes
+			m_atoms[i]->executeWrapper();
 		}
 	}
 
@@ -157,6 +163,10 @@ void AtomController::execute() {
 		stopControlAnimation();
 		m_atoms[0]->reset();
 		m_stopped = false;
+	}
+
+	if(Synth::getInstance()->getLogManager().shouldDebugEverything()) {
+		Synth::getInstance()->getLogManager().endLabel();
 	}
 }
 
@@ -248,7 +258,11 @@ Atom::~Atom() {
 	// TODO Auto-generated destructor stub
 }
 
-void Atom::execute() {
+void Atom::executeWrapper() {
+	if(Synth::getInstance()->getLogManager().shouldDebugEverything()) {
+		Synth::getInstance()->getLogManager().addLabel("Voice " + std::to_string(m_parameters.m_id));
+	}
+
 	m_sampleRate = Synth::getInstance()->getParameters().m_sampleRate;
 	m_sampleRate_f = double(m_sampleRate);
 	if (m_parameters.m_id == 0) {
@@ -264,6 +278,21 @@ void Atom::execute() {
 	if (m_parameters.m_automationEnabled) {
 		m_p.m_automation.calculateAutomation(*this);
 	}
+
+	execute();
+
+	if(Synth::getInstance()->getLogManager().shouldDebugEverything()) {
+		for(int i = 0; i < m_outputs.size(); i++) {
+			Synth::getInstance()->getLogManager().addLabel("Output " + std::to_string(i));
+				Synth::getInstance()->getLogManager().writeAudioBuffer(m_outputs[i]);
+			Synth::getInstance()->getLogManager().endLabel();
+		}
+		Synth::getInstance()->getLogManager().endLabel();
+	}
+}
+
+void Atom::execute() {
+
 }
 
 void Atom::reset() {

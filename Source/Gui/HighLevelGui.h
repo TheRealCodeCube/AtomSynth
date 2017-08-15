@@ -118,9 +118,9 @@ private:
 	TextButton m_saveNow;
 	Label *m_lastSaved;
 #else
-	TextButton m_copyToClipboard;
-	TextButton m_pasteFromClipboard;
+	TextButton m_copyToClipboard, m_pasteFromClipboard;
 #endif
+	TextButton m_createDebugLog;
 	class UpdateContentTimer: public Timer {
 	private:
 		PropertiesSidepane *m_parent;

@@ -557,6 +557,12 @@ public:
 	}
 
 	/**
+	 * Calls execute(). Does some extra things before
+	 * and after it, too.
+	 */
+	void executeWrapper();
+
+	/**
 	 * Called when the Atom's function should be executed.
 	 * (E.G. if you are implementing an amplifier, this
 	 * method should be overrided to amplify an input and

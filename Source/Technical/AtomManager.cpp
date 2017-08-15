@@ -114,6 +114,29 @@ void AtomManager::updateExecutionOrder() {
 AudioBuffer & AtomManager::execute() {
 	if (m_atoms.size() != 0) {
 		AtomSynth::AtomController * output = nullptr;
+		//This is used in case shouldDebugEverything is set in the middle of execution.
+		bool logEverything = m_parent->getLogManager().shouldDebugEverything();
+		if(logEverything) {
+			m_parent->getLogManager().clear();
+			m_parent->getLogManager().addLabel("Synth Properties");
+				m_parent->getLogManager().addLabel("Name");
+					m_parent->getLogManager().writeString(m_parent->getSaveManager().getPatchName());
+				m_parent->getLogManager().endLabel();
+				m_parent->getLogManager().addLabel("Sample Rate");
+					m_parent->getLogManager().writeInt(m_parent->getParameters().m_sampleRate);
+				m_parent->getLogManager().endLabel();
+				m_parent->getLogManager().addLabel("Channels");
+					m_parent->getLogManager().writeInt(AudioBuffer::getDefaultChannels());
+				m_parent->getLogManager().endLabel();
+				m_parent->getLogManager().addLabel("Samples per Buffer");
+					m_parent->getLogManager().writeInt(AudioBuffer::getDefaultSamples());
+				m_parent->getLogManager().endLabel();
+				m_parent->getLogManager().addLabel("Copy-pasteable Save State");
+					m_parent->getLogManager().writeString(m_parent->getSaveManager().exportString());
+				m_parent->getLogManager().endLabel();
+			m_parent->getLogManager().endLabel();
+			m_parent->getLogManager().addLabel("Atoms");
+		}
 		for (AtomSynth::AtomController * controller : m_atoms) {
 			if (controller->getId() == 1) //ID for OutputController.
 				output = controller;
@@ -148,7 +171,7 @@ AudioBuffer & AtomManager::execute() {
 			}
 		}
 
-		//Copy values to output.
+		//Ummm... not sure what this does. I should probably remove it.
 		for (int s = 0; s < AudioBuffer::getDefaultChannels() * AudioBuffer::getDefaultSize(); s++) {
 			m_output.getData()[s] /= 2.0;
 		}
@@ -163,6 +186,11 @@ AudioBuffer & AtomManager::execute() {
 				}
 			}
 			index++;
+		}
+		if(logEverything) {
+			m_parent->getLogManager().clearDebugEverything();
+			m_parent->getLogManager().endLabel();
+			m_parent->getLogManager().dumpToFile();
 		}
 	}
 	return m_output;

@@ -369,6 +369,11 @@ PropertiesSidepane::PropertiesSidepane():
 	m_pasteFromClipboard.addListener(this);
 #endif
 
+	addAndMakeVisible(m_createDebugLog);
+	m_createDebugLog.setBounds(CB(6, 0.5, 6, 1));
+	m_createDebugLog.setText("Create Debug Log");
+	m_createDebugLog.addListener(this);
+
 	m_updateContentTimer.startTimer(500);
 }
 
@@ -394,6 +399,8 @@ void PropertiesSidepane::textButtonPressed(TextButton *button) {
 	} else if (button == &m_pasteFromClipboard) {
 		Synth::getInstance()->getSaveManager().importString(SystemClipboard::getTextFromClipboard().toStdString());
 		Synth::getInstance()->getGuiManager().addMessage("Patch successfully loaded from clipboard.");
+	} else if(button == &m_createDebugLog) {
+		Synth::getInstance()->getLogManager().setDebugEverything();
 	}
 #endif
 }

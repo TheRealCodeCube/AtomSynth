@@ -16,6 +16,7 @@ Synth * Synth::s_instance = nullptr;
 Synth::Synth() {
 	m_atomManager.m_parent = this;
 	m_guiManager.m_parent = this;
+	m_logManager.m_parent = this;
 	m_noteManager.m_parent = this;
 	m_saveManager.m_parent = this;
 }
@@ -32,6 +33,7 @@ void Synth::initialize(int sampleRate, int bufferSize) {
 	instance->getParameters().m_polyphony = 32;
 	instance->getAtomManager().setup();
 	instance->getGuiManager().setup();
+	instance->getLogManager().setup();
 	instance->getNoteManager().setup();
 	instance->getSaveManager().setup();
 	//Only load the default patch if there isn't already another patch loaded.
