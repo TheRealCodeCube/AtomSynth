@@ -408,17 +408,16 @@ void BasicOscAtom::execute() {
 			}
 			if (!animatePan) {
 				if (voices > 1) {
-					for (int voice = 0; voice < voices; voice++) {
-						pan = (*panIter) + (getUnisonFactor(voice, voices) * (*uPanIter));
-						pan = Adsp::clip(pan);
-						panAmplitudes.push_back(Adsp::panLeftAmplitude(pan));
-						panAmplitudes.push_back(Adsp::panRightAmplitude(pan));
-					}
+					pan = *panIter + (uFac * (*uPanIter));
 				} else {
-					pan = Adsp::clip(*panIter);
-					panAmplitudes.push_back(Adsp::panLeftAmplitude(pan));
-					panAmplitudes.push_back(Adsp::panRightAmplitude(pan));
+					pan = *panIter;
 				}
+				pan = Adsp::clip(pan);
+				//Sinusoidal panning
+				if (c == 0) //left
+					panAmp = Adsp::panLeftAmplitude(pan);
+				else //right
+					panAmp = Adsp::panRightAmplitude(pan);
 			}
 			if (voices > 1) {
 				uDetune = CentsKnob::detune(1.0, (*uCentsIter) * getUnisonFactor(voice, voices));
@@ -434,11 +433,8 @@ void BasicOscAtom::execute() {
 					//Sinusoidal panning
 					if (c == 0) //left
 						panAmp = Adsp::panLeftAmplitude(pan);
-					else
-						//right
+					else //right
 						panAmp = Adsp::panRightAmplitude(pan);
-				} else {
-					panAmp = panAmplitudes[voice * AudioBuffer::getDefaultChannels() + c];
 				}
 
 				if(animateBaseFreq) {
@@ -463,6 +459,7 @@ void BasicOscAtom::execute() {
 				}
 
 				m_phases[voice][c] += freq / m_sampleRate;
+				m_phases[voice][c] = std::fmod(m_phases[voice][c] + 10.0, 2.0); //To avoid negative phases (when frequency is negative)
 				phase = m_phases[voice][c] + (*phaseIter) * 2.0 + ((*uPhaseIter) * uFac) + 10.0; //+10.0 is so that I don't have to do a branch in case the phase went into fmod being negative.
 				phase = std::fmod(phase, 2.0) - 1.0; //Output needs to be in range -1-1
 
@@ -500,8 +497,8 @@ void BasicOscAtom::execute() {
 				default:
 					value = 0.2;
 				}
-				value *= *amplitudeIter;
 				value = Adsp::remap(value, -1.0, 1.0, *bottomIter, *topIter);
+				value *= *amplitudeIter;
 				value *= panAmp;
 				value /= (voices + 1.0) * 0.5; //This way, many-voice synths don't sound super loud.
 				if (voice % 2 == 1) {
