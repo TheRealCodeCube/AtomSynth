@@ -674,11 +674,10 @@ void PlotBase::paintBg(Graphics & g) {
 	g.setColour(BACK_LAYER);
 	g.fillRoundedRectangle(0, 0, w, h, C::CORNER_SIZE);
 	g.setColour(MID_LAYER);
-	double xo = (w + 1.0f) / double(m_xLines + 1), yo = (h + 1.0f) / double(m_yLines + 1);
-	for (int x = 0; x < m_xLines; x++)
-		g.drawLine((x + 1) * xo, 0, (x + 1) * xo, h);
-	for (int y = 0; y < m_yLines; y++)
-		g.drawLine(0, (y + 1) * yo, w, (y + 1) * yo);
+	for (double x = 0; x < m_xLines; x++)
+		g.drawVerticalLine((1.0 - std::pow(x / (m_xLines - 1), m_xSkew)) * getWidth(), 0, h);
+	for (double y = 0; y < m_yLines; y++)
+		g.drawHorizontalLine(std::pow(y / (m_yLines - 1), m_ySkew) * getHeight(), 0, w);
 }
 
 void PlotBase::paintFg(Graphics & g) {
@@ -756,7 +755,7 @@ void WaveformPlot::paint(Graphics& g) {
 	paintBg(g);
 	double w = getWidth(), h = getHeight();
 	if (m_values.size() != 0) {
-		double xo = w / m_values.size();
+		double xo = w / (m_values.size() - 1);
 		g.setColour(FORE_LAYER);
 		for (int index = 1; index < m_values.size(); index++)
 			g.drawLine((index - 1) * xo, (-m_values[index - 1] + 1.0) / 2.0 * h, index * xo, (-m_values[index] + 1.0) / 2.0 * h, 2.0);
@@ -800,6 +799,66 @@ void WaveformPlot::drawDataFromAudioBuffer(AudioBuffer& buf, double start, doubl
 		m_values.push_back(buf.get(0, Adsp::fastRemap(x, a, b)));
 	}
 	repaintAsync();
+}
+
+void DrawablePlot::draw(double x, double y) {
+	if((x < 0) || (x >= getWidth()) || (y < 0) || (y >= getHeight())) return;
+	x *= double(m_values.size() - 1) / getWidth();
+	y = Adsp::remap(y, getHeight(), 0, -1.0, 1.0);
+	m_values[int(x + 0.5)] = y;
+
+}
+
+DrawablePlot::DrawablePlot() {
+	setLength(16);
+}
+
+DrawablePlot::~DrawablePlot() {
+
+}
+
+void DrawablePlot::mouseDown(const MouseEvent& event) {
+	double x = event.getPosition().getX(),
+			y = event.getPosition().getY();
+	setCursorMode(CursorMode::CROSSHAIR);
+	setCursorPosAbsolute(x, y);
+	draw(x, y);
+	m_px = x;
+	m_py = y;
+	repaint();
+}
+
+void DrawablePlot::mouseDrag(const MouseEvent& event) {
+	double x = event.getPosition().getX(),
+			y = event.getPosition().getY();
+	setCursorMode(CursorMode::CROSSHAIR);
+	setCursorPosAbsolute(x, y);
+	if(m_px == x) {
+		draw(x, y);
+	}
+	else if(m_px < x) {
+		for(int vx = m_px + 1; vx <= x; vx++) {
+			draw(vx, Adsp::remap(vx, m_px, x, m_py, y));
+		}
+	} else if(m_px > x) {
+		for(int vx = x; vx <= m_px - 1; vx++) {
+			draw(vx, Adsp::remap(vx, x, m_px, y, m_py));
+		}
+	}
+	m_px = x;
+	m_py = y;
+	repaint();
+}
+
+void DrawablePlot::mouseUp(const MouseEvent& event) {
+	setCursorMode(CursorMode::NONE);
+	repaint();
+}
+
+void DrawablePlot::createDiagonalLine() {
+	for(int x = 0; x < m_values.size(); x++) {
+		m_values[x] = Adsp::remap(x, 0, m_values.size() - 1, -1.0, 1.0);
+	}
 }
 
 } /* namespace AtomSynth */

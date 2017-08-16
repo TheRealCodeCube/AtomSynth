@@ -351,6 +351,7 @@ public:
 	};
 private:
 	int m_xLines, m_yLines, m_cursorX, m_cursorY;
+	double m_xSkew = 1.0, m_ySkew = 1.0;
 	CursorMode m_cursorMode;
 	void checkX();
 	void checkY();
@@ -379,6 +380,22 @@ public:
 	void setLines(int xLines, int yLines) {
 		m_xLines = xLines;
 		m_yLines = yLines;
+	}
+	void setXLines(int xLines) {
+		m_xLines = xLines;
+	}
+	void setYLines(int yLines) {
+		m_yLines = yLines;
+	}
+	void setSkews(double xSkew, double ySkew) {
+		m_xSkew = xSkew;
+		m_ySkew = ySkew;
+	}
+	void setXSkew(double xSkew) {
+		m_xSkew = xSkew;
+	}
+	void setYSkew(double ySkew) {
+		m_ySkew = ySkew;
 	}
 	/**
 	 * Clear all data added to the plot.
@@ -451,7 +468,7 @@ public:
  * -1 to 1.
  */
 class WaveformPlot: public PlotBase {
-private:
+protected:
 	std::vector<double> m_values;
 public:
 	WaveformPlot();
@@ -486,6 +503,31 @@ public:
 	 */
 	void drawDataFromAudioBuffer(AudioBuffer & buf, double start = 0.0, double end = -1.0);
 	virtual void clear();
+};
+
+/**
+ * A plot that can be drawn on by the user.
+ */
+class DrawablePlot: public WaveformPlot {
+private:
+	void draw(double x, double y);
+	int m_px = 0, m_py = 0;
+public:
+	DrawablePlot();
+	virtual ~DrawablePlot();
+
+	virtual void mouseDown(const MouseEvent& event);
+	virtual void mouseDrag(const MouseEvent& event);
+	virtual void mouseUp(const MouseEvent& event);
+
+	void setLength(int length) {
+		m_values.resize(length, 0.0);
+	}
+	std::vector<double>& getValues() {
+		return m_values;
+	}
+
+	void createDiagonalLine();
 };
 
 } /* namespace AtomSynth */

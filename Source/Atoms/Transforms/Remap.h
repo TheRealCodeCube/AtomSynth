@@ -20,13 +20,18 @@ class SaveState;
 /**
 * YOUR DOCUMENTATION HERE
 */
-class RemapController: public AtomController {
+class RemapController: public AtomController, public MultiButton::Listener {
 private:
 	/* BEGIN AUTO-GENERATED MEMBERS */
+	MultiButton m_outType;
+	MultiButton m_inType;
+	Arrow m_arrow0;
+	Arrow m_arrow1;
+	Arrow m_arrow2;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
-
+	DrawablePlot m_plot;
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
@@ -49,6 +54,8 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN AUTO-GENERATED LISTENERS */
+	/** Listener function. */
+	virtual void multiButtonPressed(MultiButton * button);
 	/* END AUTO-GENERATED LISTENERS */
 
 	/* BEGIN USER-DEFINED METHODS */
