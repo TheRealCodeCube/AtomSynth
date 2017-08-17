@@ -97,22 +97,15 @@ void FirLowpassController::automatedControlChanged(AutomatedControl * control, b
 	/* END USER-DEFINED LISTENER CODE */
 }
 
-bool FirLowpassAtom::recalculate(double newFreq) {
-	if(std::abs(newFreq - m_currentFreq) < RECALC_THRESH) {
-		return false;
-	}
-	m_currentFreq = newFreq;
-	newFreq /= Synth::getInstance()->getParameters().m_sampleRate;
-	Adsp::createLowpassCoefficients(SIZE, m_filter.getCoefficients(), newFreq, &m_window[0]);
-	return true;
+void FirLowpassAtom::recalculate(double newFreq) {
+	m_filter.set(FILTER_TYPE, newFreq, Synth::getInstance()->getParameters().m_sampleRate);
 }
 
 FirLowpassAtom::FirLowpassAtom(FirLowpassController & parent, int index) :
 		Atom(parent, index),
 		m_parent(parent) {
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
-	m_delayLine.setSize(AudioBuffer::getDefaultSize() + SIZE);
-	Adsp::createBlackmanWindow(SIZE, &m_window[0]);
+	m_delayLine.setSize(AudioBuffer::getDefaultSize() + Adsp::CachedFirFilter::SIZE);
 	/* END USER-DEFINED CONSTRUCTION CODE */
 }
 
@@ -153,7 +146,7 @@ void FirLowpassAtom::execute() {
 			recalculate(freq);
 			animateCutoff = !(m_parent.m_octs.getResult().isConstant() && m_parent.m_semis.getResult().isConstant());
 		}
-		m_delayLine.copyData(*m_primaryInputs[0], SIZE);
+		m_delayLine.copyData(*m_primaryInputs[0], Adsp::CachedFirFilter::SIZE);
 		for(int c = 0; c < AudioBuffer::getDefaultChannels(); c++) {
 			for(int s = 0; s < AudioBuffer::getDefaultSamples(); s++) {
 				if(animateCutoff) {

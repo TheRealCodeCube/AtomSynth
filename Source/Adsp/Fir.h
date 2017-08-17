@@ -139,7 +139,6 @@ public:
 			std::cout << strings[s] << std::endl;
 		}
 		std::cout << "Min: " << min << " Max: " << max << std::endl;
-
 	}
 
 	/**

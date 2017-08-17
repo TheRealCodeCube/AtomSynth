@@ -40,6 +40,8 @@
       <GROUP id="{CAF72947-40F8-D3EE-F22E-DED889B0C84E}" name="Adsp">
         <FILE id="LP77yE" name="Basic.cpp" compile="1" resource="0" file="Source/Adsp/Basic.cpp"/>
         <FILE id="Eeu4WY" name="Basic.h" compile="0" resource="0" file="Source/Adsp/Basic.h"/>
+        <FILE id="oIyqmg" name="CachedFir.cpp" compile="1" resource="0" file="Source/Adsp/CachedFir.cpp"/>
+        <FILE id="fvajGD" name="CachedFir.h" compile="0" resource="0" file="Source/Adsp/CachedFir.h"/>
         <FILE id="B9una2" name="Fir.cpp" compile="1" resource="0" file="Source/Adsp/Fir.cpp"/>
         <FILE id="CjnWqI" name="Fir.h" compile="0" resource="0" file="Source/Adsp/Fir.h"/>
         <FILE id="a2shyM" name="Interpolation.cpp" compile="1" resource="0"
