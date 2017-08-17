@@ -1,7 +1,6 @@
 0 - 9:   Basic
 	0:  [Note] Input
 	1:  [Note] Output
-	2:  Multiply
 
 10 - 29: Generation
 	10: Basic Osc
@@ -22,6 +21,8 @@
 80 - 89: Transforms
 	80: LFO Tuner
 	81: Pitch Mixer
+	82: Remap
 	
 190 - 199: Debug
 	190: FIR Tester
+	191:  Multiply

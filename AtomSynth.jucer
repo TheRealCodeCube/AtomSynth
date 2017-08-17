@@ -84,6 +84,8 @@
           <FILE id="s0s32r" name="Mixer.h" compile="0" resource="0" file="Source/Atoms/Processing/Mixer.h"/>
         </GROUP>
         <GROUP id="{C8091944-3559-747B-D096-459983E68E96}" name="Transforms">
+          <FILE id="ltF94F" name="Remap.cpp" compile="1" resource="0" file="Source/Atoms/Transforms/Remap.cpp"/>
+          <FILE id="K13f3h" name="Remap.h" compile="0" resource="0" file="Source/Atoms/Transforms/Remap.h"/>
           <FILE id="qcsdxF" name="Pitch.cpp" compile="1" resource="0" file="Source/Atoms/Transforms/Pitch.cpp"/>
           <FILE id="uf0xo4" name="Pitch.h" compile="0" resource="0" file="Source/Atoms/Transforms/Pitch.h"/>
           <FILE id="HfG2eo" name="LfoTuner.cpp" compile="1" resource="0" file="Source/Atoms/Transforms/LfoTuner.cpp"/>
