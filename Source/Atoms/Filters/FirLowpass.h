@@ -6,6 +6,8 @@
 /* END AUTO-GENERATED INCLUDES */
 
 /* BEGIN USER-DEFINED INCLUDES */
+#include <array>
+
 #include "Adsp/Fir.h"
 /* END USER-DEFINED INCLUDES */
 
@@ -77,10 +79,11 @@ private:
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
-	static constexpr int SIZE = 256;
+	static constexpr int SIZE = 512;
 	static constexpr double RECALC_THRESH = 20.0; //If a recalculation is requested and differs from the old frequency by less than this much, a recalculation will not be performed.
 	double m_currentFreq = -1000.0;
 	Adsp::FirFilter<SIZE> m_filter;
+	std::array<double, SIZE> m_window;
 	AudioBuffer m_delayLine;
 
 	bool recalculate(double newFreq);

@@ -79,7 +79,7 @@ void FirLowpassController::loadSaveState(SaveState state) {
 	if(version == 1) {
 		m_cutoffSource.loadSaveState(extraData.getNextState());
 		m_semis.loadSaveState(extraData.getNextState());
-		m_octs.loadSaveState(extraData.getNextState());
+		m_octs.loadSaveState(extraData.getNextState());//
 		/* BEGIN USER-DEFINED LOAD CODE */
 
 		/* END USER-DEFINED LOAD CODE */
@@ -101,8 +101,9 @@ bool FirLowpassAtom::recalculate(double newFreq) {
 	if(std::abs(newFreq - m_currentFreq) < RECALC_THRESH) {
 		return false;
 	}
+	m_currentFreq = newFreq;
 	newFreq /= Synth::getInstance()->getParameters().m_sampleRate;
-	Adsp::createLowpassCoefficients(SIZE, m_filter.getCoefficients(), newFreq);
+	Adsp::createLowpassCoefficients(SIZE, m_filter.getCoefficients(), newFreq, &m_window[0]);
 	return true;
 }
 
@@ -111,6 +112,7 @@ FirLowpassAtom::FirLowpassAtom(FirLowpassController & parent, int index) :
 		m_parent(parent) {
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 	m_delayLine.setSize(AudioBuffer::getDefaultSize() + SIZE);
+	Adsp::createBlackmanWindow(SIZE, &m_window[0]);
 	/* END USER-DEFINED CONSTRUCTION CODE */
 }
 
@@ -130,24 +132,52 @@ void FirLowpassAtom::execute() {
 	if(m_primaryInputs[0] == nullptr) {
 		m_outputs[0].fill(0.0);
 	} else {
-		if(m_parent.m_cutoffSource.getSelectedLabel() == 0) {
+		bool animateCutoff = false;
+		int cutoffSource = m_parent.m_cutoffSource.getSelectedLabel();
+		if(cutoffSource == 0) {
 			//Hz input.
 			if(m_primaryInputs[1] == nullptr) {
 				m_outputs[0].copyData(*m_primaryInputs[0]);
+				return;
 			} else {
 				double freq = **cutoffInput;
 				freq = OctavesKnob::detune(freq, *octsIter);
 				freq = SemitonesKnob::detune(freq, *semisIter);
 				recalculate(freq);
+				animateCutoff = !(m_primaryInputs[1]->isConstant() && m_parent.m_octs.getResult().isConstant() && m_parent.m_semis.getResult().isConstant());
 			}
 		} else {
 			//Fixed input
 			double freq = OctavesKnob::detune(440.0, *octsIter);
 			freq = SemitonesKnob::detune(freq, *semisIter);
 			recalculate(freq);
+			animateCutoff = !(m_parent.m_octs.getResult().isConstant() && m_parent.m_semis.getResult().isConstant());
 		}
 		m_delayLine.copyData(*m_primaryInputs[0], SIZE);
-		m_filter.compute(m_delayLine, m_outputs[0]);
+		for(int c = 0; c < AudioBuffer::getDefaultChannels(); c++) {
+			for(int s = 0; s < AudioBuffer::getDefaultSamples(); s++) {
+				if(animateCutoff) {
+					if(cutoffSource == 0) {
+						//Hz input.
+						double freq = **cutoffInput;
+						freq = OctavesKnob::detune(freq, *octsIter);
+						freq = SemitonesKnob::detune(freq, *semisIter);
+						recalculate(freq);
+					} else {
+						//Fixed input
+						double freq = OctavesKnob::detune(440.0, *octsIter);
+						freq = SemitonesKnob::detune(freq, *semisIter);
+						recalculate(freq);
+					}
+
+				}
+				*signalOutput = m_filter.compute(m_delayLine, c, s);
+				automation.incrementPosition();
+				io.incrementPosition();
+			}
+			automation.incrementChannel();
+			io.incrementChannel();
+		}
 		m_delayLine.offsetData(-AudioBuffer::getDefaultSamples());
 	}
 	/* END USER-DEFINED EXECUTION CODE */
