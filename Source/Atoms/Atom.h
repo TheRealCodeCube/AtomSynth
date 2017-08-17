@@ -126,12 +126,28 @@ protected:
 		m_inputIcons.push_back(iconName + "_png");
 	}
 	/**
+	 * Sets the icon for a particular input.
+	 * @param index The index of the icon to set.
+	 * @param iconName The name of the icon to render. The _png suffix is added for you.
+	 */
+	void setInputIcon(int index, std::string iconName) {
+		m_inputIcons[index] = iconName + "_png";
+	}
+	/**
 	 * Add an icon to be rendered on an output. Call this once
 	 * for each output to set icons for all of them.
 	 * @param iconName The name of the icon to render. The _png suffix is added for you.
 	 */
 	void addOutputIcon(std::string iconName) {
 		m_outputIcons.push_back(iconName + "_png");
+	}
+	/**
+	 * Sets the icon for a particular output.
+	 * @param index The index of the icon to set.
+	 * @param iconName The name of the icon to render. The _png suffix is added for you.
+	 */
+	void setOutputIcon(int index, std::string iconName) {
+		m_outputIcons[index] = iconName + "_png";
 	}
 public:
 	/**

@@ -378,14 +378,14 @@ public:
 	 * @param yLines Number of horizontal lines to render.
 	 */
 	void setLines(int xLines, int yLines) {
-		m_xLines = xLines;
-		m_yLines = yLines;
+		m_xLines = xLines + 1;
+		m_yLines = yLines + 1;
 	}
 	void setXLines(int xLines) {
-		m_xLines = xLines;
+		m_xLines = xLines + 1;
 	}
 	void setYLines(int yLines) {
-		m_yLines = yLines;
+		m_yLines = yLines + 1;
 	}
 	void setSkews(double xSkew, double ySkew) {
 		m_xSkew = xSkew;
@@ -526,6 +526,14 @@ public:
 	std::vector<double>& getValues() {
 		return m_values;
 	}
+	/**
+	 * Gets a linear interpolated value at
+	 * the specified x coordinate (in the
+	 * range of 0 to 1.
+	 * @param point The x coordinate to get the value from (in the range 0 to 1.)
+	 * @return The linear interpolated value.
+	 */
+	double getValueAt(double point);
 
 	void createDiagonalLine();
 };

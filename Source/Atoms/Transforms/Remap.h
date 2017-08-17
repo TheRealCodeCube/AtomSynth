@@ -27,11 +27,11 @@ private:
 	MultiButton m_inType;
 	Arrow m_arrow0;
 	Arrow m_arrow1;
-	Arrow m_arrow2;
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
 	DrawablePlot m_plot;
+	static constexpr double LOG_MAX = 14.2877123795; //Log(base 2) of 20k
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */
@@ -75,7 +75,7 @@ private:
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
-
+	static constexpr double LOG_MAX = RemapController::LOG_MAX;
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */

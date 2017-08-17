@@ -10,6 +10,7 @@
 
 #include "AnimatedWidgets.h"
 #include "Colours.h"
+#include "Adsp/Interpolation.h"
 #include "Adsp/Remap.h"
 #include "Technical/Automation.h"
 #include "Technical/Synth.h"
@@ -657,8 +658,8 @@ void PlotBase::checkY() {
 
 PlotBase::PlotBase() :
 		EnhancedComponent(),
-		m_xLines(9),
-		m_yLines(9),
+		m_xLines(8),
+		m_yLines(8),
 		m_cursorX(0),
 		m_cursorY(0),
 		m_cursorMode(CursorMode::NONE) {
@@ -674,10 +675,10 @@ void PlotBase::paintBg(Graphics & g) {
 	g.setColour(BACK_LAYER);
 	g.fillRoundedRectangle(0, 0, w, h, C::CORNER_SIZE);
 	g.setColour(MID_LAYER);
-	for (double x = 0; x < m_xLines; x++)
-		g.drawVerticalLine((1.0 - std::pow(x / (m_xLines - 1), m_xSkew)) * getWidth(), 0, h);
-	for (double y = 0; y < m_yLines; y++)
-		g.drawHorizontalLine(std::pow(y / (m_yLines - 1), m_ySkew) * getHeight(), 0, w);
+	for (double x = 1; x < m_xLines; x++)
+		g.drawVerticalLine((1.0 - std::pow(x / m_xLines, m_xSkew)) * getWidth(), 0, h);
+	for (double y = 1; y < m_yLines; y++)
+		g.drawHorizontalLine(std::pow(y / m_yLines, m_ySkew) * getHeight(), 0, w);
 }
 
 void PlotBase::paintFg(Graphics & g) {
@@ -853,6 +854,15 @@ void DrawablePlot::mouseDrag(const MouseEvent& event) {
 void DrawablePlot::mouseUp(const MouseEvent& event) {
 	setCursorMode(CursorMode::NONE);
 	repaint();
+}
+
+double DrawablePlot::getValueAt(double point) {
+	double fac = point * (m_values.size() - 1);
+	int index = int(fac);
+	fac -= index;
+	double v1 = m_values[index],
+			v2 = m_values[index + 1];
+	return Adsp::linearInterp(v1, v2, fac);
 }
 
 void DrawablePlot::createDiagonalLine() {
