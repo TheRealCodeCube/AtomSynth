@@ -119,6 +119,7 @@ public:
 	/* END AUTO-GENERATED METHODS */
 
 	/* BEGIN USER-DEFINED METHODS */
+	void scramblePhases();
 	static double getUnisonFactor(int voice, int totalVoices);
 	/* END USER-DEFINED METHODS */
 

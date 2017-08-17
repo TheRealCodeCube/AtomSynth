@@ -333,6 +333,9 @@ void BasicOscController::automatedControlChanged(AutomatedControl * control, boo
 
 void BasicOscController::simpleKnobChanged(SimpleKnob * knob) {
 	/* BEGIN USER-DEFINED LISTENER CODE */
+	for(Atom * atom : getAtoms()) {
+		((BasicOscAtom*) atom)->scramblePhases();
+	}
 	/* END USER-DEFINED LISTENER CODE */
 }
 
@@ -524,9 +527,25 @@ void BasicOscAtom::execute() {
 void BasicOscAtom::reset() {
 	Atom::reset();
 	/* BEGIN USER-DEFINED RESET CODE */
-
+	scramblePhases();
 	/* END USER-DEFINED RESET CODE */
 }
 
-} /* namespace AtomSynth */
+void BasicOscAtom::scramblePhases() {
+	if(m_parent.m_uVoices.getValue() == 1) {
+		//Just reset the first phase back to zero.
+		for(double & phase : m_phases[0]) {
+			phase = 0;
+		}
+	} else {
+		//Randomize all phases.
+		for(std::vector<double> & vec : m_phases) {
+			double value = (double(rand()) / RAND_MAX) * 2.0;
+			for(double & phase : vec) {
+				phase = value; //Apply same value to multiple channels to avoid accidental stereo wideness.
+			}
+		}
+	}
+}
 
+} /* namespace AtomSynth */
