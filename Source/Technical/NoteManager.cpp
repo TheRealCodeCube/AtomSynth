@@ -137,7 +137,7 @@ bool NoteManager::getIsStopped(int index) {
 }
 
 bool NoteManager::getIsActive(int index) {
-	return m_notes[index].status != NoteState::SILENT;
+	return (m_notes[index].status == NoteState::ACTIVE) || (m_notes[index].status == NoteState::RELEASING);
 }
 
 } /* namespace AtomSynth */

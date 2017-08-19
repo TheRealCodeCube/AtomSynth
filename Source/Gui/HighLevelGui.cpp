@@ -200,13 +200,13 @@ void AtomNetworkWidget::mouseDown(const MouseEvent & event) {
 			AtomController * oldController = m_currentAtom;
 			m_currentAtom = controller;
 			if (ModifierKeys::getCurrentModifiersRealtime().isRightButtonDown()) {
-				m_currentAtom->markForDeletion();
-				Synth::getInstance()->getAtomManager().updateExecutionOrder();
 				m_currentAtom = nullptr;
 				for (Listener * listener : m_listeners) {
 					listener->currentAtomChanged(oldController, m_currentAtom);
 				}
 				repaint();
+				Synth::getInstance()->getAtomManager().getAtoms()[i]->markForDeletion();
+				Synth::getInstance()->getAtomManager().updateExecutionOrder();
 				return;
 			}
 			x -= 4;

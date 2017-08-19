@@ -77,14 +77,16 @@ double* FirFilterCache::getCoefficientsFor(int filterType, double frequency, dou
 	FirCoefficientCache* cache = m_caches[filterType];
 	double* coArray = cache->getCoefficientsFor(frequency);
 	if(!cache->hasCoefficientsFor(frequency)) {
-		warn("Computing FIR coefficients");
 		frequency = FirCoefficientCache::roundFrequency(frequency);
 		double* window = &m_windows[(filterType >> 3) * FILTER_KERNEL_SIZE]; //The first three bits tell the filter type, the next bit (or more in the future) say the window type.
 		int type = filterType & 0b111;
 		double freqFrac = frequency / sampleRate;
 		switch(type) {
-		case 0:
+		case FilterType::LOWPASS:
 			createLowpassCoefficients(FILTER_KERNEL_SIZE, coArray, freqFrac, window);
+			break;
+		case FilterType::HIGHPASS:
+			createHighpassCoefficients(FILTER_KERNEL_SIZE, coArray, freqFrac, window);
 			break;
 		}
 	}

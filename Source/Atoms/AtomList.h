@@ -21,6 +21,7 @@
 #include "Processing/Mixer.h"
 #include "Filters/Comb.h"
 #include "Filters/FirLowpass.h"
+#include "Filters/FirHighpass.h"
 #include "Transforms/LfoTuner.h"
 #include "Transforms/Pitch.h"
 #include "Transforms/Remap.h"
@@ -44,6 +45,7 @@ std::vector<AtomController *> getAllAtoms() {
 	toReturn.push_back(new MixerController());
 	toReturn.push_back(new CombController());
 	toReturn.push_back(new FirLowpassController());
+	toReturn.push_back(new FirHighpassController());
 	toReturn.push_back(new LfoTunerController());
 	toReturn.push_back(new PitchController());
 	toReturn.push_back(new RemapController());

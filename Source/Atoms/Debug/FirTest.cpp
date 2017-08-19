@@ -124,7 +124,6 @@ void FirTestAtom::execute() {
 	if(m_primaryInputs[0] != nullptr) {
 		m_buffer.copyData(*m_primaryInputs[0], m_buffer.getSize() - m_primaryInputs[0]->getSize());
 	}
-	Adsp::createLowpassCoefficients(256, m_filter.getCoefficients(), m_parent.m_co1.getValue() / 5.0);
 	m_filter.compute(m_buffer, m_outputs[0]);
 	m_buffer.offsetData(-AudioBuffer::getDefaultSize());
 	/* END USER-DEFINED EXECUTION CODE */

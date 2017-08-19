@@ -27,8 +27,16 @@ void createBlackmanWindow(int size, double* destination) {
 	}
 }
 
-void createLowpassCoefficients(int size, double* destination, double freqFrac, double* window) {
-	double sinMult = 2 * M_PI * freqFrac, sum;
+/**
+ * Renders a normalized, windowed sync function to an
+ * array of doubles.
+ * @param size The number of samples to render. The center of the sync function will be at size / 2.
+ * @param destination A pointer to the first element of the destination array.
+ * @param freqFrac A fraction of the sample rate. (E.G. 0.1 @ 44khz = 4.4khz.)
+ * @param window A pointer to the first element of an array containing the window to use.
+ */
+void windowedSinc(int size, double* destination, double freqFrac, double* window) {
+	double sinMult = 2 * M_PI * freqFrac, sum = 0.0;
 	int offset = size / 2;
 	double *iter = destination;
 	//E.G. if size is 256, loops from -128 to 127. +0.01 is to avoid div0 errors.
@@ -40,11 +48,35 @@ void createLowpassCoefficients(int size, double* destination, double freqFrac, d
 	}
 	iter = destination;
 	sum = 1.0 / sum; //One division and many multiplications is better than many divisions.
-	//Normalize
-	for(int x = -offset; x < size - offset; x++) {
-		*iter *= sum;
+	for(int i = 0; i < size; i++) {
+		(*iter) *= sum;
 		iter++;
 	}
+}
+
+/**
+ * Applies spectral inversion (*-1 to every other
+ * coefficient) to a filter kernel.
+ * @param size The number of samples in the kernel.
+ * @param coefficients A pointer to the first coefficient in the kernel.
+ */
+void spectralInversion(int size, double* coefficients) {
+	coefficients++;
+	for(int i = 0; i < int(size / 2); i++) {
+		(*coefficients) = -(*coefficients);
+		coefficients += 2;
+	}
+}
+
+void createLowpassCoefficients(int size, double* destination, double freqFrac, double* window) {
+	windowedSinc(size, destination, freqFrac, window);
+}
+
+void createHighpassCoefficients(int size, double* destination, double freqFrac, double* window) {
+	//Invert frequency, make lowpass filter, invert that.
+	freqFrac = 0.5 - freqFrac;
+	windowedSinc(size, destination, freqFrac, window);
+	spectralInversion(size, destination);
 }
 
 void createDebugCoefficients(int size, double* destination, double* window) {

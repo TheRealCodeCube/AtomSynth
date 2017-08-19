@@ -170,9 +170,24 @@ void createBlackmanWindow(int size, double* destination);
  * @param size The number of coefficients to generate.
  * @param destination Pointer to the first element of an array to write these coefficients to.
  * @param freqFrac Frequency as a fraction of the sample rate. (e.g. 0.1 @ 44.1kHz = 4.41kHz)
- * @param window A pointer to the first element of a window array created with a create*Window() function.
+ * @param window A pointer to the first element of a window array created with a create[window]Window() function.
  */
 void createLowpassCoefficients(int size, double* destination, double freqFrac, double* window);
+/**
+ * Creates a highpass filter using N coefficients using
+ * a spectrally inverted sync function.
+ * @param size The number of coefficients to generate.
+ * @param destination Pointer to the first element of an array to write these coefficients to.
+ * @param freqFrac Frequency as a fraction of the sample rate. (e.g. 0.1 @ 44.1kHz = 4.41kHz)
+ * @param window A pointer to the first element of a window array created with a create[window]Window() function.
+ */
+void createHighpassCoefficients(int size, double* destination, double freqFrac, double* window);
+/**
+ * Fills a filter with all 1's, multiplied by a window.
+ * @param size The number of 1's to generate.
+ * @param destination Pointer to the first element of an array to write the 1's to.
+ * @param window A pointer to the first element of a window array created with a create[window]Window() function.
+ */
 void createDebugCoefficients(int size, double* destination, double* window);
 
 } /* namespace AtomSynth */
