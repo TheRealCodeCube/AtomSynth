@@ -506,7 +506,8 @@ public:
 };
 
 /**
- * A plot that can be drawn on by the user.
+ * A plot that can be drawn on by the user. (Max
+ * 256 samples.)
  */
 class DrawablePlot: public WaveformPlot {
 private:
@@ -521,7 +522,7 @@ public:
 	virtual void mouseUp(const MouseEvent& event);
 
 	void setLength(int length) {
-		m_values.resize(length, 0.0);
+		m_values.resize(std::min(length, 256), 0.0);
 	}
 	std::vector<double>& getValues() {
 		return m_values;
@@ -536,6 +537,9 @@ public:
 	double getValueAt(double point);
 
 	void createDiagonalLine();
+
+	SaveState saveSaveState();
+	void loadSaveState(SaveState state);
 };
 
 } /* namespace AtomSynth */

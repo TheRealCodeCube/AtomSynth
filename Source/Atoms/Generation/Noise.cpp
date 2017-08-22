@@ -96,7 +96,7 @@ NoiseController::NoiseController() :
 	m_type.addLabel("Smooth");
 
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
-
+	m_time.setDynamic();
 	/* END USER-DEFINED CONSTRUCTION CODE */
 
 	m_gui.setAtomController(this);

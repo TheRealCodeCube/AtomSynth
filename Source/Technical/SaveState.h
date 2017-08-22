@@ -30,6 +30,36 @@ private:
 	std::vector<std::string> m_strings;
 	std::vector<SaveState> m_states;
 	int m_nextStateCounter, m_nextValueCounter, m_nextStringCounter;
+	/**
+	 * Creates a 4-byte string representing
+	 * the input.
+	 * @param input The value to convert.
+	 * @return A 4-byte string representing the input.
+	 */
+	std::string doubleToBytes(double input);
+	/**
+	 * Takes a 4-byte string from doubleToBytes()
+	 * and converts it back into a double.
+	 * @param input A 4-byte string.
+	 * @return The original double value.
+	 */
+	double bytesToDouble(std::string input);
+	/**
+	 * Imports from the old, inefficient string
+	 * format.
+	 * @param input The string to parse.
+	 */
+	void importString(std::string input);
+	/**
+	 * Used by exportBytes()
+	 * @return A byte array representing this SaveState.
+	 */
+	std::string exportBytesBackend();
+	/**
+	 * Imports from the shiny new bytes format.
+	 * @param input A string containing the binary data.
+	 */
+	void importBytes(std::string input);
 public:
 	SaveState();
 	/**
@@ -151,6 +181,22 @@ public:
 	 * @return A string representing the entire state, which can be loaded with a constructor.
 	 */
 	std::string exportString();
+	/**
+	 * Exports the entire content of the state
+	 * as a byte array. It is a much more efficient
+	 * format than what is returned by
+	 * exportString().
+	 * @return The resulting byte array.
+	 */
+	std::string exportBytes();
+	/**
+	 * Prints out how many bytes it would take to
+	 * export this SaveState in the old yucky
+	 * string format and in the new raw bytes
+	 * format. This is purely a vanity function,
+	 * it does nothing useful.
+	 */
+	void showOffNewFormat();
 };
 
 } /* namespace AtomSynth */

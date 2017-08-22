@@ -871,4 +871,21 @@ void DrawablePlot::createDiagonalLine() {
 	}
 }
 
+SaveState DrawablePlot::saveSaveState() {
+	SaveState tr;
+	for(double value : m_values) {
+		tr.addValue(value);
+	}
+	return tr;
+}
+
+void DrawablePlot::loadSaveState(SaveState state) {
+	int oldSize = m_values.size();
+	m_values.clear();
+	for(double value : state.getValues()) {
+		m_values.push_back(value);
+	}
+	m_values.resize(oldSize, 0.0);
+}
+
 } /* namespace AtomSynth */

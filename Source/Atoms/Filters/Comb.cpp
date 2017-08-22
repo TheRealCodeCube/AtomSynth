@@ -139,6 +139,9 @@ CombController::CombController() :
 	/* BEGIN USER-DEFINED CONSTRUCTION CODE */
 	multiButtonPressed(&m_delaySource); //Show / hide things based on the selected delay source.
 	m_plot.setLines(0, 0);
+
+	m_delayTime.setDynamic();
+	m_delayHz.setDynamic();
 	/* END USER-DEFINED CONSTRUCTION CODE */
 
 	m_gui.setAtomController(this);

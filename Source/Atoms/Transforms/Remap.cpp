@@ -74,7 +74,7 @@ SaveState RemapController::saveSaveState() {
 	extraData.addState(m_outType.saveSaveState());
 	extraData.addState(m_inType.saveSaveState());
 	/* BEGIN USER-DEFINED SAVE CODE */
-
+	extraData.addState(m_plot.saveSaveState());
 	/* END USER-DEFINED SAVE CODE */
 	toReturn.addState(extraData);
 	return toReturn;
@@ -89,7 +89,7 @@ void RemapController::loadSaveState(SaveState state) {
 		m_outType.loadSaveState(extraData.getNextState());
 		m_inType.loadSaveState(extraData.getNextState());
 		/* BEGIN USER-DEFINED LOAD CODE */
-
+		m_plot.loadSaveState(extraData.getNextState());
 		/* END USER-DEFINED LOAD CODE */
 	}
 	/* END LOAD CODE */

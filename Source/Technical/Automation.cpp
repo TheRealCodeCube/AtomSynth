@@ -117,11 +117,12 @@ bool AutomatedControl::isAutomated() {
 void AutomatedControl::loadSaveState(SaveState state) {
 	m_value = state.getNextValue();
 	m_mixMode = static_cast<MixMode>(int(state.getNextValue()));
-	for (AutomationInfluence & i : m_influences) {
-		SaveState knobState = state.getNextState();
-		i.m_inputIndex = int(knobState.getNextValue());
-		i.m_minRange = knobState.getNextValue();
-		i.m_maxRange = knobState.getNextValue();
+	int i = 0;
+	for (SaveState& influence : state.getStates()) {
+		m_influences[i].m_inputIndex = int(influence.getNextValue());
+		m_influences[i].m_minRange = influence.getNextValue();
+		m_influences[i].m_maxRange = influence.getNextValue();
+		i++;
 	}
 	if(state.getValues().size() > 2) {
 		m_min = state.getNextValue();
@@ -138,16 +139,24 @@ SaveState AutomatedControl::saveSaveState() {
 	SaveState state = SaveState();
 	state.addValue(m_value);
 	state.addValue(static_cast<int>(m_mixMode));
-	for (AutomationInfluence & i : m_influences) {
-		SaveState knobState = SaveState();
-		knobState.addValue(i.m_inputIndex);
-		knobState.addValue(i.m_minRange);
-		knobState.addValue(i.m_maxRange);
-		state.addState(knobState);
+	int max = 0;
+	for (int i = 0; i < 4; i++) {
+		if(m_influences[i].m_inputIndex != -1) {
+			max = i + 1;
+		}
 	}
-	state.addValue(m_min);
-	state.addValue(m_max);
-	state.addString(m_suffix);
+	for (int i = 0; i < max; i++) {
+		SaveState influence = SaveState();
+		influence.addValue(m_influences[i].m_inputIndex);
+		influence.addValue(m_influences[i].m_minRange);
+		influence.addValue(m_influences[i].m_maxRange);
+		state.addState(influence);
+	}
+	if(m_dynamic) {
+		state.addValue(m_min);
+		state.addValue(m_max);
+		state.addString(m_suffix);
+	}
 	return state;
 }
 

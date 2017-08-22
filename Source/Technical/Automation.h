@@ -73,7 +73,7 @@ private:
 	AudioBuffer m_result;
 	std::string m_suffix;
 	unsigned int m_decimalPlaces;
-	bool m_bounded, m_int, m_displaying, m_silent;
+	bool m_bounded, m_int, m_displaying, m_silent, m_dynamic = false;
 	std::vector<Listener *> m_listeners;
 	void checkBounds();
 	void informListeners(bool byUser);
@@ -269,6 +269,26 @@ public:
 	 */
 	void setSilent(bool silent = true) {
 		m_silent = silent;
+	}
+	/**
+	 * Sets whether or not this control should be
+	 * dynamic. Dynamic knobs will save their
+	 * minimum and maximum values as well as their
+	 * suffixes to their save states. Set this to
+	 * true if those values are changed during
+	 * execution of your atom.
+	 * @param dynamic True if the control should be dynamic.
+	 */
+	void setDynamic(bool dynamic = true) {
+		m_dynamic = dynamic;
+	}
+	/**
+	 * Returns true if this control is dynamic.
+	 * See setDynamic() for what this means.
+	 * @return True if the control is dynamic.
+	 */
+	bool isDynamic() {
+		return m_dynamic;
 	}
 	/**
 	 * Sets the suffix to be added after the number.

@@ -136,6 +136,7 @@ bool SaveManager::load(File loadFrom) {
 }
 
 std::string AtomSynth::SaveManager::exportString() {
+	saveSaveState().showOffNewFormat();
 	return saveSaveState().exportString();
 }
 
