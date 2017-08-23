@@ -229,7 +229,7 @@ void IOSet::resetPosition() {
 void IOSet::incrementPosition() {
 	for (auto iter : m_incInputs)
 		(*iter)++;
-	for (DVecIter * iter : m_outputs)
+	for (auto iter : m_outputs)
 		(*iter)++;
 }
 

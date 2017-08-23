@@ -16,7 +16,6 @@ namespace Adsp {
  * @{
  */
 
-
 /**
  * Computes a sine wave. (function:
  * \f$ sin(\pi*phase)\f$)

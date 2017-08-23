@@ -113,4 +113,41 @@ void AudioBuffer::setChannels(int channels) {
 	m_data.resize(m_size * m_channels, 0.0);
 }
 
+void LoopedAudioBuffer::offsetData(int amount) {
+	m_dataOffset += amount;
+	if(m_dataOffset > m_size) {
+		m_dataOffset -= m_size;
+	} else if (m_dataOffset < 0) {
+		m_dataOffset += m_size;
+	}
+}
+
+double LoopedAudioBuffer::getValue(int channel, int sample) {
+	sample += m_dataOffset;
+	if(sample > m_size) {
+		sample -= m_size;
+	} else if (sample < 0) {
+		sample += m_size;
+	}
+	return m_data[channel * m_size + sample];
+}
+
+void LoopedAudioBuffer::setValue(int channel, int sample, double value) {
+	sample += m_dataOffset;
+	if(sample > m_size) {
+		sample -= m_size;
+	} else if (sample < 0) {
+		sample += m_size;
+	}
+	m_data[channel * m_size + sample] = value;
+}
+
+double LoopedAudioBuffer::get(int channel, double sample) {
+	return getValue(channel, int(sample + 0.5));
+}
+
+void LoopedAudioBuffer::set(int channel, double sample, double value) {
+	setValue(channel, int(sample + 0.5), value);
+}
+
 } /* namespace AtomSynth */

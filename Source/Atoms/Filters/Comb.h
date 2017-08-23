@@ -96,7 +96,7 @@ private:
 	/* END AUTO-GENERATED MEMBERS */
 
 	/* BEGIN USER-DEFINED MEMBERS */
-	AudioBuffer m_delayLine = AudioBuffer(45000);
+	LoopedAudioBuffer m_delayLine = LoopedAudioBuffer(45000);
 	/* END USER-DEFINED MEMBERS */
 public:
 	/* BEGIN AUTO-GENERATED METHODS */

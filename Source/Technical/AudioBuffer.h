@@ -45,10 +45,11 @@ namespace AtomSynth {
  */
 class AudioBuffer {
 private:
-	std::vector<double> m_data;
-	bool m_constant;
-	int m_size, m_channels;
 	static int s_size, s_channels;
+protected:
+	std::vector<double> m_data;
+	int m_size, m_channels;
+	bool m_constant;
 public:
 	/**
 	 * Create an audio buffer with the default
@@ -114,12 +115,12 @@ public:
 	 * [1, 3, 2, 0, 0]
 	 * @param offset The number of samples to offset the data by.
 	 */
-	void offsetData(int offset);
+	virtual void offsetData(int offset);
 	/**
 	 * Fills the entire buffer with a single value.
 	 * @param value The value to fill the AudioBuffer with.
 	 */
-	void fill(double value);
+	virtual void fill(double value);
 
 	/**
 	 * Gets the underlying data vector.
@@ -135,7 +136,7 @@ public:
 	 * @param sample The index of the sample to retrieve.
 	 * @return The sample at the requested position.
 	 */
-	double getValue(int channel, int sample) {
+	virtual double getValue(int channel, int sample) {
 		return m_data[channel * m_size + sample];
 	}
 	/**
@@ -145,7 +146,7 @@ public:
 	 * @param sample The index of the sample to set.
 	 * @param value The value to set the sample to.
 	 */
-	void setValue(int channel, int sample, double value) {
+	virtual void setValue(int channel, int sample, double value) {
 		m_data[channel * m_size + sample] = value;
 	}
 	/**
@@ -285,6 +286,20 @@ public:
 	static int getDefaultChannels() {
 		return s_channels;
 	}
+};
+
+class LoopedAudioBuffer : public AudioBuffer {
+private:
+	int m_dataOffset = 0;
+public:
+	LoopedAudioBuffer() : AudioBuffer() { }
+	LoopedAudioBuffer(int samples) : AudioBuffer(samples) { }
+	LoopedAudioBuffer(int channels, int samples) : AudioBuffer(channels, samples) { }
+	virtual void offsetData(int amount);
+	virtual double getValue(int channel, int sample);
+	virtual void setValue(int channel, int sample, double value);
+	virtual double get(int channel, double sample);
+	virtual void set(int channel, double sample, double value);
 };
 
 } /* namespace AtomSynth */

@@ -11,6 +11,16 @@
 
 namespace Adsp {
 
+inline double fastPow(double a, double b) {
+  union {
+    double d;
+    int x[2];
+  } u = { a };
+  u.x[1] = (int)(b * (u.x[1] - 1072632447) + 1072632447);
+  u.x[0] = 0;
+  return u.d;
+}
+
 //Calculates a sine wave at the given phase.
 double sineWave(double phase) {
 	return sin(phase * M_PI);
@@ -30,7 +40,7 @@ double triWave(double phase) {
 //Var is remapped from -1.0 - 1.0 to 0.3 - 4.3. Therefore, for a straight line, do -0.65.
 double expWave(double phase, double var) {
 	var = (var + 1.15) * 2.0; //Minimum value is 0.3, max value is 4.3.
-	return pow(phase * 0.5 + 0.5, var) * 2.0 - 1.0; //For pow function, phase should be between 0 and 1, not -1 and 1. The result is also between 0 and 1, and is remapped to -1 to 1.
+	return fastPow(phase * 0.5 + 0.5, var) * 2.0 - 1.0; //For pow function, phase should be between 0 and 1, not -1 and 1. The result is also between 0 and 1, and is remapped to -1 to 1.
 }
 
 //Calculates a symmetrical exp wave (two exp waves, mirrored, stuck end to end)
@@ -38,9 +48,9 @@ double expWave(double phase, double var) {
 double expSymmWave(double phase, double var) {
 	var = (var + 1.15) * 2.0; //Minimum value is 0.3, max value is 4.3.
 	if (phase < 0.0) {
-		return pow(-phase, var) * 2.0 - 1.0;
+		return fastPow(-phase, var) * 2.0 - 1.0;
 	} else {
-		return pow(phase, var) * 2.0 - 1.0;
+		return fastPow(phase, var) * 2.0 - 1.0;
 	}
 }
 
@@ -50,9 +60,9 @@ double expSymmWave(double phase, double var) {
 double expCrestWave(double phase, double var) {
 	var = (var + 1.15) * 2.0; //Minimum value is 0.3, max value is 4.3.
 	if (phase < 0.0) {
-		return pow(phase + 1.0, var) * 2.0 - 1.0; //Normal exp wave before peak.
+		return fastPow(phase + 1.0, var) * 2.0 - 1.0; //Normal exp wave before peak.
 	} else {
-		return 1.0 - 2.0 * pow(phase, var); //Flipped exp wave after peak.
+		return 1.0 - 2.0 * fastPow(phase, var); //Flipped exp wave after peak.
 	}
 }
 
