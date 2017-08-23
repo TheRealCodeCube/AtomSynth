@@ -18,6 +18,7 @@
 namespace AtomSynth {
 
 EnhancedComponent::~EnhancedComponent() {
+	cancelPendingUpdate(); //To avoid thread race condition.
 	if(m_label != nullptr) {
 		delete(m_label);
 	}
@@ -138,10 +139,12 @@ void MultiButton::paint(Graphics & g) {
 	}
 }
 
-void MultiButton::setSelectedLabel(int index) {
+void MultiButton::setSelectedLabel(int index, bool notify) {
 	m_selectedLabel = index;
-	for (Listener * listener : m_listeners) {
-		listener->multiButtonPressed(this);
+	if(notify) {
+		for (Listener * listener : m_listeners) {
+			listener->multiButtonPressed(this);
+		}
 	}
 	repaint();
 }
@@ -165,7 +168,7 @@ void MultiButton::mouseDown(const MouseEvent& event) {
 }
 
 void MultiButton::loadSaveState(SaveState state) {
-	setSelectedLabel(state.getValue(0));
+	setSelectedLabel(state.getValue(0), false);
 }
 
 SaveState MultiButton::saveSaveState() {

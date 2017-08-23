@@ -26,18 +26,18 @@ AutosaveThread::~AutosaveThread() {
 }
 
 void AutosaveThread::run() {
-#ifdef CUSTOM_SAVE_LOAD
 	while(!threadShouldExit()) {
 		if(m_parent->getTime() >= m_parent->m_nextAutosave) {
 			m_parent->saveNow();
 		}
 		sleep(100);
 	}
-#endif
 }
 
 void SaveManager::setup() {
+#ifdef CUSTOM_SAVE_LOAD
 	m_autosaveThread.startThread();
+#endif
 }
 
 unsigned int SaveManager::getTime() {
@@ -68,7 +68,9 @@ SaveManager::SaveManager():
 }
 
 SaveManager::~SaveManager() {
+#ifdef CUSTOM_SAVE_LOAD
 	m_autosaveThread.stopThread(200);
+#endif
 }
 
 void SaveManager::setPatchName(std::string newName) {

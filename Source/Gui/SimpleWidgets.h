@@ -189,8 +189,9 @@ public:
 	 * index. Does not check if the index is in
 	 * bounds.
 	 * @param index The index of the label to select.
+	 * @param notify True if listeners should be notified of the change.
 	 */
-	void setSelectedLabel(int index);
+	void setSelectedLabel(int index, bool notify = true);
 	/**
 	 * Gets the index of the currently selected label.
 	 * @return The index of the currently selected label.
