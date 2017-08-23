@@ -137,10 +137,11 @@ bool SaveManager::load(File loadFrom) {
 
 std::string AtomSynth::SaveManager::exportString() {
 	saveSaveState().showOffNewFormat();
-	return saveSaveState().exportString();
+	return saveSaveState().exportBase64();
 }
 
 void AtomSynth::SaveManager::importString(std::string input) {
+	SaveState state(input);
 	loadSaveState(SaveState(input));
 }
 

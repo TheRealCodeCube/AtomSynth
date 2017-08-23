@@ -31,19 +31,20 @@ private:
 	std::vector<SaveState> m_states;
 	int m_nextStateCounter, m_nextValueCounter, m_nextStringCounter;
 	/**
-	 * Creates a 4-byte string representing
-	 * the input.
+	 * Creates a string representing the input, ranging from
+	 * 1 to 4 bytes.
 	 * @param input The value to convert.
-	 * @return A 4-byte string representing the input.
+	 * @return A string representing the input.
 	 */
 	std::string doubleToBytes(double input);
 	/**
-	 * Takes a 4-byte string from doubleToBytes()
-	 * and converts it back into a double.
-	 * @param input A 4-byte string.
+	 * Takes a string from doubleToBytes() and
+	 * converts it back into a double.
+	 * @param input A string up to 4 bytes. (Not all bytes will be used, depending on the original value.)
+	 * @param bytesUsed This value is overwritten with how many bytes were actually used by the value (anywhere from 1 to 4.)
 	 * @return The original double value.
 	 */
-	double bytesToDouble(std::string input);
+	double bytesToDouble(std::string input, int& bytesUsed);
 	/**
 	 * Imports from the old, inefficient string
 	 * format.
@@ -60,6 +61,12 @@ private:
 	 * @param input A string containing the binary data.
 	 */
 	void importBytes(std::string input);
+	/**
+	 * Imports a string containing the shiny new bytes
+	 * format encoded with base64.
+	 * @param input A string containing the base64-encoded data.
+	 */
+	void importBase64(std::string input);
 public:
 	SaveState();
 	/**
@@ -189,6 +196,17 @@ public:
 	 * @return The resulting byte array.
 	 */
 	std::string exportBytes();
+	/**
+	 * Exports a copy-pasteable base 64 string
+	 * containing the contents of exportBytes().
+	 * @return A base 64 string representing the content of exportBytes().
+	 */
+	std::string exportBase64();
+	/**
+	 * Dumps the content of this SaveState to the console.
+	 * @param extraIndentation Number of extra tabs to add in front of the content.
+	 */
+	void dumpToConsole(int extraIndentation = 0);
 	/**
 	 * Prints out how many bytes it would take to
 	 * export this SaveState in the old yucky

@@ -220,7 +220,6 @@ void AtomManager::addAtom(AtomController* controller) {
 }
 
 void AtomManager::loadSaveState(SaveState state) {
-	info("Network loaded from SaveState");
 	clearAtoms();
 	for (SaveState & atomState : state.getStates()) {
 		for (AtomController * controller : m_availableAtoms) {
@@ -246,6 +245,7 @@ void AtomManager::loadSaveState(SaveState state) {
 
 	updateExecutionOrder();
 	m_parent->getGuiManager().setReloadGuis();
+	info("Network loaded from SaveState");
 }
 
 SaveState AtomManager::saveSaveState() {
