@@ -9,7 +9,7 @@
               pluginWantsMidiIn="1" pluginProducesMidiOut="0" pluginIsMidiEffectPlugin="0"
               pluginEditorRequiresKeys="1" pluginAUExportPrefix="AtomSynthAU"
               pluginRTASCategory="" aaxIdentifier="com.yourcompany.AtomSynth"
-              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.0.1"
+              pluginAAXCategory="AAX_ePlugInCategory_Dynamics" jucerVersion="5.1.1"
               displaySplashScreen="1" reportAppUsage="1" splashScreenColour="Dark"
               buildStandalone="1" enableIAA="0" cppLanguageStandard="14">
   <MAINGROUP id="q4OkZd" name="JUCE Project">
@@ -66,8 +66,6 @@
           <FILE id="cPjRfA" name="FirTest.h" compile="0" resource="0" file="Source/Atoms/Debug/FirTest.h"/>
         </GROUP>
         <GROUP id="{9F313AB3-F5E9-C065-A72C-D757BDAAFEBA}" name="Filters">
-          <FILE id="XuLwyI" name="FirHighpass.cpp" compile="1" resource="0" file="Source/Atoms/Filters/FirHighpass.cpp"/>
-          <FILE id="Wtv2aO" name="FirHighpass.h" compile="0" resource="0" file="Source/Atoms/Filters/FirHighpass.h"/>
           <FILE id="uUV3VF" name="FirLowpass.cpp" compile="1" resource="0" file="Source/Atoms/Filters/FirLowpass.cpp"/>
           <FILE id="LCpScP" name="FirLowpass.h" compile="0" resource="0" file="Source/Atoms/Filters/FirLowpass.h"/>
           <FILE id="l2sbpn" name="Comb.cpp" compile="1" resource="0" file="Source/Atoms/Filters/Comb.cpp"/>

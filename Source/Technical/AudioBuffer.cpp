@@ -115,7 +115,7 @@ void AudioBuffer::setChannels(int channels) {
 
 void LoopedAudioBuffer::offsetData(int amount) {
 	m_dataOffset += amount;
-	if(m_dataOffset > m_size) {
+	if(m_dataOffset >= m_size) {
 		m_dataOffset -= m_size;
 	} else if (m_dataOffset < 0) {
 		m_dataOffset += m_size;
@@ -123,8 +123,8 @@ void LoopedAudioBuffer::offsetData(int amount) {
 }
 
 double LoopedAudioBuffer::getValue(int channel, int sample) {
-	sample += m_dataOffset;
-	if(sample > m_size) {
+	sample -= m_dataOffset;
+	if(sample >= m_size) {
 		sample -= m_size;
 	} else if (sample < 0) {
 		sample += m_size;
@@ -133,8 +133,8 @@ double LoopedAudioBuffer::getValue(int channel, int sample) {
 }
 
 void LoopedAudioBuffer::setValue(int channel, int sample, double value) {
-	sample += m_dataOffset;
-	if(sample > m_size) {
+	sample -= m_dataOffset;
+	if(sample >= m_size) {
 		sample -= m_size;
 	} else if (sample < 0) {
 		sample += m_size;
