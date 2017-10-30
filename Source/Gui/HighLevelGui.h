@@ -119,6 +119,7 @@ private:
 	Label *m_lastSaved;
 #else
 	TextButton m_copyToClipboard, m_pasteFromClipboard;
+	TextButton m_loadDefaultPatch, m_silenceAllNotes;
 #endif
 	TextButton m_createDebugLog;
 	class UpdateContentTimer: public Timer {

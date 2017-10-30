@@ -154,9 +154,9 @@ void AtomController::execute() {
 	}
 
 	for (int i = 0; i < Synth::getInstance()->getParameters().m_polyphony; i++) {
-		if (Synth::getInstance()->getNoteManager().getIsActive(i)) { //Only bother calculating active notes
+		if (Synth::getInstance()->getNoteManager().isActive(i)) { //Only bother calculating active notes
 			m_atoms[i]->executeWrapper();
-		} else if (Synth::getInstance()->getNoteManager().getIsStopped(i)) {
+		} else if (Synth::getInstance()->getNoteManager().isStopped(i)) {
 			m_atoms[i]->reset();
 		}
 	}

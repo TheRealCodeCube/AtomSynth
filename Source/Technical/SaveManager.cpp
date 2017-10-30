@@ -147,6 +147,10 @@ void AtomSynth::SaveManager::importString(std::string input) {
 	loadSaveState(SaveState(input));
 }
 
+void SaveManager::loadDefaultPatch() {
+	importString(DEFAULT_PATCH);
+}
+
 char* AtomSynth::SaveManager::exportBytes(int& size) {
 	std::string output = exportString();
 	size = output.length() + 1;

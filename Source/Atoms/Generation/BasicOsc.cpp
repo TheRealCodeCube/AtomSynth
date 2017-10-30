@@ -1,5 +1,5 @@
 /* ALL CODE SHOULD BE CONSIDERED AUTO-GENERATED UNLESS EXPLICITLY SPECIFIED */
-// EDITOR SOURCE: [[10.000000:2.000000:1.000000:sBasic Osc:sGeneration:shz:saudio:shz:swave:[[24.000000:0.000000:1.000000:10.000000:10.000000:1.000000:sWaveformPlot:splot:s:]][[[24.000000:0.000000:0.000000:12.000000:1.000000:1.000000:sMultiButton:swaveSelect:s:]][0.000000:0.000000:sSin:sSqr:sTri:sExp:sSExp:sCExp:sTahn:sSTanh:]][[[4.000000:10.000000:1.500000:2.000000:2.000000:1.000000:sAtomKnob:stop:sTop:]][-1.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:14.000000:2.000000:2.000000:1.000000:sSimpleKnob:suVoices:sVoices:]][1.000000:12.000000:1.000000:1.000000:1.000000:s:]][[[4.000000:10.000000:4.000000:2.000000:2.000000:1.000000:sAtomKnob:sbottom:sBottom:]][-1.000000:1.000000:-1.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:span:sPanning:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:2.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:sphase:sPhase:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:0.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:samplitude:sAmplitude:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:9.000000:2.000000:2.000000:1.000000:sAtomKnob:svar:sVariable:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:6.500000:2.000000:2.000000:1.000000:sAtomKnob:scenter:sCenter:]][-1.000000:1.000000:0.000000:0.000000:1.000000:s:]][[[4.000000:4.000000:14.000000:2.000000:2.000000:1.000000:sAtomKnob:suPan:sPanning:]][-1.000000:1.000000:0.500000:0.000000:1.000000:s:]][[[4.000000:2.000000:14.000000:2.000000:2.000000:1.000000:sAtomKnob:suPhase:s�Phase:]][0.000000:1.000000:1.000000:0.000000:1.000000:s:]][[[4.000000:10.000000:11.500000:2.000000:2.000000:1.000000:sOctavesKnob:soctaves:sOctaves:]][-4.000000:4.000000:0.000000:1.000000:0.000000:so:]][[[4.000000:6.000000:11.500000:2.000000:2.000000:1.000000:sCentsKnob:scents:sDetune:]][-100.000000:100.000000:0.000000:1.000000:0.000000:sc:]][[[4.000000:6.000000:14.000000:2.000000:2.000000:1.000000:sCentsKnob:suCents:sDetune�:]][-100.000000:100.000000:20.000000:1.000000:0.000000:sc:]][[[4.000000:10.000000:14.000000:2.000000:2.000000:1.000000:sSemitonesKnob:ssemis:sSemitones:]][-12.000000:12.000000:0.000000:1.000000:0.000000:ss:]][[[4.000000:8.000000:11.500000:2.000000:2.000000:1.000000:sAtomKnob:sfm:sFM:]][-2.000000:2.000000:1.000000:0.000000:1.000000:s:]]]]
+// EDITOR SOURCE: wNPBswAAAQQMAwYRgArJwQlCYXNpYyBPc2MKR2VuZXJhdGlvbgJoegVhdWRpbwJoegR3YXZlACQAAAEAHwYDAIAYwMGACoAKwQxXYXZlZm9ybVBsb3QEcGxvdAAAWQAAAgAoAAABACMGAwCAGMDAgAzBwQtNdWx0aUJ1dHRvbgp3YXZlU2VsZWN0AAAqAggAwMADU2luA1NxcgNUcmkDRXhwBFNFeHAEQ0V4cARUYWhuBVNUYW5oADAAAAIAIAAAAQAbBgMAzYAKysnJwQhBdG9tS25vYgN0b3ADVG9wAAkFAQDhwcHAwQAAOgAAAgApAAABACQGAwDNwIAOycnBClNpbXBsZUtub2IHdVZvaWNlcwZWb2ljZXMACgUBAMGADMHBwQAANgAAAgAmAAABACEGAwDNgArNycnBCEF0b21Lbm9iBmJvdHRvbQZCb3R0b20ACQUBAOHB4cDBAAA0AAACACQAAAEAHwYDAM3NVwTJycEIQXRvbUtub2IDcGFuB1Bhbm5pbmcACQUBAOHBwMDBAAA0AAACACQAAAEAHwYDAM3JVwTJycEIQXRvbUtub2IFcGhhc2UFUGhhc2UACQUBAOHBwMDBAAA8AAACACwAAAEAJwYDAM3AVwTJycEIQXRvbUtub2IJYW1wbGl0dWRlCUFtcGxpdHVkZQAJBQEAwMHBwMEAADYAAAIAJgAAAQAhBgMAzYAKgAnJycEIQXRvbUtub2IDdmFyCFZhcmlhYmxlAAkFAQDhwcDAwQAANwAAAgAnAAABACIGAwDNgApaA8nJwQhBdG9tS25vYgZjZW50ZXIGQ2VudGVyAAkFAQDhwcDAwQAANQAAAgAlAAABACAGAwDNzYAOycnBCEF0b21Lbm9iBHVQYW4HUGFubmluZwAJBQEA4cHBwMEAADYAAAIAJgAAAQAhBgMAzcmADsnJwQhBdG9tS25vYgZ1UGhhc2UGW1BoYXNlAAkFAQDAwcHAwQAAPQAAAgAsAAABACcGAwDNgApXBMnJwQtPY3RhdmVzS25vYgdvY3RhdmVzB09jdGF2ZXMACgUBAO3NwMHAAW8AOgAAAgAnAAABACIGAwDNgAZXBMnJwQlDZW50c0tub2IFY2VudHMGRGV0dW5lAAwFAQCgZIBkwMHAAWMAPQAAAgApAAABACQGAwDNgAaADsnJwQlDZW50c0tub2IGdUNlbnRzB0RldHVuZV0ADQUBAKBkgGSAFMHAAWMAQQAAAgAuAAABACkGAwDNgAqADsnJwQ1TZW1pdG9uZXNLbm9iBXNlbWlzCVNlbWl0b25lcwAMBQEAoAyADMDBwAFzAC8AAAIAHwAAAQAaBgMAzYAIVwTJycEIQXRvbUtub2ICZm0CRk0ACQUBAOnJwcDBAA==
 
 /* BEGIN AUTO-GENERATED INCLUDES */
 #include "BasicOsc.h"
@@ -86,6 +86,23 @@ double BasicOscAtom::getUnisonFactor(int voice, int totalVoices) {
 		return 0.0;
 	else
 		return Adsp::remap(voice, 0.0, totalVoices - 1.0, -1.0, 1.0);
+}
+
+void BasicOscAtom::scramblePhases() {
+	if(m_parent.m_uVoices.getValue() == 1) {
+		//Just reset the first phase back to zero.
+		for(double & phase : m_phases[0]) {
+			phase = 0;
+		}
+	} else {
+		//Randomize all phases.
+		for(std::vector<double> & vec : m_phases) {
+			double value = (double(rand()) / RAND_MAX) * 2.0;
+			for(double & phase : vec) {
+				phase = value; //Apply same value to multiple channels to avoid accidental stereo wideness.
+			}
+		}
+	}
 }
 /* END MISC. USER-DEFINED CODE */
 
@@ -176,7 +193,7 @@ BasicOscController::BasicOscController() :
 	m_gui.addComponent(&m_uPan);
 	m_uPan.setBounds(CB(4.000000, 14.000000, 2.000000, 2.000000));
 	m_uPan.addListener(this);
-	m_uPan.setValue(0.500000);
+	m_uPan.setValue(1.000000);
 	m_uPan.setBounded(true);
 	addAutomatedControl(m_uPan, m_uPanIter);
 	m_gui.addComponent(m_uPan.createLabel("Panning", true));
@@ -206,6 +223,7 @@ BasicOscController::BasicOscController() :
 	m_uCents.setBounds(CB(6.000000, 14.000000, 2.000000, 2.000000));
 	m_uCents.addListener(this);
 	addAutomatedControl(m_uCents, m_uCentsIter);
+	m_uCents.setValue(20.000000);
 	m_gui.addComponent(m_uCents.createLabel("Detune]", true));
 
 	m_gui.addComponent(&m_semis);
@@ -531,21 +549,5 @@ void BasicOscAtom::reset() {
 	/* END USER-DEFINED RESET CODE */
 }
 
-void BasicOscAtom::scramblePhases() {
-	if(m_parent.m_uVoices.getValue() == 1) {
-		//Just reset the first phase back to zero.
-		for(double & phase : m_phases[0]) {
-			phase = 0;
-		}
-	} else {
-		//Randomize all phases.
-		for(std::vector<double> & vec : m_phases) {
-			double value = (double(rand()) / RAND_MAX) * 2.0;
-			for(double & phase : vec) {
-				phase = value; //Apply same value to multiple channels to avoid accidental stereo wideness.
-			}
-		}
-	}
-}
-
 } /* namespace AtomSynth */
+

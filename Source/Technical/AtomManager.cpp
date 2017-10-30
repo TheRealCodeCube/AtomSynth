@@ -177,7 +177,7 @@ AudioBuffer & AtomManager::execute() {
 		//Sum up all polyphony.
 		for (int note = 0; note < Synth::getInstance()->getParameters().m_polyphony; note++) {
 			std::vector<double>::iterator bufferIterator = input.first->getAtom(note)->getOutput(input.second)->getData().begin();
-			if (Synth::getInstance()->getNoteManager().getIsActive(note)) {
+			if (Synth::getInstance()->getNoteManager().isActive(note)) {
 				for (int s = 0; s < AudioBuffer::getDefaultChannels() * AudioBuffer::getDefaultSize(); s++) {
 					sample = (*bufferIterator);
 					totals[note] += fabs(sample);
@@ -194,7 +194,7 @@ AudioBuffer & AtomManager::execute() {
 
 		int index = 0;
 		for (double total : totals) {
-			if (Synth::getInstance()->getNoteManager().getIsStopped(index)) {
+			if (Synth::getInstance()->getNoteManager().isStopped(index)) {
 				Synth::getInstance()->getNoteManager().end(index);
 			} else if (Synth::getInstance()->getNoteManager().getNoteState(index).status == AtomSynth::NoteState::RELEASING) {
 				if (total <= 0.00001) {

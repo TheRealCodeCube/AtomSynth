@@ -36,6 +36,14 @@ void NoteManager::stop(int index) {
 	m_notes[index].status = NoteState::STOPPED;
 }
 
+void NoteManager::stopAll() {
+	for(int i = 0; i < m_notes.size(); i++) {
+		if(isActive(i)) {
+			stop(i);
+		}
+	}
+}
+
 void NoteManager::end(int index) {
 	m_notes[index].status = NoteState::SILENT;
 }
@@ -52,7 +60,7 @@ void NoteManager::addMidiNote(MidiMessage midi) {
 			return; //Do not add duplicates.
 	int index = 0;
 	for (NoteState s : m_notes) {
-		if (!getIsActive(index))
+		if (!isActive(index))
 			break;
 		index++;
 	}
@@ -85,7 +93,7 @@ void NoteManager::addFrequency(double frequency) {
 			return; //Do not add duplicates.
 	int index = 0;
 	for (NoteState s : m_notes) {
-		if (!getIsActive(index))
+		if (!isActive(index))
 			break;
 		index++;
 	}
@@ -111,7 +119,7 @@ void NoteManager::removeFrequency(double frequency) {
 	m_notes[index].status = NoteState::RELEASING;
 }
 
-bool NoteManager::getIsFrequencyActive(double frequency) {
+bool NoteManager::isFrequencyActive(double frequency) {
 	for (NoteState n : m_notes) {
 		if ((fabs(n.frequency - frequency) < 0.0001) && (n.status == NoteState::ACTIVE)) {
 			return true;
@@ -132,11 +140,11 @@ void NoteManager::listNotes() {
 	std::cout << std::endl;
 }
 
-bool NoteManager::getIsStopped(int index) {
+bool NoteManager::isStopped(int index) {
 	return (m_notes[index].status == NoteState::STOPPED);
 }
 
-bool NoteManager::getIsActive(int index) {
+bool NoteManager::isActive(int index) {
 	return (m_notes[index].status == NoteState::ACTIVE) || (m_notes[index].status == NoteState::RELEASING);
 }
 

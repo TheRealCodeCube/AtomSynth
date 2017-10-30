@@ -107,6 +107,10 @@ public:
 	 */
 	void importString(std::string input);
 	/**
+	 * Loads the default patch. (The data for this is stored in AtomSynth::DEFAULT_PATCH.)
+	 */
+	void loadDefaultPatch();
+	/**
 	 * Exports the state of the synth as a raw byte
 	 * array, used for exporting through the VST
 	 * API.

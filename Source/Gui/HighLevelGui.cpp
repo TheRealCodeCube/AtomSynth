@@ -374,6 +374,16 @@ PropertiesSidepane::PropertiesSidepane():
 	m_createDebugLog.setText("Create Debug Log");
 	m_createDebugLog.addListener(this);
 
+	addAndMakeVisible(m_loadDefaultPatch);
+	m_loadDefaultPatch.setBounds(CB(0, 2.5, 6, 1));
+	m_loadDefaultPatch.setText("Load Default Patch");
+	m_loadDefaultPatch.addListener(this);
+
+	addAndMakeVisible(m_silenceAllNotes);
+	m_silenceAllNotes.setBounds(CB(6, 2.5, 6, 1));
+	m_silenceAllNotes.setText("Silence All Notes");
+	m_silenceAllNotes.addListener(this);
+
 	m_updateContentTimer.startTimer(500);
 }
 
@@ -401,6 +411,10 @@ void PropertiesSidepane::textButtonPressed(TextButton *button) {
 		Synth::getInstance()->getGuiManager().addMessage("Patch successfully loaded from clipboard.");
 	} else if(button == &m_createDebugLog) {
 		Synth::getInstance()->getLogManager().setDebugEverything();
+	} else if(button == &m_loadDefaultPatch) {
+		Synth::getInstance()->getSaveManager().loadDefaultPatch();
+	} else if(button == &m_silenceAllNotes) {
+		Synth::getInstance()->getNoteManager().stopAll();
 	}
 #endif
 }
@@ -588,7 +602,7 @@ bool AtomSynthEditor::keyStateChanged(bool isKeyDown, Component * originatingCom
 		if (units[i - 44] != -1) {
 			double frequency = 440.0 * pow(SEMITONE_DETUNE, units[i - 44] - 9);
 			bool pressed = KeyPress::isKeyCurrentlyDown(i);
-			bool active = Synth::getInstance()->getNoteManager().getIsFrequencyActive(frequency);
+			bool active = Synth::getInstance()->getNoteManager().isFrequencyActive(frequency);
 			if (pressed != active) {
 				if (pressed) {
 					Synth::getInstance()->getNoteManager().addFrequency(frequency);

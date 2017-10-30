@@ -69,6 +69,11 @@ public:
 	 */
 	void stop(int index);
 	/**
+	 * Stops all currently playing notes. See stop() for exactly
+	 * what happens to each note.
+	 */
+	void stopAll();
+	/**
 	 * Completely kills a note at a particular polyphony
 	 * index. This will not give any AtomController
 	 * objects rendering this note a chance to reset.
@@ -102,7 +107,7 @@ public:
 	 * @param frequency The frequency to search for.
 	 * @return True if a note on that frequency is currently being played.
 	 */
-	bool getIsFrequencyActive(double frequency);
+	bool isFrequencyActive(double frequency);
 	/**
 	 * Dumps all note states to the console. Use
 	 * this if you don't have access to a real
@@ -121,14 +126,14 @@ public:
 	 * @param index The polyphony index to check.
 	 * @return True if the selected note state is stopped.
 	 */
-	bool getIsStopped(int index);
+	bool isStopped(int index);
 	/**
 	 * Gets if a note at a particular polyphony index is
 	 * active (the status is not NoteState::Status::SILENT.)
 	 * @param index The polyphony index to check.
 	 * @return True if the selected note state is active.
 	 */
-	bool getIsActive(int index);
+	bool isActive(int index);
 };
 
 } /* namespace AtomSynth */
